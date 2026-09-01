@@ -1,0 +1,11 @@
+{
+  "schema": "stolz.benchmark-route.v1",
+  "route_id": "optimized-required-context-v1",
+  "fixture_id": "context-selection",
+  "fixture_version": "1.0.0",
+  "description": "Route first, load only the task brief and verification policy, produce the same plan, and run the same verification.",
+  "evidence": {
+    "path": "benchmarks/raw/context-selection-v1/optimized.json",
+    "sha256": "295e35827abe219a3f6f936a61416fcef17f8747b826d120744ea3e651a52a90"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "schema": "stolz.benchmark-evidence.v1",
+  "capture_id": "context-selection-v1-baseline-001",
+  "fixture_id": "context-selection",
+  "fixture_version": "1.0.0",
+  "route_id": "baseline-eager-context-v1",
+  "collector": {
+    "id": "stolz-versioned-synthetic-trace",
+    "version": "1.0.0",
+    "token_source": "synthetic-fixture-token-units-v1",
+    "capture_method": "Versioned synthetic trace input used to validate the harness; not provider telemetry."
+  },
+  "outcome": "validated-context-plan-v1",
+  "result": {
+    "selected_artifact_ids": [
+      "task-brief",
+      "verification-policy"
+    ],
+    "verification_policy_applied": true
+  },
+  "verification": {
+    "passed": true,
+    "checks": [
+      "required-artifacts-selected",
+      "verification-policy-applied",
+      "result-digest-matched"
+    ]
+  },
+  "events": [
+    { "sequence": 1, "event": "load_all_available_context", "tokens": 520, "model_wakeups": 1, "tool_calls": 4, "wall_time_ms": 38, "interventions": 0 },
+    { "sequence": 2, "event": "reconstruct_route_from_full_context", "tokens": 310, "model_wakeups": 1, "tool_calls": 1, "wall_time_ms": 52, "interventions": 0 },
+    { "sequence": 3, "event": "produce_context_plan", "tokens": 460, "model_wakeups": 1, "tool_calls": 2, "wall_time_ms": 70, "interventions": 0 },
+    { "sequence": 4, "event": "verify_context_plan", "tokens": 240, "model_wakeups": 1, "tool_calls": 1, "wall_time_ms": 35, "interventions": 0 }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stolz-ai.dev/contracts/adapter-capability.schema.json",
+  "title": "STOLZ A.I. Adapter Capability Declaration",
+  "description": "Provider-neutral capability declaration. The v1 required fields remain unchanged; optional v0.2/v0.3 metadata names only a selected runtime-local contract and cannot carry credentials or provider telemetry claims.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["adapter_id", "provider", "capabilities"],
+  "properties": {
+    "adapter_id": { "type": "string", "minLength": 1 },
+    "provider": { "type": "string", "minLength": 1 },
+    "adapter_version": { "type": "string", "minLength": 1 },
+    "runtime": { "type": "object", "additionalProperties": false, "required": ["runtime_id", "runtime_version"], "properties": { "runtime_id": { "type": "string", "minLength": 1 }, "runtime_version": { "type": "string", "minLength": 1 } } },
+    "resolution": { "enum": ["lazy"] },
+    "optional_integration_capabilities": { "type": "array", "uniqueItems": true, "items": { "type": "object", "additionalProperties": false, "required": ["integration_id", "capabilities"], "properties": { "integration_id": { "type": "string", "minLength": 1 }, "capabilities": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } } } } },
+    "runtime_contract": { "type": "object", "additionalProperties": false, "required": ["runtime_id", "destination", "activation", "settings_provenance", "hooks", "mcp", "fallback"], "properties": { "runtime_id": { "enum": ["codex", "claude-code", "qwen-code"] }, "destination": { "type": "string" }, "activation": { "const": "lazy" }, "settings_provenance": { "const": "required" }, "hooks": { "enum": ["not_supported", "explicit_opt_in"] }, "mcp": { "enum": ["not_supported", "explicit_opt_in"] }, "fallback": { "enum": ["provider-neutral", "unavailable"] } }, "allOf": [{ "if": { "properties": { "runtime_id": { "const": "claude-code" } } }, "then": { "properties": { "destination": { "enum": [".claude/skills/", "~/.claude/skills/"] } } } }, { "if": { "properties": { "runtime_id": { "const": "qwen-code" } } }, "then": { "properties": { "destination": { "enum": [".qwen/skills/", "~/.qwen/skills/"] } } } }, { "if": { "properties": { "runtime_id": { "const": "codex" } } }, "then": { "properties": { "destination": { "const": "skills/" } } } }] },
+    "capabilities": { "type": "object", "additionalProperties": false, "required": ["artifact_identity", "command_execution", "durable_state", "measurement_capture"], "properties": { "artifact_identity": { "type": "boolean" }, "command_execution": { "type": "boolean" }, "durable_state": { "type": "boolean" }, "measurement_capture": { "type": "boolean" } } }
+  },
+  "allOf": [{ "if": { "properties": { "runtime_contract": { "properties": { "runtime_id": { "const": "claude-code" } }, "required": ["runtime_id"] } }, "required": ["runtime_contract"] }, "then": { "properties": { "adapter_id": { "const": "claude-code" } } } }, { "if": { "properties": { "runtime_contract": { "properties": { "runtime_id": { "const": "qwen-code" } }, "required": ["runtime_id"] } }, "required": ["runtime_contract"] }, "then": { "properties": { "adapter_id": { "const": "qwen-code" } } } }, { "if": { "properties": { "runtime_contract": { "properties": { "runtime_id": { "const": "codex" } }, "required": ["runtime_id"] } }, "required": ["runtime_contract"] }, "then": { "properties": { "adapter_id": { "const": "codex-local" } } } }]
+}

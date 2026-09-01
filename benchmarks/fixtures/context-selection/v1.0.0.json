@@ -1,0 +1,36 @@
+{
+  "schema": "stolz.benchmark-fixture.v1",
+  "fixture_id": "context-selection",
+  "fixture_version": "1.0.0",
+  "title": "Select only required context while preserving a verified plan outcome",
+  "task": "Produce the validated context plan from a task brief and policy while unrelated history and design notes are available.",
+  "required_outcome": "validated-context-plan-v1",
+  "required_verification": true,
+  "expected_result": {
+    "selected_artifact_ids": [
+      "task-brief",
+      "verification-policy"
+    ],
+    "verification_policy_applied": true
+  },
+  "verification_checks": [
+    "required-artifacts-selected",
+    "verification-policy-applied",
+    "result-digest-matched"
+  ],
+  "claim_scope": "This result applies only to the versioned synthetic context-selection trace and its declared token-unit source.",
+  "limitations": [
+    "The token-unit counts are authored synthetic fixture inputs, not measurements captured from Codex or another provider's telemetry.",
+    "The result demonstrates the harness and context-selection mechanism; it is not a provider-wide efficiency guarantee."
+  ],
+  "measurement": {
+    "token_source": "synthetic-fixture-token-units-v1",
+    "description": "Synthetic per-event token-unit and duration inputs used to verify deterministic outcome gates."
+  },
+  "artifacts": [
+    { "id": "task-brief", "version": "1", "required": true },
+    { "id": "verification-policy", "version": "1", "required": true },
+    { "id": "historical-run-log", "version": "1", "required": false },
+    { "id": "unrelated-design-notes", "version": "1", "required": false }
+  ]
+}

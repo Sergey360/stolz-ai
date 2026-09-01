@@ -1,0 +1,81 @@
+{
+  "schema": "stolz.benchmark-report.v1",
+  "benchmark_id": "context-selection-v1",
+  "fixture": {
+    "id": "context-selection",
+    "version": "1.0.0",
+    "claim_scope": "This result applies only to the versioned synthetic context-selection trace and its declared token-unit source.",
+    "limitations": [
+      "The token-unit counts are authored synthetic fixture inputs, not measurements captured from Codex or another provider's telemetry.",
+      "The result demonstrates the harness and context-selection mechanism; it is not a provider-wide efficiency guarantee."
+    ]
+  },
+  "provenance": {
+    "suite": {
+      "path": "benchmarks/suites/context-selection-v1.json",
+      "sha256": "45c7af8581dc70d96bbc632eb15af42ebe4957fe9eaa7137538b1878ecc1cb67"
+    },
+    "fixture": {
+      "path": "benchmarks/fixtures/context-selection/v1.0.0.json",
+      "sha256": "43c931ca6a3a43ce2b183601ca247a6d0bca3645904cd2dac3f954be0151bc0c"
+    },
+    "baseline_route": {
+      "path": "benchmarks/routes/context-selection-v1/baseline.json",
+      "sha256": "617330bad239d423153fc9d415c95e6d13fb9716bb7a74eb521417496f52fc5f"
+    },
+    "optimized_route": {
+      "path": "benchmarks/routes/context-selection-v1/optimized.json",
+      "sha256": "ef3f9384977774d09a29243181d56b93fd1275e7d82fac60fa83136cb5fcf675"
+    },
+    "baseline_evidence": {
+      "path": "benchmarks/raw/context-selection-v1/baseline.json",
+      "sha256": "cfee66cf9b246a61839018cd5caea9d6fe30e8409b2d38ffed00d82fee698b0a"
+    },
+    "optimized_evidence": {
+      "path": "benchmarks/raw/context-selection-v1/optimized.json",
+      "sha256": "295e35827abe219a3f6f936a61416fcef17f8747b826d120744ea3e651a52a90"
+    }
+  },
+  "record": {
+    "fixture_id": "context-selection",
+    "fixture_version": "1.0.0",
+    "required_outcome": "validated-context-plan-v1",
+    "baseline_route": "baseline-eager-context-v1",
+    "optimized_route": "optimized-required-context-v1",
+    "baseline": {
+      "tokens": 1530,
+      "token_source": "synthetic-fixture-token-units-v1",
+      "model_wakeups": 4,
+      "tool_calls": 8,
+      "wall_time_ms": 195,
+      "interventions": 0,
+      "outcome": "validated-context-plan-v1",
+      "verification": true,
+      "evidence": [
+        "benchmarks/raw/context-selection-v1/baseline.json"
+      ]
+    },
+    "optimized": {
+      "tokens": 980,
+      "token_source": "synthetic-fixture-token-units-v1",
+      "model_wakeups": 3,
+      "tool_calls": 4,
+      "wall_time_ms": 115,
+      "interventions": 0,
+      "outcome": "validated-context-plan-v1",
+      "verification": true,
+      "evidence": [
+        "benchmarks/raw/context-selection-v1/optimized.json"
+      ]
+    }
+  },
+  "decision": {
+    "accepted": true,
+    "token_delta": -550,
+    "token_saving": true,
+    "claim_status": "fixture_only",
+    "reason": "quality_gates_passed",
+    "saved_tokens": 550,
+    "saving_percent": 35.95
+  }
+}

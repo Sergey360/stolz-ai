@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stolz-ai.dev/contracts/state-event.schema.json",
+  "title": "STOLZ A.I. Compact State Event",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["operation_id", "state", "at"],
+  "properties": {
+    "operation_id": { "type": "string", "minLength": 1 },
+    "state": { "enum": ["started", "progressed", "waiting", "needs_decision", "failed", "done"] },
+    "at": { "type": "string", "format": "date-time" },
+    "cursor": { "type": ["string", "null"] },
+    "retry": { "type": "integer", "minimum": 0 },
+    "reason": { "type": "string", "maxLength": 240 }
+  }
+}

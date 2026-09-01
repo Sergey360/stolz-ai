@@ -1,0 +1,11 @@
+{
+  "schema": "stolz.benchmark-route.v1",
+  "route_id": "baseline-eager-context-v1",
+  "fixture_id": "context-selection",
+  "fixture_version": "1.0.0",
+  "description": "Load every available artifact, reconstruct the route, produce the plan, and verify it.",
+  "evidence": {
+    "path": "benchmarks/raw/context-selection-v1/baseline.json",
+    "sha256": "cfee66cf9b246a61839018cd5caea9d6fe30e8409b2d38ffed00d82fee698b0a"
+  }
+}

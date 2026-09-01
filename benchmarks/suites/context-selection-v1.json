@@ -1,0 +1,16 @@
+{
+  "schema": "stolz.benchmark-suite.v1",
+  "benchmark_id": "context-selection-v1",
+  "fixture": {
+    "path": "benchmarks/fixtures/context-selection/v1.0.0.json",
+    "sha256": "43c931ca6a3a43ce2b183601ca247a6d0bca3645904cd2dac3f954be0151bc0c"
+  },
+  "baseline_route": {
+    "path": "benchmarks/routes/context-selection-v1/baseline.json",
+    "sha256": "617330bad239d423153fc9d415c95e6d13fb9716bb7a74eb521417496f52fc5f"
+  },
+  "optimized_route": {
+    "path": "benchmarks/routes/context-selection-v1/optimized.json",
+    "sha256": "ef3f9384977774d09a29243181d56b93fd1275e7d82fac60fa83136cb5fcf675"
+  }
+}

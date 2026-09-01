@@ -1,0 +1,40 @@
+{
+  "name": "stolz-ai",
+  "version": "0.3.4",
+  "description": "Five focused skills that reduce wasted agent work without weakening verification.",
+  "license": "MIT",
+  "private": false,
+  "type": "module",
+  "keywords": [
+    "ai-coding-agents",
+    "codex",
+    "context-management",
+    "skills",
+    "token-efficiency"
+  ],
+  "files": [
+    "skills/",
+    "docs/",
+    "README.md",
+    "README.ru.md",
+    "LICENSE",
+    "SECURITY.md",
+    "CHANGELOG.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sergey360/stolz-ai.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Sergey360/stolz-ai/issues"
+  },
+  "homepage": "https://github.com/Sergey360/stolz-ai#readme",
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "benchmark": "node tools/benchmark-cli.mjs --suite benchmarks/suites/context-selection-v1.json --json benchmarks/reports/context-selection-v1.json --markdown benchmarks/reports/context-selection-v1.md",
+    "benchmark:check": "npm run benchmark -- --check"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "allowed_roots": [
+    ".gitattributes",
+    ".github",
+    ".gitignore",
+    "CHANGELOG.md",
+    "LICENSE",
+    "README.md",
+    "README.ru.md",
+    "SECURITY.md",
+    "benchmarks",
+    "contracts",
+    "docs",
+    "package-lock.json",
+    "package.json",
+    "skills",
+    "test",
+    "tools"
+  ],
+  "forbidden_roots": [
+    "internal",
+    "assets",
+    "fixtures",
+    "overlays",
+    "profiles",
+    "web"
+  ]
+}

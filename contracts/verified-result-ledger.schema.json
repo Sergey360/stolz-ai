@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stolz-ai.dev/contracts/verified-result-ledger.schema.json",
+  "title": "STOLZ A.I. Verified Result Ledger Entry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["key", "command", "input_identities", "tool_version", "recorded_at", "verification", "invalidation_inputs"],
+  "properties": {
+    "key": { "type": "string", "minLength": 1 },
+    "command": { "type": "object", "required": ["program", "args"], "properties": { "program": { "type": "string", "minLength": 1 }, "args": { "type": "array", "items": { "type": "string" } } }, "additionalProperties": false },
+    "input_identities": { "type": "array", "items": { "$ref": "#/$defs/identity" } },
+    "tool_version": { "type": "string", "minLength": 1 },
+    "provider_version": { "type": ["string", "null"] },
+    "recorded_at": { "type": "string", "format": "date-time" },
+    "expires_at": { "type": ["string", "null"], "format": "date-time" },
+    "verification": { "type": "object", "required": ["passed"], "properties": { "passed": { "type": "boolean" }, "evidence": { "type": "string" } }, "additionalProperties": false },
+    "invalidation_inputs": { "type": "array", "items": { "$ref": "#/$defs/identity" } }
+  },
+  "$defs": { "identity": { "type": "object", "required": ["id", "sha256"], "properties": { "id": { "type": "string", "minLength": 1 }, "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }, "version": { "type": "string" } }, "additionalProperties": false } }
+}
