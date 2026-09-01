@@ -19,13 +19,13 @@
 
 </div>
 
+**STOLZ** verwijst naar Andrej Ivanovitsj Stolz, het daadkrachtige personage uit Ivan Gontsjarovs roman *Oblomov*. In **A.I.** komen de initialen van het personage (*Andrei Ivanovich*) en *Artificial Intelligence* samen.
+
 > «Движений лишних у него не было» — “Hij maakte geen onnodige bewegingen.”
 >
 > — [Ivan Gontsjarov, *Oblomov*, deel II](https://ilibrary.ru/text/475/p.13/index.html)
 
-STOLZ A.I. past hetzelfde principe toe op AI-agents: **elke token moet nuttig werk verrichten**.
-
-**STOLZ** verwijst naar Andrej Ivanovitsj Stolz; **A.I.** staat zowel voor *Andrei Ivanovich* als voor *Artificial Intelligence*.
+Het project volgt hetzelfde principe: **elke token moet nuttig werk verrichten**.
 
 ## 🎯 Wat het bespaart
 

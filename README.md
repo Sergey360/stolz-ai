@@ -19,13 +19,13 @@
 
 </div>
 
+**STOLZ** refers to Andrei Ivanovich Stolz, the energetic character in Ivan Goncharov's novel *Oblomov*. **A.I.** brings together the character's initials (*Andrei Ivanovich*) and *Artificial Intelligence*.
+
 > «Движений лишних у него не было» — “He made no unnecessary movements.”
 >
 > — [Ivan Goncharov, *Oblomov*, part II](https://ilibrary.ru/text/475/p.13/index.html)
 
-STOLZ A.I. applies the same principle to AI agents: **every token should do useful work**.
-
-**STOLZ** refers to Andrei Ivanovich Stolz, while **A.I.** stands for both *Andrei Ivanovich* and *Artificial Intelligence*.
+The project follows the same principle: **every token should do useful work**.
 
 ## 🎯 What it saves
 

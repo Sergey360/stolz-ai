@@ -19,13 +19,13 @@
 
 </div>
 
+**STOLZ** 指向伊万·冈察洛夫小说《奥勃洛莫夫》中行动果断的安德烈·伊万诺维奇·施托尔茨。**A.I.** 将人物姓名首字母（*Andrei Ivanovich*）与 *Artificial Intelligence* 结合在一起。
+
 > «Движений лишних у него не было»——“他没有多余的动作。”
 >
 > ——[伊万·冈察洛夫，《奥勃洛莫夫》第二部](https://ilibrary.ru/text/475/p.13/index.html)
 
-STOLZ A.I. 将同一原则用于 AI 智能体：**每一个 token 都应该完成有用的工作**。
-
-**STOLZ** 指向安德烈·伊万诺维奇·施托尔茨；**A.I.** 同时代表 *Andrei Ivanovich* 与 *Artificial Intelligence*。
+项目遵循同一原则：**每一个 token 都应该完成有用的工作**。
 
 ## 🎯 它节省什么
 
