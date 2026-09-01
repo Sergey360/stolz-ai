@@ -15,8 +15,12 @@
   "files": [
     "skills/",
     "docs/",
+    "assets/brand/",
     "README.md",
     "README.ru.md",
+    "README.nl.md",
+    "README.zh.md",
+    "README.he.md",
     "LICENSE",
     "SECURITY.md",
     "CHANGELOG.md"

@@ -8,7 +8,10 @@ import test from 'node:test';
 const execFileAsync = promisify(execFile);
 const publicDocuments = [
   'README.md',
+  'README.he.md',
+  'README.nl.md',
   'README.ru.md',
+  'README.zh.md',
   'SECURITY.md',
   'CHANGELOG.md',
   'docs/installation.md',
@@ -17,8 +20,11 @@ const publicDocuments = [
   'benchmarks/README.md',
 ];
 
-function localLinks(text) {
-  return [...text.matchAll(/\[[^\]]+\]\(([^)]+)\)/g)]
+function localTargets(text) {
+  return [
+    ...text.matchAll(/\[[^\]]+\]\(([^)]+)\)/g),
+    ...text.matchAll(/\b(?:src|srcset)="([^"]+)"/g),
+  ]
     .map((match) => match[1])
     .filter((target) => !target.startsWith('#') && !/^[a-z]+:\/\//i.test(target));
 }
@@ -41,8 +47,8 @@ test('public documentation is compact and tells one consistent product story', a
   for (const skill of ['stolz-route', 'stolz-context', 'stolz-reuse', 'stolz-quiet-state', 'stolz-benchmark']) {
     assert.match(readme, new RegExp(`skills/${skill}/SKILL\\.md`));
   }
-  assert.match(readme, /not a measurement of Codex usage/i);
-  assert.match(russian, /не измерение расхода Codex/i);
+  assert.match(readme, /(?:\*\*)?not(?:\*\*)? a measurement of Codex usage/i);
+  assert.match(russian, /(?:\*\*)?не(?:\*\*)? измерение расхода Codex/i);
 });
 
 test('public documents have valid local links and no internal process residue', async () => {
@@ -50,7 +56,7 @@ test('public documents have valid local links and no internal process residue', 
   for (const document of publicDocuments) {
     const text = await readFile(document, 'utf8');
     assert.doesNotMatch(text, forbidden, `${document} contains internal process language`);
-    for (const target of localLinks(text)) {
+    for (const target of localTargets(text)) {
       const path = target.split('#')[0];
       if (path) await access(resolve(dirname(document), decodeURIComponent(path)));
     }
@@ -92,8 +98,18 @@ test('npm package contains the five skills and public guides, not project tests'
   assert.equal(packed.name, 'stolz-ai');
   for (const path of [
     'README.md',
+    'README.he.md',
+    'README.nl.md',
     'README.ru.md',
+    'README.zh.md',
     'LICENSE',
+    'assets/brand/stolz-readme-light.png',
+    'assets/brand/stolz-readme-dark.png',
+    'assets/brand/stolz-logo-primary-light.png',
+    'assets/brand/stolz-logo-primary-dark.png',
+    'assets/brand/stolz-symbol-512.png',
+    'assets/brand/github-social-preview-light-1280x640.png',
+    'assets/brand/github-social-preview-dark-1280x640.png',
     'docs/installation.md',
     'skills/stolz-route/SKILL.md',
     'skills/stolz-benchmark/references/outcome-gates.md',
