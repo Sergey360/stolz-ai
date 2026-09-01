@@ -25,7 +25,7 @@
 
 STOLZ A.I. past hetzelfde principe toe op AI-agents: **elke token moet nuttig werk verrichten**.
 
-**STOLZ** verwijst naar Andrej Ivanovitsj Stolz. **A.I.** betekent zowel *Andrei Ivanovich* als *Artificial Intelligence*. De **S** van gevouwen boekpagina's en de rode bladwijzer maken van dat idee een beeldmerk: geen beweging, pagina of token zonder doel.
+**STOLZ** verwijst naar Andrej Ivanovitsj Stolz; **A.I.** staat zowel voor *Andrei Ivanovich* als voor *Artificial Intelligence*.
 
 ## 🎯 Wat het bespaart
 

@@ -25,7 +25,7 @@
 
 STOLZ A.I. applies the same principle to AI agents: **every token should do useful work**.
 
-**STOLZ** points to Andrei Ivanovich Stolz. **A.I.** is both *Andrei Ivanovich* and *Artificial Intelligence*. The folded-page **S** and its red bookmark turn that idea into a mark: no movement, page, or token without purpose.
+**STOLZ** refers to Andrei Ivanovich Stolz, while **A.I.** stands for both *Andrei Ivanovich* and *Artificial Intelligence*.
 
 ## 🎯 What it saves
 

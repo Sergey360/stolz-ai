@@ -25,7 +25,7 @@
 
 STOLZ A.I. 将同一原则用于 AI 智能体：**每一个 token 都应该完成有用的工作**。
 
-**STOLZ** 指向安德烈·伊万诺维奇·施托尔茨。**A.I.** 同时代表 *Andrei Ivanovich* 与 *Artificial Intelligence*。由书页折成的 **S** 和红色书签把这个原则变成视觉符号：每一次动作、每一页、每一个 token 都有明确目的。
+**STOLZ** 指向安德烈·伊万诺维奇·施托尔茨；**A.I.** 同时代表 *Andrei Ivanovich* 与 *Artificial Intelligence*。
 
 ## 🎯 它节省什么
 
