@@ -19,7 +19,9 @@
 
 </div>
 
-**STOLZ** verwijst naar Andrej Ivanovitsj Stolz, het daadkrachtige personage uit Ivan Gontsjarovs roman *Oblomov*. In **A.I.** komen de initialen van het personage (*Andrei Ivanovich*) en *Artificial Intelligence* samen.
+**STOLZ** verwijst naar Andrej Ivanovitsj Stolz, het daadkrachtige personage uit Ivan Gontsjarovs roman *Oblomov*.
+
+In **A.I.** komen de initialen van het personage (*Andrei Ivanovich*) en *Artificial Intelligence* samen.
 
 > «Движений лишних у него не было» — “Hij maakte geen onnodige bewegingen.”
 >

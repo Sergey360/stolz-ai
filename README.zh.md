@@ -19,7 +19,9 @@
 
 </div>
 
-**STOLZ** 指向伊万·冈察洛夫小说《奥勃洛莫夫》中行动果断的安德烈·伊万诺维奇·施托尔茨。**A.I.** 将人物姓名首字母（*Andrei Ivanovich*）与 *Artificial Intelligence* 结合在一起。
+**STOLZ** 指向伊万·冈察洛夫小说《奥勃洛莫夫》中行动果断的安德烈·伊万诺维奇·施托尔茨。
+
+**A.I.** 将人物姓名首字母（*Andrei Ivanovich*）与 *Artificial Intelligence* 结合在一起。
 
 > «Движений лишних у него не было»——“他没有多余的动作。”
 >

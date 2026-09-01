@@ -19,7 +19,9 @@
 
 </div>
 
-**STOLZ** refers to Andrei Ivanovich Stolz, the energetic character in Ivan Goncharov's novel *Oblomov*. **A.I.** brings together the character's initials (*Andrei Ivanovich*) and *Artificial Intelligence*.
+**STOLZ** refers to Andrei Ivanovich Stolz, the energetic character in Ivan Goncharov's novel *Oblomov*.
+
+**A.I.** brings together the character's initials (*Andrei Ivanovich*) and *Artificial Intelligence*.
 
 > «Движений лишних у него не было» — “He made no unnecessary movements.”
 >
