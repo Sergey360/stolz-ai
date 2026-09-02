@@ -26,6 +26,10 @@
     "benchmarks/",
     "reports/benchmark-v3/",
     "README.md",
+    "README.ru.md",
+    "README.nl.md",
+    "README.zh.md",
+    "README.he.md",
     "LICENSE",
     "NOTICE",
     "CONTRIBUTING.md",
@@ -42,7 +46,6 @@
   "homepage": "https://github.com/Sergey360/stolz-ai#readme",
   "scripts": {
     "test": "node --test test/*.test.mjs",
-    "build": "node scripts/build-static.mjs",
     "benchmark": "node tools/benchmark-cli.mjs --suite benchmarks/suites/context-selection-v1.json --json benchmarks/reports/context-selection-v1.json --markdown benchmarks/reports/context-selection-v1.md",
     "benchmark:check": "npm run benchmark -- --check",
     "benchmark:v2": "node tools/benchmark-v2-cli.mjs --fixture benchmarks/v2/fixtures/context-selection-v2/suite.json",

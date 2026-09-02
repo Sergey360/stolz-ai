@@ -6,7 +6,7 @@ project's provider-neutral boundaries.
 
 ## Before opening a change
 
-1. Read [the installation and compatibility guide](docs/INSTALLATION.md) and
+1. Read [the installation guide](docs/installation.md) and
    the relevant skill's `SKILL.md` plus its routed reference.
 2. Keep each skill narrowly triggered. Do not turn a focused skill into a
    global prompt or load unrelated references by default.
@@ -20,18 +20,18 @@ project's provider-neutral boundaries.
 ```bash
 npm install
 npm test
-npm run build
+npm run benchmark:check
 ```
 
 Add or update a deterministic test for a changed contract, skill behavior,
 adapter capability, or public document. Keep tests free of credentials,
 private operational details, and unstable external dependencies.
 
-## Documentation and brand
+## Documentation and public surface
 
 Use `STOLZ A.I.` for the product and `stolz-ai` for technical identifiers.
-Follow [docs/BRAND_PLATFORM.md](docs/BRAND_PLATFORM.md) for tone, naming, and
-the independence notice. Public copy is concise, calm, and evidence-led; it
+Keep `docs/` limited to installation, architecture, and benchmarking. Public
+copy is concise, calm, and evidence-led; it
 does not imply OpenAI affiliation or endorsement, promise savings without
 accepted evidence, or use third-party visual material without permission.
 

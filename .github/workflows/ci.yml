@@ -20,15 +20,9 @@ jobs:
           cache: npm
       - run: npm ci --ignore-scripts
       - run: npm test
-      - run: npm run build
       - run: npm run benchmark:check
       - run: npm run benchmark:v2:check
       - run: npm run benchmark:v3 -- --verify-report reports/benchmark-v3/real/reads-navigation.json --check
       - run: npm run benchmark:v3 -- --verify-report reports/benchmark-v3/real/build-check-invalidation.json --check
       - run: npm run benchmark:v3 -- --verify-report reports/benchmark-v3/real/quiet-wait-transition.json --check
-      - name: Reproduce the canonical release archive
-        run: |
-          npm pack --ignore-scripts
-          sha256sum --check .github/releases/stolz-ai-0.4.1.tgz.sha256
-          tar -tzf stolz-ai-0.4.1.tgz > actual.inventory.txt
-          diff -u .github/releases/stolz-ai-0.4.1.tgz.inventory.txt actual.inventory.txt
+      - run: npm pack --dry-run --json --ignore-scripts

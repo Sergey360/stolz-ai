@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { execFile } from 'node:child_process';
-import { access, readFile } from 'node:fs/promises';
+import { access, readFile, readdir } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { promisify } from 'node:util';
 import test from 'node:test';
@@ -8,16 +8,16 @@ import test from 'node:test';
 const execFileAsync = promisify(execFile);
 const publicDocuments = [
   'README.md',
+  'README.he.md',
+  'README.nl.md',
+  'README.ru.md',
+  'README.zh.md',
   'SECURITY.md',
   'CHANGELOG.md',
   'CONTRIBUTING.md',
-  'docs/INSTALLATION.md',
+  'docs/installation.md',
   'docs/architecture.md',
   'docs/benchmarking.md',
-  'docs/README.he.md',
-  'docs/README.nl.md',
-  'docs/README.ru.md',
-  'docs/README.zh.md',
   'benchmarks/README.md',
 ];
 
@@ -31,17 +31,25 @@ function localTargets(text) {
 }
 
 test('public documentation is compact and tells one consistent product story', async () => {
+  const manifest = JSON.parse(await readFile('.github/public-surface.json', 'utf8'));
+  const docs = (await readdir('docs', { withFileTypes: true }))
+    .filter((entry) => entry.isFile())
+    .map((entry) => `docs/${entry.name}`)
+    .sort();
+  assert.deepEqual(docs, [...manifest.allowed_docs].sort());
   const [readme, russian] = await Promise.all([
     readFile('README.md', 'utf8'),
-    readFile('docs/README.ru.md', 'utf8'),
+    readFile('README.ru.md', 'utf8'),
   ]);
   assert.match(readme, /STOLZ A\.I\./);
-  assert.match(russian, /Штольц А\.И\./);
+  assert.match(russian, /STOLZ A\.I\./);
+  assert.match(readme, /Движений лишних у него не было/);
+  assert.match(russian, /Движений лишних у него не было/);
   for (const skill of ['stolz-route', 'stolz-context', 'stolz-reuse', 'stolz-quiet-state', 'stolz-benchmark']) {
-    assert.equal(readme.includes(`\`${skill}\``), true);
+    assert.match(readme, new RegExp(`skills/${skill}/SKILL\\.md`));
   }
-  assert.match(readme, /not a numerical saving\s+claim/i);
-  assert.match(russian, /не\s*заявляет\s*численный\s*результат/i);
+  assert.match(readme, /(?:\*\*)?not(?:\*\*)? a measurement of Codex usage/i);
+  assert.match(russian, /(?:\*\*)?не(?:\*\*)? измерение расхода Codex/i);
 });
 
 test('public documents have valid local links and no internal process residue', async () => {
@@ -49,7 +57,6 @@ test('public documents have valid local links and no internal process residue', 
   for (const document of publicDocuments) {
     const text = await readFile(document, 'utf8');
     assert.doesNotMatch(text, forbidden, `${document} contains internal process language`);
-    if (document === 'CHANGELOG.md') continue;
     for (const target of localTargets(text)) {
       const path = target.split('#')[0];
       if (path) await access(resolve(dirname(document), decodeURIComponent(path)));
@@ -78,6 +85,9 @@ test('tracked GitHub tree stays inside the public allowlist', async () => {
     assert.equal(allowed.has(root), true, `${path} is outside the public allowlist`);
   }
 
+  const trackedDocs = paths.filter((path) => path.startsWith('docs/')).sort();
+  assert.deepEqual(trackedDocs, [...manifest.allowed_docs].sort());
+
   const forbiddenPrefixes = [
     '.gitlab-ci.yml',
     'benchmarks/v3/',
@@ -92,7 +102,7 @@ test('tracked GitHub tree stays inside the public allowlist', async () => {
   }
 });
 
-test('npm package reproduces the reviewed 137-file v0.4.1 inventory', async () => {
+test('npm package contains approved product files and root localizations, not docs or project tests', async () => {
   const npmExecPath = process.env.npm_execpath;
   const command = npmExecPath ? process.execPath : 'npm';
   const args = npmExecPath
@@ -101,17 +111,15 @@ test('npm package reproduces the reviewed 137-file v0.4.1 inventory', async () =
   const { stdout } = await execFileAsync(command, args);
   const packed = JSON.parse(stdout)[0];
   const paths = packed.files.map((entry) => entry.path);
-  const expected = (await readFile('.github/releases/stolz-ai-0.4.1.tgz.inventory.txt', 'utf8'))
-    .trim()
-    .split(/\r?\n/)
-    .map((path) => path.replace(/^package\//, ''));
 
   assert.equal(packed.name, 'stolz-ai');
   assert.equal(packed.version, '0.4.1');
-  assert.equal(paths.length, 137);
-  assert.deepEqual([...paths].sort(), [...expected].sort());
   for (const path of [
     'README.md',
+    'README.he.md',
+    'README.nl.md',
+    'README.ru.md',
+    'README.zh.md',
     'LICENSE',
     'NOTICE',
     'CONTRIBUTING.md',
@@ -121,18 +129,19 @@ test('npm package reproduces the reviewed 137-file v0.4.1 inventory', async () =
     'reports/benchmark-v3/real/reads-navigation.json',
     'profiles/claude-code-minimal.v3.json',
   ]) assert.ok(paths.includes(path), `${path} must be packed`);
+  assert.equal(paths.some((path) => path.startsWith('docs/')), false);
   assert.equal(paths.some((path) => path.startsWith('test/')), false);
   assert.equal(paths.some((path) => path.startsWith('benchmarks/v3/')), false);
   assert.equal(paths.some((path) => path.startsWith('fixtures/benchmark-v3/')), false);
 });
 
-test('GitHub CI runs full public checks and canonical archive verification with read-only permissions', async () => {
+test('GitHub CI runs full public checks with read-only permissions', async () => {
   const workflow = await readFile('.github/workflows/ci.yml', 'utf8');
   assert.match(workflow, /permissions:\s*\n\s*contents: read/);
   assert.match(workflow, /npm test/);
-  assert.match(workflow, /npm run build/);
   assert.match(workflow, /npm run benchmark:check/);
   assert.match(workflow, /npm run benchmark:v2:check/);
   assert.match(workflow, /--verify-report reports\/benchmark-v3\/real\/reads-navigation\.json --check/);
-  assert.match(workflow, /sha256sum --check/);
+  assert.match(workflow, /npm pack --dry-run --json --ignore-scripts/);
+  assert.doesNotMatch(workflow, /npm run build|sha256sum --check/);
 });

@@ -25,13 +25,18 @@
     "package.json",
     "profiles",
     "reports",
-    "scripts",
     "skills",
     "test",
-    "tools",
-    "web"
+    "tools"
+  ],
+  "allowed_docs": [
+    "docs/architecture.md",
+    "docs/benchmarking.md",
+    "docs/installation.md"
   ],
   "forbidden_roots": [
-    "internal"
+    "internal",
+    "scripts",
+    "web"
   ]
 }
