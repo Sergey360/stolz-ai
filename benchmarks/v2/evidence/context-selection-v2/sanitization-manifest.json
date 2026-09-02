@@ -1,0 +1,16 @@
+{
+  "schema": "stolz.benchmark-sanitization-manifest.v2",
+  "status": "passed",
+  "policy": {
+    "id": "stolz-public-evidence-sanitization",
+    "version": "1.0.0",
+    "configuration_identity": {
+      "id": "stolz-public-evidence-sanitization/configuration",
+      "version": "1.0.0",
+      "sha256": "2f2db5ba536aa0e0686f64d4b546550fd9388d8d7a1d1c2b51798f3d74f4b8cc"
+    }
+  },
+  "hash_method": "sha256-canonical-json-v1",
+  "records_scanned": 11,
+  "rejected_records": 0
+}

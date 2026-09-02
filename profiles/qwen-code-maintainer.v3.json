@@ -1,0 +1,145 @@
+{
+  "profile_id": "qwen-code-maintainer",
+  "profile_kind": "maintainer",
+  "profile_version": "3.0.0",
+  "configuration_identity": {
+    "id": "profiles/qwen-code-maintainer.v3.json",
+    "sha256": "6b1acf3c4c3189f62dc207a4d7a8989866b676567a3d8b9db400ab7c45faf640",
+    "version": "3.0.0"
+  },
+  "provider": {
+    "status": "not_available",
+    "reason": "runtime and provider selection are independent"
+  },
+  "model": {
+    "status": "not_available",
+    "reason": "runtime selection does not infer a model"
+  },
+  "agent_runtime": {
+    "id": "qwen-code",
+    "version": "0.22.3"
+  },
+  "adapter": {
+    "adapter_id": "qwen-code",
+    "adapter_version": "1.0.0",
+    "resolution": "lazy"
+  },
+  "core_skill": {
+    "skill_id": "stolz-route",
+    "version": "1.0.0"
+  },
+  "core_skills": [
+    {
+      "skill_id": "stolz-context",
+      "version": "1.0.0"
+    },
+    {
+      "skill_id": "stolz-reuse",
+      "version": "1.0.0"
+    },
+    {
+      "skill_id": "stolz-quiet-state",
+      "version": "1.0.0"
+    },
+    {
+      "skill_id": "stolz-route",
+      "version": "1.0.0"
+    },
+    {
+      "skill_id": "stolz-benchmark",
+      "version": "1.0.0"
+    }
+  ],
+  "optional_integrations": [
+    {
+      "integration_id": "filesystem",
+      "version": "1.0.0",
+      "capabilities": [
+        "approved-file-access"
+      ]
+    },
+    {
+      "integration_id": "gitlab",
+      "version": "1.0.0",
+      "capabilities": [
+        "approved-project-access"
+      ]
+    }
+  ],
+  "task_identity": {
+    "id": "runtime-profile/qwen-code/maintainer",
+    "sha256": "e092b8f93a971985efbfe3fc91918942eef30701e78ee77f6c3a9975cd15a1eb",
+    "version": "3.0.0"
+  },
+  "source_artifacts": [
+    {
+      "id": "fixtures/runtime-adapters/qwen-code/c0.fixture.json",
+      "sha256": "5bd6036e82e5cd8ee7b1b2579f6ba9aef0424b24e006b05a8f7fcabeaf5e0b82",
+      "version": "1.0"
+    }
+  ],
+  "measurement_session": {
+    "id": "runtime-profile/qwen-code",
+    "sha256": "06a926e6fe02928fd5ba033a6be9cdbec0f04521a2d8b96d0c1c09ceb6358d49",
+    "version": "3.0.0"
+  },
+  "telemetry_availability": {
+    "provider_tokens": "not_available",
+    "runtime_events": "not_available"
+  },
+  "context_budget": {
+    "context_unit_source": "profile-authored units",
+    "max_initial_context_units": 100,
+    "max_total_context_units": 160,
+    "initial_context_units": 50,
+    "total_context_units": 50,
+    "initial_context_ratio": 0.5,
+    "context_budget_risk": false
+  },
+  "reference_loads": [
+    {
+      "identity": {
+        "id": "skills/core",
+        "sha256": "7f485f820a5c4c21c9987ec595334612ad3c26ac57e7b75584df8a577f45b279",
+        "version": "1.0.0"
+      },
+      "classification": "core",
+      "units": 50,
+      "load_phase": "before_route_selection",
+      "trigger_id": null,
+      "load_count": 1
+    }
+  ],
+  "runtime_install": {
+    "runtime_id": "qwen-code",
+    "destination": ".qwen/skills/",
+    "selected_only": true,
+    "adapter_activation": "lazy",
+    "hooks": "not_installed",
+    "mcp": "not_installed",
+    "fallback": "provider-neutral"
+  },
+  "settings_provenance": {
+    "sources": [
+      {
+        "scope": "project",
+        "location": "fixtures/runtime-adapters/qwen-code/settings-provenance.json",
+        "sha256": "6073b812d60e78934ad31a14e6604c41020ed54f8d4ecf994cce072e808afd17"
+      }
+    ],
+    "resolution": "recorded without reading credentials",
+    "captured_at": "2026-08-30T00:00:00Z"
+  },
+  "provider_overlay": {
+    "overlay_id": "none",
+    "schema_version": "1.0",
+    "availability": "none"
+  },
+  "certification": {
+    "level": "C1",
+    "status": "cli_certified",
+    "evidence_ids": [
+      "qwen-code-c1-cli"
+    ]
+  }
+}

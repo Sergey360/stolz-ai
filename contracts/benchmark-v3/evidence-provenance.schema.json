@@ -1,0 +1,216 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stolz-ai.dev/contracts/benchmark-v3/evidence-provenance.schema.json",
+  "title": "STOLZ A.I. benchmark v3 evidence provenance v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "schema_version",
+    "record_id",
+    "captured_at",
+    "canonical_sha256",
+    "track",
+    "capture_method",
+    "collector",
+    "tuple",
+    "capture_window",
+    "attempt_id",
+    "parent_identity",
+    "raw_evidence_sha256",
+    "retained_evidence_sha256",
+    "redaction",
+    "retention",
+    "source",
+    "admission"
+  ],
+  "properties": {
+    "schema_id": { "const": "evidence-provenance" },
+    "schema_version": { "const": "1.0.0" },
+    "record_id": { "$ref": "common.schema.json#/$defs/identifier" },
+    "captured_at": { "$ref": "common.schema.json#/$defs/utcTimestamp" },
+    "canonical_sha256": { "$ref": "common.schema.json#/$defs/sha256" },
+    "track": { "enum": ["provider_native", "runtime_measured"] },
+    "capture_method": { "enum": ["responses_export", "runtime_event"] },
+    "collector": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version"],
+      "properties": {
+        "id": {
+          "enum": [
+            "responses-collector",
+            "codex-local",
+            "claude-code",
+            "qwen-code"
+          ]
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^[1-9]\\d*\\.\\d+\\.\\d+$"
+        }
+      }
+    },
+    "tuple": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "runtime_id",
+        "runtime_version",
+        "adapter_id",
+        "adapter_version",
+        "provider_id",
+        "model_configuration",
+        "configuration_sha256",
+        "route_id",
+        "environment_id"
+      ],
+      "properties": {
+        "runtime_id": {
+          "enum": ["responses-api", "codex", "claude-code", "qwen-code"]
+        },
+        "runtime_version": { "$ref": "common.schema.json#/$defs/identifier" },
+        "adapter_id": {
+          "enum": [
+            "responses-collector",
+            "codex-local",
+            "claude-code",
+            "qwen-code"
+          ]
+        },
+        "adapter_version": {
+          "type": "string",
+          "pattern": "^[1-9]\\d*\\.\\d+\\.\\d+$"
+        },
+        "provider_id": { "$ref": "common.schema.json#/$defs/identifier" },
+        "model_configuration": { "$ref": "common.schema.json#/$defs/identifier" },
+        "configuration_sha256": { "$ref": "common.schema.json#/$defs/sha256" },
+        "route_id": { "$ref": "common.schema.json#/$defs/identifier" },
+        "environment_id": { "$ref": "common.schema.json#/$defs/identifier" }
+      }
+    },
+    "capture_window": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["started_at", "ended_at"],
+      "properties": {
+        "started_at": { "$ref": "common.schema.json#/$defs/utcTimestamp" },
+        "ended_at": { "$ref": "common.schema.json#/$defs/utcTimestamp" }
+      }
+    },
+    "attempt_id": { "$ref": "common.schema.json#/$defs/identifier" },
+    "parent_identity": { "$ref": "common.schema.json#/$defs/sha256" },
+    "source_response_id": { "$ref": "common.schema.json#/$defs/identifier" },
+    "runtime_event_id": { "$ref": "common.schema.json#/$defs/identifier" },
+    "raw_evidence_sha256": { "$ref": "common.schema.json#/$defs/sha256" },
+    "retained_evidence_sha256": { "$ref": "common.schema.json#/$defs/sha256" },
+    "redaction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policy_id", "policy_version", "result", "findings_count"],
+      "properties": {
+        "policy_id": { "$ref": "common.schema.json#/$defs/identifier" },
+        "policy_version": {
+          "type": "string",
+          "pattern": "^[1-9]\\d*\\.\\d+\\.\\d+$"
+        },
+        "result": { "enum": ["passed", "failed"] },
+        "findings_count": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "retention": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "access_class",
+        "opaque_locator",
+        "retain_until",
+        "disposal_status"
+      ],
+      "properties": {
+        "access_class": { "enum": ["private_raw", "private_retained"] },
+        "opaque_locator": {
+          "type": "string",
+          "pattern": "^retained:[A-Za-z0-9._:-]+$"
+        },
+        "retain_until": { "$ref": "common.schema.json#/$defs/utcTimestamp" },
+        "disposal_status": { "enum": ["retained", "scheduled", "disposed"] }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["authority", "reference", "snapshot_sha256", "retrieved_at"],
+      "properties": {
+        "authority": { "enum": ["openai_responses", "runtime_boundary"] },
+        "reference": {
+          "type": "string",
+          "pattern": "^(https://developers\\.openai\\.com/|runtime:)[A-Za-z0-9./_?=&:%-]+$"
+        },
+        "snapshot_sha256": { "$ref": "common.schema.json#/$defs/sha256" },
+        "retrieved_at": { "$ref": "common.schema.json#/$defs/utcTimestamp" }
+      }
+    },
+    "admission": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["disposition"],
+      "properties": {
+        "disposition": { "enum": ["admitted", "withheld", "unavailable", "unknown", "rejected"] },
+        "reason": { "type": "string", "minLength": 1, "maxLength": 500 }
+      },
+      "if": { "properties": { "disposition": { "const": "admitted" } }, "required": ["disposition"] },
+      "then": { "not": { "required": ["reason"] } },
+      "else": { "required": ["reason"] }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "track": { "const": "provider_native" } },
+        "required": ["track"]
+      },
+      "then": {
+        "required": ["source_response_id"],
+        "not": { "required": ["runtime_event_id"] },
+        "properties": {
+          "capture_method": { "const": "responses_export" },
+          "collector": {
+            "properties": { "id": { "const": "responses-collector" } }
+          },
+          "tuple": {
+            "properties": {
+              "runtime_id": { "const": "responses-api" },
+              "adapter_id": { "const": "responses-collector" },
+              "provider_id": { "const": "openai" }
+            }
+          },
+          "source": {
+            "properties": { "authority": { "const": "openai_responses" } }
+          }
+        }
+      },
+      "else": {
+        "required": ["runtime_event_id"],
+        "not": { "required": ["source_response_id"] },
+        "properties": {
+          "capture_method": { "const": "runtime_event" },
+          "collector": {
+            "properties": {
+              "id": { "enum": ["codex-local", "claude-code", "qwen-code"] }
+            }
+          },
+          "tuple": {
+            "properties": {
+              "runtime_id": { "enum": ["codex", "claude-code", "qwen-code"] },
+              "adapter_id": { "enum": ["codex-local", "claude-code", "qwen-code"] }
+            }
+          },
+          "source": {
+            "properties": { "authority": { "const": "runtime_boundary" } }
+          }
+        }
+      }
+    }
+  ]
+}

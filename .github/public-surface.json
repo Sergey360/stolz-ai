@@ -5,28 +5,33 @@
     ".github",
     ".gitignore",
     "CHANGELOG.md",
+    "CONTRIBUTING.md",
     "LICENSE",
+    "NOTICE",
     "README.md",
     "README.he.md",
     "README.nl.md",
     "README.ru.md",
     "README.zh.md",
     "SECURITY.md",
+    "adapters",
     "assets",
     "benchmarks",
     "contracts",
     "docs",
-    "package-lock.json",
-    "package.json",
-    "skills",
-    "test",
-    "tools"
-  ],
-  "forbidden_roots": [
-    "internal",
     "fixtures",
     "overlays",
+    "package-lock.json",
+    "package.json",
     "profiles",
+    "reports",
+    "scripts",
+    "skills",
+    "test",
+    "tools",
     "web"
+  ],
+  "forbidden_roots": [
+    "internal"
   ]
 }

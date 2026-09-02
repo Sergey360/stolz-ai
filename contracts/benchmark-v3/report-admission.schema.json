@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stolz-ai.dev/contracts/benchmark-v3/report-admission.schema.json",
+  "title": "STOLZ A.I. benchmark v3 report admission v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "schema_version",
+    "record_id",
+    "captured_at",
+    "canonical_sha256",
+    "track",
+    "manifest",
+    "included_attempts",
+    "excluded_attempts",
+    "included_pairs",
+    "excluded_pairs",
+    "gates",
+    "admission",
+    "admission_reason",
+    "public_claim"
+  ],
+  "properties": {
+    "schema_id": { "const": "report-admission" },
+    "schema_version": { "const": "1.0.0" },
+    "record_id": { "$ref": "common.schema.json#/$defs/identifier" },
+    "captured_at": { "$ref": "common.schema.json#/$defs/utcTimestamp" },
+    "canonical_sha256": { "$ref": "common.schema.json#/$defs/sha256" },
+    "track": { "enum": ["provider_native", "runtime_measured"] },
+    "manifest": {
+      "allOf": [
+        { "$ref": "common.schema.json#/$defs/recordReference" },
+        { "properties": { "schema_id": { "const": "pilot-manifest" }, "schema_version": { "const": "1.0.0" } } }
+      ]
+    },
+    "included_attempts": {
+      "type": "array",
+      "items": {
+        "allOf": [
+          { "$ref": "common.schema.json#/$defs/recordReference" },
+          { "properties": { "schema_id": { "const": "benchmark-attempt" }, "schema_version": { "const": "3.0.0" } } }
+        ]
+      }
+    },
+    "excluded_attempts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["attempt", "reason"],
+        "properties": {
+          "attempt": {
+            "allOf": [
+              { "$ref": "common.schema.json#/$defs/recordReference" },
+              { "properties": { "schema_id": { "const": "benchmark-attempt" }, "schema_version": { "const": "3.0.0" } } }
+            ]
+          },
+          "reason": { "enum": ["failed", "partial", "aborted", "identity_mismatch", "intervention", "retry_undeclared", "redaction_failed", "retention_unavailable"] }
+        }
+      }
+    },
+    "included_pairs": {
+      "type": "array",
+      "items": {
+        "allOf": [
+          { "$ref": "common.schema.json#/$defs/recordReference" },
+          { "properties": { "schema_id": { "const": "benchmark-pair" }, "schema_version": { "const": "1.0.0" } } }
+        ]
+      }
+    },
+    "excluded_pairs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["pair", "reason"],
+        "properties": {
+          "pair": {
+            "allOf": [
+              { "$ref": "common.schema.json#/$defs/recordReference" },
+              { "properties": { "schema_id": { "const": "benchmark-pair" }, "schema_version": { "const": "1.0.0" } } }
+            ]
+          },
+          "reason": { "enum": ["not_comparable", "unknown", "withheld", "rejected", "failed_attempt", "unequal_outcome", "unequal_verification", "incomplete_overhead", "incomplete_pricing"] }
+        }
+      }
+    },
+    "gates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "track_authority",
+        "provenance",
+        "redaction_retention",
+        "pricing",
+        "overhead",
+        "equal_outcome",
+        "equal_verification",
+        "release_publication"
+      ],
+      "properties": {
+        "track_authority": { "$ref": "common.schema.json#/$defs/gate" },
+        "provenance": { "$ref": "common.schema.json#/$defs/gate" },
+        "redaction_retention": { "$ref": "common.schema.json#/$defs/gate" },
+        "pricing": { "$ref": "common.schema.json#/$defs/gate" },
+        "overhead": { "$ref": "common.schema.json#/$defs/gate" },
+        "equal_outcome": { "$ref": "common.schema.json#/$defs/gate" },
+        "equal_verification": { "$ref": "common.schema.json#/$defs/gate" },
+        "release_publication": { "$ref": "common.schema.json#/$defs/gate" }
+      }
+    },
+    "admission": { "enum": ["admitted_scoped", "withheld", "not_comparable", "unknown", "rejected"] },
+    "admission_reason": { "type": "string", "minLength": 1, "maxLength": 500 },
+    "public_claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "disposition"],
+      "properties": {
+        "kind": { "enum": ["provider_savings", "runtime_observation", "none"] },
+        "disposition": { "enum": ["allowed", "withheld"] },
+        "reason": { "type": "string", "minLength": 1, "maxLength": 500 }
+      },
+      "if": { "properties": { "disposition": { "const": "allowed" } }, "required": ["disposition"] },
+      "then": { "not": { "required": ["reason"] } },
+      "else": { "required": ["reason"] }
+    }
+  }
+}

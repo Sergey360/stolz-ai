@@ -1,0 +1,28 @@
+{
+  "schema_id": "benchmark-v3-runtime-adapter-capability",
+  "schema_version": "1.0.0",
+  "track": "runtime_measured",
+  "adapter_id": "qwen-code",
+  "adapter_version": "1.0.0",
+  "runtime_id": "qwen-code",
+  "runtime_versions": ["0.22.3"],
+  "capture_method": "runtime_event",
+  "observer": {
+    "id": "qwen-code-runtime-boundary",
+    "version": "1.0.0",
+    "source_reference": "runtime:qwen-code/benchmark-v3-observer"
+  },
+  "redaction": {
+    "policy_id": "benchmark-v3-runtime-redaction",
+    "policy_version": "1.0.0",
+    "payload_retention": "excluded"
+  },
+  "metrics": {
+    "model_wakeups": { "availability": "available", "unit": "count", "provenance": "runtime_emitted", "missing_availability": "unknown", "missing_reason": "The runtime event did not establish a model wakeup count." },
+    "tool_calls": { "availability": "available", "unit": "count", "provenance": "runtime_emitted", "missing_availability": "unknown", "missing_reason": "The runtime event did not establish a tool call count." },
+    "tool_output_bytes": { "availability": "available", "unit": "bytes", "provenance": "runtime_observed", "missing_availability": "unknown", "missing_reason": "The observer did not retain a tool output byte fact." },
+    "wall_time_ms": { "availability": "available", "unit": "milliseconds", "provenance": "runtime_observed", "missing_availability": "unknown", "missing_reason": "The observer did not retain a wall time fact." },
+    "operator_interventions": { "availability": "available", "unit": "count", "provenance": "runtime_observed", "missing_availability": "unknown", "missing_reason": "The observer did not retain an intervention fact." },
+    "compaction_events": { "availability": "unavailable", "unit": "count", "provenance": "runtime_observed", "missing_availability": "unavailable", "missing_reason": "The declared boundary does not expose an authoritative compaction counter." }
+  }
+}

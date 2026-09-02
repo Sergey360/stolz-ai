@@ -1,0 +1,357 @@
+{
+  "schema_id": "benchmark-report",
+  "schema_version": "3.0.0",
+  "record_id": "report-9a3f584ec4fcb823ed0fa0de",
+  "captured_at": "2026-09-02T07:10:59.914Z",
+  "track": "provider_native",
+  "manifest": {
+    "schema_id": "pilot-manifest",
+    "schema_version": "1.0.0",
+    "record_id": "pilot-reads-navigation-codex-cli-20260902",
+    "canonical_sha256": "e714e09cb0ea82a4a5d0def35d849eef7c3048fb6c4a08a590f8bf0d9ea67bb3"
+  },
+  "scope": {
+    "scenario_id": "reads-navigation",
+    "cohort_id": "reads-navigation-codex-cli-20260902-f83aee15",
+    "runtime_id": "codex-cli",
+    "provider_id": "openai",
+    "model_configuration": "gpt-5.5",
+    "configuration_sha256": "2cbf9c4fdcde58fb3ecc0cd7bf8567cee0e34ad318de6ad6f72330407fb50afa",
+    "environment_sha256": "6dcb8cbca9995f6f53c22193fcec6cc1b93789698c74b8f8695d1b874457da48"
+  },
+  "admission": {
+    "schema_id": "report-admission",
+    "schema_version": "1.0.0",
+    "record_id": "admission-9a3f584ec4fcb823ed0fa0de",
+    "captured_at": "2026-09-02T07:10:59.914Z",
+    "track": "provider_native",
+    "manifest": {
+      "schema_id": "pilot-manifest",
+      "schema_version": "1.0.0",
+      "record_id": "pilot-reads-navigation-codex-cli-20260902",
+      "canonical_sha256": "e714e09cb0ea82a4a5d0def35d849eef7c3048fb6c4a08a590f8bf0d9ea67bb3"
+    },
+    "included_attempts": [
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "reads-baseline-codex-001",
+        "canonical_sha256": "b628ebb3c73a8c9f3c0990499c4b45767a386a2947fcc5947e8fa9bb2a4264e7"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "reads-stolz-codex-001",
+        "canonical_sha256": "ddd55177f7e7f59a7be05f7e6595607e9d628a4baba728906bb7d48c427caad6"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "reads-stolz-codex-002",
+        "canonical_sha256": "355e6e1160b9b1cca9b01069fe408001491b6884b04ca83dd1092a51627e97fc"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "reads-baseline-codex-002",
+        "canonical_sha256": "233a0b43f829ee533ffce31b04af15665a4d79176a915c44e0b9cd17d5605454"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "reads-baseline-codex-003",
+        "canonical_sha256": "7dd328bb825471167bdac6f93abebcf47ab7047781e767fa19ffb0a9c768762e"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "reads-stolz-codex-003",
+        "canonical_sha256": "ecef304639b428665b6223422afae66b2e542ddd41717a672b4b1711907ea846"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "reads-stolz-codex-004",
+        "canonical_sha256": "73f916ea083351ae9aaa06c32da626c96008dab4c42ae0b68a18bc69f2fea073"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "reads-baseline-codex-004",
+        "canonical_sha256": "0432fb147f58906b625393fb3308cec1ae135f4881ce2cc62582eb4dec73b6dd"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "reads-baseline-codex-005",
+        "canonical_sha256": "10a5e2755b2c8a3f74f586a96174bbbc6c25984a2500ffe7ce0e29de3c8b4a6c"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "reads-stolz-codex-005",
+        "canonical_sha256": "e4bb698831668c83ea7364d3357cf05d1386c9e058b16d35559433d51279e7bc"
+      }
+    ],
+    "excluded_attempts": [],
+    "included_pairs": [
+      {
+        "schema_id": "benchmark-pair",
+        "schema_version": "1.0.0",
+        "record_id": "pair-b5e165a285fb3e2cda74bd8f",
+        "canonical_sha256": "291b4510a8bcd80e606911cf7e0418f421f16e9cd5a23f5943e8ab8cb388cb0b"
+      },
+      {
+        "schema_id": "benchmark-pair",
+        "schema_version": "1.0.0",
+        "record_id": "pair-a47a2f1715fbf1bcf0d8fe0f",
+        "canonical_sha256": "7ef9a65385aad8d6113be4cef614701c8f828a47029b58b0aafd49be8c9f038e"
+      },
+      {
+        "schema_id": "benchmark-pair",
+        "schema_version": "1.0.0",
+        "record_id": "pair-3e216e0938685ac0977f7893",
+        "canonical_sha256": "fad6553a22d7f8a426cfb3c345f831c3d851a0286a71bfd34e4c5a1c914b9559"
+      },
+      {
+        "schema_id": "benchmark-pair",
+        "schema_version": "1.0.0",
+        "record_id": "pair-2bb09efa2beb342fe60c3e31",
+        "canonical_sha256": "5cf7b1d2a54f1cd4f104e37fd20cc1ab07912c178620c59a77dfd16488910cbb"
+      },
+      {
+        "schema_id": "benchmark-pair",
+        "schema_version": "1.0.0",
+        "record_id": "pair-e366d1c633f698eecfa9c6dd",
+        "canonical_sha256": "e863a09b84dd330af4f7d1c78089df375aea90df4f1d4a92a9d1f9d8fe2cb3c9"
+      }
+    ],
+    "excluded_pairs": [],
+    "gates": {
+      "track_authority": {
+        "status": "passed"
+      },
+      "provenance": {
+        "status": "passed"
+      },
+      "redaction_retention": {
+        "status": "passed"
+      },
+      "pricing": {
+        "status": "passed"
+      },
+      "overhead": {
+        "status": "passed"
+      },
+      "equal_outcome": {
+        "status": "passed"
+      },
+      "equal_verification": {
+        "status": "passed"
+      },
+      "release_publication": {
+        "status": "not_run",
+        "reason": "Aggregate/public claims remain withheld pending the stronger release/publication gates."
+      }
+    },
+    "admission": "withheld",
+    "admission_reason": "Aggregate admission is fail-closed until a complete cohort and every required gate pass.",
+    "public_claim": {
+      "kind": "provider_savings",
+      "disposition": "withheld",
+      "reason": "No release-admitted complete scoped cohort is available; aggregate claims remain withheld."
+    },
+    "canonical_sha256": "70303822db0c85ad5866df224f22bea9a83b5a4b3dcfe5ec686d4227d40e02d4"
+  },
+  "attempts": {
+    "included": [
+      "reads-baseline-codex-001",
+      "reads-stolz-codex-001",
+      "reads-stolz-codex-002",
+      "reads-baseline-codex-002",
+      "reads-baseline-codex-003",
+      "reads-stolz-codex-003",
+      "reads-stolz-codex-004",
+      "reads-baseline-codex-004",
+      "reads-baseline-codex-005",
+      "reads-stolz-codex-005"
+    ],
+    "excluded": []
+  },
+  "pairs": {
+    "included": [
+      "pair-b5e165a285fb3e2cda74bd8f",
+      "pair-a47a2f1715fbf1bcf0d8fe0f",
+      "pair-3e216e0938685ac0977f7893",
+      "pair-2bb09efa2beb342fe60c3e31",
+      "pair-e366d1c633f698eecfa9c6dd"
+    ],
+    "excluded": []
+  },
+  "metrics": [
+    {
+      "name": "net_token_delta",
+      "availability": "available",
+      "provenance": "derived",
+      "source_identity": "bf554d2142ca9be98208249b3fdc2ebec94dc88abb9d3a9fbd4156ed9e97cb54",
+      "unit": "tokens",
+      "value": 2867,
+      "formula": "sum(admitted_pair_deltas)",
+      "component_ids": [
+        "pair-b5e165a285fb3e2cda74bd8f",
+        "pair-a47a2f1715fbf1bcf0d8fe0f",
+        "pair-3e216e0938685ac0977f7893",
+        "pair-2bb09efa2beb342fe60c3e31",
+        "pair-e366d1c633f698eecfa9c6dd"
+      ]
+    },
+    {
+      "name": "net_cost_delta",
+      "availability": "unknown",
+      "provenance": "derived",
+      "source_identity": "bf554d2142ca9be98208249b3fdc2ebec94dc88abb9d3a9fbd4156ed9e97cb54",
+      "unit": "currency_minor_units",
+      "reason": "No complete admitted cohort metric is available."
+    }
+  ],
+  "pricing": {
+    "availability": "unavailable",
+    "reason": "The Codex CLI stream provides no admissible billing price; token comparison remains available while cost is unavailable."
+  },
+  "overhead_attribution": [
+    {
+      "component_id": "routing",
+      "availability": "available",
+      "source_identity": "d0aa61e751c11d6816f715376a09c991decac1fd50107abdc7c6843b13976622",
+      "attribution_owner": "report-routing",
+      "unit": "count",
+      "value": 5
+    },
+    {
+      "component_id": "context_selection",
+      "availability": "available",
+      "source_identity": "09689e0a95873296ee9d3e6e11a95afeb4884abc2b0685262956abab1af3384e",
+      "attribution_owner": "report-context-selection",
+      "unit": "count",
+      "value": 5
+    },
+    {
+      "component_id": "reuse",
+      "availability": "available",
+      "source_identity": "8ed89dc616f37a6829c10d4617c19b8fbb12d7db2f99184592a048cd5e6089d5",
+      "attribution_owner": "report-reuse",
+      "unit": "count",
+      "value": 0
+    },
+    {
+      "component_id": "quiet_state",
+      "availability": "available",
+      "source_identity": "3824c29d839d5a454257a8d0e3bf6528c50d9517d2fb320f7f4919ebff6918c9",
+      "attribution_owner": "report-quiet-state",
+      "unit": "count",
+      "value": 0
+    },
+    {
+      "component_id": "benchmark_capture",
+      "availability": "available",
+      "source_identity": "bb5fe55552fd962d7859f6c9770db35d0a82d488765b5b0690a2b827feb03c4e",
+      "attribution_owner": "report-benchmark-capture",
+      "unit": "count",
+      "value": 5
+    },
+    {
+      "component_id": "verification",
+      "availability": "available",
+      "source_identity": "065c8e34a2d08e05b8fbdb5e6bdc4eec16de448d04ddfc82654e465526c58cb6",
+      "attribution_owner": "report-verification",
+      "unit": "count",
+      "value": 5
+    },
+    {
+      "component_id": "retry",
+      "availability": "available",
+      "source_identity": "545369083eafe340fb13ef9086abdfe5f83bcacaf0c7564e810556fda9421faa",
+      "attribution_owner": "report-retry",
+      "unit": "count",
+      "value": 0
+    },
+    {
+      "component_id": "fallback",
+      "availability": "available",
+      "source_identity": "9d24fe4f113c394a197895b7377180be47c0f679461101bcd2cebbe00ac42a91",
+      "attribution_owner": "report-fallback",
+      "unit": "count",
+      "value": 0
+    }
+  ],
+  "evidence": [
+    {
+      "attempt_id": "reads-baseline-codex-001",
+      "raw_evidence_sha256": "7ba136c0c047a64eb1da69c16c5a628a817696faa61d6076d651c9ea9c3da4d0",
+      "retained_evidence_sha256": "9194c1a5f0109b10e840152e6b8a551f9bf779804c190e3d1b909b0572295f00",
+      "retained_locator": "retained:reads-navigation-codex-cli-20260902-f83aee15:reads-baseline-codex-001"
+    },
+    {
+      "attempt_id": "reads-stolz-codex-001",
+      "raw_evidence_sha256": "c25e08f5c5e47af03dbf1f093ecc58a106f18bdb8b2632f6c9a8da1201a44cbb",
+      "retained_evidence_sha256": "94ae66ea29ff71fa708783a26d3f2167ce5bc7adc8758e6988da5b0456a77bbf",
+      "retained_locator": "retained:reads-navigation-codex-cli-20260902-f83aee15:reads-stolz-codex-001"
+    },
+    {
+      "attempt_id": "reads-stolz-codex-002",
+      "raw_evidence_sha256": "44bda0a99783a16baae46347dcb429c954279e0f8a6f82e507b88cba487495fb",
+      "retained_evidence_sha256": "97422d2b0b44edd55c6b12df64a79c1274b69e09390d811896b08315a7b0e3f8",
+      "retained_locator": "retained:reads-navigation-codex-cli-20260902-f83aee15:reads-stolz-codex-002"
+    },
+    {
+      "attempt_id": "reads-baseline-codex-002",
+      "raw_evidence_sha256": "a397bacaa57d93f9b73dd537b657c2c6fc0e2868403a86501514597644596c2a",
+      "retained_evidence_sha256": "e9963613c0f80b1f02665cfa5408dc174dfbce7e7e4f86449bbb885df5285a40",
+      "retained_locator": "retained:reads-navigation-codex-cli-20260902-f83aee15:reads-baseline-codex-002"
+    },
+    {
+      "attempt_id": "reads-baseline-codex-003",
+      "raw_evidence_sha256": "06c710cc48079ea7e8b7bc7576559b8b06fd96afacc55978b3d78e1e5ceee79f",
+      "retained_evidence_sha256": "3c5bd2fbe118250b008b8b7d2366ca8be6cf59578d5bbcb89f7592619119ad1a",
+      "retained_locator": "retained:reads-navigation-codex-cli-20260902-f83aee15:reads-baseline-codex-003"
+    },
+    {
+      "attempt_id": "reads-stolz-codex-003",
+      "raw_evidence_sha256": "68c34120f4c8bbbb47765477a91f6d5dce40b4bee5dfaf5e1b49efc009257625",
+      "retained_evidence_sha256": "a7d80e48208f8764c46ce2c6b242b125d5b7a0d9cebca160ff7d99d7ba8f892b",
+      "retained_locator": "retained:reads-navigation-codex-cli-20260902-f83aee15:reads-stolz-codex-003"
+    },
+    {
+      "attempt_id": "reads-stolz-codex-004",
+      "raw_evidence_sha256": "6118c8b0f30d4f90d0019b46a459795aa9fe920c79ed104c7f5671e46467534e",
+      "retained_evidence_sha256": "19d0ed9f4cdd8148b19b10bac87db52643bb2f77916bae9152661b5aaefd5aca",
+      "retained_locator": "retained:reads-navigation-codex-cli-20260902-f83aee15:reads-stolz-codex-004"
+    },
+    {
+      "attempt_id": "reads-baseline-codex-004",
+      "raw_evidence_sha256": "86ab1d4cb18f230ac1596edff1a658f848229c1d34c1ef8cdfa19dbc85377c25",
+      "retained_evidence_sha256": "1e93ca9fafc948d137f5298a2ed7edfde057c2ac2a714e1f3218e959518bb5d0",
+      "retained_locator": "retained:reads-navigation-codex-cli-20260902-f83aee15:reads-baseline-codex-004"
+    },
+    {
+      "attempt_id": "reads-baseline-codex-005",
+      "raw_evidence_sha256": "d1198a58c2a05810c57ec39feef68b5c6cbd44ff72277037650e14beae843245",
+      "retained_evidence_sha256": "138cd383bbc94d2da07ad8f0b582c8303982d7c67913b382b5be522605c38327",
+      "retained_locator": "retained:reads-navigation-codex-cli-20260902-f83aee15:reads-baseline-codex-005"
+    },
+    {
+      "attempt_id": "reads-stolz-codex-005",
+      "raw_evidence_sha256": "8b61b1368a6cf45ab7549f1052ab0e3ec8cce32d6328ffb3dca54879ab50c000",
+      "retained_evidence_sha256": "810805b11aa751ad0fb85772a57703934c34f8fac7740db1d55735de5fa5a3b0",
+      "retained_locator": "retained:reads-navigation-codex-cli-20260902-f83aee15:reads-stolz-codex-005"
+    }
+  ],
+  "claim": {
+    "kind": "provider_savings_percentage",
+    "disposition": "withheld",
+    "scope_statement": "Exact reads-navigation cohort reads-navigation-codex-cli-20260902-f83aee15; aggregate claim not admitted.",
+    "reason": "No release-admitted complete scoped cohort is available; aggregate claims remain withheld."
+  },
+  "reproduce_command": "benchmark:v3 --report benchmarks/v3/real/manifests/reads-navigation.json --output reports/benchmark-v3/real/reads-navigation.json",
+  "canonical_sha256": "74607a4a12de865768925794fa376b9c499be5432d696f8d7bbceb32a084301e"
+}

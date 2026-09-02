@@ -1,7 +1,7 @@
 {
   "name": "stolz-ai",
-  "version": "0.3.4",
-  "description": "Five focused skills that reduce wasted agent work without weakening verification.",
+  "version": "0.4.1",
+  "description": "A token-efficient skill suite for Codex and compatible AI coding agents.",
   "license": "MIT",
   "private": false,
   "type": "module",
@@ -14,14 +14,21 @@
   ],
   "files": [
     "skills/",
-    "docs/",
-    "assets/brand/",
+    "adapters/",
+    "contracts/",
+    "tools/",
+    "profiles/",
+    "fixtures/runtime-adapters/claude-code/c0.fixture.json",
+    "fixtures/runtime-adapters/claude-code/settings-provenance.json",
+    "fixtures/runtime-adapters/qwen-code/c0.fixture.json",
+    "fixtures/runtime-adapters/qwen-code/settings-provenance.json",
+    "overlays/",
+    "benchmarks/",
+    "reports/benchmark-v3/",
     "README.md",
-    "README.ru.md",
-    "README.nl.md",
-    "README.zh.md",
-    "README.he.md",
     "LICENSE",
+    "NOTICE",
+    "CONTRIBUTING.md",
     "SECURITY.md",
     "CHANGELOG.md"
   ],
@@ -35,10 +42,19 @@
   "homepage": "https://github.com/Sergey360/stolz-ai#readme",
   "scripts": {
     "test": "node --test test/*.test.mjs",
+    "build": "node scripts/build-static.mjs",
     "benchmark": "node tools/benchmark-cli.mjs --suite benchmarks/suites/context-selection-v1.json --json benchmarks/reports/context-selection-v1.json --markdown benchmarks/reports/context-selection-v1.md",
-    "benchmark:check": "npm run benchmark -- --check"
+    "benchmark:check": "npm run benchmark -- --check",
+    "benchmark:v2": "node tools/benchmark-v2-cli.mjs --fixture benchmarks/v2/fixtures/context-selection-v2/suite.json",
+    "benchmark:v2:check": "npm run benchmark:v2 -- --check",
+    "benchmark:v3": "node tools/benchmark-v3-cli.mjs",
+    "profile": "node tools/profile-cli.mjs"
   },
-  "engines": {
-    "node": ">=20"
+  "exports": {
+    "./profile-resolver": "./tools/profile-resolver.mjs",
+    "./profile-installer": "./tools/profile-installer.mjs"
+  },
+  "devDependencies": {
+    "ajv": "8.20.0"
   }
 }

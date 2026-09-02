@@ -1,0 +1,145 @@
+{
+  "profile_id": "claude-code-maintainer",
+  "profile_kind": "maintainer",
+  "profile_version": "3.0.0",
+  "configuration_identity": {
+    "id": "profiles/claude-code-maintainer.v3.json",
+    "sha256": "6289b8ced7a281be749aa1380623740a5a216636ae2db0d355eec93f6f74e402",
+    "version": "3.0.0"
+  },
+  "provider": {
+    "status": "not_available",
+    "reason": "runtime and provider selection are independent"
+  },
+  "model": {
+    "status": "not_available",
+    "reason": "runtime selection does not infer a model"
+  },
+  "agent_runtime": {
+    "id": "claude-code",
+    "version": "2.1.251"
+  },
+  "adapter": {
+    "adapter_id": "claude-code",
+    "adapter_version": "1.0.0",
+    "resolution": "lazy"
+  },
+  "core_skill": {
+    "skill_id": "stolz-route",
+    "version": "1.0.0"
+  },
+  "core_skills": [
+    {
+      "skill_id": "stolz-context",
+      "version": "1.0.0"
+    },
+    {
+      "skill_id": "stolz-reuse",
+      "version": "1.0.0"
+    },
+    {
+      "skill_id": "stolz-quiet-state",
+      "version": "1.0.0"
+    },
+    {
+      "skill_id": "stolz-route",
+      "version": "1.0.0"
+    },
+    {
+      "skill_id": "stolz-benchmark",
+      "version": "1.0.0"
+    }
+  ],
+  "optional_integrations": [
+    {
+      "integration_id": "filesystem",
+      "version": "1.0.0",
+      "capabilities": [
+        "approved-file-access"
+      ]
+    },
+    {
+      "integration_id": "gitlab",
+      "version": "1.0.0",
+      "capabilities": [
+        "approved-project-access"
+      ]
+    }
+  ],
+  "task_identity": {
+    "id": "runtime-profile/claude-code/maintainer",
+    "sha256": "96806e2b2b3992ebb8b2cf600d3da311cd1625735400f769a679213e460bda7a",
+    "version": "3.0.0"
+  },
+  "source_artifacts": [
+    {
+      "id": "fixtures/runtime-adapters/claude-code/c0.fixture.json",
+      "sha256": "119073d79978c46d66feed0c4062c7d23a06ea38c84645fb5a6cb030e4d15224",
+      "version": "1.0"
+    }
+  ],
+  "measurement_session": {
+    "id": "runtime-profile/claude-code",
+    "sha256": "3af6f1ab5f3e7b36de0d1f5867d8dcbf4bc72fdd8c02f19689b7b33e42f40df7",
+    "version": "3.0.0"
+  },
+  "telemetry_availability": {
+    "provider_tokens": "not_available",
+    "runtime_events": "not_available"
+  },
+  "context_budget": {
+    "context_unit_source": "profile-authored units",
+    "max_initial_context_units": 100,
+    "max_total_context_units": 160,
+    "initial_context_units": 50,
+    "total_context_units": 50,
+    "initial_context_ratio": 0.5,
+    "context_budget_risk": false
+  },
+  "reference_loads": [
+    {
+      "identity": {
+        "id": "skills/core",
+        "sha256": "171614e172be46fccf63e9a2c3cc1bf51ea74df9be967ea3386c26e5a5147118",
+        "version": "1.0.0"
+      },
+      "classification": "core",
+      "units": 50,
+      "load_phase": "before_route_selection",
+      "trigger_id": null,
+      "load_count": 1
+    }
+  ],
+  "runtime_install": {
+    "runtime_id": "claude-code",
+    "destination": ".claude/skills/",
+    "selected_only": true,
+    "adapter_activation": "lazy",
+    "hooks": "not_installed",
+    "mcp": "not_installed",
+    "fallback": "provider-neutral"
+  },
+  "settings_provenance": {
+    "sources": [
+      {
+        "scope": "project",
+        "location": "fixtures/runtime-adapters/claude-code/settings-provenance.json",
+        "sha256": "6073b812d60e78934ad31a14e6604c41020ed54f8d4ecf994cce072e808afd17"
+      }
+    ],
+    "resolution": "recorded without reading credentials",
+    "captured_at": "2026-08-30T00:00:00Z"
+  },
+  "provider_overlay": {
+    "overlay_id": "none",
+    "schema_version": "1.0",
+    "availability": "none"
+  },
+  "certification": {
+    "level": "C1",
+    "status": "cli_certified",
+    "evidence_ids": [
+      "claude-code-c1-cli"
+    ]
+  }
+}

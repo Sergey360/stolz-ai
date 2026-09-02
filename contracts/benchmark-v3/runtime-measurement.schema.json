@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stolz-ai.dev/contracts/benchmark-v3/runtime-measurement.schema.json",
+  "title": "STOLZ A.I. benchmark v3 runtime measurement v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "schema_version",
+    "record_id",
+    "captured_at",
+    "canonical_sha256",
+    "track",
+    "runtime_id",
+    "runtime_version",
+    "adapter_id",
+    "adapter_version",
+    "metrics"
+  ],
+  "properties": {
+    "schema_id": { "const": "runtime-measurement" },
+    "schema_version": { "const": "1.0.0" },
+    "record_id": { "$ref": "common.schema.json#/$defs/identifier" },
+    "captured_at": { "$ref": "common.schema.json#/$defs/utcTimestamp" },
+    "canonical_sha256": { "$ref": "common.schema.json#/$defs/sha256" },
+    "track": { "const": "runtime_measured" },
+    "runtime_id": { "enum": ["codex", "claude-code", "qwen-code"] },
+    "runtime_version": { "$ref": "common.schema.json#/$defs/identifier" },
+    "adapter_id": { "enum": ["codex-local", "claude-code", "qwen-code"] },
+    "adapter_version": {
+      "type": "string",
+      "pattern": "^[1-9]\\d*\\.\\d+\\.\\d+$"
+    },
+    "metrics": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "allOf": [
+          { "$ref": "common.schema.json#/$defs/metric" },
+          {
+            "properties": {
+              "name": {
+                "enum": [
+                  "model_wakeups",
+                  "tool_calls",
+                  "tool_output_bytes",
+                  "wall_time_ms",
+                  "operator_interventions",
+                  "compaction_events"
+                ]
+              },
+              "provenance": { "enum": ["runtime_emitted", "runtime_observed"] }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "runtime_id": { "const": "codex" } }, "required": ["runtime_id"] },
+      "then": { "properties": { "adapter_id": { "const": "codex-local" } } }
+    },
+    {
+      "if": { "properties": { "runtime_id": { "const": "claude-code" } }, "required": ["runtime_id"] },
+      "then": { "properties": { "adapter_id": { "const": "claude-code" } } }
+    },
+    {
+      "if": { "properties": { "runtime_id": { "const": "qwen-code" } }, "required": ["runtime_id"] },
+      "then": { "properties": { "adapter_id": { "const": "qwen-code" } } }
+    }
+  ]
+}

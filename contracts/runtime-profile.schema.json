@@ -1,0 +1,164 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stolz-ai.dev/contracts/runtime-profile.schema.json",
+  "title": "STOLZ A.I. Runtime Profile",
+  "description": "A closed, versioned selection of one runtime, one lazily resolved adapter, core route, and explicitly enabled optional integrations. v1 fixtures remain valid; v3 runtime selections are destination-bound and cannot cross runtime boundaries.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["profile_id", "profile_kind", "profile_version", "configuration_identity", "provider", "model", "agent_runtime", "adapter", "core_skill", "core_skills", "optional_integrations", "task_identity", "source_artifacts", "measurement_session", "telemetry_availability", "context_budget", "reference_loads"],
+  "properties": {
+    "profile_id": { "type": "string", "minLength": 1 },
+    "profile_kind": { "enum": ["minimal", "evaluation", "maintainer"] },
+    "profile_version": { "type": "string", "minLength": 1 },
+    "configuration_identity": { "$ref": "#/$defs/identity" },
+    "provider": { "$ref": "#/$defs/observableLayer" },
+    "model": { "$ref": "#/$defs/observableLayer" },
+    "agent_runtime": { "$ref": "#/$defs/namedLayer" },
+    "adapter": { "$ref": "#/$defs/adapterSelection" },
+    "core_skill": { "$ref": "#/$defs/coreSkill" },
+    "core_skills": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/coreSkill" }
+    },
+    "optional_integrations": { "type": "array", "uniqueItems": true, "items": { "$ref": "#/$defs/optionalIntegration" } },
+    "task_identity": { "$ref": "#/$defs/identity" },
+    "source_artifacts": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/identity" } },
+    "measurement_session": { "$ref": "#/$defs/identity" },
+    "telemetry_availability": { "type": "object", "additionalProperties": { "enum": ["available", "not_available", "not_comparable"] } },
+    "context_budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["context_unit_source", "max_initial_context_units", "max_total_context_units", "initial_context_units", "total_context_units", "initial_context_ratio", "context_budget_risk"],
+      "properties": {
+        "context_unit_source": { "type": "string", "minLength": 1 },
+        "max_initial_context_units": { "type": "integer", "minimum": 1 },
+        "max_total_context_units": { "type": "integer", "minimum": 0 },
+        "initial_context_units": { "type": "integer", "minimum": 0 },
+        "total_context_units": { "type": "integer", "minimum": 0 },
+        "initial_context_ratio": { "type": "number", "minimum": 0 },
+        "context_budget_risk": { "type": "boolean" }
+      }
+    },
+    "reference_loads": { "type": "array", "items": { "$ref": "#/$defs/referenceLoad" } },
+    "runtime_install": { "$ref": "#/$defs/runtimeInstall" },
+    "settings_provenance": { "$ref": "#/$defs/settingsProvenance" },
+    "provider_overlay": { "$ref": "#/$defs/overlayReference" },
+    "certification": { "$ref": "#/$defs/certificationReference" }
+  },
+  "allOf": [
+    { "if": { "properties": { "profile_version": { "pattern": "^3\\." } } }, "then": { "required": ["runtime_install", "settings_provenance", "provider_overlay", "certification"] } },
+    { "if": { "properties": { "runtime_install": { "properties": { "runtime_id": { "const": "claude-code" } }, "required": ["runtime_id"] } }, "required": ["runtime_install"] }, "then": { "properties": { "agent_runtime": { "properties": { "id": { "const": "claude-code" } }, "required": ["id"] }, "adapter": { "properties": { "adapter_id": { "const": "claude-code" }, "resolution": { "const": "lazy" } }, "required": ["adapter_id", "resolution"] } } } },
+    { "if": { "properties": { "runtime_install": { "properties": { "runtime_id": { "const": "qwen-code" } }, "required": ["runtime_id"] } }, "required": ["runtime_install"] }, "then": { "properties": { "agent_runtime": { "properties": { "id": { "const": "qwen-code" } }, "required": ["id"] }, "adapter": { "properties": { "adapter_id": { "const": "qwen-code" }, "resolution": { "const": "lazy" } }, "required": ["adapter_id", "resolution"] } } } },
+    { "if": { "properties": { "runtime_install": { "properties": { "runtime_id": { "const": "codex" } }, "required": ["runtime_id"] } }, "required": ["runtime_install"] }, "then": { "properties": { "agent_runtime": { "properties": { "id": { "const": "codex" } }, "required": ["id"] }, "adapter": { "properties": { "adapter_id": { "const": "codex-local" }, "resolution": { "const": "lazy" } }, "required": ["adapter_id", "resolution"] } } } }
+  ],
+  "$defs": {
+    "overlayReference": { "type": "object", "additionalProperties": false, "required": ["overlay_id", "schema_version", "availability"], "properties": { "overlay_id": { "enum": ["anthropic-api", "alibaba-model-studio", "zai", "none"] }, "schema_version": { "const": "1.0" }, "availability": { "enum": ["selected", "unavailable", "none"] } } },
+    "runtimeInstall": {
+      "type": "object", "additionalProperties": false,
+      "required": ["runtime_id", "destination", "selected_only", "adapter_activation", "hooks", "mcp", "fallback"],
+      "properties": { "runtime_id": { "enum": ["codex", "claude-code", "qwen-code"] }, "destination": { "type": "string" }, "selected_only": { "const": true }, "adapter_activation": { "const": "lazy" }, "hooks": { "enum": ["not_installed", "explicit_opt_in"] }, "mcp": { "enum": ["not_installed", "explicit_opt_in"] }, "fallback": { "enum": ["provider-neutral", "unavailable"] } },
+      "allOf": [
+        { "if": { "properties": { "runtime_id": { "const": "claude-code" } } }, "then": { "properties": { "destination": { "enum": [".claude/skills/", "~/.claude/skills/"] } } } },
+        { "if": { "properties": { "runtime_id": { "const": "qwen-code" } } }, "then": { "properties": { "destination": { "enum": [".qwen/skills/", "~/.qwen/skills/"] } } } },
+        { "if": { "properties": { "runtime_id": { "const": "codex" } } }, "then": { "properties": { "destination": { "const": "skills/" } } } }
+      ]
+    },
+    "settingsProvenance": { "type": "object", "additionalProperties": false, "required": ["sources", "resolution", "captured_at"], "properties": { "sources": { "type": "array", "minItems": 1, "items": { "type": "object", "additionalProperties": false, "required": ["scope", "location", "sha256"], "properties": { "scope": { "enum": ["managed", "system", "user", "project", "local", "command_line"] }, "location": { "type": "string", "minLength": 1 }, "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" } } } }, "resolution": { "type": "string", "minLength": 1 }, "captured_at": { "type": "string", "format": "date-time" } } },
+    "certificationReference": { "type": "object", "additionalProperties": false, "required": ["level", "status", "evidence_ids"], "properties": { "level": { "enum": ["C0", "C1", "C2", "C3"] }, "status": { "enum": ["fixture_certified", "cli_certified", "runtime_telemetry_certified", "live_provider_certified", "unavailable", "withheld"] }, "evidence_ids": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } } } },
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "sha256"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "version": { "type": "string", "minLength": 1 }
+      }
+    },
+    "namedLayer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version"],
+      "properties": { "id": { "type": "string", "minLength": 1 }, "version": { "type": "string", "minLength": 1 } }
+    },
+    "observableLayer": {
+      "oneOf": [
+        { "$ref": "#/$defs/namedLayer" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "reason"],
+          "properties": { "status": { "const": "not_available" }, "reason": { "type": "string", "minLength": 1 } }
+        }
+      ]
+    },
+    "adapterSelection": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["adapter_id", "adapter_version", "resolution"],
+          "properties": {
+            "adapter_id": { "const": "codex-local" },
+            "adapter_version": { "type": "string", "minLength": 1 },
+            "resolution": { "const": "lazy" }
+          }
+        },
+        { "type": "object", "additionalProperties": false, "required": ["adapter_id", "adapter_version", "resolution"], "properties": { "adapter_id": { "const": "claude-code" }, "adapter_version": { "type": "string", "minLength": 1 }, "resolution": { "const": "lazy" } } },
+        { "type": "object", "additionalProperties": false, "required": ["adapter_id", "adapter_version", "resolution"], "properties": { "adapter_id": { "const": "qwen-code" }, "adapter_version": { "type": "string", "minLength": 1 }, "resolution": { "const": "lazy" } } },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["adapter_id", "resolution"],
+          "properties": { "adapter_id": { "const": "none" }, "resolution": { "const": "not_applicable" } }
+        }
+      ]
+    },
+    "coreSkill": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["skill_id", "version"],
+      "properties": {
+        "skill_id": { "enum": ["stolz-context", "stolz-reuse", "stolz-quiet-state", "stolz-route", "stolz-benchmark"] },
+        "version": { "type": "string", "minLength": 1 }
+      }
+    },
+    "optionalIntegration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["integration_id", "version", "capabilities"],
+      "properties": {
+        "integration_id": { "enum": ["filesystem", "gitlab", "benchmark-capture"] },
+        "version": { "type": "string", "minLength": 1 },
+        "capabilities": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } }
+      }
+    },
+    "referenceLoad": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["identity", "classification", "units", "load_phase", "trigger_id", "load_count"],
+      "properties": {
+        "identity": { "$ref": "#/$defs/identity" },
+        "classification": { "enum": ["core", "route_required", "conditional", "diagnostic"] },
+        "units": { "type": "integer", "minimum": 0 },
+        "load_phase": { "enum": ["before_route_selection", "after_trigger", "not_loaded"] },
+        "trigger_id": { "type": ["string", "null"] },
+        "load_count": { "type": "integer", "minimum": 0, "maximum": 1 }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "classification": { "const": "core" } } },
+          "then": { "properties": { "load_phase": { "const": "before_route_selection" }, "trigger_id": { "const": null }, "load_count": { "const": 1 } } },
+          "else": {
+            "if": { "properties": { "load_phase": { "const": "after_trigger" } } },
+            "then": { "properties": { "trigger_id": { "type": "string", "minLength": 1 }, "load_count": { "const": 1 } } },
+            "else": { "properties": { "load_phase": { "const": "not_loaded" }, "trigger_id": { "type": ["string", "null"] }, "load_count": { "const": 0 } } }
+          }
+        }
+      ]
+    }
+  }
+}

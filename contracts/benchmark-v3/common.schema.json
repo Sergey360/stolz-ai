@@ -1,0 +1,268 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stolz-ai.dev/contracts/benchmark-v3/common.schema.json",
+  "title": "STOLZ A.I. benchmark v3 common definitions",
+  "$defs": {
+    "identifier": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,255}$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "utcTimestamp": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$"
+    },
+    "availability": {
+      "enum": [
+        "available",
+        "unknown",
+        "unavailable",
+        "withheld",
+        "not_comparable"
+      ]
+    },
+    "metric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "availability",
+        "provenance",
+        "source_identity",
+        "unit"
+      ],
+      "properties": {
+        "name": { "$ref": "#/$defs/identifier" },
+        "availability": { "$ref": "#/$defs/availability" },
+        "provenance": {
+          "enum": [
+            "provider_reported",
+            "runtime_emitted",
+            "runtime_observed",
+            "benchmark_observed",
+            "derived"
+          ]
+        },
+        "source_identity": { "$ref": "#/$defs/sha256" },
+        "unit": {
+          "enum": [
+            "tokens",
+            "currency_minor_units",
+            "count",
+            "bytes",
+            "milliseconds"
+          ]
+        },
+        "value": {
+          "type": "number",
+          "minimum": 0
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "formula": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "component_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/identifier" }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "availability": { "const": "available" } },
+            "required": ["availability"]
+          },
+          "then": {
+            "required": ["value"],
+            "not": { "required": ["reason"] }
+          },
+          "else": {
+            "required": ["reason"],
+            "not": {
+              "anyOf": [
+                { "required": ["value"] },
+                { "required": ["formula"] },
+                { "required": ["component_ids"] }
+              ]
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "provenance": { "const": "derived" } },
+            "required": ["provenance"]
+          },
+          "then": {
+            "if": {
+              "properties": { "availability": { "const": "available" } },
+              "required": ["availability"]
+            },
+            "then": { "required": ["formula", "component_ids"] }
+          },
+          "else": {
+            "not": {
+              "anyOf": [
+                { "required": ["formula"] },
+                { "required": ["component_ids"] }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "deltaMetric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "availability",
+        "provenance",
+        "source_identity",
+        "unit"
+      ],
+      "properties": {
+        "name": { "$ref": "#/$defs/identifier" },
+        "availability": { "$ref": "#/$defs/availability" },
+        "provenance": { "const": "derived" },
+        "source_identity": { "$ref": "#/$defs/sha256" },
+        "unit": {
+          "enum": [
+            "tokens",
+            "currency_minor_units",
+            "count",
+            "bytes",
+            "milliseconds"
+          ]
+        },
+        "value": { "type": "number" },
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "formula": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "component_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/identifier" }
+        }
+      },
+      "if": {
+        "properties": { "availability": { "const": "available" } },
+        "required": ["availability"]
+      },
+      "then": {
+        "required": ["value", "formula", "component_ids"],
+        "not": { "required": ["reason"] }
+      },
+      "else": {
+        "required": ["reason"],
+        "not": {
+          "anyOf": [
+            { "required": ["value"] },
+            { "required": ["formula"] },
+            { "required": ["component_ids"] }
+          ]
+        }
+      }
+    },
+    "overheadComponent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "component_id",
+        "availability",
+        "source_identity",
+        "attribution_owner",
+        "unit"
+      ],
+      "properties": {
+        "component_id": { "$ref": "#/$defs/identifier" },
+        "availability": { "$ref": "#/$defs/availability" },
+        "source_identity": { "$ref": "#/$defs/sha256" },
+        "attribution_owner": { "$ref": "#/$defs/identifier" },
+        "unit": {
+          "enum": ["tokens", "count", "bytes", "milliseconds"]
+        },
+        "value": {
+          "type": "number",
+          "minimum": 0
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        }
+      },
+      "if": {
+        "properties": { "availability": { "const": "available" } },
+        "required": ["availability"]
+      },
+      "then": {
+        "required": ["value"],
+        "not": { "required": ["reason"] }
+      },
+      "else": {
+        "required": ["reason"],
+        "not": { "required": ["value"] }
+      }
+    },
+    "gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status"],
+      "properties": {
+        "status": {
+          "enum": ["passed", "failed", "unknown", "withheld", "not_run"]
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        }
+      },
+      "if": {
+        "properties": { "status": { "const": "passed" } },
+        "required": ["status"]
+      },
+      "then": { "not": { "required": ["reason"] } },
+      "else": { "required": ["reason"] }
+    },
+    "recordReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_id",
+        "schema_version",
+        "record_id",
+        "canonical_sha256"
+      ],
+      "properties": {
+        "schema_id": { "$ref": "#/$defs/identifier" },
+        "schema_version": {
+          "type": "string",
+          "pattern": "^[1-9]\\d*\\.\\d+\\.\\d+$"
+        },
+        "record_id": { "$ref": "#/$defs/identifier" },
+        "canonical_sha256": { "$ref": "#/$defs/sha256" },
+        "route_role": { "enum": ["baseline", "stolz"] }
+      }
+    }
+  }
+}

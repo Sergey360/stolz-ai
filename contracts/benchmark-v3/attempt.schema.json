@@ -1,0 +1,301 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stolz-ai.dev/contracts/benchmark-v3/attempt.schema.json",
+  "title": "STOLZ A.I. benchmark attempt v3",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "schema_version",
+    "record_id",
+    "captured_at",
+    "canonical_sha256",
+    "track",
+    "provenance",
+    "identity",
+    "route_role",
+    "route_id",
+    "execution_control",
+    "started_at",
+    "ended_at",
+    "provider_usage",
+    "runtime_measurement",
+    "pricing",
+    "compaction",
+    "model_wakeups",
+    "tool_activity",
+    "wall_time_ms",
+    "interventions",
+    "outcome",
+    "verification",
+    "execution_events",
+    "stolz_overhead",
+    "disposition"
+  ],
+  "properties": {
+    "schema_id": { "const": "benchmark-attempt" },
+    "schema_version": { "const": "3.0.0" },
+    "record_id": { "$ref": "common.schema.json#/$defs/identifier" },
+    "captured_at": { "$ref": "common.schema.json#/$defs/utcTimestamp" },
+    "canonical_sha256": { "$ref": "common.schema.json#/$defs/sha256" },
+    "track": { "enum": ["provider_native", "runtime_measured"] },
+    "provenance": {
+      "oneOf": [
+        { "$ref": "evidence-provenance.schema.json" },
+        { "$ref": "evidence-provenance-codex.schema.json" }
+      ]
+    },
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scenario_id",
+        "cohort_id",
+        "input_sha256",
+        "environment_sha256",
+        "attempt_identity_sha256",
+        "parent_attempt_id"
+      ],
+      "properties": {
+        "scenario_id": {
+          "enum": [
+            "reads-navigation",
+            "build-check-invalidation",
+            "quiet-wait-transition"
+          ]
+        },
+        "cohort_id": { "$ref": "common.schema.json#/$defs/identifier" },
+        "input_sha256": { "$ref": "common.schema.json#/$defs/sha256" },
+        "environment_sha256": { "$ref": "common.schema.json#/$defs/sha256" },
+        "attempt_identity_sha256": { "$ref": "common.schema.json#/$defs/sha256" },
+        "parent_attempt_id": { "$ref": "common.schema.json#/$defs/identifier" }
+      }
+    },
+    "route_role": { "enum": ["baseline", "stolz"] },
+    "route_id": { "$ref": "common.schema.json#/$defs/identifier" },
+    "execution_control": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "seed",
+        "order",
+        "repetition",
+        "reset_condition_sha256",
+        "invalidation_condition_sha256"
+      ],
+      "properties": {
+        "seed": { "type": "integer", "minimum": 0 },
+        "order": { "type": "integer", "minimum": 1 },
+        "repetition": { "type": "integer", "minimum": 1 },
+        "reset_condition_sha256": { "$ref": "common.schema.json#/$defs/sha256" },
+        "invalidation_condition_sha256": { "$ref": "common.schema.json#/$defs/sha256" }
+      }
+    },
+    "started_at": { "$ref": "common.schema.json#/$defs/utcTimestamp" },
+    "ended_at": { "$ref": "common.schema.json#/$defs/utcTimestamp" },
+    "provider_usage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["availability"],
+      "properties": {
+        "availability": { "$ref": "common.schema.json#/$defs/availability" },
+        "record": {
+          "oneOf": [
+            { "$ref": "responses-usage.schema.json" },
+            { "$ref": "codex-jsonl-usage.schema.json" }
+          ]
+        },
+        "reason": { "type": "string", "minLength": 1, "maxLength": 500 }
+      },
+      "if": { "properties": { "availability": { "const": "available" } }, "required": ["availability"] },
+      "then": { "required": ["record"], "not": { "required": ["reason"] } },
+      "else": { "required": ["reason"], "not": { "required": ["record"] } }
+    },
+    "runtime_measurement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["availability"],
+      "properties": {
+        "availability": { "$ref": "common.schema.json#/$defs/availability" },
+        "record": { "$ref": "runtime-measurement.schema.json" },
+        "reason": { "type": "string", "minLength": 1, "maxLength": 500 }
+      },
+      "if": { "properties": { "availability": { "const": "available" } }, "required": ["availability"] },
+      "then": { "required": ["record"], "not": { "required": ["reason"] } },
+      "else": { "required": ["reason"], "not": { "required": ["record"] } }
+    },
+    "pricing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["availability"],
+      "properties": {
+        "availability": { "$ref": "common.schema.json#/$defs/availability" },
+        "record": { "$ref": "pricing-identity.schema.json" },
+        "reason": { "type": "string", "minLength": 1, "maxLength": 500 }
+      },
+      "if": { "properties": { "availability": { "const": "available" } }, "required": ["availability"] },
+      "then": { "required": ["record"], "not": { "required": ["reason"] } },
+      "else": { "required": ["reason"], "not": { "required": ["record"] } }
+    },
+    "compaction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["count", "event_ids"],
+      "properties": {
+        "count": {
+          "allOf": [
+            { "$ref": "common.schema.json#/$defs/metric" },
+            { "properties": { "name": { "const": "compaction_events" }, "unit": { "const": "count" } } }
+          ]
+        },
+        "event_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "common.schema.json#/$defs/identifier" }
+        }
+      }
+    },
+    "model_wakeups": {
+      "allOf": [
+        { "$ref": "common.schema.json#/$defs/metric" },
+        { "properties": { "name": { "const": "model_wakeups" }, "unit": { "const": "count" } } }
+      ]
+    },
+    "tool_activity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["call_count", "output_bytes", "encoding", "event_ids"],
+      "properties": {
+        "call_count": {
+          "allOf": [
+            { "$ref": "common.schema.json#/$defs/metric" },
+            { "properties": { "name": { "const": "tool_calls" }, "unit": { "const": "count" } } }
+          ]
+        },
+        "output_bytes": {
+          "allOf": [
+            { "$ref": "common.schema.json#/$defs/metric" },
+            { "properties": { "name": { "const": "tool_output_bytes" }, "unit": { "const": "bytes" } } }
+          ]
+        },
+        "encoding": { "const": "utf-8" },
+        "event_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "common.schema.json#/$defs/identifier" }
+        }
+      }
+    },
+    "wall_time_ms": {
+      "allOf": [
+        { "$ref": "common.schema.json#/$defs/metric" },
+        { "properties": { "name": { "const": "wall_time_ms" }, "unit": { "const": "milliseconds" } } }
+      ]
+    },
+    "interventions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policy", "count", "event_ids"],
+      "properties": {
+        "policy": { "enum": ["prohibited", "recorded_recovery"] },
+        "count": { "type": "integer", "minimum": 0 },
+        "event_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "common.schema.json#/$defs/identifier" }
+        }
+      }
+    },
+    "outcome": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["oracle_id", "oracle_version", "result", "result_sha256"],
+      "properties": {
+        "oracle_id": { "$ref": "common.schema.json#/$defs/identifier" },
+        "oracle_version": {
+          "type": "string",
+          "pattern": "^[1-9]\\d*\\.\\d+\\.\\d+$"
+        },
+        "result": { "enum": ["passed", "failed", "partial", "aborted"] },
+        "result_sha256": { "$ref": "common.schema.json#/$defs/sha256" }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required", "oracle_id", "oracle_version", "result", "result_sha256"],
+      "properties": {
+        "required": { "const": true },
+        "oracle_id": { "$ref": "common.schema.json#/$defs/identifier" },
+        "oracle_version": {
+          "type": "string",
+          "pattern": "^[1-9]\\d*\\.\\d+\\.\\d+$"
+        },
+        "result": { "enum": ["passed", "failed", "not_run"] },
+        "result_sha256": { "$ref": "common.schema.json#/$defs/sha256" }
+      }
+    },
+    "execution_events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["event_id", "kind", "attribution_owner", "captured_at"],
+        "properties": {
+          "event_id": { "$ref": "common.schema.json#/$defs/identifier" },
+          "kind": { "enum": ["retry", "fallback", "poll", "cancel", "background_start", "background_complete"] },
+          "attribution_owner": { "$ref": "common.schema.json#/$defs/identifier" },
+          "captured_at": { "$ref": "common.schema.json#/$defs/utcTimestamp" },
+          "parent_event_id": { "$ref": "common.schema.json#/$defs/identifier" }
+        }
+      }
+    },
+    "stolz_overhead": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "routing",
+        "context_selection",
+        "reuse",
+        "quiet_state",
+        "benchmark_capture",
+        "verification",
+        "retry",
+        "fallback"
+      ],
+      "properties": {
+        "routing": { "$ref": "common.schema.json#/$defs/overheadComponent" },
+        "context_selection": { "$ref": "common.schema.json#/$defs/overheadComponent" },
+        "reuse": { "$ref": "common.schema.json#/$defs/overheadComponent" },
+        "quiet_state": { "$ref": "common.schema.json#/$defs/overheadComponent" },
+        "benchmark_capture": { "$ref": "common.schema.json#/$defs/overheadComponent" },
+        "verification": { "$ref": "common.schema.json#/$defs/overheadComponent" },
+        "retry": { "$ref": "common.schema.json#/$defs/overheadComponent" },
+        "fallback": { "$ref": "common.schema.json#/$defs/overheadComponent" }
+      }
+    },
+    "disposition": { "enum": ["completed", "failed", "partial", "aborted"] }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "track": { "const": "provider_native" } },
+        "required": ["track"]
+      },
+      "then": {
+        "properties": {
+          "provider_usage": { "properties": { "availability": { "enum": ["available", "unknown", "unavailable", "withheld"] } } },
+          "runtime_measurement": { "properties": { "availability": { "enum": ["unknown", "unavailable", "withheld"] } } },
+          "pricing": { "properties": { "availability": { "enum": ["available", "unknown", "unavailable", "withheld"] } } }
+        }
+      },
+      "else": {
+        "properties": {
+          "provider_usage": { "properties": { "availability": { "enum": ["unknown", "unavailable", "withheld"] } } },
+          "runtime_measurement": { "properties": { "availability": { "enum": ["available", "unknown", "unavailable", "withheld"] } } },
+          "pricing": { "properties": { "availability": { "enum": ["unknown", "unavailable", "withheld"] } } }
+        }
+      }
+    }
+  ]
+}

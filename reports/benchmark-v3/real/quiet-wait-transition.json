@@ -1,0 +1,357 @@
+{
+  "schema_id": "benchmark-report",
+  "schema_version": "3.0.0",
+  "record_id": "report-500412fbfeee99138edf45fd",
+  "captured_at": "2026-09-02T07:19:06.113Z",
+  "track": "provider_native",
+  "manifest": {
+    "schema_id": "pilot-manifest",
+    "schema_version": "1.0.0",
+    "record_id": "pilot-quiet-wait-transition-codex-cli-20260902",
+    "canonical_sha256": "c70b0591ac0f237c8ef673a73c0ddbabbd91f87ada4b1c17bf813602efd68cc0"
+  },
+  "scope": {
+    "scenario_id": "quiet-wait-transition",
+    "cohort_id": "quiet-wait-transition-codex-cli-20260902-8414c77e",
+    "runtime_id": "codex-cli",
+    "provider_id": "openai",
+    "model_configuration": "gpt-5.5",
+    "configuration_sha256": "34e40a1f2f546febdef047e3c7deb9d79402f3ec9961edf5a4b7f86bbc41fde9",
+    "environment_sha256": "6dcb8cbca9995f6f53c22193fcec6cc1b93789698c74b8f8695d1b874457da48"
+  },
+  "admission": {
+    "schema_id": "report-admission",
+    "schema_version": "1.0.0",
+    "record_id": "admission-500412fbfeee99138edf45fd",
+    "captured_at": "2026-09-02T07:19:06.113Z",
+    "track": "provider_native",
+    "manifest": {
+      "schema_id": "pilot-manifest",
+      "schema_version": "1.0.0",
+      "record_id": "pilot-quiet-wait-transition-codex-cli-20260902",
+      "canonical_sha256": "c70b0591ac0f237c8ef673a73c0ddbabbd91f87ada4b1c17bf813602efd68cc0"
+    },
+    "included_attempts": [
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "quiet-baseline-codex-001",
+        "canonical_sha256": "b69f034aed49ab778032ce56cc6583479220f6caf5b7f516d4d6d8a6658b2cf0"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "quiet-stolz-codex-001",
+        "canonical_sha256": "c9498a91f28c36ec690394f677db6e2171ef01060ec3e02b7302ed7f3f61ed49"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "quiet-stolz-codex-002",
+        "canonical_sha256": "a4d609b44092fff93ad4e740487539fbe417e214edd7ccd586db0edc95798a25"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "quiet-baseline-codex-002",
+        "canonical_sha256": "70cef127da806b8b9275e96fce210e78ad83298c973f7d2b5d932bb6bc60928c"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "quiet-baseline-codex-003",
+        "canonical_sha256": "4e1ebc23bc5072af995fd3da9ee933266e1af385c3fcbb4e48cc1cc55492ee27"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "quiet-stolz-codex-003",
+        "canonical_sha256": "045c59d60f0bec3417b5164f23d001c9c124f613f9679dd699b7f352ab253afb"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "quiet-stolz-codex-004",
+        "canonical_sha256": "277ccb387b6180934a090b673a586f3c34483d401a1d584b5a521b660565562a"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "quiet-baseline-codex-004",
+        "canonical_sha256": "29848cf431653c2bdaa4037fac0c4bcfb870bfbb161cff4114250d1ee24bd7a3"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "quiet-baseline-codex-005",
+        "canonical_sha256": "e3a346d4d5ca48de34f2fa42ded4a695bd4a825154920e82be5844732e0e77e0"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "quiet-stolz-codex-005",
+        "canonical_sha256": "274d3a99c95b110f492c01e9a6e6f5741e04a6688f71bf3a8475bf12cbaca93f"
+      }
+    ],
+    "excluded_attempts": [],
+    "included_pairs": [
+      {
+        "schema_id": "benchmark-pair",
+        "schema_version": "1.0.0",
+        "record_id": "pair-0835b932c970bf9ce0480da8",
+        "canonical_sha256": "592b07148cf697d34e3f066f2d52e14cd9a11bcdea2dfc3baf71231d78b161f3"
+      },
+      {
+        "schema_id": "benchmark-pair",
+        "schema_version": "1.0.0",
+        "record_id": "pair-74acd009c41ebe1593895b8f",
+        "canonical_sha256": "7b5b8cf57ff49548b19c270fd0cedd75ea271dc80bdf40a4681d893a8f2db319"
+      },
+      {
+        "schema_id": "benchmark-pair",
+        "schema_version": "1.0.0",
+        "record_id": "pair-ae44ef87b5a7d82d9557dc9b",
+        "canonical_sha256": "7f61e57fa76a595e518fb4ae1b88e8fbd4f109cde86b00483486f62d42e07910"
+      },
+      {
+        "schema_id": "benchmark-pair",
+        "schema_version": "1.0.0",
+        "record_id": "pair-81ad5cba07c73c51b3cebca2",
+        "canonical_sha256": "84e836c9b5a0388023e9eb87cf136adc96d659b649fe86edf9aba3f7894b0c4a"
+      },
+      {
+        "schema_id": "benchmark-pair",
+        "schema_version": "1.0.0",
+        "record_id": "pair-284d3085caa89520eb8273d8",
+        "canonical_sha256": "8f76f5ed21db5592a2f369cdd34e9523984a04457ebd60823a6ec4c59132be18"
+      }
+    ],
+    "excluded_pairs": [],
+    "gates": {
+      "track_authority": {
+        "status": "passed"
+      },
+      "provenance": {
+        "status": "passed"
+      },
+      "redaction_retention": {
+        "status": "passed"
+      },
+      "pricing": {
+        "status": "passed"
+      },
+      "overhead": {
+        "status": "passed"
+      },
+      "equal_outcome": {
+        "status": "passed"
+      },
+      "equal_verification": {
+        "status": "passed"
+      },
+      "release_publication": {
+        "status": "not_run",
+        "reason": "Aggregate/public claims remain withheld pending the stronger release/publication gates."
+      }
+    },
+    "admission": "withheld",
+    "admission_reason": "Aggregate admission is fail-closed until a complete cohort and every required gate pass.",
+    "public_claim": {
+      "kind": "provider_savings",
+      "disposition": "withheld",
+      "reason": "No release-admitted complete scoped cohort is available; aggregate claims remain withheld."
+    },
+    "canonical_sha256": "239f1bec26ba0dede116f91a7c8957a9457ef558ba5bed4745568b29ed04ebaa"
+  },
+  "attempts": {
+    "included": [
+      "quiet-baseline-codex-001",
+      "quiet-stolz-codex-001",
+      "quiet-stolz-codex-002",
+      "quiet-baseline-codex-002",
+      "quiet-baseline-codex-003",
+      "quiet-stolz-codex-003",
+      "quiet-stolz-codex-004",
+      "quiet-baseline-codex-004",
+      "quiet-baseline-codex-005",
+      "quiet-stolz-codex-005"
+    ],
+    "excluded": []
+  },
+  "pairs": {
+    "included": [
+      "pair-0835b932c970bf9ce0480da8",
+      "pair-74acd009c41ebe1593895b8f",
+      "pair-ae44ef87b5a7d82d9557dc9b",
+      "pair-81ad5cba07c73c51b3cebca2",
+      "pair-284d3085caa89520eb8273d8"
+    ],
+    "excluded": []
+  },
+  "metrics": [
+    {
+      "name": "net_token_delta",
+      "availability": "available",
+      "provenance": "derived",
+      "source_identity": "e8ab2baa37b5d8e5a67e6d812afa9570c229b33dd49ca7c62e0a14ce42ae96be",
+      "unit": "tokens",
+      "value": -1330,
+      "formula": "sum(admitted_pair_deltas)",
+      "component_ids": [
+        "pair-0835b932c970bf9ce0480da8",
+        "pair-74acd009c41ebe1593895b8f",
+        "pair-ae44ef87b5a7d82d9557dc9b",
+        "pair-81ad5cba07c73c51b3cebca2",
+        "pair-284d3085caa89520eb8273d8"
+      ]
+    },
+    {
+      "name": "net_cost_delta",
+      "availability": "unknown",
+      "provenance": "derived",
+      "source_identity": "e8ab2baa37b5d8e5a67e6d812afa9570c229b33dd49ca7c62e0a14ce42ae96be",
+      "unit": "currency_minor_units",
+      "reason": "No complete admitted cohort metric is available."
+    }
+  ],
+  "pricing": {
+    "availability": "unavailable",
+    "reason": "The Codex CLI stream provides no admissible billing price; token comparison remains available while cost is unavailable."
+  },
+  "overhead_attribution": [
+    {
+      "component_id": "routing",
+      "availability": "available",
+      "source_identity": "e1375a96185ff25c8d437cbb2c820cddc3918062c23295c3e8d6d4c98083cc41",
+      "attribution_owner": "report-routing",
+      "unit": "count",
+      "value": 5
+    },
+    {
+      "component_id": "context_selection",
+      "availability": "available",
+      "source_identity": "5e0228cd2ea3641dfb07704f5b6760ba5f097322d7a3098bd6593831a456f95f",
+      "attribution_owner": "report-context-selection",
+      "unit": "count",
+      "value": 5
+    },
+    {
+      "component_id": "reuse",
+      "availability": "available",
+      "source_identity": "bb493b4d2f8ada68437a9e09a199c768d20315ece8c8943974a53a9743ae2143",
+      "attribution_owner": "report-reuse",
+      "unit": "count",
+      "value": 0
+    },
+    {
+      "component_id": "quiet_state",
+      "availability": "available",
+      "source_identity": "b7abc73dc173a4822e38bd47eae6e36cf9c1c25dc52743bb2bcb968d4854a592",
+      "attribution_owner": "report-quiet-state",
+      "unit": "count",
+      "value": 5
+    },
+    {
+      "component_id": "benchmark_capture",
+      "availability": "available",
+      "source_identity": "20908a697d8319160633425e9961616afdfa6729b6ef33b383c4e687121405cc",
+      "attribution_owner": "report-benchmark-capture",
+      "unit": "count",
+      "value": 5
+    },
+    {
+      "component_id": "verification",
+      "availability": "available",
+      "source_identity": "dba241bc80fd9557ca6f841add3b08becbb2234513333f0f82416d721f3a429e",
+      "attribution_owner": "report-verification",
+      "unit": "count",
+      "value": 5
+    },
+    {
+      "component_id": "retry",
+      "availability": "available",
+      "source_identity": "3e37966a4fd5fa54819111e162ee6ee1ac580a0e0261a8532f5e5ca2d767a9c2",
+      "attribution_owner": "report-retry",
+      "unit": "count",
+      "value": 0
+    },
+    {
+      "component_id": "fallback",
+      "availability": "available",
+      "source_identity": "a0c0e1d20efc526b0e05371c9ad3237d690deb7a58b531571204b2e2e7be30b9",
+      "attribution_owner": "report-fallback",
+      "unit": "count",
+      "value": 0
+    }
+  ],
+  "evidence": [
+    {
+      "attempt_id": "quiet-baseline-codex-001",
+      "raw_evidence_sha256": "c86bfd18fe32220121837522349eec9fedef5e00ab24fbe246535ec65ba7eabd",
+      "retained_evidence_sha256": "111e8e01161648f69a1dc2f99f86086be02ff00762d8b45823fd406dde477e7a",
+      "retained_locator": "retained:quiet-wait-transition-codex-cli-20260902-8414c77e:quiet-baseline-codex-001"
+    },
+    {
+      "attempt_id": "quiet-stolz-codex-001",
+      "raw_evidence_sha256": "c46ebe24eb608948a320da03093dcfc90a2409f9ab2b924d1ef90ab442bcbd70",
+      "retained_evidence_sha256": "2babfe6384d2b2e797185660f8798079d013de716517f563e8a897eb595d092f",
+      "retained_locator": "retained:quiet-wait-transition-codex-cli-20260902-8414c77e:quiet-stolz-codex-001"
+    },
+    {
+      "attempt_id": "quiet-stolz-codex-002",
+      "raw_evidence_sha256": "d1350571c6cc18aa1883d9d0f35ef98be8381355f7813aa30944ef71c49e1951",
+      "retained_evidence_sha256": "12bda0e17393255db9becece6fca8d94ace9089ba04c31a8038dcb288c363f69",
+      "retained_locator": "retained:quiet-wait-transition-codex-cli-20260902-8414c77e:quiet-stolz-codex-002"
+    },
+    {
+      "attempt_id": "quiet-baseline-codex-002",
+      "raw_evidence_sha256": "08291fd59e662575a1db4fcc6f7026e50b91ba0bc3867797903cc0cccb4d9ee1",
+      "retained_evidence_sha256": "98ab9c8de20066374c423b9b38c1feddfc415d5228640f747211c60027566d20",
+      "retained_locator": "retained:quiet-wait-transition-codex-cli-20260902-8414c77e:quiet-baseline-codex-002"
+    },
+    {
+      "attempt_id": "quiet-baseline-codex-003",
+      "raw_evidence_sha256": "661d67ca654bfd3d0c48d7791cf0a5a51efeb329909aec43f5e10a689c7aedfa",
+      "retained_evidence_sha256": "3a79ec663106fdea93f4f3a2ba499b953787b5891167415e4b8993ff55c9f5c7",
+      "retained_locator": "retained:quiet-wait-transition-codex-cli-20260902-8414c77e:quiet-baseline-codex-003"
+    },
+    {
+      "attempt_id": "quiet-stolz-codex-003",
+      "raw_evidence_sha256": "2e252c8efb8de74c7a9d8a828e04de74b4c8fd7995205ec84e1b528163d5f69e",
+      "retained_evidence_sha256": "dd2dd04e51297cd6c4002bfa879fa792f5a23a1fb89caf3a00f08794161281db",
+      "retained_locator": "retained:quiet-wait-transition-codex-cli-20260902-8414c77e:quiet-stolz-codex-003"
+    },
+    {
+      "attempt_id": "quiet-stolz-codex-004",
+      "raw_evidence_sha256": "326fe4939a4280c1e033cf3fa5acaa608873dffa29354f4a42e6d2c90c526f18",
+      "retained_evidence_sha256": "eea7996ce3ee93dd4ffc620f5e83b653773bcc60bb764452664ea937f98b7138",
+      "retained_locator": "retained:quiet-wait-transition-codex-cli-20260902-8414c77e:quiet-stolz-codex-004"
+    },
+    {
+      "attempt_id": "quiet-baseline-codex-004",
+      "raw_evidence_sha256": "fedd497aedde52a2e25f1891d00322b901d58af96c09d64971023a0417d5ddb6",
+      "retained_evidence_sha256": "6fe9f80ad0a64eb058facd31ec35b58cccef6dddb42d5bb75a481663b78584bf",
+      "retained_locator": "retained:quiet-wait-transition-codex-cli-20260902-8414c77e:quiet-baseline-codex-004"
+    },
+    {
+      "attempt_id": "quiet-baseline-codex-005",
+      "raw_evidence_sha256": "587f1983a402f0db17d2cfe24de36443d28b83d7f163865842491a8f75975f27",
+      "retained_evidence_sha256": "72388ac27a6f6dcd606bb9416f848f3af69ddf10a233898d7723a2eba538d4cb",
+      "retained_locator": "retained:quiet-wait-transition-codex-cli-20260902-8414c77e:quiet-baseline-codex-005"
+    },
+    {
+      "attempt_id": "quiet-stolz-codex-005",
+      "raw_evidence_sha256": "dd336c30296dafadd1438fd6afa3e21088b876241b3e815261d7e2c73e449d85",
+      "retained_evidence_sha256": "5a8c2c56fda98105f4408cf102bf29fdc06e4c228f290952f45b7d7031f70df5",
+      "retained_locator": "retained:quiet-wait-transition-codex-cli-20260902-8414c77e:quiet-stolz-codex-005"
+    }
+  ],
+  "claim": {
+    "kind": "provider_savings_percentage",
+    "disposition": "withheld",
+    "scope_statement": "Exact quiet-wait-transition cohort quiet-wait-transition-codex-cli-20260902-8414c77e; aggregate claim not admitted.",
+    "reason": "No release-admitted complete scoped cohort is available; aggregate claims remain withheld."
+  },
+  "reproduce_command": "benchmark:v3 --report benchmarks/v3/real/manifests/quiet-wait-transition.json --output reports/benchmark-v3/real/quiet-wait-transition.json",
+  "canonical_sha256": "97c5744737896fdf011dc94977627d30d90fd80608d2e784c1b26a082d77c727"
+}

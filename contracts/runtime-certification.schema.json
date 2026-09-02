@@ -1,0 +1,2062 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stolz-ai.dev/contracts/runtime-certification.schema.json",
+  "title": "STOLZ A.I. Runtime Certification Admission v1",
+  "description": "Exact C0-C3 certification admission. Hashes prove retained-evidence integrity only, never runtime or provider authenticity.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "certification_id",
+    "tuple",
+    "level",
+    "status",
+    "evidence",
+    "outcome_gate",
+    "verification_gate"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "certification_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tuple": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "runtime_id",
+        "runtime_version",
+        "adapter_id",
+        "adapter_version",
+        "overlay_id",
+        "overlay_version",
+        "protocol_or_plan",
+        "model_configuration"
+      ],
+      "properties": {
+        "runtime_id": {
+          "enum": [
+            "codex",
+            "claude-code",
+            "qwen-code"
+          ]
+        },
+        "runtime_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "adapter_id": {
+          "enum": [
+            "codex-local",
+            "claude-code",
+            "qwen-code"
+          ]
+        },
+        "adapter_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "overlay_id": {
+          "enum": [
+            "anthropic-api",
+            "alibaba-model-studio",
+            "zai",
+            "none"
+          ]
+        },
+        "overlay_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "provider_id": {
+          "enum": [
+            "anthropic",
+            "alibaba-model-studio",
+            "zai"
+          ]
+        },
+        "protocol_or_plan": {
+          "type": "string",
+          "minLength": 1
+        },
+        "model_configuration": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "level": {
+      "enum": [
+        "C0",
+        "C1",
+        "C2",
+        "C3"
+      ]
+    },
+    "status": {
+      "enum": [
+        "fixture_certified",
+        "cli_certified",
+        "runtime_telemetry_certified",
+        "live_provider_certified",
+        "withheld"
+      ]
+    },
+    "availability": {
+      "enum": [
+        "available",
+        "unavailable"
+      ]
+    },
+    "expected_evidence_class": {
+      "enum": [
+        "runtime_telemetry",
+        "provider_export"
+      ]
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "retry_owner": {
+      "type": "string",
+      "minLength": 1
+    },
+    "recheck_trigger": {
+      "type": "string",
+      "minLength": 1
+    },
+    "command": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "program",
+        "argv",
+        "node_requirement",
+        "sanitized_stdout_sha256",
+        "settings_source",
+        "provider_claim"
+      ],
+      "properties": {
+        "program": {
+          "const": "npx"
+        },
+        "argv": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "node_requirement": {
+          "const": "v22.16.0"
+        },
+        "sanitized_stdout_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "settings_source": {
+          "type": "string",
+          "pattern": "^fixtures/runtime-adapters/(claude-code|qwen-code)/c0\\.fixture\\.json$"
+        },
+        "provider_claim": {
+          "const": "none"
+        }
+      }
+    },
+    "compared_routes": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "route_identity",
+          "route_role"
+        ],
+        "properties": {
+          "route_identity": {
+            "type": "string",
+            "minLength": 1
+          },
+          "route_role": {
+            "enum": [
+              "baseline",
+              "candidate"
+            ]
+          }
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "evidence_id",
+          "class",
+          "sha256",
+          "redaction_status"
+        ],
+        "properties": {
+          "evidence_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "class": {
+            "enum": [
+              "schema_fixture",
+              "cli",
+              "runtime_telemetry",
+              "provider_export"
+            ]
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "redaction_status": {
+            "const": "passed"
+          },
+          "route_identity": {
+            "type": "string",
+            "minLength": 1
+          },
+          "route_role": {
+            "enum": [
+              "baseline",
+              "candidate"
+            ]
+          },
+          "runtime_id": {
+            "enum": [
+              "codex",
+              "claude-code",
+              "qwen-code"
+            ]
+          },
+          "runtime_version": {
+            "type": "string",
+            "minLength": 1
+          },
+          "adapter_id": {
+            "enum": [
+              "codex-local",
+              "claude-code",
+              "qwen-code"
+            ]
+          },
+          "adapter_version": {
+            "type": "string",
+            "minLength": 1
+          },
+          "overlay_id": {
+            "enum": [
+              "anthropic-api",
+              "alibaba-model-studio",
+              "zai"
+            ]
+          },
+          "overlay_version": {
+            "type": "string",
+            "minLength": 1
+          },
+          "provider_id": {
+            "enum": [
+              "anthropic",
+              "alibaba-model-studio",
+              "zai"
+            ]
+          },
+          "protocol_or_plan": {
+            "type": "string",
+            "minLength": 1
+          },
+          "model_configuration": {
+            "type": "string",
+            "minLength": 1
+          },
+          "outcome_gate": {
+            "enum": [
+              "passed",
+              "failed",
+              "not_run"
+            ]
+          },
+          "verification_gate": {
+            "enum": [
+              "passed",
+              "failed",
+              "not_run"
+            ]
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "class": {
+                  "const": "provider_export"
+                }
+              },
+              "required": [
+                "class"
+              ]
+            },
+            "then": {
+              "required": [
+                "route_identity",
+                "route_role",
+                "runtime_id",
+                "runtime_version",
+                "adapter_id",
+                "adapter_version",
+                "overlay_id",
+                "overlay_version",
+                "provider_id",
+                "protocol_or_plan",
+                "model_configuration",
+                "outcome_gate",
+                "verification_gate"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "outcome_gate": {
+      "enum": [
+        "passed",
+        "not_run",
+        "failed"
+      ]
+    },
+    "verification_gate": {
+      "enum": [
+        "passed",
+        "not_run",
+        "failed"
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "level": {
+            "const": "C0"
+          }
+        },
+        "required": [
+          "level"
+        ]
+      },
+      "then": {
+        "properties": {
+          "status": {
+            "const": "fixture_certified"
+          },
+          "evidence": {
+            "contains": {
+              "properties": {
+                "class": {
+                  "const": "schema_fixture"
+                }
+              },
+              "required": [
+                "class"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "level": {
+            "const": "C1"
+          }
+        },
+        "required": [
+          "level"
+        ]
+      },
+      "then": {
+        "required": [
+          "command"
+        ],
+        "properties": {
+          "status": {
+            "const": "cli_certified"
+          },
+          "evidence": {
+            "contains": {
+              "properties": {
+                "class": {
+                  "const": "cli"
+                }
+              },
+              "required": [
+                "class"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "level": {
+            "const": "C2"
+          }
+        },
+        "required": [
+          "level"
+        ]
+      },
+      "then": {
+        "oneOf": [
+          {
+            "properties": {
+              "status": {
+                "const": "runtime_telemetry_certified"
+              },
+              "evidence": {
+                "allOf": [
+                  {
+                    "contains": {
+                      "properties": {
+                        "class": {
+                          "const": "cli"
+                        }
+                      },
+                      "required": [
+                        "class"
+                      ]
+                    }
+                  },
+                  {
+                    "contains": {
+                      "properties": {
+                        "class": {
+                          "const": "runtime_telemetry"
+                        }
+                      },
+                      "required": [
+                        "class"
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "required": [
+              "availability",
+              "expected_evidence_class",
+              "reason",
+              "retry_owner",
+              "recheck_trigger"
+            ],
+            "not": {
+              "properties": {
+                "tuple": {
+                  "required": [
+                    "provider_id"
+                  ]
+                }
+              },
+              "required": [
+                "tuple"
+              ]
+            },
+            "properties": {
+              "status": {
+                "const": "withheld"
+              },
+              "availability": {
+                "const": "unavailable"
+              },
+              "expected_evidence_class": {
+                "const": "runtime_telemetry"
+              },
+              "reason": {
+                "const": "declared runtime telemetry capture is not available offline"
+              },
+              "recheck_trigger": {
+                "const": "sanitized runtime collector evidence is retained"
+              },
+              "evidence": {
+                "maxItems": 0
+              },
+              "outcome_gate": {
+                "const": "not_run"
+              },
+              "verification_gate": {
+                "const": "not_run"
+              }
+            },
+            "oneOf": [
+              {
+                "properties": {
+                  "certification_id": {
+                    "const": "claude-code-c2-withheld-unavailable-v1"
+                  },
+                  "retry_owner": {
+                    "const": "claude-code-runtime-collector"
+                  },
+                  "tuple": {
+                    "properties": {
+                      "runtime_id": {
+                        "const": "claude-code"
+                      },
+                      "runtime_version": {
+                        "const": "2.1.251"
+                      },
+                      "adapter_id": {
+                        "const": "claude-code"
+                      },
+                      "adapter_version": {
+                        "const": "1.0.0"
+                      },
+                      "overlay_id": {
+                        "const": "none"
+                      },
+                      "overlay_version": {
+                        "const": "1.0.0"
+                      },
+                      "protocol_or_plan": {
+                        "const": "runtime-cli"
+                      },
+                      "model_configuration": {
+                        "const": "not_available"
+                      }
+                    },
+                    "required": [
+                      "runtime_id",
+                      "runtime_version",
+                      "adapter_id",
+                      "adapter_version",
+                      "overlay_id",
+                      "overlay_version",
+                      "protocol_or_plan",
+                      "model_configuration"
+                    ]
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "certification_id": {
+                    "const": "qwen-code-c2-withheld-unavailable-v1"
+                  },
+                  "retry_owner": {
+                    "const": "qwen-code-runtime-collector"
+                  },
+                  "tuple": {
+                    "properties": {
+                      "runtime_id": {
+                        "const": "qwen-code"
+                      },
+                      "runtime_version": {
+                        "const": "0.22.3"
+                      },
+                      "adapter_id": {
+                        "const": "qwen-code"
+                      },
+                      "adapter_version": {
+                        "const": "1.0.0"
+                      },
+                      "overlay_id": {
+                        "const": "none"
+                      },
+                      "overlay_version": {
+                        "const": "1.0.0"
+                      },
+                      "protocol_or_plan": {
+                        "const": "runtime-cli"
+                      },
+                      "model_configuration": {
+                        "const": "not_available"
+                      }
+                    },
+                    "required": [
+                      "runtime_id",
+                      "runtime_version",
+                      "adapter_id",
+                      "adapter_version",
+                      "overlay_id",
+                      "overlay_version",
+                      "protocol_or_plan",
+                      "model_configuration"
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "tuple": {
+            "properties": {
+              "runtime_id": {
+                "const": "codex"
+              }
+            },
+            "required": [
+              "runtime_id"
+            ]
+          }
+        },
+        "required": [
+          "tuple"
+        ]
+      },
+      "then": {
+        "properties": {
+          "tuple": {
+            "properties": {
+              "adapter_id": {
+                "const": "codex-local"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "tuple": {
+            "properties": {
+              "runtime_id": {
+                "const": "claude-code"
+              }
+            },
+            "required": [
+              "runtime_id"
+            ]
+          }
+        },
+        "required": [
+          "tuple"
+        ]
+      },
+      "then": {
+        "properties": {
+          "tuple": {
+            "properties": {
+              "adapter_id": {
+                "const": "claude-code"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "tuple": {
+            "properties": {
+              "runtime_id": {
+                "const": "qwen-code"
+              }
+            },
+            "required": [
+              "runtime_id"
+            ]
+          }
+        },
+        "required": [
+          "tuple"
+        ]
+      },
+      "then": {
+        "properties": {
+          "tuple": {
+            "properties": {
+              "adapter_id": {
+                "const": "qwen-code"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "level": {
+            "const": "C3"
+          }
+        },
+        "required": [
+          "level"
+        ]
+      },
+      "then": {
+        "oneOf": [
+          {
+            "required": [
+              "compared_routes"
+            ],
+            "properties": {
+              "status": {
+                "const": "live_provider_certified"
+              },
+              "tuple": {
+                "required": [
+                  "provider_id"
+                ]
+              },
+              "outcome_gate": {
+                "const": "passed"
+              },
+              "verification_gate": {
+                "const": "passed"
+              },
+              "compared_routes": {
+                "allOf": [
+                  {
+                    "contains": {
+                      "properties": {
+                        "route_role": {
+                          "const": "baseline"
+                        }
+                      },
+                      "required": [
+                        "route_role"
+                      ]
+                    },
+                    "minContains": 1,
+                    "maxContains": 1
+                  },
+                  {
+                    "contains": {
+                      "properties": {
+                        "route_role": {
+                          "const": "candidate"
+                        }
+                      },
+                      "required": [
+                        "route_role"
+                      ]
+                    },
+                    "minContains": 1,
+                    "maxContains": 1
+                  }
+                ]
+              },
+              "evidence": {
+                "allOf": [
+                  {
+                    "contains": {
+                      "properties": {
+                        "class": {
+                          "const": "cli"
+                        }
+                      },
+                      "required": [
+                        "class"
+                      ]
+                    }
+                  },
+                  {
+                    "contains": {
+                      "properties": {
+                        "class": {
+                          "const": "runtime_telemetry"
+                        }
+                      },
+                      "required": [
+                        "class"
+                      ]
+                    }
+                  },
+                  {
+                    "contains": {
+                      "properties": {
+                        "class": {
+                          "const": "provider_export"
+                        }
+                      },
+                      "required": [
+                        "class"
+                      ]
+                    },
+                    "minContains": 2,
+                    "maxContains": 2
+                  },
+                  {
+                    "contains": {
+                      "properties": {
+                        "class": {
+                          "const": "provider_export"
+                        },
+                        "route_role": {
+                          "const": "baseline"
+                        },
+                        "outcome_gate": {
+                          "const": "passed"
+                        },
+                        "verification_gate": {
+                          "const": "passed"
+                        }
+                      },
+                      "required": [
+                        "class",
+                        "route_role",
+                        "outcome_gate",
+                        "verification_gate"
+                      ]
+                    },
+                    "minContains": 1,
+                    "maxContains": 1
+                  },
+                  {
+                    "contains": {
+                      "properties": {
+                        "class": {
+                          "const": "provider_export"
+                        },
+                        "route_role": {
+                          "const": "candidate"
+                        },
+                        "outcome_gate": {
+                          "const": "passed"
+                        },
+                        "verification_gate": {
+                          "const": "passed"
+                        }
+                      },
+                      "required": [
+                        "class",
+                        "route_role",
+                        "outcome_gate",
+                        "verification_gate"
+                      ]
+                    },
+                    "minContains": 1,
+                    "maxContains": 1
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "required": [
+              "availability",
+              "expected_evidence_class",
+              "reason",
+              "retry_owner",
+              "recheck_trigger"
+            ],
+            "not": {
+              "anyOf": [
+                {
+                  "required": [
+                    "command"
+                  ]
+                },
+                {
+                  "required": [
+                    "compared_routes"
+                  ]
+                }
+              ]
+            },
+            "properties": {
+              "status": {
+                "const": "withheld"
+              },
+              "availability": {
+                "const": "unavailable"
+              },
+              "expected_evidence_class": {
+                "const": "provider_export"
+              },
+              "reason": {
+                "const": "No retained sanitized provider export is available for the declared C3 tuple."
+              },
+              "retry_owner": {
+                "const": "provider-evidence-v0.3"
+              },
+              "recheck_trigger": {
+                "const": "A sanitized baseline and candidate provider export are retained for this exact tuple."
+              },
+              "evidence": {
+                "maxItems": 0
+              },
+              "outcome_gate": {
+                "const": "not_run"
+              },
+              "verification_gate": {
+                "const": "not_run"
+              }
+            },
+            "oneOf": [
+              {
+                "properties": {
+                  "certification_id": {
+                    "const": "claude-code-anthropic-api-c3-withheld-unavailable-v1"
+                  },
+                  "tuple": {
+                    "properties": {
+                      "runtime_id": {
+                        "const": "claude-code"
+                      },
+                      "runtime_version": {
+                        "const": "2.1.251"
+                      },
+                      "adapter_id": {
+                        "const": "claude-code"
+                      },
+                      "adapter_version": {
+                        "const": "1.0.0"
+                      },
+                      "overlay_id": {
+                        "const": "anthropic-api"
+                      },
+                      "overlay_version": {
+                        "const": "1.0.0"
+                      },
+                      "provider_id": {
+                        "const": "anthropic"
+                      },
+                      "protocol_or_plan": {
+                        "const": "standard"
+                      },
+                      "model_configuration": {
+                        "const": "claude-3-5-sonnet"
+                      }
+                    },
+                    "required": [
+                      "runtime_id",
+                      "runtime_version",
+                      "adapter_id",
+                      "adapter_version",
+                      "overlay_id",
+                      "overlay_version",
+                      "provider_id",
+                      "protocol_or_plan",
+                      "model_configuration"
+                    ]
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "certification_id": {
+                    "const": "claude-code-alibaba-model-studio-c3-withheld-unavailable-v1"
+                  },
+                  "tuple": {
+                    "properties": {
+                      "runtime_id": {
+                        "const": "claude-code"
+                      },
+                      "runtime_version": {
+                        "const": "2.1.251"
+                      },
+                      "adapter_id": {
+                        "const": "claude-code"
+                      },
+                      "adapter_version": {
+                        "const": "1.0.0"
+                      },
+                      "overlay_id": {
+                        "const": "alibaba-model-studio"
+                      },
+                      "overlay_version": {
+                        "const": "1.0.0"
+                      },
+                      "provider_id": {
+                        "const": "alibaba-model-studio"
+                      },
+                      "protocol_or_plan": {
+                        "const": "international"
+                      },
+                      "model_configuration": {
+                        "const": "qwen-plus"
+                      }
+                    },
+                    "required": [
+                      "runtime_id",
+                      "runtime_version",
+                      "adapter_id",
+                      "adapter_version",
+                      "overlay_id",
+                      "overlay_version",
+                      "provider_id",
+                      "protocol_or_plan",
+                      "model_configuration"
+                    ]
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "certification_id": {
+                    "const": "claude-code-zai-c3-withheld-unavailable-v1"
+                  },
+                  "tuple": {
+                    "properties": {
+                      "runtime_id": {
+                        "const": "claude-code"
+                      },
+                      "runtime_version": {
+                        "const": "2.1.251"
+                      },
+                      "adapter_id": {
+                        "const": "claude-code"
+                      },
+                      "adapter_version": {
+                        "const": "1.0.0"
+                      },
+                      "overlay_id": {
+                        "const": "zai"
+                      },
+                      "overlay_version": {
+                        "const": "1.0.0"
+                      },
+                      "provider_id": {
+                        "const": "zai"
+                      },
+                      "protocol_or_plan": {
+                        "const": "global"
+                      },
+                      "model_configuration": {
+                        "const": "glm-4.5"
+                      }
+                    },
+                    "required": [
+                      "runtime_id",
+                      "runtime_version",
+                      "adapter_id",
+                      "adapter_version",
+                      "overlay_id",
+                      "overlay_version",
+                      "provider_id",
+                      "protocol_or_plan",
+                      "model_configuration"
+                    ]
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "certification_id": {
+                    "const": "qwen-code-anthropic-api-c3-withheld-unavailable-v1"
+                  },
+                  "tuple": {
+                    "properties": {
+                      "runtime_id": {
+                        "const": "qwen-code"
+                      },
+                      "runtime_version": {
+                        "const": "0.22.3"
+                      },
+                      "adapter_id": {
+                        "const": "qwen-code"
+                      },
+                      "adapter_version": {
+                        "const": "1.0.0"
+                      },
+                      "overlay_id": {
+                        "const": "anthropic-api"
+                      },
+                      "overlay_version": {
+                        "const": "1.0.0"
+                      },
+                      "provider_id": {
+                        "const": "anthropic"
+                      },
+                      "protocol_or_plan": {
+                        "const": "standard"
+                      },
+                      "model_configuration": {
+                        "const": "claude-3-5-sonnet"
+                      }
+                    },
+                    "required": [
+                      "runtime_id",
+                      "runtime_version",
+                      "adapter_id",
+                      "adapter_version",
+                      "overlay_id",
+                      "overlay_version",
+                      "provider_id",
+                      "protocol_or_plan",
+                      "model_configuration"
+                    ]
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "certification_id": {
+                    "const": "qwen-code-alibaba-model-studio-c3-withheld-unavailable-v1"
+                  },
+                  "tuple": {
+                    "properties": {
+                      "runtime_id": {
+                        "const": "qwen-code"
+                      },
+                      "runtime_version": {
+                        "const": "0.22.3"
+                      },
+                      "adapter_id": {
+                        "const": "qwen-code"
+                      },
+                      "adapter_version": {
+                        "const": "1.0.0"
+                      },
+                      "overlay_id": {
+                        "const": "alibaba-model-studio"
+                      },
+                      "overlay_version": {
+                        "const": "1.0.0"
+                      },
+                      "provider_id": {
+                        "const": "alibaba-model-studio"
+                      },
+                      "protocol_or_plan": {
+                        "const": "international"
+                      },
+                      "model_configuration": {
+                        "const": "qwen-plus"
+                      }
+                    },
+                    "required": [
+                      "runtime_id",
+                      "runtime_version",
+                      "adapter_id",
+                      "adapter_version",
+                      "overlay_id",
+                      "overlay_version",
+                      "provider_id",
+                      "protocol_or_plan",
+                      "model_configuration"
+                    ]
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "certification_id": {
+                    "const": "qwen-code-zai-c3-withheld-unavailable-v1"
+                  },
+                  "tuple": {
+                    "properties": {
+                      "runtime_id": {
+                        "const": "qwen-code"
+                      },
+                      "runtime_version": {
+                        "const": "0.22.3"
+                      },
+                      "adapter_id": {
+                        "const": "qwen-code"
+                      },
+                      "adapter_version": {
+                        "const": "1.0.0"
+                      },
+                      "overlay_id": {
+                        "const": "zai"
+                      },
+                      "overlay_version": {
+                        "const": "1.0.0"
+                      },
+                      "provider_id": {
+                        "const": "zai"
+                      },
+                      "protocol_or_plan": {
+                        "const": "global"
+                      },
+                      "model_configuration": {
+                        "const": "glm-4.5"
+                      }
+                    },
+                    "required": [
+                      "runtime_id",
+                      "runtime_version",
+                      "adapter_id",
+                      "adapter_version",
+                      "overlay_id",
+                      "overlay_version",
+                      "provider_id",
+                      "protocol_or_plan",
+                      "model_configuration"
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "level": {
+            "const": "C3"
+          },
+          "status": {
+            "const": "live_provider_certified"
+          }
+        },
+        "required": [
+          "level",
+          "status"
+        ]
+      },
+      "then": {
+        "required": [
+          "compared_routes"
+        ],
+        "allOf": [
+          {
+            "not": {
+              "required": [
+                "command"
+              ]
+            }
+          },
+          {
+            "not": {
+              "required": [
+                "availability"
+              ]
+            }
+          },
+          {
+            "not": {
+              "required": [
+                "expected_evidence_class"
+              ]
+            }
+          },
+          {
+            "not": {
+              "required": [
+                "reason"
+              ]
+            }
+          },
+          {
+            "not": {
+              "required": [
+                "retry_owner"
+              ]
+            }
+          },
+          {
+            "not": {
+              "required": [
+                "recheck_trigger"
+              ]
+            }
+          }
+        ],
+        "properties": {
+          "tuple": {
+            "required": [
+              "runtime_id",
+              "runtime_version",
+              "adapter_id",
+              "adapter_version",
+              "overlay_id",
+              "overlay_version",
+              "provider_id",
+              "protocol_or_plan",
+              "model_configuration"
+            ]
+          },
+          "compared_routes": {
+            "minItems": 2,
+            "maxItems": 2,
+            "allOf": [
+              {
+                "contains": {
+                  "properties": {
+                    "route_role": {
+                      "const": "baseline"
+                    }
+                  },
+                  "required": [
+                    "route_role"
+                  ]
+                },
+                "minContains": 1,
+                "maxContains": 1
+              },
+              {
+                "contains": {
+                  "properties": {
+                    "route_role": {
+                      "const": "candidate"
+                    }
+                  },
+                  "required": [
+                    "route_role"
+                  ]
+                },
+                "minContains": 1,
+                "maxContains": 1
+              }
+            ]
+          },
+          "evidence": {
+            "minItems": 4,
+            "maxItems": 4,
+            "allOf": [
+              {
+                "contains": {
+                  "properties": {
+                    "class": {
+                      "const": "cli"
+                    }
+                  },
+                  "required": [
+                    "class"
+                  ]
+                },
+                "minContains": 1,
+                "maxContains": 1
+              },
+              {
+                "contains": {
+                  "properties": {
+                    "class": {
+                      "const": "runtime_telemetry"
+                    }
+                  },
+                  "required": [
+                    "class"
+                  ]
+                },
+                "minContains": 1,
+                "maxContains": 1
+              },
+              {
+                "contains": {
+                  "properties": {
+                    "class": {
+                      "const": "provider_export"
+                    }
+                  },
+                  "required": [
+                    "class"
+                  ]
+                },
+                "minContains": 2,
+                "maxContains": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "level": {
+            "const": "C3"
+          },
+          "status": {
+            "const": "live_provider_certified"
+          }
+        },
+        "required": [
+          "level",
+          "status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "tuple": {
+            "oneOf": [
+              {
+                "properties": {
+                  "runtime_id": {
+                    "const": "claude-code"
+                  },
+                  "runtime_version": {
+                    "const": "2.1.251"
+                  },
+                  "adapter_id": {
+                    "const": "claude-code"
+                  },
+                  "adapter_version": {
+                    "const": "1.0.0"
+                  },
+                  "overlay_id": {
+                    "const": "anthropic-api"
+                  },
+                  "overlay_version": {
+                    "const": "1.0.0"
+                  },
+                  "provider_id": {
+                    "const": "anthropic"
+                  },
+                  "protocol_or_plan": {
+                    "const": "standard"
+                  },
+                  "model_configuration": {
+                    "const": "claude-3-5-sonnet"
+                  }
+                },
+                "required": [
+                  "runtime_id",
+                  "runtime_version",
+                  "adapter_id",
+                  "adapter_version",
+                  "overlay_id",
+                  "overlay_version",
+                  "provider_id",
+                  "protocol_or_plan",
+                  "model_configuration"
+                ]
+              },
+              {
+                "properties": {
+                  "runtime_id": {
+                    "const": "claude-code"
+                  },
+                  "runtime_version": {
+                    "const": "2.1.251"
+                  },
+                  "adapter_id": {
+                    "const": "claude-code"
+                  },
+                  "adapter_version": {
+                    "const": "1.0.0"
+                  },
+                  "overlay_id": {
+                    "const": "alibaba-model-studio"
+                  },
+                  "overlay_version": {
+                    "const": "1.0.0"
+                  },
+                  "provider_id": {
+                    "const": "alibaba-model-studio"
+                  },
+                  "protocol_or_plan": {
+                    "const": "international"
+                  },
+                  "model_configuration": {
+                    "const": "qwen-plus"
+                  }
+                },
+                "required": [
+                  "runtime_id",
+                  "runtime_version",
+                  "adapter_id",
+                  "adapter_version",
+                  "overlay_id",
+                  "overlay_version",
+                  "provider_id",
+                  "protocol_or_plan",
+                  "model_configuration"
+                ]
+              },
+              {
+                "properties": {
+                  "runtime_id": {
+                    "const": "claude-code"
+                  },
+                  "runtime_version": {
+                    "const": "2.1.251"
+                  },
+                  "adapter_id": {
+                    "const": "claude-code"
+                  },
+                  "adapter_version": {
+                    "const": "1.0.0"
+                  },
+                  "overlay_id": {
+                    "const": "zai"
+                  },
+                  "overlay_version": {
+                    "const": "1.0.0"
+                  },
+                  "provider_id": {
+                    "const": "zai"
+                  },
+                  "protocol_or_plan": {
+                    "const": "global"
+                  },
+                  "model_configuration": {
+                    "const": "glm-4.5"
+                  }
+                },
+                "required": [
+                  "runtime_id",
+                  "runtime_version",
+                  "adapter_id",
+                  "adapter_version",
+                  "overlay_id",
+                  "overlay_version",
+                  "provider_id",
+                  "protocol_or_plan",
+                  "model_configuration"
+                ]
+              },
+              {
+                "properties": {
+                  "runtime_id": {
+                    "const": "qwen-code"
+                  },
+                  "runtime_version": {
+                    "const": "0.22.3"
+                  },
+                  "adapter_id": {
+                    "const": "qwen-code"
+                  },
+                  "adapter_version": {
+                    "const": "1.0.0"
+                  },
+                  "overlay_id": {
+                    "const": "anthropic-api"
+                  },
+                  "overlay_version": {
+                    "const": "1.0.0"
+                  },
+                  "provider_id": {
+                    "const": "anthropic"
+                  },
+                  "protocol_or_plan": {
+                    "const": "standard"
+                  },
+                  "model_configuration": {
+                    "const": "claude-3-5-sonnet"
+                  }
+                },
+                "required": [
+                  "runtime_id",
+                  "runtime_version",
+                  "adapter_id",
+                  "adapter_version",
+                  "overlay_id",
+                  "overlay_version",
+                  "provider_id",
+                  "protocol_or_plan",
+                  "model_configuration"
+                ]
+              },
+              {
+                "properties": {
+                  "runtime_id": {
+                    "const": "qwen-code"
+                  },
+                  "runtime_version": {
+                    "const": "0.22.3"
+                  },
+                  "adapter_id": {
+                    "const": "qwen-code"
+                  },
+                  "adapter_version": {
+                    "const": "1.0.0"
+                  },
+                  "overlay_id": {
+                    "const": "alibaba-model-studio"
+                  },
+                  "overlay_version": {
+                    "const": "1.0.0"
+                  },
+                  "provider_id": {
+                    "const": "alibaba-model-studio"
+                  },
+                  "protocol_or_plan": {
+                    "const": "international"
+                  },
+                  "model_configuration": {
+                    "const": "qwen-plus"
+                  }
+                },
+                "required": [
+                  "runtime_id",
+                  "runtime_version",
+                  "adapter_id",
+                  "adapter_version",
+                  "overlay_id",
+                  "overlay_version",
+                  "provider_id",
+                  "protocol_or_plan",
+                  "model_configuration"
+                ]
+              },
+              {
+                "properties": {
+                  "runtime_id": {
+                    "const": "qwen-code"
+                  },
+                  "runtime_version": {
+                    "const": "0.22.3"
+                  },
+                  "adapter_id": {
+                    "const": "qwen-code"
+                  },
+                  "adapter_version": {
+                    "const": "1.0.0"
+                  },
+                  "overlay_id": {
+                    "const": "zai"
+                  },
+                  "overlay_version": {
+                    "const": "1.0.0"
+                  },
+                  "provider_id": {
+                    "const": "zai"
+                  },
+                  "protocol_or_plan": {
+                    "const": "global"
+                  },
+                  "model_configuration": {
+                    "const": "glm-4.5"
+                  }
+                },
+                "required": [
+                  "runtime_id",
+                  "runtime_version",
+                  "adapter_id",
+                  "adapter_version",
+                  "overlay_id",
+                  "overlay_version",
+                  "provider_id",
+                  "protocol_or_plan",
+                  "model_configuration"
+                ]
+              }
+            ]
+          },
+          "evidence": {
+            "items": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "evidence_id",
+                    "class",
+                    "sha256",
+                    "redaction_status"
+                  ],
+                  "properties": {
+                    "evidence_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "class": {
+                      "const": "cli"
+                    },
+                    "sha256": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{64}$"
+                    },
+                    "redaction_status": {
+                      "const": "passed"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "evidence_id",
+                    "class",
+                    "sha256",
+                    "redaction_status"
+                  ],
+                  "properties": {
+                    "evidence_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "class": {
+                      "const": "runtime_telemetry"
+                    },
+                    "sha256": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{64}$"
+                    },
+                    "redaction_status": {
+                      "const": "passed"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "evidence_id",
+                    "class",
+                    "sha256",
+                    "redaction_status",
+                    "route_identity",
+                    "route_role",
+                    "runtime_id",
+                    "runtime_version",
+                    "adapter_id",
+                    "adapter_version",
+                    "overlay_id",
+                    "overlay_version",
+                    "provider_id",
+                    "protocol_or_plan",
+                    "model_configuration",
+                    "outcome_gate",
+                    "verification_gate"
+                  ],
+                  "properties": {
+                    "evidence_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "class": {
+                      "const": "provider_export"
+                    },
+                    "sha256": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{64}$"
+                    },
+                    "redaction_status": {
+                      "const": "passed"
+                    },
+                    "route_identity": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "route_role": {
+                      "enum": [
+                        "baseline",
+                        "candidate"
+                      ]
+                    },
+                    "runtime_id": {
+                      "enum": [
+                        "claude-code",
+                        "qwen-code"
+                      ]
+                    },
+                    "runtime_version": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "adapter_id": {
+                      "enum": [
+                        "claude-code",
+                        "qwen-code"
+                      ]
+                    },
+                    "adapter_version": {
+                      "const": "1.0.0"
+                    },
+                    "overlay_id": {
+                      "enum": [
+                        "anthropic-api",
+                        "alibaba-model-studio",
+                        "zai"
+                      ]
+                    },
+                    "overlay_version": {
+                      "const": "1.0.0"
+                    },
+                    "provider_id": {
+                      "enum": [
+                        "anthropic",
+                        "alibaba-model-studio",
+                        "zai"
+                      ]
+                    },
+                    "protocol_or_plan": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "model_configuration": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "outcome_gate": {
+                      "const": "passed"
+                    },
+                    "verification_gate": {
+                      "const": "passed"
+                    }
+                  },
+                  "oneOf": [
+                    {
+                      "properties": {
+                        "runtime_id": {
+                          "const": "claude-code"
+                        },
+                        "runtime_version": {
+                          "const": "2.1.251"
+                        },
+                        "adapter_id": {
+                          "const": "claude-code"
+                        },
+                        "adapter_version": {
+                          "const": "1.0.0"
+                        },
+                        "overlay_id": {
+                          "const": "anthropic-api"
+                        },
+                        "overlay_version": {
+                          "const": "1.0.0"
+                        },
+                        "provider_id": {
+                          "const": "anthropic"
+                        },
+                        "protocol_or_plan": {
+                          "const": "standard"
+                        },
+                        "model_configuration": {
+                          "const": "claude-3-5-sonnet"
+                        }
+                      },
+                      "required": [
+                        "runtime_id",
+                        "runtime_version",
+                        "adapter_id",
+                        "adapter_version",
+                        "overlay_id",
+                        "overlay_version",
+                        "provider_id",
+                        "protocol_or_plan",
+                        "model_configuration"
+                      ]
+                    },
+                    {
+                      "properties": {
+                        "runtime_id": {
+                          "const": "claude-code"
+                        },
+                        "runtime_version": {
+                          "const": "2.1.251"
+                        },
+                        "adapter_id": {
+                          "const": "claude-code"
+                        },
+                        "adapter_version": {
+                          "const": "1.0.0"
+                        },
+                        "overlay_id": {
+                          "const": "alibaba-model-studio"
+                        },
+                        "overlay_version": {
+                          "const": "1.0.0"
+                        },
+                        "provider_id": {
+                          "const": "alibaba-model-studio"
+                        },
+                        "protocol_or_plan": {
+                          "const": "international"
+                        },
+                        "model_configuration": {
+                          "const": "qwen-plus"
+                        }
+                      },
+                      "required": [
+                        "runtime_id",
+                        "runtime_version",
+                        "adapter_id",
+                        "adapter_version",
+                        "overlay_id",
+                        "overlay_version",
+                        "provider_id",
+                        "protocol_or_plan",
+                        "model_configuration"
+                      ]
+                    },
+                    {
+                      "properties": {
+                        "runtime_id": {
+                          "const": "claude-code"
+                        },
+                        "runtime_version": {
+                          "const": "2.1.251"
+                        },
+                        "adapter_id": {
+                          "const": "claude-code"
+                        },
+                        "adapter_version": {
+                          "const": "1.0.0"
+                        },
+                        "overlay_id": {
+                          "const": "zai"
+                        },
+                        "overlay_version": {
+                          "const": "1.0.0"
+                        },
+                        "provider_id": {
+                          "const": "zai"
+                        },
+                        "protocol_or_plan": {
+                          "const": "global"
+                        },
+                        "model_configuration": {
+                          "const": "glm-4.5"
+                        }
+                      },
+                      "required": [
+                        "runtime_id",
+                        "runtime_version",
+                        "adapter_id",
+                        "adapter_version",
+                        "overlay_id",
+                        "overlay_version",
+                        "provider_id",
+                        "protocol_or_plan",
+                        "model_configuration"
+                      ]
+                    },
+                    {
+                      "properties": {
+                        "runtime_id": {
+                          "const": "qwen-code"
+                        },
+                        "runtime_version": {
+                          "const": "0.22.3"
+                        },
+                        "adapter_id": {
+                          "const": "qwen-code"
+                        },
+                        "adapter_version": {
+                          "const": "1.0.0"
+                        },
+                        "overlay_id": {
+                          "const": "anthropic-api"
+                        },
+                        "overlay_version": {
+                          "const": "1.0.0"
+                        },
+                        "provider_id": {
+                          "const": "anthropic"
+                        },
+                        "protocol_or_plan": {
+                          "const": "standard"
+                        },
+                        "model_configuration": {
+                          "const": "claude-3-5-sonnet"
+                        }
+                      },
+                      "required": [
+                        "runtime_id",
+                        "runtime_version",
+                        "adapter_id",
+                        "adapter_version",
+                        "overlay_id",
+                        "overlay_version",
+                        "provider_id",
+                        "protocol_or_plan",
+                        "model_configuration"
+                      ]
+                    },
+                    {
+                      "properties": {
+                        "runtime_id": {
+                          "const": "qwen-code"
+                        },
+                        "runtime_version": {
+                          "const": "0.22.3"
+                        },
+                        "adapter_id": {
+                          "const": "qwen-code"
+                        },
+                        "adapter_version": {
+                          "const": "1.0.0"
+                        },
+                        "overlay_id": {
+                          "const": "alibaba-model-studio"
+                        },
+                        "overlay_version": {
+                          "const": "1.0.0"
+                        },
+                        "provider_id": {
+                          "const": "alibaba-model-studio"
+                        },
+                        "protocol_or_plan": {
+                          "const": "international"
+                        },
+                        "model_configuration": {
+                          "const": "qwen-plus"
+                        }
+                      },
+                      "required": [
+                        "runtime_id",
+                        "runtime_version",
+                        "adapter_id",
+                        "adapter_version",
+                        "overlay_id",
+                        "overlay_version",
+                        "provider_id",
+                        "protocol_or_plan",
+                        "model_configuration"
+                      ]
+                    },
+                    {
+                      "properties": {
+                        "runtime_id": {
+                          "const": "qwen-code"
+                        },
+                        "runtime_version": {
+                          "const": "0.22.3"
+                        },
+                        "adapter_id": {
+                          "const": "qwen-code"
+                        },
+                        "adapter_version": {
+                          "const": "1.0.0"
+                        },
+                        "overlay_id": {
+                          "const": "zai"
+                        },
+                        "overlay_version": {
+                          "const": "1.0.0"
+                        },
+                        "provider_id": {
+                          "const": "zai"
+                        },
+                        "protocol_or_plan": {
+                          "const": "global"
+                        },
+                        "model_configuration": {
+                          "const": "glm-4.5"
+                        }
+                      },
+                      "required": [
+                        "runtime_id",
+                        "runtime_version",
+                        "adapter_id",
+                        "adapter_version",
+                        "overlay_id",
+                        "overlay_version",
+                        "provider_id",
+                        "protocol_or_plan",
+                        "model_configuration"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
+}

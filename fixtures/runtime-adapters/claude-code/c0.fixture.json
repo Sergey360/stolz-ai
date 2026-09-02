@@ -1,0 +1,19 @@
+{
+  "fixture_version": "1.0",
+  "record": {
+    "runtime": { "id": "claude-code", "observed_version": "2.1.251", "node_requirement": ">=22" },
+    "certification": { "level": "C0", "status": "fixture_certified" },
+    "skill_destinations": { "project": ".claude/skills/", "user": "~/.claude/skills/", "selected": "project" },
+    "settings": { "precedence": ["managed", "command_line", "local", "project", "user"], "result": { "allow": "project", "deny": "managed" } },
+    "optional_integrations": { "hooks": "explicit_opt_in", "mcp": "explicit_opt_in" },
+    "telemetry": { "source_class": "runtime_telemetry", "boundary": "cli_json_or_stream_json_only", "availability": "unavailable" },
+    "sources": [
+      { "surface": "settings", "url": "https://code.claude.com/docs/en/settings", "retrieved_at": "2026-08-30" },
+      { "surface": "skills", "url": "https://code.claude.com/docs/en/skills", "retrieved_at": "2026-08-30" },
+      { "surface": "hooks", "url": "https://code.claude.com/docs/en/hooks", "retrieved_at": "2026-08-30" },
+      { "surface": "mcp", "url": "https://code.claude.com/docs/en/mcp", "retrieved_at": "2026-08-30" },
+      { "surface": "cli_usage", "url": "https://code.claude.com/docs/en/cli-usage", "retrieved_at": "2026-08-30" }
+    ]
+  },
+  "record_sha256": "97b3207bab52c50d14ddc270a8f46cc931e0e4015ca53616d587bec073d2e9c4"
+}

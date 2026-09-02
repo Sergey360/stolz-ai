@@ -1,0 +1,19 @@
+{
+  "fixture_version": "1.0",
+  "record": {
+    "runtime": { "id": "qwen-code", "observed_version": "0.22.3", "node_requirement": ">=22" },
+    "certification": { "level": "C0", "status": "fixture_certified" },
+    "skill_destinations": { "project": ".qwen/skills/", "user": "~/.qwen/skills/", "selected": "project" },
+    "settings": { "precedence": ["system", "user", "project"], "result": { "disabled_levels": ["user"], "disabled_skills": ["out-of-scope-skill"] } },
+    "optional_integrations": { "hooks": "explicit_opt_in", "mcp": "explicit_opt_in" },
+    "telemetry": { "source_class": "runtime_telemetry", "boundary": "otel_or_outfile_only", "sensitive_span_attributes": "disabled", "availability": "unavailable" },
+    "sources": [
+      { "surface": "settings", "url": "https://qwenlm.github.io/qwen-code-docs/en/users/configuration/settings/", "retrieved_at": "2026-08-30" },
+      { "surface": "skills", "url": "https://qwenlm.github.io/qwen-code-docs/en/users/features/skills/", "retrieved_at": "2026-08-30" },
+      { "surface": "hooks", "url": "https://qwenlm.github.io/qwen-code-docs/en/users/features/hooks/", "retrieved_at": "2026-08-30" },
+      { "surface": "mcp", "url": "https://qwenlm.github.io/qwen-code-docs/en/users/features/mcp/", "retrieved_at": "2026-08-30" },
+      { "surface": "telemetry", "url": "https://qwenlm.github.io/qwen-code-docs/en/developers/development/telemetry/", "retrieved_at": "2026-08-30" }
+    ]
+  },
+  "record_sha256": "e26c5fd10dc33ebcd8816382fe822b5ee73b3e91847a9a33e11521f931ee5621"
+}

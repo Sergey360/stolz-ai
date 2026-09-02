@@ -1,0 +1,138 @@
+{
+  "profile_id": "claude-code-evaluation",
+  "profile_kind": "evaluation",
+  "profile_version": "3.0.0",
+  "configuration_identity": {
+    "id": "profiles/claude-code-evaluation.v3.json",
+    "sha256": "03f1ed4e5e1477279189054b5ac2757b690ec16f5acb77c06577fd018d711bef",
+    "version": "3.0.0"
+  },
+  "provider": {
+    "status": "not_available",
+    "reason": "runtime and provider selection are independent"
+  },
+  "model": {
+    "status": "not_available",
+    "reason": "runtime selection does not infer a model"
+  },
+  "agent_runtime": {
+    "id": "claude-code",
+    "version": "2.1.251"
+  },
+  "adapter": {
+    "adapter_id": "claude-code",
+    "adapter_version": "1.0.0",
+    "resolution": "lazy"
+  },
+  "core_skill": {
+    "skill_id": "stolz-benchmark",
+    "version": "1.0.0"
+  },
+  "core_skills": [
+    {
+      "skill_id": "stolz-context",
+      "version": "1.0.0"
+    },
+    {
+      "skill_id": "stolz-reuse",
+      "version": "1.0.0"
+    },
+    {
+      "skill_id": "stolz-quiet-state",
+      "version": "1.0.0"
+    },
+    {
+      "skill_id": "stolz-route",
+      "version": "1.0.0"
+    },
+    {
+      "skill_id": "stolz-benchmark",
+      "version": "1.0.0"
+    }
+  ],
+  "optional_integrations": [
+    {
+      "integration_id": "benchmark-capture",
+      "version": "1.0.0",
+      "capabilities": [
+        "raw-evidence"
+      ]
+    }
+  ],
+  "task_identity": {
+    "id": "runtime-profile/claude-code/evaluation",
+    "sha256": "2f0ff58d341b618a5c217d00ff55bd31c5623d52fd4f349fe5d10db9b7f5f982",
+    "version": "3.0.0"
+  },
+  "source_artifacts": [
+    {
+      "id": "fixtures/runtime-adapters/claude-code/c0.fixture.json",
+      "sha256": "119073d79978c46d66feed0c4062c7d23a06ea38c84645fb5a6cb030e4d15224",
+      "version": "1.0"
+    }
+  ],
+  "measurement_session": {
+    "id": "runtime-profile/claude-code",
+    "sha256": "7a3a330f40f3410fda5fecda16a948bff5706676be8dbb479d3c8a136d9f85e8",
+    "version": "3.0.0"
+  },
+  "telemetry_availability": {
+    "provider_tokens": "not_available",
+    "runtime_events": "not_available"
+  },
+  "context_budget": {
+    "context_unit_source": "profile-authored units",
+    "max_initial_context_units": 100,
+    "max_total_context_units": 160,
+    "initial_context_units": 50,
+    "total_context_units": 50,
+    "initial_context_ratio": 0.5,
+    "context_budget_risk": false
+  },
+  "reference_loads": [
+    {
+      "identity": {
+        "id": "skills/core",
+        "sha256": "1fe7a30bd2dd24dbe4578b45a0bd1d4baaee90e2fedc4105c0c881a7ff771398",
+        "version": "1.0.0"
+      },
+      "classification": "core",
+      "units": 50,
+      "load_phase": "before_route_selection",
+      "trigger_id": null,
+      "load_count": 1
+    }
+  ],
+  "runtime_install": {
+    "runtime_id": "claude-code",
+    "destination": ".claude/skills/",
+    "selected_only": true,
+    "adapter_activation": "lazy",
+    "hooks": "not_installed",
+    "mcp": "not_installed",
+    "fallback": "provider-neutral"
+  },
+  "settings_provenance": {
+    "sources": [
+      {
+        "scope": "project",
+        "location": "fixtures/runtime-adapters/claude-code/settings-provenance.json",
+        "sha256": "6073b812d60e78934ad31a14e6604c41020ed54f8d4ecf994cce072e808afd17"
+      }
+    ],
+    "resolution": "recorded without reading credentials",
+    "captured_at": "2026-08-30T00:00:00Z"
+  },
+  "provider_overlay": {
+    "overlay_id": "none",
+    "schema_version": "1.0",
+    "availability": "none"
+  },
+  "certification": {
+    "level": "C1",
+    "status": "cli_certified",
+    "evidence_ids": [
+      "claude-code-c1-cli"
+    ]
+  }
+}

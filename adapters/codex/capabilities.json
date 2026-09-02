@@ -1,0 +1,13 @@
+{
+  "adapter_id": "codex-local",
+  "provider": "openai-codex",
+  "adapter_version": "1.0.0",
+  "runtime": { "runtime_id": "codex", "runtime_version": "1.0.0" },
+  "resolution": "lazy",
+  "capabilities": {
+    "artifact_identity": true,
+    "command_execution": true,
+    "durable_state": true,
+    "measurement_capture": false
+  }
+}

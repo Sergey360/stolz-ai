@@ -1,0 +1,23 @@
+{
+  "schema": "stolz.benchmark-raw-fixture.v2",
+  "fixture_id": "context-selection-v2",
+  "task_id": "context-selection-contract-v2",
+  "route_role": "baseline",
+  "route_id": "baseline-eager-context-v2",
+  "repetition_index": 5,
+  "ordering_index": 9,
+  "seed": "stolz-context-selection-v2-seed:baseline:005",
+  "started_at": "2026-08-29T12:00:16.000Z",
+  "completed_at": "2026-08-29T12:00:17.000Z",
+  "capture_method_id": "fixture-authored-json",
+  "metrics": [
+    { "name": "fixture_token_units", "availability": "available", "value": 1500, "unit": "fixture_token_units", "provenance": "fixture_authored" },
+    { "name": "model_wakeups", "availability": "available", "value": 4, "unit": "count", "provenance": "fixture_authored" },
+    { "name": "tool_calls", "availability": "available", "value": 8, "unit": "count", "provenance": "fixture_authored" },
+    { "name": "provider_input_tokens", "availability": "unavailable", "unit": "tokens", "provenance": "unavailable", "unavailable_reason": "fixture-only source has no provider-native observation" },
+    { "name": "runtime_elapsed_ms", "availability": "unavailable", "unit": "ms", "provenance": "unavailable", "unavailable_reason": "fixture-only source has no runtime observation" }
+  ],
+  "intervention_count": 0,
+  "outcome": { "required_outcome": "validated-context-plan-v2", "passed": true, "evaluator_id": "context-plan-outcome-evaluator" },
+  "verification": { "procedure_id": "context-plan-verification-v2", "passed": true, "evaluator_id": "fixture-verification-evaluator" }
+}

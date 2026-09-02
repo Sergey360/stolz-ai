@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stolz-ai.dev/contracts/install-manifest.schema.json",
+  "title": "STOLZ A.I. Profile-Scoped Install Manifest",
+  "description": "Declares installations by profile. v1 remains valid; v3 adds selected-only runtime-local destinations and keeps all adapter activation lazy.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["manifest_version", "install_id", "profile_installations"],
+  "properties": {
+    "manifest_version": { "enum": ["1.0", "3.0"] },
+    "install_id": { "type": "string", "minLength": 1 },
+    "profile_installations": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/profileInstallation" } },
+    "runtime_installations": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/runtimeInstallation" } }
+  },
+  "allOf": [{ "if": { "properties": { "manifest_version": { "const": "3.0" } } }, "then": { "required": ["runtime_installations"] } }],
+  "$defs": {
+    "runtimeInstallation": { "type": "object", "additionalProperties": false, "required": ["profile_id", "runtime_id", "adapter_id", "destination", "selected_only", "adapter_activation", "hooks", "mcp", "fallback"], "properties": { "profile_id": { "type": "string", "minLength": 1 }, "runtime_id": { "enum": ["codex", "claude-code", "qwen-code"] }, "adapter_id": { "enum": ["codex-local", "claude-code", "qwen-code"] }, "destination": { "type": "string" }, "selected_only": { "const": true }, "adapter_activation": { "const": "lazy" }, "hooks": { "enum": ["not_installed", "explicit_opt_in"] }, "mcp": { "enum": ["not_installed", "explicit_opt_in"] }, "fallback": { "enum": ["provider-neutral", "unavailable"] } }, "allOf": [{ "if": { "properties": { "runtime_id": { "const": "claude-code" } } }, "then": { "properties": { "adapter_id": { "const": "claude-code" }, "destination": { "enum": [".claude/skills/", "~/.claude/skills/"] } } } }, { "if": { "properties": { "runtime_id": { "const": "qwen-code" } } }, "then": { "properties": { "adapter_id": { "const": "qwen-code" }, "destination": { "enum": [".qwen/skills/", "~/.qwen/skills/"] } } } }, { "if": { "properties": { "runtime_id": { "const": "codex" } } }, "then": { "properties": { "adapter_id": { "const": "codex-local" }, "destination": { "const": "skills/" } } } }] },
+    "profileInstallation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["profile_id", "profile_kind", "core_skills", "adapter", "optional_integrations", "resolution"],
+      "properties": {
+        "profile_id": { "type": "string", "minLength": 1 },
+        "profile_kind": { "enum": ["minimal", "evaluation", "maintainer"] },
+        "core_skills": { "type": "array", "minItems": 5, "maxItems": 5, "uniqueItems": true, "items": { "enum": ["stolz-context", "stolz-reuse", "stolz-quiet-state", "stolz-route", "stolz-benchmark"] } },
+        "adapter": {
+          "oneOf": [
+            { "type": "object", "additionalProperties": false, "required": ["adapter_id", "version"], "properties": { "adapter_id": { "const": "codex-local" }, "version": { "type": "string", "minLength": 1 } } },
+            { "type": "object", "additionalProperties": false, "required": ["adapter_id", "version"], "properties": { "adapter_id": { "const": "claude-code" }, "version": { "type": "string", "minLength": 1 } } },
+            { "type": "object", "additionalProperties": false, "required": ["adapter_id", "version"], "properties": { "adapter_id": { "const": "qwen-code" }, "version": { "type": "string", "minLength": 1 } } },
+            { "type": "object", "additionalProperties": false, "required": ["adapter_id"], "properties": { "adapter_id": { "const": "none" } } }
+          ]
+        },
+        "optional_integrations": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/optionalIntegrationActivation" }
+        },
+        "resolution": { "const": "lazy" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "profile_kind": { "const": "minimal" } } },
+          "then": { "properties": { "optional_integrations": { "maxItems": 0 } } }
+        }
+      ]
+    },
+    "optionalIntegrationActivation": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["integration_id", "trigger_id", "resolution"],
+          "properties": {
+            "integration_id": { "const": "filesystem" },
+            "trigger_id": { "const": "integration:filesystem:approved-file-access" },
+            "resolution": { "const": "lazy" }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["integration_id", "trigger_id", "resolution"],
+          "properties": {
+            "integration_id": { "const": "gitlab" },
+            "trigger_id": { "const": "integration:gitlab:approved-project-access" },
+            "resolution": { "const": "lazy" }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["integration_id", "trigger_id", "resolution"],
+          "properties": {
+            "integration_id": { "const": "benchmark-capture" },
+            "trigger_id": { "const": "integration:benchmark-capture:raw-evidence" },
+            "resolution": { "const": "lazy" }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,230 @@
+{
+  "schema": "stolz.benchmark-fixture.v2",
+  "fixture_id": "context-selection-v2",
+  "fixture_version": "2.0.0",
+  "title": "Deterministic fixture-only context selection repetitions",
+  "task": {
+    "id": "context-selection-contract-v2",
+    "version": "2.0.0",
+    "configuration": {
+      "required_artifact_ids": [
+        "task-brief",
+        "verification-policy"
+      ],
+      "result_contract": "validated-context-plan-v2"
+    }
+  },
+  "routes": [
+    {
+      "route_role": "baseline",
+      "id": "baseline-eager-context-v2",
+      "version": "2.0.0",
+      "configuration": {
+        "strategy": "load-all-fixture-artifacts",
+        "verification": "required"
+      }
+    },
+    {
+      "route_role": "optimized",
+      "id": "optimized-required-context-v2",
+      "version": "2.0.0",
+      "configuration": {
+        "strategy": "load-required-fixture-artifacts",
+        "verification": "required"
+      }
+    }
+  ],
+  "required_outcome": {
+    "id": "validated-context-plan-v2",
+    "evaluator": {
+      "id": "context-plan-outcome-evaluator",
+      "version": "2.0.0",
+      "configuration": {
+        "required_artifact_ids": [
+          "task-brief",
+          "verification-policy"
+        ],
+        "require_verification_policy": true
+      }
+    }
+  },
+  "verification": {
+    "procedure": {
+      "id": "context-plan-verification-v2",
+      "version": "2.0.0",
+      "configuration": {
+        "checks": [
+          "required-artifacts-selected",
+          "verification-policy-applied",
+          "result-digest-matched"
+        ]
+      }
+    },
+    "evaluator": {
+      "id": "fixture-verification-evaluator",
+      "version": "2.0.0",
+      "configuration": {
+        "mode": "deterministic-contract"
+      }
+    }
+  },
+  "execution": {
+    "planned_repetitions_per_route": 5,
+    "seed": "stolz-context-selection-v2-seed",
+    "ordering_policy": "alternating-baseline-first-v1"
+  },
+  "evidence_class": "fixture_only",
+  "environment": {
+    "agent_runtime": {
+      "id": "stolz-fixture-runner",
+      "version": "2.0.0",
+      "configuration": {
+        "execution_mode": "deterministic-fixture"
+      }
+    },
+    "adapter": {
+      "status": "unavailable",
+      "reason": "fixture-only execution does not activate a runtime adapter",
+      "configuration": {
+        "resolution": "not_activated"
+      }
+    },
+    "provider": {
+      "status": "unavailable",
+      "reason": "fixture-only execution has no provider observation",
+      "configuration": {
+        "telemetry": "not_available"
+      }
+    },
+    "model": {
+      "status": "unavailable",
+      "reason": "fixture-only execution has no model observation",
+      "configuration": {
+        "telemetry": "not_available"
+      }
+    },
+    "collector": {
+      "id": "stolz-benchmark-v2-collector",
+      "version": "2.0.0",
+      "configuration": {
+        "hash_method": "sha256-canonical-json-v1",
+        "sanitization_policy": "stolz-public-evidence-sanitization@1.0.0"
+      }
+    },
+    "optional_integrations": [
+      {
+        "id": "benchmark-capture",
+        "version": "1.0.0",
+        "configuration": {
+          "capability": "raw-evidence",
+          "trigger": "integration:benchmark-capture:raw-evidence"
+        }
+      }
+    ],
+    "capture_method": {
+      "id": "fixture-authored-json",
+      "version": "1.0.0",
+      "configuration": {
+        "source": "versioned-fixture-input",
+        "telemetry": "not_observed"
+      }
+    }
+  },
+  "metric_contracts": [
+    {
+      "name": "fixture_token_units",
+      "unit": "fixture_token_units",
+      "expected_availability": "available",
+      "provenance": "fixture_authored"
+    },
+    {
+      "name": "model_wakeups",
+      "unit": "count",
+      "expected_availability": "available",
+      "provenance": "fixture_authored"
+    },
+    {
+      "name": "tool_calls",
+      "unit": "count",
+      "expected_availability": "available",
+      "provenance": "fixture_authored"
+    },
+    {
+      "name": "provider_input_tokens",
+      "unit": "tokens",
+      "expected_availability": "unavailable",
+      "provenance": "unavailable"
+    },
+    {
+      "name": "runtime_elapsed_ms",
+      "unit": "ms",
+      "expected_availability": "unavailable",
+      "provenance": "unavailable"
+    }
+  ],
+  "regression_budgets": [
+    {
+      "metric": "fixture_token_units",
+      "unit": "fixture_token_units",
+      "direction": "must_not_increase",
+      "threshold": 0
+    }
+  ],
+  "raw_repetitions": [
+    {
+      "route_role": "baseline",
+      "path": "benchmarks/v2/fixtures/context-selection-v2/raw/baseline-001.json",
+      "sha256": "fc18db75d4c02546d4b9d36d006f926c4f57aba2d1856cdcb80168dfb1e4dd53"
+    },
+    {
+      "route_role": "optimized",
+      "path": "benchmarks/v2/fixtures/context-selection-v2/raw/optimized-001.json",
+      "sha256": "e5c9be852f81d6447a6edb55d9721666fa2714bb983342afa3d32fdf5a5b7ca4"
+    },
+    {
+      "route_role": "baseline",
+      "path": "benchmarks/v2/fixtures/context-selection-v2/raw/baseline-002.json",
+      "sha256": "1baa9ba08632249f891550ef2e1f9ce81a6290d89c32f04b1b6efcf0cb98e38c"
+    },
+    {
+      "route_role": "optimized",
+      "path": "benchmarks/v2/fixtures/context-selection-v2/raw/optimized-002.json",
+      "sha256": "7fc06348dec239c6957a2528a5e00fb92651ad8c6fdf19bd5bdd8d92343176ba"
+    },
+    {
+      "route_role": "baseline",
+      "path": "benchmarks/v2/fixtures/context-selection-v2/raw/baseline-003.json",
+      "sha256": "80a368e0813b7cbbc02423bf8ff402264d1cb39d7a293d69d282df984c941b73"
+    },
+    {
+      "route_role": "optimized",
+      "path": "benchmarks/v2/fixtures/context-selection-v2/raw/optimized-003.json",
+      "sha256": "29ae0d73e4820b08578046b553f9cc0f9b8af1c5e6b6755f56a10f1865491888"
+    },
+    {
+      "route_role": "baseline",
+      "path": "benchmarks/v2/fixtures/context-selection-v2/raw/baseline-004.json",
+      "sha256": "98a7c57dedc004b9f9843b9f62c9d8f93bc1f4619a6573d3d7a2ac8ae46d89e4"
+    },
+    {
+      "route_role": "optimized",
+      "path": "benchmarks/v2/fixtures/context-selection-v2/raw/optimized-004.json",
+      "sha256": "3a04898eaecbebf027f4edd3d6dd6be45c4d6111f83fb0b2d060bd103f0542fd"
+    },
+    {
+      "route_role": "baseline",
+      "path": "benchmarks/v2/fixtures/context-selection-v2/raw/baseline-005.json",
+      "sha256": "5c0a749f3cc3c1501f9b9662a41020d33a2a32e61bf9b23c6a829b873d1dcb7f"
+    },
+    {
+      "route_role": "optimized",
+      "path": "benchmarks/v2/fixtures/context-selection-v2/raw/optimized-005.json",
+      "sha256": "92747c726f7d4b21d7370b6bcdd1872881782f4fa7eeb854c3bbf9c90e1e7f85"
+    }
+  ],
+  "outputs": {
+    "evidence_directory": "benchmarks/v2/evidence/context-selection-v2",
+    "sanitization_manifest": "benchmarks/v2/evidence/context-selection-v2/sanitization-manifest.json",
+    "aggregate_record": "benchmarks/v2/evidence/context-selection-v2/aggregate-record.json"
+  }
+}

@@ -14,6 +14,39 @@ const ROUTES = new Map([
   ['benchmark', { skill: 'stolz-benchmark', references: ['skills/stolz-benchmark/references/outcome-gates.md'], capabilities: ['measurement_capture'] }],
 ]);
 
+function requiredTrigger(capabilities) {
+  return `runtime-capability:${[...capabilities].sort().join(',')}`;
+}
+
+/**
+ * Returns a resolver that has no adapter side effect until a route records the
+ * exact capability trigger. A successful import is memoized for this runtime.
+ */
+export function createLazyCodexResolver(loadAdapter = () => import('../adapters/codex/adapter.mjs')) {
+  let adapterPromise = null;
+
+  return async function resolve({ concern, profile, trigger } = {}) {
+    const route = ROUTES.get(concern);
+    if (!route) return { skill: 'stolz-route', route: 'provider-neutral', reason: 'unknown_concern', references: [] };
+    const expectedTrigger = requiredTrigger(route.capabilities);
+    const base = { skill: route.skill, references: route.references, trigger: expectedTrigger };
+    if (profile?.adapter?.adapter_id !== 'codex-local' || profile?.adapter?.resolution !== 'lazy') {
+      return { ...base, route: 'provider-neutral', reason: 'adapter_unavailable' };
+    }
+    if (trigger !== expectedTrigger) return { ...base, route: 'provider-neutral', reason: 'capability_trigger_required' };
+    try {
+      adapterPromise ??= Promise.resolve().then(loadAdapter);
+      const module = await adapterPromise;
+      const selection = selectSafeRoute(module.codexAdapter ?? module.declaration ?? module, route.capabilities);
+      return selection.route === 'adapter'
+        ? { ...base, ...selection, adapter_version: module.codexAdapter?.adapter_version ?? module.declaration?.adapter_version }
+        : { ...base, ...selection };
+    } catch {
+      return { ...base, route: 'provider-neutral', reason: 'adapter_unavailable' };
+    }
+  };
+}
+
 export function selectRoutedSkill({ concern, adapter = null }) {
   const route = ROUTES.get(concern);
   if (!route) return { skill: 'stolz-route', route: 'provider-neutral', reason: 'unknown_concern', references: [] };

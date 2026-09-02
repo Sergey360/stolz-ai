@@ -1,0 +1,215 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stolz-ai.dev/contracts/benchmark-evidence.schema.json",
+  "title": "STOLZ A.I. Benchmark v2 Evidence",
+  "description": "Immutable, sanitized evidence from one benchmark route repetition. Unavailable telemetry has no numeric value and cannot become a provider claim.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "evidence_id",
+    "evidence_version",
+    "fixture",
+    "task",
+    "route",
+    "environment",
+    "repetition",
+    "evidence_class",
+    "capture",
+    "intervention_count",
+    "metrics",
+    "outcome",
+    "verification",
+    "evidence_links",
+    "sanitization"
+  ],
+  "properties": {
+    "evidence_id": { "$ref": "#/$defs/identity" },
+    "evidence_version": { "const": "2.0" },
+    "fixture": { "$ref": "#/$defs/identity" },
+    "task": { "$ref": "#/$defs/identity" },
+    "route": { "$ref": "#/$defs/identity" },
+    "environment": { "$ref": "#/$defs/environment" },
+    "repetition": { "$ref": "#/$defs/repetition" },
+    "evidence_class": { "enum": ["fixture_only", "runtime_telemetry", "provider_native"] },
+    "capture": { "$ref": "#/$defs/capture" },
+    "intervention_count": { "type": "integer", "minimum": 0 },
+    "metrics": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/metric" }
+    },
+    "outcome": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required_outcome", "passed", "evaluator"],
+      "properties": {
+        "required_outcome": { "type": "string", "minLength": 1 },
+        "passed": { "type": "boolean" },
+        "evaluator": { "$ref": "#/$defs/identity" }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["procedure", "passed", "evaluator"],
+      "properties": {
+        "procedure": { "$ref": "#/$defs/identity" },
+        "passed": { "type": "boolean" },
+        "evaluator": { "$ref": "#/$defs/identity" }
+      }
+    },
+    "evidence_links": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/durableLink" }
+    },
+    "sanitization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "manifest", "withheld_fields"],
+      "properties": {
+        "status": { "enum": ["passed", "withheld", "failed"] },
+        "manifest": { "$ref": "#/$defs/durableLink" },
+        "withheld_fields": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version", "sha256"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "version": { "type": "string", "minLength": 1 },
+        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+      }
+    },
+    "component": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version", "configuration_identity"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "version": { "type": "string", "minLength": 1 },
+        "configuration_identity": { "$ref": "#/$defs/identity" }
+      }
+    },
+    "unavailableComponent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "reason", "configuration_identity"],
+      "properties": {
+        "status": { "const": "unavailable" },
+        "reason": { "type": "string", "minLength": 1 },
+        "configuration_identity": { "$ref": "#/$defs/identity" }
+      }
+    },
+    "componentOrUnavailable": {
+      "oneOf": [
+        { "$ref": "#/$defs/component" },
+        { "$ref": "#/$defs/unavailableComponent" }
+      ]
+    },
+    "environment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["agent_runtime", "adapter", "provider", "model", "collector", "optional_integrations"],
+      "properties": {
+        "agent_runtime": { "$ref": "#/$defs/component" },
+        "adapter": { "$ref": "#/$defs/componentOrUnavailable" },
+        "provider": { "$ref": "#/$defs/componentOrUnavailable" },
+        "model": { "$ref": "#/$defs/componentOrUnavailable" },
+        "collector": { "$ref": "#/$defs/component" },
+        "optional_integrations": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/component" }
+        }
+      }
+    },
+    "repetition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["index", "planned_count", "seed", "ordering_index", "ordering_identity", "started_at", "completed_at"],
+      "properties": {
+        "index": { "type": "integer", "minimum": 1 },
+        "planned_count": { "type": "integer", "minimum": 1 },
+        "seed": { "type": "string", "minLength": 1 },
+        "ordering_index": { "type": "integer", "minimum": 1 },
+        "ordering_identity": { "$ref": "#/$defs/identity" },
+        "started_at": { "type": "string", "format": "date-time" },
+        "completed_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "capture": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["method", "captured_at", "raw_evidence", "hash_method"],
+      "properties": {
+        "method": { "$ref": "#/$defs/component" },
+        "captured_at": { "type": "string", "format": "date-time" },
+        "raw_evidence": { "$ref": "#/$defs/durableLink" },
+        "hash_method": { "const": "sha256-canonical-json-v1" }
+      }
+    },
+    "durableLink": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["uri", "sha256"],
+      "properties": {
+        "uri": { "type": "string", "minLength": 1 },
+        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+      }
+    },
+    "availableMetric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "availability", "value", "unit", "provenance", "source_links"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "availability": { "const": "available" },
+        "value": { "type": "number", "minimum": 0 },
+        "unit": { "type": "string", "minLength": 1 },
+        "provenance": { "enum": ["provider_observed", "runtime_observed", "derived", "fixture_authored"] },
+        "formula": { "type": "string", "minLength": 1 },
+        "source_links": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/durableLink" }
+        }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "provenance": { "const": "derived" } } },
+          "then": { "required": ["formula"] },
+          "else": { "not": { "required": ["formula"] } }
+        }
+      ]
+    },
+    "unavailableMetric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "availability", "unit", "provenance", "unavailable_reason"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "availability": { "enum": ["unavailable", "not_comparable"] },
+        "unit": { "type": "string", "minLength": 1 },
+        "provenance": { "const": "unavailable" },
+        "unavailable_reason": { "type": "string", "minLength": 1 }
+      }
+    },
+    "metric": {
+      "oneOf": [
+        { "$ref": "#/$defs/availableMetric" },
+        { "$ref": "#/$defs/unavailableMetric" }
+      ]
+    }
+  }
+}

@@ -1,0 +1,204 @@
+{
+  "evidence_id": {
+    "id": "context-selection-v2/optimized/001",
+    "version": "2.0.0",
+    "sha256": "02a0f2d2eb39c63b55a2a5c2bbebffc47dddffe146b6ee87854ae4ede518f333"
+  },
+  "evidence_version": "2.0",
+  "fixture": {
+    "id": "context-selection-v2",
+    "version": "2.0.0",
+    "sha256": "c6d405c9d2561e1a1bf5d842f7718aab8c539c9de92da6386b9b8441c9711993"
+  },
+  "task": {
+    "id": "context-selection-contract-v2",
+    "version": "2.0.0",
+    "sha256": "5aa6b086f795dc002607c8ffaa596794bf7cd1d595090bd1cbe99fb337fce64c"
+  },
+  "route": {
+    "id": "optimized-required-context-v2",
+    "version": "2.0.0",
+    "sha256": "0d160bde39b350ed145a172cbe0e77e8ea62caaeb60b6b1910df2329c230cd92"
+  },
+  "environment": {
+    "agent_runtime": {
+      "id": "stolz-fixture-runner",
+      "version": "2.0.0",
+      "configuration_identity": {
+        "id": "stolz-fixture-runner/configuration",
+        "version": "2.0.0",
+        "sha256": "f28732fb63a12d13875b8452412919d26b94575e035c5d5b8f9697152323780a"
+      }
+    },
+    "adapter": {
+      "status": "unavailable",
+      "reason": "fixture-only execution does not activate a runtime adapter",
+      "configuration_identity": {
+        "id": "adapter/unavailable-configuration",
+        "version": "1.0.0",
+        "sha256": "0f5a5fdf66b377ea357022d4c1c6856ae3804b37c8b65111a7fa4f841cd9a862"
+      }
+    },
+    "provider": {
+      "status": "unavailable",
+      "reason": "fixture-only execution has no provider observation",
+      "configuration_identity": {
+        "id": "provider/unavailable-configuration",
+        "version": "1.0.0",
+        "sha256": "7387859c576f939d23b30d2001e7ce8c7506884a786dde6ddd7e0535aaad6a7f"
+      }
+    },
+    "model": {
+      "status": "unavailable",
+      "reason": "fixture-only execution has no model observation",
+      "configuration_identity": {
+        "id": "model/unavailable-configuration",
+        "version": "1.0.0",
+        "sha256": "7387859c576f939d23b30d2001e7ce8c7506884a786dde6ddd7e0535aaad6a7f"
+      }
+    },
+    "collector": {
+      "id": "stolz-benchmark-v2-collector",
+      "version": "2.0.0",
+      "configuration_identity": {
+        "id": "stolz-benchmark-v2-collector/configuration",
+        "version": "2.0.0",
+        "sha256": "efd5cf40c9755d3153be4194bbe1f0a99e098a192586946215ae7144e395262a"
+      }
+    },
+    "optional_integrations": [
+      {
+        "id": "benchmark-capture",
+        "version": "1.0.0",
+        "configuration_identity": {
+          "id": "benchmark-capture/configuration",
+          "version": "1.0.0",
+          "sha256": "ba1074718a950cb3305e2a5d5960bba55577bcfa75473e4652e0afa2ea76a392"
+        }
+      }
+    ]
+  },
+  "repetition": {
+    "index": 1,
+    "planned_count": 5,
+    "seed": "stolz-context-selection-v2-seed:optimized:001",
+    "ordering_index": 2,
+    "ordering_identity": {
+      "id": "alternating-baseline-first-v1/002",
+      "version": "1.0.0",
+      "sha256": "9c6661b47def8dbf0e697b08a27aee7f5b67deab36c93451f2151d59ea8be044"
+    },
+    "started_at": "2026-08-29T12:00:02.000Z",
+    "completed_at": "2026-08-29T12:00:03.000Z"
+  },
+  "evidence_class": "fixture_only",
+  "capture": {
+    "method": {
+      "id": "fixture-authored-json",
+      "version": "1.0.0",
+      "configuration_identity": {
+        "id": "fixture-authored-json/configuration",
+        "version": "1.0.0",
+        "sha256": "aab0cf09de10a7a18f0b7fcc62967ef076ebabaad691a3ba6ab4383e975c9d92"
+      }
+    },
+    "captured_at": "2026-08-29T12:00:03.000Z",
+    "raw_evidence": {
+      "uri": "benchmarks/v2/fixtures/context-selection-v2/raw/optimized-001.json",
+      "sha256": "e5c9be852f81d6447a6edb55d9721666fa2714bb983342afa3d32fdf5a5b7ca4"
+    },
+    "hash_method": "sha256-canonical-json-v1"
+  },
+  "intervention_count": 0,
+  "metrics": [
+    {
+      "name": "fixture_token_units",
+      "availability": "available",
+      "value": 970,
+      "unit": "fixture_token_units",
+      "provenance": "fixture_authored",
+      "source_links": [
+        {
+          "uri": "benchmarks/v2/fixtures/context-selection-v2/raw/optimized-001.json",
+          "sha256": "e5c9be852f81d6447a6edb55d9721666fa2714bb983342afa3d32fdf5a5b7ca4"
+        }
+      ]
+    },
+    {
+      "name": "model_wakeups",
+      "availability": "available",
+      "value": 3,
+      "unit": "count",
+      "provenance": "fixture_authored",
+      "source_links": [
+        {
+          "uri": "benchmarks/v2/fixtures/context-selection-v2/raw/optimized-001.json",
+          "sha256": "e5c9be852f81d6447a6edb55d9721666fa2714bb983342afa3d32fdf5a5b7ca4"
+        }
+      ]
+    },
+    {
+      "name": "tool_calls",
+      "availability": "available",
+      "value": 4,
+      "unit": "count",
+      "provenance": "fixture_authored",
+      "source_links": [
+        {
+          "uri": "benchmarks/v2/fixtures/context-selection-v2/raw/optimized-001.json",
+          "sha256": "e5c9be852f81d6447a6edb55d9721666fa2714bb983342afa3d32fdf5a5b7ca4"
+        }
+      ]
+    },
+    {
+      "name": "provider_input_tokens",
+      "availability": "unavailable",
+      "unit": "tokens",
+      "provenance": "unavailable",
+      "unavailable_reason": "fixture-only source has no provider-native observation"
+    },
+    {
+      "name": "runtime_elapsed_ms",
+      "availability": "unavailable",
+      "unit": "ms",
+      "provenance": "unavailable",
+      "unavailable_reason": "fixture-only source has no runtime observation"
+    }
+  ],
+  "outcome": {
+    "required_outcome": "validated-context-plan-v2",
+    "passed": true,
+    "evaluator": {
+      "id": "context-plan-outcome-evaluator",
+      "version": "2.0.0",
+      "sha256": "f7d8ae9e6e2b4ec040fa132aeafa9af4c5d3c76f724a458a9508b2e59ee04e45"
+    }
+  },
+  "verification": {
+    "procedure": {
+      "id": "context-plan-verification-v2",
+      "version": "2.0.0",
+      "sha256": "83f59d9474aabd9634ea37684f2ce2c7119a207cb97b5e617d41706b3c514764"
+    },
+    "passed": true,
+    "evaluator": {
+      "id": "fixture-verification-evaluator",
+      "version": "2.0.0",
+      "sha256": "9c602690f32667f433dda057f45cbd99af93e7486c72069e9cedf9a46ff58378"
+    }
+  },
+  "evidence_links": [
+    {
+      "uri": "benchmarks/v2/fixtures/context-selection-v2/raw/optimized-001.json",
+      "sha256": "e5c9be852f81d6447a6edb55d9721666fa2714bb983342afa3d32fdf5a5b7ca4"
+    }
+  ],
+  "sanitization": {
+    "status": "passed",
+    "manifest": {
+      "uri": "benchmarks/v2/evidence/context-selection-v2/sanitization-manifest.json",
+      "sha256": "400957f9d184f47e4151475631a329f229ab928a1c5e7626190021c5f5a7d0dc"
+    },
+    "withheld_fields": []
+  }
+}

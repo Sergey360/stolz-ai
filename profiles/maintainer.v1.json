@@ -1,0 +1,24 @@
+{
+  "profile_id": "codex-maintainer",
+  "profile_kind": "maintainer",
+  "profile_version": "1.0.0",
+  "configuration_identity": { "id": "profiles/maintainer.v1.json", "sha256": "96a0c3afc00aa053468dd2ed4f8ba3ef710635017f01d5280ac490257f3521af", "version": "1.0.0" },
+  "provider": { "status": "not_available", "reason": "a portable install does not infer a provider" },
+  "model": { "status": "not_available", "reason": "a portable install does not infer a model" },
+  "agent_runtime": { "id": "codex", "version": "1.0.0" },
+  "adapter": { "adapter_id": "codex-local", "adapter_version": "1.0.0", "resolution": "lazy" },
+  "core_skill": { "skill_id": "stolz-route", "version": "1.0.0" },
+  "core_skills": [
+    { "skill_id": "stolz-context", "version": "1.0.0" }, { "skill_id": "stolz-reuse", "version": "1.0.0" }, { "skill_id": "stolz-quiet-state", "version": "1.0.0" }, { "skill_id": "stolz-route", "version": "1.0.0" }, { "skill_id": "stolz-benchmark", "version": "1.0.0" }
+  ],
+  "optional_integrations": [
+    { "integration_id": "filesystem", "version": "1.0.0", "capabilities": ["approved-file-access"] },
+    { "integration_id": "gitlab", "version": "1.0.0", "capabilities": ["approved-project-access"] }
+  ],
+  "task_identity": { "id": "runtime-profile/maintainer", "sha256": "8fffe3a6cf8cc3c54ee560b1e33b5a992526b552b35d23a83bea70b6fa1ac84f", "version": "1.0.0" },
+  "source_artifacts": [{ "id": "docs/adr/0005-runtime-profiles-and-lazy-adapters.md", "sha256": "cc0c63a20cd15f699c73cae0c5de07e6d91ea80e50793da037912ce54ec52718", "version": "1.0.0" }],
+  "measurement_session": { "id": "runtime-profile/maintainer", "sha256": "894145514c6e25aa6e692fcc51d69e721e4b1b66e79692d00c0dcb8d5ff2d5ef", "version": "1.0.0" },
+  "telemetry_availability": { "provider_tokens": "not_available", "runtime_events": "not_available" },
+  "context_budget": { "context_unit_source": "profile-authored units", "max_initial_context_units": 100, "max_total_context_units": 160, "initial_context_units": 50, "total_context_units": 50, "initial_context_ratio": 0.5, "context_budget_risk": false },
+  "reference_loads": [{ "identity": { "id": "skills/core", "sha256": "46b10d77b2814ec84a4db18f597f739dd5703f65a1f1c1d84bdbda0fb926581a", "version": "1.0.0" }, "classification": "core", "units": 50, "load_phase": "before_route_selection", "trigger_id": null, "load_count": 1 }]
+}

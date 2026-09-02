@@ -1,0 +1,306 @@
+{
+  "schema_id": "benchmark-report",
+  "schema_version": "3.0.0",
+  "record_id": "report-fixture-2e2fc3fa7f968a7e",
+  "captured_at": "2026-09-01T19:30:00.000Z",
+  "track": "provider_native",
+  "manifest": {
+    "schema_id": "pilot-manifest",
+    "schema_version": "1.0.0",
+    "record_id": "pilot-reads-navigation-20260901",
+    "canonical_sha256": "49b2f149f3195640ae588611a3c09f98c8a2cadced128d11906ae66cdcd2f0b3"
+  },
+  "scope": {
+    "scenario_id": "reads-navigation",
+    "cohort_id": "reads-navigation-pilot-20260901",
+    "runtime_id": "fixture-runner",
+    "provider_id": "not_observed",
+    "model_configuration": "not_observed",
+    "configuration_sha256": "4a76ef0d7b1f41fbc09176e79bf5503d8fa876ef3ec7d18d94ce4e6119579d35",
+    "environment_sha256": "7caba1b6184dd911720965ef8a17da4b1cce649aef8ce6875e8e01d286d2bf0e"
+  },
+  "admission": {
+    "schema_id": "report-admission",
+    "schema_version": "1.0.0",
+    "record_id": "admission-fixture-2e2fc3fa7f968a7e",
+    "captured_at": "2026-09-01T19:30:00.000Z",
+    "track": "provider_native",
+    "manifest": {
+      "schema_id": "pilot-manifest",
+      "schema_version": "1.0.0",
+      "record_id": "pilot-reads-navigation-20260901",
+      "canonical_sha256": "49b2f149f3195640ae588611a3c09f98c8a2cadced128d11906ae66cdcd2f0b3"
+    },
+    "included_attempts": [],
+    "excluded_attempts": [],
+    "included_pairs": [],
+    "excluded_pairs": [],
+    "gates": {
+      "track_authority": {
+        "status": "withheld",
+        "reason": "Deterministic fixture-only evidence is neither provider-native nor runtime-measured; provider deltas and aggregate claims remain withheld."
+      },
+      "provenance": {
+        "status": "withheld",
+        "reason": "Deterministic fixture-only evidence is neither provider-native nor runtime-measured; provider deltas and aggregate claims remain withheld."
+      },
+      "redaction_retention": {
+        "status": "passed"
+      },
+      "pricing": {
+        "status": "unknown",
+        "reason": "Fixture execution has no admitted provider pricing identity."
+      },
+      "overhead": {
+        "status": "unknown",
+        "reason": "Fixture execution has no benchmark-attempt STOLZ overhead ledger."
+      },
+      "equal_outcome": {
+        "status": "passed"
+      },
+      "equal_verification": {
+        "status": "passed"
+      },
+      "release_publication": {
+        "status": "not_run",
+        "reason": "Release/publication is downstream and fixture evidence cannot satisfy it."
+      }
+    },
+    "admission": "withheld",
+    "admission_reason": "Deterministic fixture-only evidence is neither provider-native nor runtime-measured; provider deltas and aggregate claims remain withheld.",
+    "public_claim": {
+      "kind": "none",
+      "disposition": "withheld",
+      "reason": "Deterministic fixture-only evidence is neither provider-native nor runtime-measured; provider deltas and aggregate claims remain withheld."
+    },
+    "canonical_sha256": "458c590af065c9af545185ba3ad15aafc7492dc36438aef390dc0ffac91dedf5"
+  },
+  "attempts": {
+    "included": [],
+    "excluded": [
+      {
+        "record_id": "reads-baseline-001",
+        "reason": "fixture_only_not_benchmark_attempt"
+      },
+      {
+        "record_id": "reads-stolz-001",
+        "reason": "fixture_only_not_benchmark_attempt"
+      },
+      {
+        "record_id": "reads-baseline-002",
+        "reason": "fixture_only_not_benchmark_attempt"
+      },
+      {
+        "record_id": "reads-stolz-002",
+        "reason": "fixture_only_not_benchmark_attempt"
+      },
+      {
+        "record_id": "reads-baseline-003",
+        "reason": "fixture_only_not_benchmark_attempt"
+      },
+      {
+        "record_id": "reads-stolz-003",
+        "reason": "fixture_only_not_benchmark_attempt"
+      },
+      {
+        "record_id": "reads-baseline-004",
+        "reason": "fixture_only_not_benchmark_attempt"
+      },
+      {
+        "record_id": "reads-stolz-004",
+        "reason": "fixture_only_not_benchmark_attempt"
+      },
+      {
+        "record_id": "reads-baseline-005",
+        "reason": "fixture_only_not_benchmark_attempt"
+      },
+      {
+        "record_id": "reads-stolz-005",
+        "reason": "fixture_only_not_benchmark_attempt"
+      }
+    ]
+  },
+  "pairs": {
+    "included": [],
+    "excluded": [
+      {
+        "record_id": "reads-pair-001",
+        "reason": "fixture_only_not_benchmark_pair"
+      },
+      {
+        "record_id": "reads-pair-002",
+        "reason": "fixture_only_not_benchmark_pair"
+      },
+      {
+        "record_id": "reads-pair-003",
+        "reason": "fixture_only_not_benchmark_pair"
+      },
+      {
+        "record_id": "reads-pair-004",
+        "reason": "fixture_only_not_benchmark_pair"
+      },
+      {
+        "record_id": "reads-pair-005",
+        "reason": "fixture_only_not_benchmark_pair"
+      }
+    ]
+  },
+  "metrics": [
+    {
+      "name": "net_token_delta",
+      "availability": "withheld",
+      "provenance": "derived",
+      "source_identity": "2e2fc3fa7f968a7ec8f509c3417b7f2944592db965e497a18a1328c660380baa",
+      "unit": "tokens",
+      "reason": "Deterministic fixture-only evidence is neither provider-native nor runtime-measured; provider deltas and aggregate claims remain withheld."
+    },
+    {
+      "name": "net_cost_delta",
+      "availability": "withheld",
+      "provenance": "derived",
+      "source_identity": "2e2fc3fa7f968a7ec8f509c3417b7f2944592db965e497a18a1328c660380baa",
+      "unit": "currency_minor_units",
+      "reason": "Deterministic fixture-only evidence is neither provider-native nor runtime-measured; provider deltas and aggregate claims remain withheld."
+    }
+  ],
+  "pricing": {
+    "availability": "unknown",
+    "reason": "Fixture execution has no admitted provider pricing identity."
+  },
+  "overhead_attribution": [
+    {
+      "component_id": "routing",
+      "availability": "withheld",
+      "source_identity": "2e2fc3fa7f968a7ec8f509c3417b7f2944592db965e497a18a1328c660380baa",
+      "attribution_owner": "fixture-report-routing",
+      "unit": "count",
+      "reason": "Fixture execution does not emit an admitted STOLZ overhead ledger."
+    },
+    {
+      "component_id": "context_selection",
+      "availability": "withheld",
+      "source_identity": "2e2fc3fa7f968a7ec8f509c3417b7f2944592db965e497a18a1328c660380baa",
+      "attribution_owner": "fixture-report-context-selection",
+      "unit": "count",
+      "reason": "Fixture execution does not emit an admitted STOLZ overhead ledger."
+    },
+    {
+      "component_id": "reuse",
+      "availability": "withheld",
+      "source_identity": "2e2fc3fa7f968a7ec8f509c3417b7f2944592db965e497a18a1328c660380baa",
+      "attribution_owner": "fixture-report-reuse",
+      "unit": "count",
+      "reason": "Fixture execution does not emit an admitted STOLZ overhead ledger."
+    },
+    {
+      "component_id": "quiet_state",
+      "availability": "withheld",
+      "source_identity": "2e2fc3fa7f968a7ec8f509c3417b7f2944592db965e497a18a1328c660380baa",
+      "attribution_owner": "fixture-report-quiet-state",
+      "unit": "count",
+      "reason": "Fixture execution does not emit an admitted STOLZ overhead ledger."
+    },
+    {
+      "component_id": "benchmark_capture",
+      "availability": "withheld",
+      "source_identity": "2e2fc3fa7f968a7ec8f509c3417b7f2944592db965e497a18a1328c660380baa",
+      "attribution_owner": "fixture-report-benchmark-capture",
+      "unit": "count",
+      "reason": "Fixture execution does not emit an admitted STOLZ overhead ledger."
+    },
+    {
+      "component_id": "verification",
+      "availability": "withheld",
+      "source_identity": "2e2fc3fa7f968a7ec8f509c3417b7f2944592db965e497a18a1328c660380baa",
+      "attribution_owner": "fixture-report-verification",
+      "unit": "count",
+      "reason": "Fixture execution does not emit an admitted STOLZ overhead ledger."
+    },
+    {
+      "component_id": "retry",
+      "availability": "withheld",
+      "source_identity": "2e2fc3fa7f968a7ec8f509c3417b7f2944592db965e497a18a1328c660380baa",
+      "attribution_owner": "fixture-report-retry",
+      "unit": "count",
+      "reason": "Fixture execution does not emit an admitted STOLZ overhead ledger."
+    },
+    {
+      "component_id": "fallback",
+      "availability": "withheld",
+      "source_identity": "2e2fc3fa7f968a7ec8f509c3417b7f2944592db965e497a18a1328c660380baa",
+      "attribution_owner": "fixture-report-fallback",
+      "unit": "count",
+      "reason": "Fixture execution does not emit an admitted STOLZ overhead ledger."
+    }
+  ],
+  "evidence": [
+    {
+      "attempt_id": "reads-baseline-001",
+      "raw_evidence_sha256": "9e22ff8c07df3cebffca6399d240bc27b7afb3b8a8fa9e0f43ae4b8af4b954b1",
+      "retained_evidence_sha256": "d547dbcb7546f9b6f28db92bb75ddc299735510ca8dbfbcd423e57fd50be9996",
+      "retained_locator": "retained:fixture-reads-baseline-001"
+    },
+    {
+      "attempt_id": "reads-stolz-001",
+      "raw_evidence_sha256": "56df7ea49402306b2485cefd526794fc134fec41bf82e8ac4c771fd07a86037c",
+      "retained_evidence_sha256": "4b1e4b237afb8e0fef5d8e6a277e793bc8a048dc3819480efde5c2894b9dd8b1",
+      "retained_locator": "retained:fixture-reads-stolz-001"
+    },
+    {
+      "attempt_id": "reads-baseline-002",
+      "raw_evidence_sha256": "71353f5c13da51225bbd26538031ed40a12c5b7137321cb324ad7629e77e7272",
+      "retained_evidence_sha256": "606c179e9c35205c5e1fb32cc582fb2410837293af8f95159c26f81404dce606",
+      "retained_locator": "retained:fixture-reads-baseline-002"
+    },
+    {
+      "attempt_id": "reads-stolz-002",
+      "raw_evidence_sha256": "0a2d1c846a3b94434653cf5704520afd28b6f4d19a4f8aca5f3fd59b5217ccbe",
+      "retained_evidence_sha256": "bf83ed24b913fd1011e8c0509457ce9726b50f4ef683d8feba7406ab81044340",
+      "retained_locator": "retained:fixture-reads-stolz-002"
+    },
+    {
+      "attempt_id": "reads-baseline-003",
+      "raw_evidence_sha256": "4bd4da65860ddad4e629f83af57c7c770695c462c6c6f33364a4e266512e86ce",
+      "retained_evidence_sha256": "13352e5fb712a9871186beec41b619deff82541a0e4b15668b16c0228f228284",
+      "retained_locator": "retained:fixture-reads-baseline-003"
+    },
+    {
+      "attempt_id": "reads-stolz-003",
+      "raw_evidence_sha256": "77321764c32ea206075a2ecd2b432856983928bfd7e55b0d1ae934169804e949",
+      "retained_evidence_sha256": "131fa2d4aafdb171ce437dfffecfc40a5a74a86601b6bf74a83f25d87d73274d",
+      "retained_locator": "retained:fixture-reads-stolz-003"
+    },
+    {
+      "attempt_id": "reads-baseline-004",
+      "raw_evidence_sha256": "91404c0534cc8484116281e8b331c3c09f3e4ccdf6998db49e120c4befb4c237",
+      "retained_evidence_sha256": "74e107cde419fa16a9fd38eacdddb1971d42e91a93836bfb16fd678dc5c7f651",
+      "retained_locator": "retained:fixture-reads-baseline-004"
+    },
+    {
+      "attempt_id": "reads-stolz-004",
+      "raw_evidence_sha256": "ebaefb89223e942cc306f19dc492bc634998e1d8e48bc58ea0fb5939ed2240f7",
+      "retained_evidence_sha256": "5e953995cfbfba716da30b1b7b3510f57d20ef4b0361ea93ac0626ff6a55e63c",
+      "retained_locator": "retained:fixture-reads-stolz-004"
+    },
+    {
+      "attempt_id": "reads-baseline-005",
+      "raw_evidence_sha256": "e7cd1123325447c2b0f480bf93d11f60d39bc5674ca930af37a3b5d3f86b1778",
+      "retained_evidence_sha256": "decab8375949778306282f64f9e067dfa29111adefa129902fa0aa52ac2c4acd",
+      "retained_locator": "retained:fixture-reads-baseline-005"
+    },
+    {
+      "attempt_id": "reads-stolz-005",
+      "raw_evidence_sha256": "57fa167f866dfebaf22347974b83f3f0446626d1cc4151d7d9454cdc52e323cf",
+      "retained_evidence_sha256": "eaa0b68104f5101d25d24572085b0352f523a3a6670400b72e854555d9ba8dad",
+      "retained_locator": "retained:fixture-reads-stolz-005"
+    }
+  ],
+  "claim": {
+    "kind": "provider_savings_percentage",
+    "disposition": "withheld",
+    "scope_statement": "Deterministic fixture-only reads-navigation reproduction; no provider or runtime claim.",
+    "reason": "Deterministic fixture-only evidence is neither provider-native nor runtime-measured; provider deltas and aggregate claims remain withheld."
+  },
+  "reproduce_command": "benchmark:v3 --report benchmarks/v3/pilots/manifests/reads-navigation.json --output reports/benchmark-v3/reads-navigation.json",
+  "canonical_sha256": "0d7fea2b14a66b24eb408039e665d52f2a936de9c8e4527c110155878a687be5"
+}

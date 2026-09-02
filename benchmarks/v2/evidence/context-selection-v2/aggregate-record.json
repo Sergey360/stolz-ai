@@ -1,0 +1,647 @@
+{
+  "record_id": {
+    "id": "context-selection-v2/aggregate",
+    "version": "2.0.0",
+    "sha256": "48f9d28b5b136b27cfe454f84923ea31122c3cd94d73df21971ad0745ce0c292"
+  },
+  "record_version": "2.0",
+  "fixture": {
+    "id": "context-selection-v2",
+    "version": "2.0.0",
+    "sha256": "c6d405c9d2561e1a1bf5d842f7718aab8c539c9de92da6386b9b8441c9711993"
+  },
+  "task": {
+    "id": "context-selection-contract-v2",
+    "version": "2.0.0",
+    "sha256": "5aa6b086f795dc002607c8ffaa596794bf7cd1d595090bd1cbe99fb337fce64c"
+  },
+  "evidence_class": "fixture_only",
+  "baseline": {
+    "route": {
+      "id": "baseline-eager-context-v2",
+      "version": "2.0.0",
+      "sha256": "86df3e4d8f250609d0024ff4ce68b0e2a61dfa473df04fc4eb48f7384fa1eafb"
+    },
+    "environment": {
+      "agent_runtime": {
+        "id": "stolz-fixture-runner",
+        "version": "2.0.0",
+        "configuration_identity": {
+          "id": "stolz-fixture-runner/configuration",
+          "version": "2.0.0",
+          "sha256": "f28732fb63a12d13875b8452412919d26b94575e035c5d5b8f9697152323780a"
+        }
+      },
+      "adapter": {
+        "status": "unavailable",
+        "reason": "fixture-only execution does not activate a runtime adapter",
+        "configuration_identity": {
+          "id": "adapter/unavailable-configuration",
+          "version": "1.0.0",
+          "sha256": "0f5a5fdf66b377ea357022d4c1c6856ae3804b37c8b65111a7fa4f841cd9a862"
+        }
+      },
+      "provider": {
+        "status": "unavailable",
+        "reason": "fixture-only execution has no provider observation",
+        "configuration_identity": {
+          "id": "provider/unavailable-configuration",
+          "version": "1.0.0",
+          "sha256": "7387859c576f939d23b30d2001e7ce8c7506884a786dde6ddd7e0535aaad6a7f"
+        }
+      },
+      "model": {
+        "status": "unavailable",
+        "reason": "fixture-only execution has no model observation",
+        "configuration_identity": {
+          "id": "model/unavailable-configuration",
+          "version": "1.0.0",
+          "sha256": "7387859c576f939d23b30d2001e7ce8c7506884a786dde6ddd7e0535aaad6a7f"
+        }
+      },
+      "collector": {
+        "id": "stolz-benchmark-v2-collector",
+        "version": "2.0.0",
+        "configuration_identity": {
+          "id": "stolz-benchmark-v2-collector/configuration",
+          "version": "2.0.0",
+          "sha256": "efd5cf40c9755d3153be4194bbe1f0a99e098a192586946215ae7144e395262a"
+        }
+      },
+      "optional_integrations": [
+        {
+          "id": "benchmark-capture",
+          "version": "1.0.0",
+          "configuration_identity": {
+            "id": "benchmark-capture/configuration",
+            "version": "1.0.0",
+            "sha256": "ba1074718a950cb3305e2a5d5960bba55577bcfa75473e4652e0afa2ea76a392"
+          }
+        }
+      ]
+    },
+    "capture_method": {
+      "id": "fixture-authored-json",
+      "version": "1.0.0",
+      "configuration_identity": {
+        "id": "fixture-authored-json/configuration",
+        "version": "1.0.0",
+        "sha256": "aab0cf09de10a7a18f0b7fcc62967ef076ebabaad691a3ba6ab4383e975c9d92"
+      }
+    },
+    "intervention_count": 0,
+    "evidence": [
+      {
+        "uri": "benchmarks/v2/evidence/context-selection-v2/baseline-001.json",
+        "sha256": "75212eb9c71464b74deaf4a976e7567cefe2398207e2a0afbab2a24d73d5b7fb"
+      },
+      {
+        "uri": "benchmarks/v2/evidence/context-selection-v2/baseline-002.json",
+        "sha256": "ed38c34505e98eacd0095c37498246e28dd59eb9772d6d333111cb3265568646"
+      },
+      {
+        "uri": "benchmarks/v2/evidence/context-selection-v2/baseline-003.json",
+        "sha256": "9d902bdc4a8ed909722f7b1ab607118b8e7f31912438b39d345526291264105c"
+      },
+      {
+        "uri": "benchmarks/v2/evidence/context-selection-v2/baseline-004.json",
+        "sha256": "6435b191e0fc1879458067d931f1b3b2a8fbd2ae8862472ffd94ac387aae5775"
+      },
+      {
+        "uri": "benchmarks/v2/evidence/context-selection-v2/baseline-005.json",
+        "sha256": "a38bd1897a73253f1b7317f551c174bc789b53b596faeccdb3a7a14c4441bdae"
+      }
+    ]
+  },
+  "optimized": {
+    "route": {
+      "id": "optimized-required-context-v2",
+      "version": "2.0.0",
+      "sha256": "0d160bde39b350ed145a172cbe0e77e8ea62caaeb60b6b1910df2329c230cd92"
+    },
+    "environment": {
+      "agent_runtime": {
+        "id": "stolz-fixture-runner",
+        "version": "2.0.0",
+        "configuration_identity": {
+          "id": "stolz-fixture-runner/configuration",
+          "version": "2.0.0",
+          "sha256": "f28732fb63a12d13875b8452412919d26b94575e035c5d5b8f9697152323780a"
+        }
+      },
+      "adapter": {
+        "status": "unavailable",
+        "reason": "fixture-only execution does not activate a runtime adapter",
+        "configuration_identity": {
+          "id": "adapter/unavailable-configuration",
+          "version": "1.0.0",
+          "sha256": "0f5a5fdf66b377ea357022d4c1c6856ae3804b37c8b65111a7fa4f841cd9a862"
+        }
+      },
+      "provider": {
+        "status": "unavailable",
+        "reason": "fixture-only execution has no provider observation",
+        "configuration_identity": {
+          "id": "provider/unavailable-configuration",
+          "version": "1.0.0",
+          "sha256": "7387859c576f939d23b30d2001e7ce8c7506884a786dde6ddd7e0535aaad6a7f"
+        }
+      },
+      "model": {
+        "status": "unavailable",
+        "reason": "fixture-only execution has no model observation",
+        "configuration_identity": {
+          "id": "model/unavailable-configuration",
+          "version": "1.0.0",
+          "sha256": "7387859c576f939d23b30d2001e7ce8c7506884a786dde6ddd7e0535aaad6a7f"
+        }
+      },
+      "collector": {
+        "id": "stolz-benchmark-v2-collector",
+        "version": "2.0.0",
+        "configuration_identity": {
+          "id": "stolz-benchmark-v2-collector/configuration",
+          "version": "2.0.0",
+          "sha256": "efd5cf40c9755d3153be4194bbe1f0a99e098a192586946215ae7144e395262a"
+        }
+      },
+      "optional_integrations": [
+        {
+          "id": "benchmark-capture",
+          "version": "1.0.0",
+          "configuration_identity": {
+            "id": "benchmark-capture/configuration",
+            "version": "1.0.0",
+            "sha256": "ba1074718a950cb3305e2a5d5960bba55577bcfa75473e4652e0afa2ea76a392"
+          }
+        }
+      ]
+    },
+    "capture_method": {
+      "id": "fixture-authored-json",
+      "version": "1.0.0",
+      "configuration_identity": {
+        "id": "fixture-authored-json/configuration",
+        "version": "1.0.0",
+        "sha256": "aab0cf09de10a7a18f0b7fcc62967ef076ebabaad691a3ba6ab4383e975c9d92"
+      }
+    },
+    "intervention_count": 0,
+    "evidence": [
+      {
+        "uri": "benchmarks/v2/evidence/context-selection-v2/optimized-001.json",
+        "sha256": "ad38e5d3b0f9f745b3fb433d8581cd0f9a3f8abd2fd45ed6e7683cfaf429276c"
+      },
+      {
+        "uri": "benchmarks/v2/evidence/context-selection-v2/optimized-002.json",
+        "sha256": "7d040cbc8693ce5dffa4b74796427bc1ae7d6961e70d429787a5a691a86dadae"
+      },
+      {
+        "uri": "benchmarks/v2/evidence/context-selection-v2/optimized-003.json",
+        "sha256": "23176591e1e44fe9f49d6956788460c51db0d76580af5a1c9ce5b067fd52c892"
+      },
+      {
+        "uri": "benchmarks/v2/evidence/context-selection-v2/optimized-004.json",
+        "sha256": "abb70f4949009aa7a8dcd0453550a5e4496d12a2df3c8822e69bb9ed160e7c72"
+      },
+      {
+        "uri": "benchmarks/v2/evidence/context-selection-v2/optimized-005.json",
+        "sha256": "0b3cd57b1704b8e65132fb8c563ee8fae9c1110ff5ebc42f7b93d99a3f5cec26"
+      }
+    ]
+  },
+  "repetitions": {
+    "planned_per_route": 5,
+    "completed_per_route": {
+      "baseline": 5,
+      "optimized": 5
+    },
+    "classification": "publishable",
+    "ordering_identity": {
+      "id": "alternating-baseline-first-v1",
+      "version": "1.0.0",
+      "sha256": "7aadf35f7531ea6309b9b74653757a1e9b17d0706c54c0e943c70097a972319f"
+    }
+  },
+  "statistics": [
+    {
+      "route_role": "baseline",
+      "metric": "fixture_token_units",
+      "unit": "fixture_token_units",
+      "count": 5,
+      "provenance": "fixture_authored",
+      "availability": "available",
+      "minimum": {
+        "status": "available",
+        "value": 1500
+      },
+      "maximum": {
+        "status": "available",
+        "value": 1540
+      },
+      "median": {
+        "status": "available",
+        "value": 1520
+      },
+      "mean": {
+        "status": "available",
+        "value": 1520
+      },
+      "standard_deviation": {
+        "status": "available",
+        "value": 14.142136
+      },
+      "coefficient_of_variation": {
+        "status": "available",
+        "value": 0.009304
+      }
+    },
+    {
+      "route_role": "baseline",
+      "metric": "model_wakeups",
+      "unit": "count",
+      "count": 5,
+      "provenance": "fixture_authored",
+      "availability": "available",
+      "minimum": {
+        "status": "available",
+        "value": 4
+      },
+      "maximum": {
+        "status": "available",
+        "value": 4
+      },
+      "median": {
+        "status": "available",
+        "value": 4
+      },
+      "mean": {
+        "status": "available",
+        "value": 4
+      },
+      "standard_deviation": {
+        "status": "available",
+        "value": 0
+      },
+      "coefficient_of_variation": {
+        "status": "available",
+        "value": 0
+      }
+    },
+    {
+      "route_role": "baseline",
+      "metric": "tool_calls",
+      "unit": "count",
+      "count": 5,
+      "provenance": "fixture_authored",
+      "availability": "available",
+      "minimum": {
+        "status": "available",
+        "value": 8
+      },
+      "maximum": {
+        "status": "available",
+        "value": 8
+      },
+      "median": {
+        "status": "available",
+        "value": 8
+      },
+      "mean": {
+        "status": "available",
+        "value": 8
+      },
+      "standard_deviation": {
+        "status": "available",
+        "value": 0
+      },
+      "coefficient_of_variation": {
+        "status": "available",
+        "value": 0
+      }
+    },
+    {
+      "route_role": "baseline",
+      "metric": "provider_input_tokens",
+      "unit": "tokens",
+      "count": 0,
+      "provenance": "unavailable",
+      "availability": "unavailable",
+      "minimum": {
+        "status": "unavailable",
+        "reason": "fixture-only source has no provider-native observation"
+      },
+      "maximum": {
+        "status": "unavailable",
+        "reason": "fixture-only source has no provider-native observation"
+      },
+      "median": {
+        "status": "unavailable",
+        "reason": "fixture-only source has no provider-native observation"
+      },
+      "mean": {
+        "status": "unavailable",
+        "reason": "fixture-only source has no provider-native observation"
+      },
+      "standard_deviation": {
+        "status": "unavailable",
+        "reason": "fixture-only source has no provider-native observation"
+      },
+      "coefficient_of_variation": {
+        "status": "unavailable",
+        "reason": "fixture-only source has no provider-native observation"
+      },
+      "unavailable_reason": "fixture-only source has no provider-native observation"
+    },
+    {
+      "route_role": "baseline",
+      "metric": "runtime_elapsed_ms",
+      "unit": "ms",
+      "count": 0,
+      "provenance": "unavailable",
+      "availability": "unavailable",
+      "minimum": {
+        "status": "unavailable",
+        "reason": "fixture-only source has no runtime observation"
+      },
+      "maximum": {
+        "status": "unavailable",
+        "reason": "fixture-only source has no runtime observation"
+      },
+      "median": {
+        "status": "unavailable",
+        "reason": "fixture-only source has no runtime observation"
+      },
+      "mean": {
+        "status": "unavailable",
+        "reason": "fixture-only source has no runtime observation"
+      },
+      "standard_deviation": {
+        "status": "unavailable",
+        "reason": "fixture-only source has no runtime observation"
+      },
+      "coefficient_of_variation": {
+        "status": "unavailable",
+        "reason": "fixture-only source has no runtime observation"
+      },
+      "unavailable_reason": "fixture-only source has no runtime observation"
+    },
+    {
+      "route_role": "baseline",
+      "metric": "intervention_count",
+      "unit": "count",
+      "count": 5,
+      "provenance": "fixture_authored",
+      "availability": "available",
+      "minimum": {
+        "status": "available",
+        "value": 0
+      },
+      "maximum": {
+        "status": "available",
+        "value": 0
+      },
+      "median": {
+        "status": "available",
+        "value": 0
+      },
+      "mean": {
+        "status": "available",
+        "value": 0
+      },
+      "standard_deviation": {
+        "status": "available",
+        "value": 0
+      },
+      "coefficient_of_variation": {
+        "status": "not_comparable",
+        "reason": "coefficient of variation is undefined when the mean is zero"
+      }
+    },
+    {
+      "route_role": "optimized",
+      "metric": "fixture_token_units",
+      "unit": "fixture_token_units",
+      "count": 5,
+      "provenance": "fixture_authored",
+      "availability": "available",
+      "minimum": {
+        "status": "available",
+        "value": 960
+      },
+      "maximum": {
+        "status": "available",
+        "value": 990
+      },
+      "median": {
+        "status": "available",
+        "value": 975
+      },
+      "mean": {
+        "status": "available",
+        "value": 975
+      },
+      "standard_deviation": {
+        "status": "available",
+        "value": 10
+      },
+      "coefficient_of_variation": {
+        "status": "available",
+        "value": 0.010256
+      }
+    },
+    {
+      "route_role": "optimized",
+      "metric": "model_wakeups",
+      "unit": "count",
+      "count": 5,
+      "provenance": "fixture_authored",
+      "availability": "available",
+      "minimum": {
+        "status": "available",
+        "value": 3
+      },
+      "maximum": {
+        "status": "available",
+        "value": 3
+      },
+      "median": {
+        "status": "available",
+        "value": 3
+      },
+      "mean": {
+        "status": "available",
+        "value": 3
+      },
+      "standard_deviation": {
+        "status": "available",
+        "value": 0
+      },
+      "coefficient_of_variation": {
+        "status": "available",
+        "value": 0
+      }
+    },
+    {
+      "route_role": "optimized",
+      "metric": "tool_calls",
+      "unit": "count",
+      "count": 5,
+      "provenance": "fixture_authored",
+      "availability": "available",
+      "minimum": {
+        "status": "available",
+        "value": 4
+      },
+      "maximum": {
+        "status": "available",
+        "value": 4
+      },
+      "median": {
+        "status": "available",
+        "value": 4
+      },
+      "mean": {
+        "status": "available",
+        "value": 4
+      },
+      "standard_deviation": {
+        "status": "available",
+        "value": 0
+      },
+      "coefficient_of_variation": {
+        "status": "available",
+        "value": 0
+      }
+    },
+    {
+      "route_role": "optimized",
+      "metric": "provider_input_tokens",
+      "unit": "tokens",
+      "count": 0,
+      "provenance": "unavailable",
+      "availability": "unavailable",
+      "minimum": {
+        "status": "unavailable",
+        "reason": "fixture-only source has no provider-native observation"
+      },
+      "maximum": {
+        "status": "unavailable",
+        "reason": "fixture-only source has no provider-native observation"
+      },
+      "median": {
+        "status": "unavailable",
+        "reason": "fixture-only source has no provider-native observation"
+      },
+      "mean": {
+        "status": "unavailable",
+        "reason": "fixture-only source has no provider-native observation"
+      },
+      "standard_deviation": {
+        "status": "unavailable",
+        "reason": "fixture-only source has no provider-native observation"
+      },
+      "coefficient_of_variation": {
+        "status": "unavailable",
+        "reason": "fixture-only source has no provider-native observation"
+      },
+      "unavailable_reason": "fixture-only source has no provider-native observation"
+    },
+    {
+      "route_role": "optimized",
+      "metric": "runtime_elapsed_ms",
+      "unit": "ms",
+      "count": 0,
+      "provenance": "unavailable",
+      "availability": "unavailable",
+      "minimum": {
+        "status": "unavailable",
+        "reason": "fixture-only source has no runtime observation"
+      },
+      "maximum": {
+        "status": "unavailable",
+        "reason": "fixture-only source has no runtime observation"
+      },
+      "median": {
+        "status": "unavailable",
+        "reason": "fixture-only source has no runtime observation"
+      },
+      "mean": {
+        "status": "unavailable",
+        "reason": "fixture-only source has no runtime observation"
+      },
+      "standard_deviation": {
+        "status": "unavailable",
+        "reason": "fixture-only source has no runtime observation"
+      },
+      "coefficient_of_variation": {
+        "status": "unavailable",
+        "reason": "fixture-only source has no runtime observation"
+      },
+      "unavailable_reason": "fixture-only source has no runtime observation"
+    },
+    {
+      "route_role": "optimized",
+      "metric": "intervention_count",
+      "unit": "count",
+      "count": 5,
+      "provenance": "fixture_authored",
+      "availability": "available",
+      "minimum": {
+        "status": "available",
+        "value": 0
+      },
+      "maximum": {
+        "status": "available",
+        "value": 0
+      },
+      "median": {
+        "status": "available",
+        "value": 0
+      },
+      "mean": {
+        "status": "available",
+        "value": 0
+      },
+      "standard_deviation": {
+        "status": "available",
+        "value": 0
+      },
+      "coefficient_of_variation": {
+        "status": "not_comparable",
+        "reason": "coefficient of variation is undefined when the mean is zero"
+      }
+    }
+  ],
+  "regression_budgets": [
+    {
+      "metric": "fixture_token_units",
+      "unit": "fixture_token_units",
+      "direction": "must_not_increase",
+      "threshold": 0,
+      "baseline_reference": {
+        "uri": "benchmarks/v2/evidence/context-selection-v2/baseline-001.json",
+        "sha256": "75212eb9c71464b74deaf4a976e7567cefe2398207e2a0afbab2a24d73d5b7fb"
+      },
+      "passed": true
+    }
+  ],
+  "gates": {
+    "outcome": true,
+    "verification": true,
+    "comparability": true,
+    "regression": true,
+    "sanitization": true,
+    "publication_eligibility": true
+  },
+  "claim_boundary": {
+    "fixture_result": "eligible",
+    "runtime_telemetry": "withheld",
+    "provider_token_saving": "withheld",
+    "reasons": [
+      "runtime telemetry is unavailable and is not inferred",
+      "provider-native token telemetry is unavailable and is not zero or estimated",
+      "fixture-authored measurements permit only a fixture-scoped result"
+    ]
+  }
+}

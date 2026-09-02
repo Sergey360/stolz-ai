@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stolz-ai.dev/contracts/runtime-telemetry.schema.json",
+  "title": "STOLZ A.I. Runtime Telemetry v1",
+  "description": "A closed, sanitized retained envelope. Its SHA-256 identities prove integrity of the sanitized record only; they do not prove runtime or provider authenticity.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "event_id", "runtime", "source_class", "capture", "privacy", "availability"],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "event_id": { "type": "string", "minLength": 1 },
+    "runtime": { "type": "object", "additionalProperties": false, "required": ["id", "version"], "properties": { "id": { "enum": ["claude-code", "qwen-code"] }, "version": { "type": "string", "minLength": 1 } } },
+    "source_class": { "const": "runtime_telemetry" },
+    "event": { "type": "object", "additionalProperties": false, "required": ["event_class", "result", "counters"], "properties": { "event_class": { "enum": ["command_completed", "tool_completed", "session_completed"] }, "result": { "enum": ["succeeded", "failed", "cancelled"] }, "counters": { "type": "object", "additionalProperties": false, "properties": { "duration_ms": { "type": "integer", "minimum": 0 }, "input_units": { "type": "integer", "minimum": 0 }, "output_units": { "type": "integer", "minimum": 0 }, "tool_calls": { "type": "integer", "minimum": 0 } } } } },
+    "capture": { "type": "object", "additionalProperties": false, "required": ["emitted_by", "method", "raw_evidence_sha256", "captured_at"], "properties": { "emitted_by": { "enum": ["runtime_cli", "runtime_otel"] }, "method": { "enum": ["cli_json", "cli_stream_json", "otel"] }, "output_mode": { "enum": ["json", "stream_json", "otel"] }, "command_argc": { "const": 3 }, "command_identity_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }, "raw_evidence_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }, "source_identity_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }, "captured_at": { "type": "string", "format": "date-time" } } },
+    "privacy": { "type": "object", "additionalProperties": false, "required": ["redaction_version", "payload_retention", "sensitive_attributes"], "properties": { "redaction_version": { "const": "1" }, "payload_retention": { "const": "excluded" }, "sensitive_attributes": { "const": "disabled" } } },
+    "availability": { "enum": ["available", "unavailable", "not_comparable"] },
+    "retained_identity_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+  },
+  "allOf": [
+    { "if": { "properties": { "runtime": { "properties": { "id": { "const": "claude-code" } }, "required": ["id"] } }, "required": ["runtime"] }, "then": { "properties": { "capture": { "properties": { "emitted_by": { "const": "runtime_cli" }, "method": { "enum": ["cli_json", "cli_stream_json"] } } } } } },
+    { "if": { "properties": { "runtime": { "properties": { "id": { "const": "qwen-code" } }, "required": ["id"] } }, "required": ["runtime"] }, "then": { "properties": { "capture": { "properties": { "emitted_by": { "const": "runtime_otel" }, "method": { "const": "otel" }, "output_mode": { "const": "otel" } } } } } }
+  ]
+}

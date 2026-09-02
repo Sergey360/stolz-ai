@@ -1,0 +1,28 @@
+{
+  "schema_id": "benchmark-v3-runtime-adapter-capability",
+  "schema_version": "1.0.0",
+  "track": "runtime_measured",
+  "adapter_id": "codex-local",
+  "adapter_version": "1.0.0",
+  "runtime_id": "codex",
+  "runtime_versions": ["1.0.0"],
+  "capture_method": "runtime_event",
+  "observer": {
+    "id": "codex-local-runtime-boundary",
+    "version": "1.0.0",
+    "source_reference": "runtime:codex-local/benchmark-v3-observer"
+  },
+  "redaction": {
+    "policy_id": "benchmark-v3-runtime-redaction",
+    "policy_version": "1.0.0",
+    "payload_retention": "excluded"
+  },
+  "metrics": {
+    "model_wakeups": { "availability": "available", "unit": "count", "provenance": "runtime_observed", "missing_availability": "unknown", "missing_reason": "The observer did not retain a model wakeup fact." },
+    "tool_calls": { "availability": "available", "unit": "count", "provenance": "runtime_observed", "missing_availability": "unknown", "missing_reason": "The observer did not retain a tool call fact." },
+    "tool_output_bytes": { "availability": "available", "unit": "bytes", "provenance": "runtime_observed", "missing_availability": "unknown", "missing_reason": "The observer did not retain a tool output byte fact." },
+    "wall_time_ms": { "availability": "available", "unit": "milliseconds", "provenance": "runtime_observed", "missing_availability": "unknown", "missing_reason": "The observer did not retain a wall time fact." },
+    "operator_interventions": { "availability": "available", "unit": "count", "provenance": "runtime_observed", "missing_availability": "unknown", "missing_reason": "The observer did not retain an intervention fact." },
+    "compaction_events": { "availability": "available", "unit": "count", "provenance": "runtime_emitted", "missing_availability": "unknown", "missing_reason": "The runtime event did not establish a compaction count." }
+  }
+}

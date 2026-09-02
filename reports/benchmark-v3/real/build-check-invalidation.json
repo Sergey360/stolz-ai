@@ -1,0 +1,357 @@
+{
+  "schema_id": "benchmark-report",
+  "schema_version": "3.0.0",
+  "record_id": "report-b645318ced99094f76a330b3",
+  "captured_at": "2026-09-02T07:14:39.605Z",
+  "track": "provider_native",
+  "manifest": {
+    "schema_id": "pilot-manifest",
+    "schema_version": "1.0.0",
+    "record_id": "pilot-build-check-invalidation-codex-cli-20260902",
+    "canonical_sha256": "b93c51df673616f1c9dfb09c64345a3a4d88cd56367eb53be613791b88740134"
+  },
+  "scope": {
+    "scenario_id": "build-check-invalidation",
+    "cohort_id": "build-check-invalidation-codex-cli-20260902-b62119c3",
+    "runtime_id": "codex-cli",
+    "provider_id": "openai",
+    "model_configuration": "gpt-5.5",
+    "configuration_sha256": "5f4779b0e8114438dd99a1ffbda83afc3ff7723eab38c220ad92dfc8cfbbd065",
+    "environment_sha256": "6dcb8cbca9995f6f53c22193fcec6cc1b93789698c74b8f8695d1b874457da48"
+  },
+  "admission": {
+    "schema_id": "report-admission",
+    "schema_version": "1.0.0",
+    "record_id": "admission-b645318ced99094f76a330b3",
+    "captured_at": "2026-09-02T07:14:39.605Z",
+    "track": "provider_native",
+    "manifest": {
+      "schema_id": "pilot-manifest",
+      "schema_version": "1.0.0",
+      "record_id": "pilot-build-check-invalidation-codex-cli-20260902",
+      "canonical_sha256": "b93c51df673616f1c9dfb09c64345a3a4d88cd56367eb53be613791b88740134"
+    },
+    "included_attempts": [
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "build-baseline-codex-001",
+        "canonical_sha256": "5714e96d3f1708d3b7922d52f12b88525934e02738817fe5019b4cf3ef9b43f6"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "build-stolz-codex-001",
+        "canonical_sha256": "0c2500d18a306d6a41bc3d1d29716655a8565cf59ac244fc4d2db7a88d67e086"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "build-stolz-codex-002",
+        "canonical_sha256": "ee137ad2b0174de734429d1ae1308c6529ba20768e695448851d89dd59034f64"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "build-baseline-codex-002",
+        "canonical_sha256": "42ed19a20b0c269c7f2c36dc23e1b2a271dd22249b824166a5ffc1eb5194e812"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "build-baseline-codex-003",
+        "canonical_sha256": "9f295e5d0adee8eaad6b2b0f721cf8ff649e22b535b3366e9e99e275c1009299"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "build-stolz-codex-003",
+        "canonical_sha256": "df702f46d7b9b5f87899e497e1e136b04a24645f9170c670b0a2cd0ef54b45f8"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "build-stolz-codex-004",
+        "canonical_sha256": "9fccf4d5247232b141a3acb8787d31cf2ac361ff076eb080b7117fb1a0f7db73"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "build-baseline-codex-004",
+        "canonical_sha256": "754600443750ec116ddeb96ecba93495132bbec17cbf305b51a70586b3490328"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "build-baseline-codex-005",
+        "canonical_sha256": "4d6949c1da9175e65d6f721c06c109b005bd32928ea16bbe2d381712bb778705"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "build-stolz-codex-005",
+        "canonical_sha256": "9686d565223218daaa593cc52bfabc80f3ed18b1522f707ec71412a629935a59"
+      }
+    ],
+    "excluded_attempts": [],
+    "included_pairs": [
+      {
+        "schema_id": "benchmark-pair",
+        "schema_version": "1.0.0",
+        "record_id": "pair-a804b1c97b4aa0dad019c25c",
+        "canonical_sha256": "22e0be19de52c28448742d11c584fbc01be34480bc8ad8816772734a19e03fe5"
+      },
+      {
+        "schema_id": "benchmark-pair",
+        "schema_version": "1.0.0",
+        "record_id": "pair-92141946d5bc43fa5a7ac7c7",
+        "canonical_sha256": "ce09fc7fc4677796c4555e507c65e0f9f90c80dd194b86f68b2fe8b62b883b10"
+      },
+      {
+        "schema_id": "benchmark-pair",
+        "schema_version": "1.0.0",
+        "record_id": "pair-74926cec3610409fd4710b49",
+        "canonical_sha256": "1557f5a327f4a24d256320d2c562bf8a64b893f13a8e4b0367c3cfd109684ae5"
+      },
+      {
+        "schema_id": "benchmark-pair",
+        "schema_version": "1.0.0",
+        "record_id": "pair-0fe01f89beb8105d9043c5f0",
+        "canonical_sha256": "b6a01fe133b77c3c78f9b11714b052050bc10765c171d6a7da906991e62c24ab"
+      },
+      {
+        "schema_id": "benchmark-pair",
+        "schema_version": "1.0.0",
+        "record_id": "pair-9682eff090d4f7ae498b0ae6",
+        "canonical_sha256": "b4e96dd3d737ad10a641f7a050bf6e600632ab0a5908b97c91588ec548178053"
+      }
+    ],
+    "excluded_pairs": [],
+    "gates": {
+      "track_authority": {
+        "status": "passed"
+      },
+      "provenance": {
+        "status": "passed"
+      },
+      "redaction_retention": {
+        "status": "passed"
+      },
+      "pricing": {
+        "status": "passed"
+      },
+      "overhead": {
+        "status": "passed"
+      },
+      "equal_outcome": {
+        "status": "passed"
+      },
+      "equal_verification": {
+        "status": "passed"
+      },
+      "release_publication": {
+        "status": "not_run",
+        "reason": "Aggregate/public claims remain withheld pending the stronger release/publication gates."
+      }
+    },
+    "admission": "withheld",
+    "admission_reason": "Aggregate admission is fail-closed until a complete cohort and every required gate pass.",
+    "public_claim": {
+      "kind": "provider_savings",
+      "disposition": "withheld",
+      "reason": "No release-admitted complete scoped cohort is available; aggregate claims remain withheld."
+    },
+    "canonical_sha256": "bbcf3d9ebb49163c7d6f4cf5403214fe914e374e8b43281ca24c071277e82781"
+  },
+  "attempts": {
+    "included": [
+      "build-baseline-codex-001",
+      "build-stolz-codex-001",
+      "build-stolz-codex-002",
+      "build-baseline-codex-002",
+      "build-baseline-codex-003",
+      "build-stolz-codex-003",
+      "build-stolz-codex-004",
+      "build-baseline-codex-004",
+      "build-baseline-codex-005",
+      "build-stolz-codex-005"
+    ],
+    "excluded": []
+  },
+  "pairs": {
+    "included": [
+      "pair-a804b1c97b4aa0dad019c25c",
+      "pair-92141946d5bc43fa5a7ac7c7",
+      "pair-74926cec3610409fd4710b49",
+      "pair-0fe01f89beb8105d9043c5f0",
+      "pair-9682eff090d4f7ae498b0ae6"
+    ],
+    "excluded": []
+  },
+  "metrics": [
+    {
+      "name": "net_token_delta",
+      "availability": "available",
+      "provenance": "derived",
+      "source_identity": "1adf291d9c61ebf7578e4baa1c1487ee3d2a717e6c972c4152be78911ad771b6",
+      "unit": "tokens",
+      "value": -2880,
+      "formula": "sum(admitted_pair_deltas)",
+      "component_ids": [
+        "pair-a804b1c97b4aa0dad019c25c",
+        "pair-92141946d5bc43fa5a7ac7c7",
+        "pair-74926cec3610409fd4710b49",
+        "pair-0fe01f89beb8105d9043c5f0",
+        "pair-9682eff090d4f7ae498b0ae6"
+      ]
+    },
+    {
+      "name": "net_cost_delta",
+      "availability": "unknown",
+      "provenance": "derived",
+      "source_identity": "1adf291d9c61ebf7578e4baa1c1487ee3d2a717e6c972c4152be78911ad771b6",
+      "unit": "currency_minor_units",
+      "reason": "No complete admitted cohort metric is available."
+    }
+  ],
+  "pricing": {
+    "availability": "unavailable",
+    "reason": "The Codex CLI stream provides no admissible billing price; token comparison remains available while cost is unavailable."
+  },
+  "overhead_attribution": [
+    {
+      "component_id": "routing",
+      "availability": "available",
+      "source_identity": "65041c037891baae4b87fa2ae3da12d2846d13aa03daacb074c0c7308849cc0b",
+      "attribution_owner": "report-routing",
+      "unit": "count",
+      "value": 5
+    },
+    {
+      "component_id": "context_selection",
+      "availability": "available",
+      "source_identity": "163e0d2d0a1a46db7e43f6b44324a030ef80a9a15f71af2d7b988f3ba6b0771c",
+      "attribution_owner": "report-context-selection",
+      "unit": "count",
+      "value": 5
+    },
+    {
+      "component_id": "reuse",
+      "availability": "available",
+      "source_identity": "5f8e18d54b178a47aa13aa2d06ac3485613e2df536dd181e31b3ca7adfa07b22",
+      "attribution_owner": "report-reuse",
+      "unit": "count",
+      "value": 5
+    },
+    {
+      "component_id": "quiet_state",
+      "availability": "available",
+      "source_identity": "54f4b27d6c996dffc28a5d8c18406de63d2318e7b492ca9dfbf50b5f4df784dd",
+      "attribution_owner": "report-quiet-state",
+      "unit": "count",
+      "value": 0
+    },
+    {
+      "component_id": "benchmark_capture",
+      "availability": "available",
+      "source_identity": "88e638f91113cea9202c8eb8b7e062e3ebe32ce53090c22bb4522e6e5038b26e",
+      "attribution_owner": "report-benchmark-capture",
+      "unit": "count",
+      "value": 5
+    },
+    {
+      "component_id": "verification",
+      "availability": "available",
+      "source_identity": "165be297b0b80f58b2b941fabbf804e13697fc908d60c6c4bdd29d5b5f266308",
+      "attribution_owner": "report-verification",
+      "unit": "count",
+      "value": 5
+    },
+    {
+      "component_id": "retry",
+      "availability": "available",
+      "source_identity": "e756877e2d42e54ad9a216783c0e525aa08545b3fc7d3370f949f3f234c3adb8",
+      "attribution_owner": "report-retry",
+      "unit": "count",
+      "value": 0
+    },
+    {
+      "component_id": "fallback",
+      "availability": "available",
+      "source_identity": "79f55c29b618490b04ebc70158bea906019aeaa9a4a302689f11353ea67e5588",
+      "attribution_owner": "report-fallback",
+      "unit": "count",
+      "value": 0
+    }
+  ],
+  "evidence": [
+    {
+      "attempt_id": "build-baseline-codex-001",
+      "raw_evidence_sha256": "9fee4ab68efe1e66f1e62d42d0cd0039d8f0a12d085f2fa10a3328d9a5901f73",
+      "retained_evidence_sha256": "f7fc996084f1f34b8a386422becde71f6ee359c4ecb6a99732968a5be77e61b1",
+      "retained_locator": "retained:build-check-invalidation-codex-cli-20260902-b62119c3:build-baseline-codex-001"
+    },
+    {
+      "attempt_id": "build-stolz-codex-001",
+      "raw_evidence_sha256": "8885819c023abcbfb232ebc09c7f79a8b055c0b5d0ad729714fdb2aa124fe450",
+      "retained_evidence_sha256": "ac86503c6fab5e37a7467f10bc88c2221f41e02be41c3f33a5d55bc2f29aa2ba",
+      "retained_locator": "retained:build-check-invalidation-codex-cli-20260902-b62119c3:build-stolz-codex-001"
+    },
+    {
+      "attempt_id": "build-stolz-codex-002",
+      "raw_evidence_sha256": "d3d571da651ee626aa0d28fd5d8c51358c942c730a33c6fec694ee11c2bdb2f1",
+      "retained_evidence_sha256": "a1ed933d8523d47a0a0a7ef5bbae181259ec60543c28251886f213f1701e9e89",
+      "retained_locator": "retained:build-check-invalidation-codex-cli-20260902-b62119c3:build-stolz-codex-002"
+    },
+    {
+      "attempt_id": "build-baseline-codex-002",
+      "raw_evidence_sha256": "6df2d34da1c3b9be7e56d681a3936f54ee05a9a0f357b64178703f05d65a4022",
+      "retained_evidence_sha256": "7da9014c5c318776c2c507b38304b06be93d3e2b75ddc03d931662c36df753a5",
+      "retained_locator": "retained:build-check-invalidation-codex-cli-20260902-b62119c3:build-baseline-codex-002"
+    },
+    {
+      "attempt_id": "build-baseline-codex-003",
+      "raw_evidence_sha256": "be5ba2b1533a1924163307a37dee6ebc8e49dd42c7c9fe256d64b50828ea7e0d",
+      "retained_evidence_sha256": "a4d17b0e9d21ab98dfcb137205ac0169fe4f255a67d8219c7995767f48a83847",
+      "retained_locator": "retained:build-check-invalidation-codex-cli-20260902-b62119c3:build-baseline-codex-003"
+    },
+    {
+      "attempt_id": "build-stolz-codex-003",
+      "raw_evidence_sha256": "2e3b3f0dd92d1b34dc4f3750f189ba97618ac872e3869fd0599c24cb382d1f23",
+      "retained_evidence_sha256": "613030be6783564548cc6f725303679aa69084386c1d645e10c80c7c952d6ac2",
+      "retained_locator": "retained:build-check-invalidation-codex-cli-20260902-b62119c3:build-stolz-codex-003"
+    },
+    {
+      "attempt_id": "build-stolz-codex-004",
+      "raw_evidence_sha256": "813d57dbe97d907b50f2814a9bb3214658ec9a4f2a80bd73ad2f3bc1cf2640de",
+      "retained_evidence_sha256": "7ae49d1d3877661c0109f56b1a3d09795d15ee3dfb4d7ac9def29c1a1a286bc4",
+      "retained_locator": "retained:build-check-invalidation-codex-cli-20260902-b62119c3:build-stolz-codex-004"
+    },
+    {
+      "attempt_id": "build-baseline-codex-004",
+      "raw_evidence_sha256": "4513ff7666b97a082bbd51f3a0cbde0aa9b01bc6fe6d0d869d5fe863cff10256",
+      "retained_evidence_sha256": "7c3bbfc086a131b70776281e58c1e9c4103a5817fff9a33653f9b7f629787498",
+      "retained_locator": "retained:build-check-invalidation-codex-cli-20260902-b62119c3:build-baseline-codex-004"
+    },
+    {
+      "attempt_id": "build-baseline-codex-005",
+      "raw_evidence_sha256": "43743df98d2e1f8d435736e6683bc553c9a4f8729f8168caf7d4499a90b7c3e5",
+      "retained_evidence_sha256": "2ec46af1acde22e371ef95a56415159470ca16273e1935a54835ff237b05924b",
+      "retained_locator": "retained:build-check-invalidation-codex-cli-20260902-b62119c3:build-baseline-codex-005"
+    },
+    {
+      "attempt_id": "build-stolz-codex-005",
+      "raw_evidence_sha256": "febd1836fdad09cecf23442e86ee1a08e104f67b876e601a0e74f7c946c214e9",
+      "retained_evidence_sha256": "227ae3b64a817adfb711dd94984990ad0e4fcf8ce452501df95b2b69ba4e6185",
+      "retained_locator": "retained:build-check-invalidation-codex-cli-20260902-b62119c3:build-stolz-codex-005"
+    }
+  ],
+  "claim": {
+    "kind": "provider_savings_percentage",
+    "disposition": "withheld",
+    "scope_statement": "Exact build-check-invalidation cohort build-check-invalidation-codex-cli-20260902-b62119c3; aggregate claim not admitted.",
+    "reason": "No release-admitted complete scoped cohort is available; aggregate claims remain withheld."
+  },
+  "reproduce_command": "benchmark:v3 --report benchmarks/v3/real/manifests/build-check-invalidation.json --output reports/benchmark-v3/real/build-check-invalidation.json",
+  "canonical_sha256": "1fc60c453cc56b5858ffdc11bd4999ec6c928b390b5dcb57336064ed80b83ea8"
+}

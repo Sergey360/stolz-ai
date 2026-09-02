@@ -1,0 +1,230 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stolz-ai.dev/contracts/benchmark-v3/pilot-manifest.schema.json",
+  "title": "STOLZ A.I. benchmark v3 pilot manifest v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "schema_version",
+    "record_id",
+    "captured_at",
+    "canonical_sha256",
+    "scenario_id",
+    "cohort_id",
+    "source_snapshot_sha256",
+    "fixture_sha256",
+    "route_definitions",
+    "environment",
+    "repetitions",
+    "seed",
+    "pair_order",
+    "workspace_reset",
+    "invalidation_action",
+    "redaction_policy",
+    "retention_policy",
+    "outcome_oracle",
+    "verification_oracle",
+    "scenario_control",
+    "commands",
+    "expected_report"
+  ],
+  "properties": {
+    "schema_id": { "const": "pilot-manifest" },
+    "schema_version": { "const": "1.0.0" },
+    "record_id": { "$ref": "common.schema.json#/$defs/identifier" },
+    "captured_at": { "$ref": "common.schema.json#/$defs/utcTimestamp" },
+    "canonical_sha256": { "$ref": "common.schema.json#/$defs/sha256" },
+    "scenario_id": { "enum": ["reads-navigation", "build-check-invalidation", "quiet-wait-transition"] },
+    "cohort_id": { "$ref": "common.schema.json#/$defs/identifier" },
+    "source_snapshot_sha256": { "$ref": "common.schema.json#/$defs/sha256" },
+    "fixture_sha256": { "$ref": "common.schema.json#/$defs/sha256" },
+    "route_definitions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["baseline", "stolz"],
+      "properties": {
+        "baseline": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["route_role", "route_id", "configuration_sha256", "command"],
+          "properties": {
+            "route_role": { "const": "baseline" },
+            "route_id": { "$ref": "common.schema.json#/$defs/identifier" },
+            "configuration_sha256": { "$ref": "common.schema.json#/$defs/sha256" },
+            "command": {
+              "type": "array",
+              "minItems": 1,
+              "items": { "type": "string", "minLength": 1 }
+            }
+          }
+        },
+        "stolz": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["route_role", "route_id", "configuration_sha256", "command"],
+          "properties": {
+            "route_role": { "const": "stolz" },
+            "route_id": { "$ref": "common.schema.json#/$defs/identifier" },
+            "configuration_sha256": { "$ref": "common.schema.json#/$defs/sha256" },
+            "command": {
+              "type": "array",
+              "minItems": 1,
+              "items": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      }
+    },
+    "environment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["environment_sha256", "node_version", "tool_versions"],
+      "properties": {
+        "environment_sha256": { "$ref": "common.schema.json#/$defs/sha256" },
+        "node_version": { "type": "string", "pattern": "^v\\d+\\.\\d+\\.\\d+$" },
+        "tool_versions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["tool_id", "version"],
+            "properties": {
+              "tool_id": { "$ref": "common.schema.json#/$defs/identifier" },
+              "version": { "$ref": "common.schema.json#/$defs/identifier" }
+            }
+          }
+        }
+      }
+    },
+    "repetitions": { "type": "integer", "minimum": 5 },
+    "seed": { "type": "integer", "minimum": 0 },
+    "pair_order": {
+      "type": "array",
+      "minItems": 10,
+      "items": { "enum": ["baseline", "stolz"] }
+    },
+    "workspace_reset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["procedure_id", "procedure_sha256", "route_local", "fresh_session"],
+      "properties": {
+        "procedure_id": { "$ref": "common.schema.json#/$defs/identifier" },
+        "procedure_sha256": { "$ref": "common.schema.json#/$defs/sha256" },
+        "route_local": { "const": true },
+        "fresh_session": { "const": true }
+      }
+    },
+    "invalidation_action": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["action_id", "action_sha256", "material"],
+      "properties": {
+        "action_id": { "$ref": "common.schema.json#/$defs/identifier" },
+        "action_sha256": { "$ref": "common.schema.json#/$defs/sha256" },
+        "material": { "type": "boolean" }
+      }
+    },
+    "redaction_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policy_id", "version"],
+      "properties": {
+        "policy_id": { "$ref": "common.schema.json#/$defs/identifier" },
+        "version": { "type": "string", "pattern": "^[1-9]\\d*\\.\\d+\\.\\d+$" }
+      }
+    },
+    "retention_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policy_id", "access_class", "raw_evidence_packaged"],
+      "properties": {
+        "policy_id": { "$ref": "common.schema.json#/$defs/identifier" },
+        "access_class": { "const": "private_retained" },
+        "raw_evidence_packaged": { "const": false }
+      }
+    },
+    "outcome_oracle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["oracle_id", "version", "sha256"],
+      "properties": {
+        "oracle_id": { "$ref": "common.schema.json#/$defs/identifier" },
+        "version": { "type": "string", "pattern": "^[1-9]\\d*\\.\\d+\\.\\d+$" },
+        "sha256": { "$ref": "common.schema.json#/$defs/sha256" }
+      }
+    },
+    "verification_oracle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["oracle_id", "version", "sha256", "required"],
+      "properties": {
+        "oracle_id": { "$ref": "common.schema.json#/$defs/identifier" },
+        "version": { "type": "string", "pattern": "^[1-9]\\d*\\.\\d+\\.\\d+$" },
+        "sha256": { "$ref": "common.schema.json#/$defs/sha256" },
+        "required": { "const": true }
+      }
+    },
+    "scenario_control": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "navigation_graph_sha256", "stable_content_sha256"],
+          "properties": {
+            "kind": { "const": "reads-navigation" },
+            "navigation_graph_sha256": { "$ref": "common.schema.json#/$defs/sha256" },
+            "stable_content_sha256": { "$ref": "common.schema.json#/$defs/sha256" }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "material_change_sha256", "build_command_sha256", "check_command_sha256"],
+          "properties": {
+            "kind": { "const": "build-check-invalidation" },
+            "material_change_sha256": { "$ref": "common.schema.json#/$defs/sha256" },
+            "build_command_sha256": { "$ref": "common.schema.json#/$defs/sha256" },
+            "check_command_sha256": { "$ref": "common.schema.json#/$defs/sha256" }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "quiet_interval_ms", "poll_interval_ms", "transition_sha256"],
+          "properties": {
+            "kind": { "const": "quiet-wait-transition" },
+            "quiet_interval_ms": { "type": "integer", "minimum": 60000 },
+            "poll_interval_ms": { "type": "integer", "minimum": 1 },
+            "transition_sha256": { "$ref": "common.schema.json#/$defs/sha256" }
+          }
+        }
+      ]
+    },
+    "commands": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reproduce", "report"],
+      "properties": {
+        "reproduce": {
+          "type": "string",
+          "pattern": "^benchmark:v3 --scenario (reads-navigation|build-check-invalidation|quiet-wait-transition) --reproduce [A-Za-z0-9./_-]+$"
+        },
+        "report": {
+          "type": "string",
+          "pattern": "^benchmark:v3 --report [A-Za-z0-9./_-]+ --output [A-Za-z0-9./_-]+$"
+        }
+      }
+    },
+    "expected_report": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_id", "schema_version"],
+      "properties": {
+        "schema_id": { "const": "benchmark-report" },
+        "schema_version": { "const": "3.0.0" }
+      }
+    }
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stolz-ai.dev/contracts/benchmark-v3/responses-usage.schema.json",
+  "title": "STOLZ A.I. OpenAI Responses usage v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "schema_version",
+    "record_id",
+    "captured_at",
+    "canonical_sha256",
+    "track",
+    "response_id",
+    "input_tokens",
+    "input_tokens_details",
+    "output_tokens",
+    "output_tokens_details",
+    "total_tokens",
+    "uncached_input_tokens"
+  ],
+  "properties": {
+    "schema_id": { "const": "responses-usage" },
+    "schema_version": { "const": "1.0.0" },
+    "record_id": { "$ref": "common.schema.json#/$defs/identifier" },
+    "captured_at": { "$ref": "common.schema.json#/$defs/utcTimestamp" },
+    "canonical_sha256": { "$ref": "common.schema.json#/$defs/sha256" },
+    "track": { "const": "provider_native" },
+    "response_id": { "$ref": "common.schema.json#/$defs/identifier" },
+    "input_tokens": {
+      "allOf": [
+        { "$ref": "common.schema.json#/$defs/metric" },
+        { "properties": { "name": { "const": "input_tokens" }, "unit": { "const": "tokens" }, "provenance": { "const": "provider_reported" } } }
+      ]
+    },
+    "input_tokens_details": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cached_tokens", "cache_write_tokens"],
+      "properties": {
+        "cached_tokens": {
+          "allOf": [
+            { "$ref": "common.schema.json#/$defs/metric" },
+            { "properties": { "name": { "const": "cached_tokens" }, "unit": { "const": "tokens" }, "provenance": { "const": "provider_reported" } } }
+          ]
+        },
+        "cache_write_tokens": {
+          "allOf": [
+            { "$ref": "common.schema.json#/$defs/metric" },
+            { "properties": { "name": { "const": "cache_write_tokens" }, "unit": { "const": "tokens" }, "provenance": { "const": "provider_reported" } } }
+          ]
+        }
+      }
+    },
+    "output_tokens": {
+      "allOf": [
+        { "$ref": "common.schema.json#/$defs/metric" },
+        { "properties": { "name": { "const": "output_tokens" }, "unit": { "const": "tokens" }, "provenance": { "const": "provider_reported" } } }
+      ]
+    },
+    "output_tokens_details": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reasoning_tokens"],
+      "properties": {
+        "reasoning_tokens": {
+          "allOf": [
+            { "$ref": "common.schema.json#/$defs/metric" },
+            { "properties": { "name": { "const": "reasoning_tokens" }, "unit": { "const": "tokens" }, "provenance": { "const": "provider_reported" } } }
+          ]
+        }
+      }
+    },
+    "total_tokens": {
+      "allOf": [
+        { "$ref": "common.schema.json#/$defs/metric" },
+        { "properties": { "name": { "const": "total_tokens" }, "unit": { "const": "tokens" }, "provenance": { "const": "provider_reported" } } }
+      ]
+    },
+    "uncached_input_tokens": {
+      "allOf": [
+        { "$ref": "common.schema.json#/$defs/metric" },
+        { "properties": { "name": { "const": "uncached_input_tokens" }, "unit": { "const": "tokens" } } }
+      ]
+    }
+  }
+}

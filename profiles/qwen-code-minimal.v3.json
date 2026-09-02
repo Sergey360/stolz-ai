@@ -1,0 +1,130 @@
+{
+  "profile_id": "qwen-code-minimal",
+  "profile_kind": "minimal",
+  "profile_version": "3.0.0",
+  "configuration_identity": {
+    "id": "profiles/qwen-code-minimal.v3.json",
+    "sha256": "9f462bb0e1d4139da23212639f417eebb8ad4067a369b4d99d5c4e42f1550519",
+    "version": "3.0.0"
+  },
+  "provider": {
+    "status": "not_available",
+    "reason": "runtime and provider selection are independent"
+  },
+  "model": {
+    "status": "not_available",
+    "reason": "runtime selection does not infer a model"
+  },
+  "agent_runtime": {
+    "id": "qwen-code",
+    "version": "0.22.3"
+  },
+  "adapter": {
+    "adapter_id": "qwen-code",
+    "adapter_version": "1.0.0",
+    "resolution": "lazy"
+  },
+  "core_skill": {
+    "skill_id": "stolz-route",
+    "version": "1.0.0"
+  },
+  "core_skills": [
+    {
+      "skill_id": "stolz-context",
+      "version": "1.0.0"
+    },
+    {
+      "skill_id": "stolz-reuse",
+      "version": "1.0.0"
+    },
+    {
+      "skill_id": "stolz-quiet-state",
+      "version": "1.0.0"
+    },
+    {
+      "skill_id": "stolz-route",
+      "version": "1.0.0"
+    },
+    {
+      "skill_id": "stolz-benchmark",
+      "version": "1.0.0"
+    }
+  ],
+  "optional_integrations": [],
+  "task_identity": {
+    "id": "runtime-profile/qwen-code/minimal",
+    "sha256": "bb42c6ef0c9e80d3686e784bccb689f6a288009d3b4192fe373e713a9961cc99",
+    "version": "3.0.0"
+  },
+  "source_artifacts": [
+    {
+      "id": "fixtures/runtime-adapters/qwen-code/c0.fixture.json",
+      "sha256": "5bd6036e82e5cd8ee7b1b2579f6ba9aef0424b24e006b05a8f7fcabeaf5e0b82",
+      "version": "1.0"
+    }
+  ],
+  "measurement_session": {
+    "id": "runtime-profile/qwen-code",
+    "sha256": "1ddbcb6c78ce50f8f118ab34af2296e63ca72caa9e8326ad4533a91f891eee08",
+    "version": "3.0.0"
+  },
+  "telemetry_availability": {
+    "provider_tokens": "not_available",
+    "runtime_events": "not_available"
+  },
+  "context_budget": {
+    "context_unit_source": "profile-authored units",
+    "max_initial_context_units": 100,
+    "max_total_context_units": 160,
+    "initial_context_units": 50,
+    "total_context_units": 50,
+    "initial_context_ratio": 0.5,
+    "context_budget_risk": false
+  },
+  "reference_loads": [
+    {
+      "identity": {
+        "id": "skills/core",
+        "sha256": "e58ea0acf10dcfdab768f03b54238ab4a251a6a108e0662367dd0e16336b72f9",
+        "version": "1.0.0"
+      },
+      "classification": "core",
+      "units": 50,
+      "load_phase": "before_route_selection",
+      "trigger_id": null,
+      "load_count": 1
+    }
+  ],
+  "runtime_install": {
+    "runtime_id": "qwen-code",
+    "destination": ".qwen/skills/",
+    "selected_only": true,
+    "adapter_activation": "lazy",
+    "hooks": "not_installed",
+    "mcp": "not_installed",
+    "fallback": "provider-neutral"
+  },
+  "settings_provenance": {
+    "sources": [
+      {
+        "scope": "project",
+        "location": "fixtures/runtime-adapters/qwen-code/settings-provenance.json",
+        "sha256": "6073b812d60e78934ad31a14e6604c41020ed54f8d4ecf994cce072e808afd17"
+      }
+    ],
+    "resolution": "recorded without reading credentials",
+    "captured_at": "2026-08-30T00:00:00Z"
+  },
+  "provider_overlay": {
+    "overlay_id": "none",
+    "schema_version": "1.0",
+    "availability": "none"
+  },
+  "certification": {
+    "level": "C1",
+    "status": "cli_certified",
+    "evidence_ids": [
+      "qwen-code-c1-cli"
+    ]
+  }
+}

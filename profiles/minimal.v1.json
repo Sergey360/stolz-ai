@@ -1,0 +1,27 @@
+{
+  "profile_id": "codex-minimal",
+  "profile_kind": "minimal",
+  "profile_version": "1.0.0",
+  "configuration_identity": { "id": "profiles/minimal.v1.json", "sha256": "e98db6d5b1c88a2efb5a9bf6b8c4f4dc3c79d4809554d5d109493516796cf7a9", "version": "1.0.0" },
+  "provider": { "status": "not_available", "reason": "a portable install does not infer a provider" },
+  "model": { "status": "not_available", "reason": "a portable install does not infer a model" },
+  "agent_runtime": { "id": "codex", "version": "1.0.0" },
+  "adapter": { "adapter_id": "codex-local", "adapter_version": "1.0.0", "resolution": "lazy" },
+  "core_skill": { "skill_id": "stolz-route", "version": "1.0.0" },
+  "core_skills": [
+    { "skill_id": "stolz-context", "version": "1.0.0" },
+    { "skill_id": "stolz-reuse", "version": "1.0.0" },
+    { "skill_id": "stolz-quiet-state", "version": "1.0.0" },
+    { "skill_id": "stolz-route", "version": "1.0.0" },
+    { "skill_id": "stolz-benchmark", "version": "1.0.0" }
+  ],
+  "optional_integrations": [],
+  "task_identity": { "id": "runtime-profile/minimal", "sha256": "a6c931286ad0e7ac7ae11fd8b5da212d0dd4e24e76a4390df8058e25dacd4b43", "version": "1.0.0" },
+  "source_artifacts": [{ "id": "docs/adr/0005-runtime-profiles-and-lazy-adapters.md", "sha256": "cc0c63a20cd15f699c73cae0c5de07e6d91ea80e50793da037912ce54ec52718", "version": "1.0.0" }],
+  "measurement_session": { "id": "runtime-profile/install", "sha256": "d40f5e8fdf7af1c31474a11c463fbd0ca6d10c4d85849e99a1b6b15f1f603045", "version": "1.0.0" },
+  "telemetry_availability": { "provider_tokens": "not_available", "runtime_events": "not_available" },
+  "context_budget": { "context_unit_source": "profile-authored units", "max_initial_context_units": 100, "max_total_context_units": 160, "initial_context_units": 50, "total_context_units": 50, "initial_context_ratio": 0.5, "context_budget_risk": false },
+  "reference_loads": [
+    { "identity": { "id": "skills/core", "sha256": "46b10d77b2814ec84a4db18f597f739dd5703f65a1f1c1d84bdbda0fb926581a", "version": "1.0.0" }, "classification": "core", "units": 50, "load_phase": "before_route_selection", "trigger_id": null, "load_count": 1 }
+  ]
+}

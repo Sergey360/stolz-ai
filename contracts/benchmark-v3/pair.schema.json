@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stolz-ai.dev/contracts/benchmark-v3/pair.schema.json",
+  "title": "STOLZ A.I. benchmark v3 pair v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "schema_version",
+    "record_id",
+    "captured_at",
+    "canonical_sha256",
+    "track",
+    "scenario_id",
+    "cohort_id",
+    "baseline",
+    "stolz",
+    "equivalence",
+    "overhead_gate",
+    "attempt_dispositions",
+    "usage_delta",
+    "cost_delta",
+    "runtime_deltas",
+    "admission",
+    "admission_reason"
+  ],
+  "properties": {
+    "schema_id": { "const": "benchmark-pair" },
+    "schema_version": { "const": "1.0.0" },
+    "record_id": { "$ref": "common.schema.json#/$defs/identifier" },
+    "captured_at": { "$ref": "common.schema.json#/$defs/utcTimestamp" },
+    "canonical_sha256": { "$ref": "common.schema.json#/$defs/sha256" },
+    "track": { "enum": ["provider_native", "runtime_measured"] },
+    "scenario_id": { "enum": ["reads-navigation", "build-check-invalidation", "quiet-wait-transition"] },
+    "cohort_id": { "$ref": "common.schema.json#/$defs/identifier" },
+    "baseline": {
+      "allOf": [
+        { "$ref": "common.schema.json#/$defs/recordReference" },
+        {
+          "properties": {
+            "schema_id": { "const": "benchmark-attempt" },
+            "schema_version": { "const": "3.0.0" },
+            "route_role": { "const": "baseline" }
+          },
+          "required": ["route_role"]
+        }
+      ]
+    },
+    "stolz": {
+      "allOf": [
+        { "$ref": "common.schema.json#/$defs/recordReference" },
+        {
+          "properties": {
+            "schema_id": { "const": "benchmark-attempt" },
+            "schema_version": { "const": "3.0.0" },
+            "route_role": { "const": "stolz" }
+          },
+          "required": ["route_role"]
+        }
+      ]
+    },
+    "equivalence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scenario_input",
+        "environment_tuple",
+        "route_declarations",
+        "repetition_order",
+        "reset_invalidation",
+        "outcome",
+        "verification"
+      ],
+      "properties": {
+        "scenario_input": { "$ref": "common.schema.json#/$defs/gate" },
+        "environment_tuple": { "$ref": "common.schema.json#/$defs/gate" },
+        "route_declarations": { "$ref": "common.schema.json#/$defs/gate" },
+        "repetition_order": { "$ref": "common.schema.json#/$defs/gate" },
+        "reset_invalidation": { "$ref": "common.schema.json#/$defs/gate" },
+        "outcome": { "$ref": "common.schema.json#/$defs/gate" },
+        "verification": { "$ref": "common.schema.json#/$defs/gate" }
+      }
+    },
+    "overhead_gate": { "$ref": "common.schema.json#/$defs/gate" },
+    "attempt_dispositions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["baseline", "stolz"],
+      "properties": {
+        "baseline": { "enum": ["completed", "failed", "partial", "aborted"] },
+        "stolz": { "enum": ["completed", "failed", "partial", "aborted"] }
+      }
+    },
+    "usage_delta": {
+      "allOf": [
+        { "$ref": "common.schema.json#/$defs/deltaMetric" },
+        { "properties": { "name": { "const": "net_token_delta" }, "unit": { "const": "tokens" } } }
+      ]
+    },
+    "cost_delta": {
+      "allOf": [
+        { "$ref": "common.schema.json#/$defs/deltaMetric" },
+        { "properties": { "name": { "const": "net_cost_delta" }, "unit": { "const": "currency_minor_units" } } }
+      ]
+    },
+    "runtime_deltas": {
+      "type": "array",
+      "items": {
+        "allOf": [
+          { "$ref": "common.schema.json#/$defs/deltaMetric" },
+          { "properties": { "name": { "enum": ["model_wakeups", "tool_calls", "tool_output_bytes", "wall_time_ms", "operator_interventions", "compaction_events"] } } }
+        ]
+      }
+    },
+    "admission": { "enum": ["admitted_scoped", "withheld", "not_comparable", "unknown", "rejected"] },
+    "admission_reason": { "type": "string", "minLength": 1, "maxLength": 500 }
+  }
+}

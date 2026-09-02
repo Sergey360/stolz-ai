@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stolz-ai.dev/contracts/benchmark-v3/pricing-identity.schema.json",
+  "title": "STOLZ A.I. benchmark v3 pricing identity v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "schema_version",
+    "record_id",
+    "captured_at",
+    "canonical_sha256",
+    "track",
+    "provider_id",
+    "model_configuration",
+    "currency",
+    "price_source",
+    "service_tier",
+    "token_unit",
+    "conversion_basis",
+    "accounting",
+    "components",
+    "final_cost_availability"
+  ],
+  "properties": {
+    "schema_id": { "const": "pricing-identity" },
+    "schema_version": { "const": "1.0.0" },
+    "record_id": { "$ref": "common.schema.json#/$defs/identifier" },
+    "captured_at": { "$ref": "common.schema.json#/$defs/utcTimestamp" },
+    "canonical_sha256": { "$ref": "common.schema.json#/$defs/sha256" },
+    "track": { "const": "provider_native" },
+    "provider_id": { "const": "openai" },
+    "model_configuration": { "$ref": "common.schema.json#/$defs/identifier" },
+    "currency": { "type": "string", "pattern": "^[A-Z]{3}$" },
+    "price_source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["url", "snapshot_sha256", "version", "retrieved_at", "effective_at"],
+      "properties": {
+        "url": {
+          "type": "string",
+          "pattern": "^https://developers\\.openai\\.com/[A-Za-z0-9./_?=&%-]+$"
+        },
+        "snapshot_sha256": { "$ref": "common.schema.json#/$defs/sha256" },
+        "version": { "$ref": "common.schema.json#/$defs/identifier" },
+        "retrieved_at": { "$ref": "common.schema.json#/$defs/utcTimestamp" },
+        "effective_at": { "$ref": "common.schema.json#/$defs/utcTimestamp" }
+      }
+    },
+    "service_tier": { "enum": ["default", "flex", "priority", "batch"] },
+    "token_unit": { "const": "per_1m_tokens" },
+    "conversion_basis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["availability"],
+      "properties": {
+        "availability": { "$ref": "common.schema.json#/$defs/availability" },
+        "source_identity": { "$ref": "common.schema.json#/$defs/sha256" },
+        "rate": { "type": "number", "exclusiveMinimum": 0 },
+        "reason": { "type": "string", "minLength": 1, "maxLength": 500 }
+      },
+      "if": { "properties": { "availability": { "const": "available" } }, "required": ["availability"] },
+      "then": { "required": ["source_identity", "rate"], "not": { "required": ["reason"] } },
+      "else": { "required": ["reason"], "not": { "anyOf": [{ "required": ["source_identity"] }, { "required": ["rate"] }] } }
+    },
+    "accounting": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["retry", "batch", "background", "polling"],
+      "properties": {
+        "retry": { "enum": ["each_provider_request_once"] },
+        "batch": { "enum": ["service_tier_pricing", "not_used"] },
+        "background": { "enum": ["original_request_once", "not_used"] },
+        "polling": { "const": "not_billable_as_new_request" }
+      }
+    },
+    "components": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["component_id", "name", "availability", "unit", "attribution_owner"],
+        "properties": {
+          "component_id": { "$ref": "common.schema.json#/$defs/identifier" },
+          "name": { "enum": ["input_uncached", "input_cached", "input_cache_write", "output", "hosted_tool"] },
+          "availability": { "$ref": "common.schema.json#/$defs/availability" },
+          "unit": { "enum": ["per_1m_tokens", "per_call"] },
+          "unit_price": { "type": "number", "minimum": 0 },
+          "attribution_owner": { "$ref": "common.schema.json#/$defs/identifier" },
+          "reason": { "type": "string", "minLength": 1, "maxLength": 500 }
+        },
+        "if": { "properties": { "availability": { "const": "available" } }, "required": ["availability"] },
+        "then": { "required": ["unit_price"], "not": { "required": ["reason"] } },
+        "else": { "required": ["reason"], "not": { "required": ["unit_price"] } }
+      }
+    },
+    "final_cost_availability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["availability"],
+      "properties": {
+        "availability": { "$ref": "common.schema.json#/$defs/availability" },
+        "reason": { "type": "string", "minLength": 1, "maxLength": 500 }
+      },
+      "if": { "properties": { "availability": { "const": "available" } }, "required": ["availability"] },
+      "then": { "not": { "required": ["reason"] } },
+      "else": { "required": ["reason"] }
+    }
+  }
+}
