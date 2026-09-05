@@ -4,6 +4,16 @@ Notable user-facing changes to STOLZ A.I. are recorded here.
 
 ## Unreleased
 
+## 0.5.1 — 2026-09-05
+
+- Published the private-validated 140-file archive unchanged after its
+  checksum, extracted-package smoke, access controls, backup, and restore were
+  rechecked during hypercare.
+- Strengthened the package boundary so private Verified Reuse implementation
+  and evidence roots cannot enter the public npm payload; the distribution
+  remains exactly five skills.
+- Retained `v0.5.0` as unpublished failed evidence instead of rewriting its
+  tag, then issued the corrected release as `v0.5.1`.
 - Restored the stable root URLs for all localized README files.
 - Re-established the approved three-file `docs/` allowlist and removed the
   accidentally published supplementary documentation and website sources.

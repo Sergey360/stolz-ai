@@ -91,7 +91,10 @@ test('tracked GitHub tree stays inside the public allowlist', async () => {
   const forbiddenPrefixes = [
     '.gitlab-ci.yml',
     'benchmarks/v3/',
+    'contracts/verified-reuse/',
     'fixtures/benchmark-v3/',
+    'reports/verified-reuse/',
+    'tools/verified-reuse/',
     'docs/GOAL_REVIEW_',
     'docs/IMPLEMENTATION_PLAN_',
     'docs/RELEASE_READINESS_',
@@ -113,7 +116,7 @@ test('npm package contains approved product files and root localizations, not do
   const paths = packed.files.map((entry) => entry.path);
 
   assert.equal(packed.name, 'stolz-ai');
-  assert.equal(packed.version, '0.4.1');
+  assert.equal(packed.version, '0.5.1');
   for (const path of [
     'README.md',
     'README.he.md',
@@ -132,7 +135,10 @@ test('npm package contains approved product files and root localizations, not do
   assert.equal(paths.some((path) => path.startsWith('docs/')), false);
   assert.equal(paths.some((path) => path.startsWith('test/')), false);
   assert.equal(paths.some((path) => path.startsWith('benchmarks/v3/')), false);
+  assert.equal(paths.some((path) => path.startsWith('contracts/verified-reuse/')), false);
   assert.equal(paths.some((path) => path.startsWith('fixtures/benchmark-v3/')), false);
+  assert.equal(paths.some((path) => path.startsWith('reports/verified-reuse/')), false);
+  assert.equal(paths.some((path) => path.startsWith('tools/verified-reuse/')), false);
 });
 
 test('GitHub CI runs full public checks with read-only permissions', async () => {
