@@ -4,6 +4,21 @@ Notable user-facing changes to STOLZ A.I. are recorded here.
 
 ## Unreleased
 
+## 0.6.0 — 2026-09-08
+
+- Added bounded delta-context guidance with durable fragment identities and
+  explicit invalidation rules, without whole-repository rereads.
+- Made quiet-state operation guidance durable across restarts: unchanged,
+  stale, duplicate, debouncing, and not-due polls remain model-quiet, while a
+  new failure, decision, or terminal result wakes exactly once.
+- Preserved the five-skill surface, two package exports, zero runtime
+  dependencies, and fail-closed evidence boundary. Internal v0.6 schemas,
+  implementation helpers, raw attempts, and private release material remain
+  excluded from the public source and package.
+- Published the same 140-file package archive accepted by the private release;
+  no aggregate, percentage, cost, provider-wide, or cross-scenario efficiency
+  claim is made.
+
 ## 0.5.1 — 2026-09-05
 
 - Published the private-validated 140-file archive unchanged after its
