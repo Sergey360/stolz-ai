@@ -1,0 +1,14 @@
+{
+  "schema_version": "0.7.0",
+  "runtime": { "id": "claude-code", "name": "Claude Code", "supported_version": "2.1.251" },
+  "adapter": { "id": "claude-code", "version": "1.0.0", "tool_build_version": "1.0.0" },
+  "source_class": "runtime_telemetry",
+  "provenance": { "collector": "claude-code-c2-adapter", "kind": "runtime_telemetry" },
+  "lifecycle_state": "certified",
+  "certification_status": "certified",
+  "retained_evidence": {
+    "sha256": "a6004406e556187d28cf86a7cc4d270c25bfe76c926afa3f8e434e48ceee33b5",
+    "captured_at": "2026-09-08T12:00:00.000Z",
+    "fields": ["event_class", "result", "duration_ms", "tool_calls"]
+  }
+}

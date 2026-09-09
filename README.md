@@ -53,6 +53,12 @@ The included synthetic context-selection fixture reaches the same validated outc
 
 This proves that the benchmark harness and the narrow-context route work on that fixture. It is **not** a measurement of Codex usage and **not** a production-wide savings claim. STOLZ A.I. has no measured provider-token claim yet. See [benchmarking](docs/benchmarking.md) for the evidence and its limits.
 
+### Multi-runtime evidence in v0.7
+
+STOLZ A.I. can retain sanitized C2 runtime evidence for the exact tested versions Claude Code 2.1.251 and Qwen Code 0.22.3. A C3 comparison is admitted only when two distinct sanitized provider exports belong to the same scenario and carry equal outcome and verification identities. Version drift, missing exports, mismatched outcomes, or unsafe data withhold the claim and require a new check.
+
+This evidence is scenario-scoped. It does not support aggregate, percentage, cost, provider-wide, or generalized superiority claims.
+
 ## 🚀 Install in Codex
 
 Codex discovers repository skills in `.agents/skills`. From your project directory:

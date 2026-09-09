@@ -25,6 +25,8 @@ package/reports/benchmark-v3/build-check-invalidation.json
 package/reports/benchmark-v3/real/build-check-invalidation.json
 package/fixtures/runtime-adapters/claude-code/c0.fixture.json
 package/fixtures/runtime-adapters/qwen-code/c0.fixture.json
+package/fixtures/runtime-adapters/claude-code/c2.sanitized-telemetry.json
+package/fixtures/runtime-adapters/qwen-code/c2.sanitized-telemetry.json
 package/adapters/claude-code/capabilities.json
 package/adapters/codex/capabilities.json
 package/adapters/qwen-code/capabilities.json
@@ -122,6 +124,9 @@ package/tools/benchmark-v3-cli.mjs
 package/tools/benchmark-v3-schema-registry.mjs
 package/tools/benchmark-v3-validator.mjs
 package/tools/benchmark.mjs
+package/tools/runtime-telemetry/c2-adapter.mjs
+package/tools/c3-provider-pair-admission.mjs
+package/tools/runtime-telemetry/claude-code-c2.mjs
 package/tools/codex-jsonl-collector.mjs
 package/tools/foundation-cli.mjs
 package/tools/foundation.mjs
@@ -131,6 +136,7 @@ package/tools/profile-installer.mjs
 package/tools/profile-provenance.mjs
 package/tools/profile-resolver.mjs
 package/tools/provider-evidence-admission.mjs
+package/tools/runtime-telemetry/qwen-code-c2.mjs
 package/adapters/benchmark-v3/registry.mjs
 package/tools/integrations/registry.mjs
 package/tools/responses-collector.mjs
@@ -138,3 +144,4 @@ package/tools/routed-skills.mjs
 package/adapters/benchmark-v3/runtime-adapter.mjs
 package/adapters/conformance/runtime-adapter.mjs
 package/tools/runtime-certification.mjs
+package/tools/runtime-lifecycle.mjs

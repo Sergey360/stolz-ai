@@ -2,6 +2,7 @@ import { readdir, readFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { admitV3Profile } from './profile-admission.mjs';
+import { admitRuntimeProfileIsolation, isProviderOverlayId } from './runtime-lifecycle.mjs';
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 export const UNIVERSAL_SKILLS = Object.freeze(['stolz-context', 'stolz-reuse', 'stolz-quiet-state', 'stolz-route', 'stolz-benchmark']);
@@ -60,12 +61,19 @@ export async function resolveProfile({ runtime = 'codex', provider, requested_in
   const requested = [...new Set(requested_integrations)].sort();
   const knownIntegrations = new Set(['filesystem', 'gitlab', 'benchmark-capture']);
   if (requested.some((integration) => !knownIntegrations.has(integration))) return fallback(runtime, 'unsupported_integration');
+  // An overlay identifier is provider input, never a runtime name.  Keep it
+  // out of the returned runtime field so reporting cannot reclassify it.
+  if (isProviderOverlayId(runtime)) return { ...fallback(null, 'provider_overlay_is_not_runtime'), requested_provider_overlay: runtime };
   if (!runtimes.has(runtime)) return fallback(runtime, 'unsupported_runtime');
 
   const available = profiles ?? await loadProfiles(undefined, runtime);
   if (runtime !== 'codex') {
-    const admitted = await Promise.all(available.map(async (profile) => ({ profile, admission: await admitV3Profile(profile) })));
-    if (admitted.some(({ admission }) => !admission.admitted)) return fallback(runtime, 'profile_admission_denied');
+    const admitted = await Promise.all(available.map(async (profile) => ({
+      profile,
+      admission: await admitV3Profile(profile),
+      isolation: admitRuntimeProfileIsolation(profile),
+    })));
+    if (admitted.some(({ admission, isolation }) => !admission.admitted || !isolation.admitted)) return fallback(runtime, 'profile_admission_denied');
   }
   const enabled = normalizeCapabilities(capabilities);
   const candidate = profileOrder
