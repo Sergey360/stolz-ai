@@ -1,0 +1,14 @@
+{
+  "schema_version": "0.7.0",
+  "runtime": { "id": "qwen-code", "name": "Qwen Code", "supported_version": "0.22.3" },
+  "adapter": { "id": "qwen-code", "version": "1.0.0", "tool_build_version": "1.0.0" },
+  "source_class": "runtime_telemetry",
+  "provenance": { "collector": "qwen-code-c2-adapter", "kind": "runtime_telemetry" },
+  "lifecycle_state": "certified",
+  "certification_status": "certified",
+  "retained_evidence": {
+    "sha256": "c068d05dbe6eece24f27d2e75d928cfc66bc7af3a303c29f4cc9f558fe1f0540",
+    "captured_at": "2026-09-08T12:00:00.000Z",
+    "fields": ["event_class", "result", "duration_ms", "tool_calls"]
+  }
+}

@@ -4,6 +4,21 @@ Notable user-facing changes to STOLZ A.I. are recorded here.
 
 ## Unreleased
 
+## 0.7.0 — 2026-09-10
+
+- Added fail-closed C2 runtime evidence for the exact tested versions Claude
+  Code 2.1.251 and Qwen Code 0.22.3. Runtime or adapter drift invalidates prior
+  certification and requires a new check.
+- Added C3 admission for two distinct sanitized provider exports from the same
+  scenario with equal outcome and verification identities. Missing,
+  mismatched, unsafe, or non-comparable evidence remains withheld.
+- Kept runtime selection separate from provider overlays and retained only
+  hashes, provenance, result classes, and bounded counters — never credentials,
+  prompts, responses, user data, or raw evidence.
+- Published the same 147-file archive accepted by the private release. Claims
+  remain scenario-scoped; no aggregate, percentage, cost, provider-wide, or
+  generalized superiority claim is made.
+
 ## 0.6.0 — 2026-09-08
 
 - Added bounded delta-context guidance with durable fragment identities and
