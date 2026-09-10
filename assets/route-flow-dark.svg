@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 420" role="img" aria-labelledby="title desc">
+  <title id="title">The STOLZ A.I. route</title>
+  <desc id="desc">A task follows one focused route, retains verification, and produces a reliable outcome.</desc>
+  <rect width="360" height="420" fill="#171916"/>
+  <path d="M32 24h296M32 396h296" stroke="#464945"/>
+  <path d="M52 54v294" stroke="#464945" stroke-width="2"/>
+  <path d="M52 54v186" stroke="#e04a2f" stroke-width="3"/>
+  <circle cx="52" cy="62" r="7" fill="#e04a2f"/>
+  <circle cx="52" cy="154" r="7" fill="#e04a2f"/>
+  <circle cx="52" cy="246" r="7" fill="#171916" stroke="#f1e9db" stroke-width="3"/>
+  <circle cx="52" cy="340" r="7" fill="#f1e9db"/>
+  <text x="82" y="56" fill="#afb2ad" font-family="Arial, sans-serif" font-size="11" font-weight="700" letter-spacing="1.6">TASK</text>
+  <text x="82" y="79" fill="#f1e9db" font-family="Georgia, 'Times New Roman', serif" font-size="19" font-weight="700">A concrete request</text>
+  <path d="M82 101h246" stroke="#464945"/>
+  <text x="82" y="148" fill="#afb2ad" font-family="Arial, sans-serif" font-size="11" font-weight="700" letter-spacing="1.6">ONE ROUTE</text>
+  <text x="82" y="174" fill="#f1e9db" font-family="Courier New, monospace" font-size="19" font-weight="700">stolz-route</text>
+  <text x="82" y="194" fill="#afb2ad" font-family="Arial, sans-serif" font-size="13">one focused concern</text>
+  <path d="M82 217h246" stroke="#464945"/>
+  <text x="82" y="240" fill="#afb2ad" font-family="Arial, sans-serif" font-size="11" font-weight="700" letter-spacing="1.6">VERIFY</text>
+  <text x="82" y="266" fill="#f1e9db" font-family="Georgia, 'Times New Roman', serif" font-size="18" font-weight="700">Required checks stay</text>
+  <path d="M82 289h246" stroke="#464945"/>
+  <rect x="82" y="312" width="246" height="56" fill="#f1e9db"/>
+  <text x="102" y="336" fill="#e04a2f" font-family="Arial, sans-serif" font-size="10" font-weight="700" letter-spacing="1.4">OUTCOME</text>
+  <text x="102" y="357" fill="#11110f" font-family="Georgia, 'Times New Roman', serif" font-size="18" font-weight="700">Reliable result</text>
+  <text x="180" y="389" fill="#afb2ad" font-family="Georgia, 'Times New Roman', serif" font-size="13" font-style="italic" text-anchor="middle">No token wasted.</text>
+</svg>

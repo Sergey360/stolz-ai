@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stolz.ai/contracts/context-state-v0.6/quiet-state.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_id", "schema_version", "poll_identity", "previous_material_state", "next_material_state", "disposition", "model_invocations"],
+  "properties": {
+    "schema_id": { "const": "quiet-external-state" },
+    "schema_version": { "const": "0.6.0" },
+    "poll_identity": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "previous_material_state": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "next_material_state": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "disposition": { "enum": ["quiet", "wake_failure", "wake_needs_decision", "wake_terminal_material_change"] },
+    "model_invocations": { "type": "integer", "minimum": 0, "maximum": 1 },
+    "reason": { "enum": ["unchanged", "failure", "needs_decision", "terminal_material_change"] }
+  }
+}

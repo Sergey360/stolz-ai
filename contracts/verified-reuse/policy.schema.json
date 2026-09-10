@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stolz.ai/contracts/verified-reuse/policy/1.0.0",
+  "title": "STOLZ A.I. Verified Reuse Policy v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_id", "schema_version", "policy_id", "policy_version", "owner", "operation_class", "allowed_program_path_classes", "allowed_cwd_path_classes", "allowed_environment_names", "discovery_method_id", "source_ttl_class", "isolation_mechanism", "idempotence_argument", "deterministic_input_contract", "bounded_effects", "required_outcome_oracle_id", "required_verification_oracle_id", "retention_class", "revocation_state"],
+  "properties": {
+    "schema_id": { "const": "reuse-policy" }, "schema_version": { "const": "1.0.0" },
+    "policy_id": { "type": "string", "minLength": 1 }, "policy_version": { "pattern": "^1\\.[0-9]+\\.[0-9]+$" }, "owner": { "type": "string", "minLength": 1 },
+    "operation_class": { "const": "local_deterministic_check" },
+    "allowed_program_path_classes": { "const": ["workspace"] }, "allowed_cwd_path_classes": { "const": ["workspace"] },
+    "allowed_environment_names": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+    "discovery_method_id": { "type": "string", "minLength": 1 }, "source_ttl_class": { "enum": ["bounded", "none"] },
+    "isolation_mechanism": { "type": "string", "minLength": 1 }, "idempotence_argument": { "type": "string", "minLength": 1 }, "deterministic_input_contract": { "type": "string", "minLength": 1 }, "bounded_effects": { "type": "string", "minLength": 1 },
+    "required_outcome_oracle_id": { "type": "string", "minLength": 1 }, "required_verification_oracle_id": { "type": "string", "minLength": 1 }, "retention_class": { "type": "string", "minLength": 1 }, "revocation_state": { "const": "active" }
+  }
+}

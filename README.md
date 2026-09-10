@@ -1,112 +1,191 @@
 <div align="center">
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/brand/stolz-readme-dark.png">
-  <source media="(prefers-color-scheme: light)" srcset="assets/brand/stolz-readme-light.png">
-  <img src="assets/brand/stolz-readme-light.png" width="820" alt="STOLZ A.I. — a folded book-page S with a red bookmark">
-</picture>
-
-**Five focused skills for efficient, verifiable coding-agent work.**
-*No token wasted.*
-
-**English** · [Русский](README.ru.md) · [Nederlands](README.nl.md) · [中文](README.zh.md) · [עברית](README.he.md)
-
-[![CI](https://github.com/Sergey360/stolz-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/Sergey360/stolz-ai/actions/workflows/ci.yml)
-[![Node.js ≥20](https://img.shields.io/badge/Node.js-%E2%89%A520-416B51?logo=nodedotjs&logoColor=white&style=flat-square)](package.json)
-[![5 skills](https://img.shields.io/badge/focused_skills-5-BB7A2A?style=flat-square)](skills)
-[![MIT](https://img.shields.io/badge/license-MIT-6F5B4E?style=flat-square)](LICENSE)
-[![No token wasted](https://img.shields.io/badge/no_token-wasted-AD3F2E?style=flat-square)](docs/architecture.md)
-
+  <h1><picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/logo-lockup-dark.svg">
+    <img src="assets/logo-lockup.svg" width="340" alt="STOLZ A.I.">
+  </picture></h1>
+  <p><strong>Rational skills for Codex and compatible AI coding agents.</strong></p>
+  <p><em>No token wasted.</em></p>
+  <p>
+    <a href="README.md">English</a> ·
+    <a href="README.ru.md">Русский</a> ·
+    <a href="README.nl.md">Nederlands</a> ·
+    <a href="README.zh.md">中文</a> ·
+    <a href="README.he.md">עברית</a>
+  </p>
+  <p>
+    <a href="https://github.com/Sergey360/stolz-ai/actions/workflows/ci.yml"><img src="https://github.com/Sergey360/stolz-ai/actions/workflows/ci.yml/badge.svg" alt="CI status"></a>
+    <a href="https://github.com/Sergey360/stolz-ai/releases/latest"><img src="https://img.shields.io/github/v/release/Sergey360/stolz-ai?display_name=tag&color=2F7656" alt="Latest release"></a>
+    <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-2F7656.svg" alt="MIT License"></a>
+  </p>
 </div>
 
-**STOLZ** refers to Andrei Ivanovich Stolz, the energetic character in Ivan Goncharov's novel *Oblomov*.
+**STOLZ A.I.** keeps agent work focused: choose the smallest sufficient route,
+load context only when needed, reuse verified results, and keep unchanged state
+outside the model.
 
-**A.I.** brings together the character's initials (*Andrei Ivanovich*) and *Artificial Intelligence*.
+It does not make a model think less. It helps it waste less—without replacing
+correctness, verification, or reliability with a cheaper shortcut.
 
-> «Движений лишних у него не было» — “He made no unnecessary movements.”
->
-> — [Ivan Goncharov, *Oblomov*, part II](https://ilibrary.ru/text/475/p.13/index.html)
+It is a package of five agent skills, profiles, lazy adapters, evidence
+records, and one opt-in local Codex state entry point. Installing skills does
+not start a daemon, shared cache, durable state store, or automatic polling
+controller. Local state exists only after an application explicitly opens it.
 
-The project follows the same principle: **every token should do useful work**.
+## Andrei Ivanovich. Artificial intelligence.
 
-## 🎯 What it saves
+The name refers to Andrei Ivanovich Stolz, the rational and active counterpoint
+to Oblomov in Ivan Goncharov's novel. `A.I.` carries both meanings: the
+character's initials and artificial intelligence.
 
-STOLZ A.I. is five small, composable skills for Codex and compatible coding-agent runtimes:
+## What stays under control
 
-- 🧭 **Route** — choose one sufficient route instead of loading every instruction;
-- 📖 **Context** — read only the context required by that route;
-- ♻️ **Reuse** — reuse a result only while its inputs and verification still match;
-- 🔕 **Quiet state** — keep unchanged polling state outside the model conversation;
-- ⚖️ **Benchmark** — compare an optimization with its baseline before calling it an improvement.
+- **Five focused skills.** One concern at a time, not a catch-all prompt.
+- **Verified reuse.** Reuse requires matching, fresh identities and prior
+  verification.
+- **Safe fallbacks.** A missing capability never weakens the required outcome
+  or checks.
 
-These mechanisms reduce redundant context, reads, tool calls, and status narration. They do not ask the model to think less or skip checks.
+## One task. One route. Verified.
 
-## 📊 What we can prove
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/route-flow-dark.svg">
+  <img src="assets/route-flow.svg" width="360" alt="A task is routed through one focused concern, verified, and delivered as a reliable outcome.">
+</picture>
 
-The included synthetic context-selection fixture reaches the same validated outcome with less authored input:
+`stolz-route` chooses one focused concern—context, reuse, quiet state, or
+benchmarking. Every route keeps the required verification before the outcome.
 
-| Route | Authored token units | Model wakeups | Tool calls | Verification |
-| --- | ---: | ---: | ---: | --- |
-| Baseline | 1,530 | 4 | 8 | passed |
-| Optimized | **980** | **3** | **4** | passed |
-| Difference | **−550 (−35.95%)** | −1 | −4 | equivalent outcome |
+## The five core skills
 
-This proves that the benchmark harness and the narrow-context route work on that fixture. It is **not** a measurement of Codex usage and **not** a production-wide savings claim. STOLZ A.I. has no measured provider-token claim yet. See [benchmarking](docs/benchmarking.md) for the evidence and its limits.
+### `stolz-route` — choose a route
 
-### Multi-runtime evidence in v0.7
+Use it when an optimization route is needed. It selects the smallest sufficient
+route and preserves the safe fallback.
 
-STOLZ A.I. retains sanitized C2 runtime evidence only for the exact tested versions Claude Code 2.1.251 and Qwen Code 0.22.3, both with adapter 1.0.0. Codex CLI 0.153.4 has four verified installed-local executions but no v0.7 C2 evidence row. C3 pair admission is implemented fail-closed, and every current provider pair remains withheld. Version drift, missing exports, mismatched outcomes, or unsafe data require a new check.
+### `stolz-context` — validate context before reading
 
-This evidence is scenario-scoped. It does not support aggregate, percentage, cost, provider-wide, or generalized superiority claims.
+Use it when a route manifest must be validated before reads. It loads immutable,
+route-required context and records identities.
 
-Installing STOLZ copies five skills and selects a profile plus a lazy adapter. It does not start a daemon, shared cache, durable state store, or automatic polling controller.
+### `stolz-reuse` — reuse verified results only
 
-## 🚀 Install
+Use it when a read, command, tool call, or result may repeat. It reuses only
+verified, identity-matched results; otherwise it runs and verifies once.
 
-Codex discovers repository skills in `.agents/skills`. From your project directory:
+### `stolz-quiet-state` — report meaningful changes
+
+Use it while polling, retrying, following cursors, or handling an asynchronous
+handoff. It surfaces material transitions only, keeping unchanged state out of
+model narration.
+
+### `stolz-benchmark` — compare equivalent routes
+
+Use it to evaluate a proposed efficiency improvement. It accepts a comparison
+only after equivalent outcome and verification gates pass.
+
+## Quick start
+
+Clone a tagged or reviewed revision, then validate it before copying the skill
+you need into your agent runtime's skills directory.
 
 ```bash
-git clone https://github.com/Sergey360/stolz-ai.git ../stolz-ai
-npm --prefix ../stolz-ai ci
-npm --prefix ../stolz-ai test
-mkdir -p .agents/skills
-cp -R ../stolz-ai/skills/stolz-* .agents/skills/
+git clone https://github.com/Sergey360/stolz-ai.git
+cd stolz-ai
+npm ci
+npm test
+
+# Example: install the routing skill into a runtime-managed skills directory.
+mkdir -p /path/to/agent-skills
+cp -R skills/stolz-route /path/to/agent-skills/stolz-route
 ```
 
-Then mention `$stolz-route` in Codex, or let Codex select a skill when the task matches its description. Claude Code, Qwen Code, Windows, and user-wide installation are covered in the [installation guide](docs/installation.md).
-
-## 🧰 The five skills
-
-| Skill | Use it when… |
-| --- | --- |
-| [`stolz-route`](skills/stolz-route/SKILL.md) | you need the smallest sufficient route for the task |
-| [`stolz-context`](skills/stolz-context/SKILL.md) | context should be validated and loaded just in time |
-| [`stolz-reuse`](skills/stolz-reuse/SKILL.md) | a verified read, command, tool call, or result may repeat |
-| [`stolz-quiet-state`](skills/stolz-quiet-state/SKILL.md) | polling or retries would otherwise repeat unchanged state |
-| [`stolz-benchmark`](skills/stolz-benchmark/SKILL.md) | an efficiency change needs an outcome-gated comparison |
-
-## 🛡️ Economy without weaker verification
-
-An optimization is valid only when the required outcome remains equivalent and all required checks pass. A smaller run with a weaker result is a regression, not a saving. Missing evidence stays missing; STOLZ A.I. never turns it into zero.
-
-The implementation is described in [architecture](docs/architecture.md). The repository test suite covers route selection, immutable context identities, verified reuse, operation deduplication, quiet state transitions, and benchmark gates.
+The documented validation surface is deliberately small:
 
 ```bash
 npm test
+npm run build
+```
+
+### Optional local Codex state
+
+For one explicit, workspace-local path, an application can connect bounded
+context fragments, verified reuse, and quiet state. It has no provider client,
+background timer, or automatic model invocation. The caller supplies the
+identities, policy, verification, and each snapshot; a miss or unavailable
+component selects the normal verified route.
+
+```js
+import { openCodexLocalState } from 'stolz-ai/codex-local-state';
+
+const state = openCodexLocalState({
+  enabled: true,
+  workspace: '/absolute/path/to/workspace',
+  max_storage_bytes: 8 * 1024 * 1024,
+});
+await state.initialize();
+```
+
+Read [Installation and compatibility](docs/installation.md#optional-local-codex-state)
+before integrating it. The state directory is local to the selected workspace;
+it stores private evidence locally and returns compact identities rather than
+raw logs or prompts.
+
+For deterministic profile selection, dry-run/install commands, lazy-loading
+rules, and removal, read [Installation and compatibility](docs/installation.md).
+
+## Compatibility without overclaiming
+
+The core skills are provider-neutral, but portability is not certification.
+The same five skills can be selected for Codex, Claude Code, and Qwen Code;
+profile resolution, adapter availability, runtime evidence, and provider
+evidence are separate claims.
+
+STOLZ v0.7 contains exact-version C2 sanitized runtime-telemetry evidence for
+Claude Code 2.1.251 and Qwen Code 0.22.3. It does not transfer to a newer
+runtime version. Codex CLI 0.153.4 was exercised in four installed-local runs
+on the v0.7 release contour, but Codex has no v0.7 C2 row. C3 pair admission is
+implemented fail-closed; every current provider pair remains withheld because
+no complete comparable provider-export pair has been admitted.
+
+Read the [exact capability matrix](docs/architecture.md#exact-capability-matrix)
+before describing support. A missing or insufficient capability must select a
+safe fallback; it must never lower the required outcome or verification.
+
+## Evidence boundary
+
+STOLZ A.I. documents mechanisms that can reduce waste, not a numerical saving
+claim. A published token-saving statement needs reproducible paired
+baseline/optimized evidence on the same versioned fixture, equivalent required
+outcomes, and passing verification for both routes. A lower-token run with a
+weaker outcome or failed verification is rejected—not counted as a saving.
+
+The [benchmarking guide](docs/benchmarking.md) separates `fixture_only`,
+`runtime_measured`, and provider-native evidence. It also records the mixed
+historical v0.4.1 result: one scoped scenario used fewer recorded tokens on the
+STOLZ route, while two used more. None of those reports proves a general v0.7.1
+saving. See `skills/stolz-benchmark/` for the admission rules.
+
+## Documentation
+
+- [Installation and compatibility](docs/installation.md)
+- [Architecture and exact capability matrix](docs/architecture.md)
+- [Benchmarking and evidence interpretation](docs/benchmarking.md)
+- [Русский README](README.ru.md)
+- [Nederlands README](README.nl.md)
+- [中文 README](README.zh.md)
+- [עברית README](README.he.md)
+- [Contributing](CONTRIBUTING.md)
+- [Security policy](SECURITY.md)
+- [Release notes](CHANGELOG.md)
+- [License](LICENSE) and [project notice](NOTICE)
+
+## Contributing
+
+```bash
+npm test
+npm run build
 npm run benchmark:check
 ```
 
-## 📚 Documentation
-
-- [Installation](docs/installation.md) — repository-local, user-wide, Windows, and Unix flows;
-- [Architecture](docs/architecture.md) — contracts, identities, reuse, quiet state, and benchmark gates;
-- [Benchmarking](docs/benchmarking.md) — reproducible evidence and interpretation limits;
-- [Security policy](SECURITY.md) · [Changelog](CHANGELOG.md).
-
-## ⚖️ License and independence
-
-[MIT licensed](LICENSE). STOLZ A.I. is an independent project and is not affiliated with or endorsed by OpenAI.
-
-<p align="center">
-  <sub>Created by <a href="https://github.com/Sergey360">Sergey360</a> · movement without the unnecessary</sub>
-</p>
+Read [Contributing](CONTRIBUTING.md) before opening a change. License and legal
+notices are in [LICENSE](LICENSE) and [NOTICE](NOTICE).

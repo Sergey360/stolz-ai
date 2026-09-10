@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "registry_id": "verified-reuse-contracts",
+  "registry_version": "1.0.0",
+  "contracts": [
+    { "schema_id": "reuse-identity", "schema_version": "1.0.0", "path": "identity.schema.json" },
+    { "schema_id": "reuse-policy", "schema_version": "1.0.0", "path": "policy.schema.json" }
+  ]
+}
