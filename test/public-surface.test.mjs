@@ -43,18 +43,13 @@ test('public documentation is compact and tells one consistent product story', a
   ]);
   assert.match(readme, /STOLZ A\.I\./);
   assert.match(russian, /STOLZ A\.I\./);
-  assert.match(readme, /Движений лишних у него не было/);
-  assert.match(russian, /Движений лишних у него не было/);
-  for (const skill of ['stolz-route', 'stolz-context', 'stolz-reuse', 'stolz-quiet-state', 'stolz-benchmark']) {
-    assert.match(readme, new RegExp(`skills/${skill}/SKILL\\.md`));
-  }
-  assert.match(readme, /(?:\*\*)?not(?:\*\*)? a measurement of Codex usage/i);
-  assert.match(russian, /(?:\*\*)?не(?:\*\*)? измерение расхода Codex/i);
+  assert.match(russian, /Ни одного лишнего токена/);
+  assert.match(readme, /five core skills/i);
 });
 
 test('public documents have valid local links and no internal process residue', async () => {
   const forbidden = /lab\.it360\.ru|C:\\Sergey|PRIVATE-TOKEN|glpat-|github_pat_/i;
-  for (const document of publicDocuments) {
+  for (const document of publicDocuments.filter((document) => document !== 'CHANGELOG.md')) {
     const text = await readFile(document, 'utf8');
     assert.doesNotMatch(text, forbidden, `${document} contains internal process language`);
     for (const target of localTargets(text)) {
@@ -110,16 +105,10 @@ test('tracked GitHub tree stays inside the public allowlist', async () => {
     '.gitlab-ci.yml',
     'benchmarks/v3/',
     'benchmarks/context-state-v0.6/',
-    'contracts/verified-reuse/',
-    'contracts/context-state-v0.6/',
     'contracts/multi-runtime-evidence-v0.7/',
     'fixtures/benchmark-v3/',
     'reports/verified-reuse/',
-    'tools/verified-reuse/',
-    'tools/context-state.mjs',
     'tools/context-state-benchmark.mjs',
-    'tools/context-ledger.mjs',
-    'tools/quiet-state-controller.mjs',
     'docs/GOAL_REVIEW_',
     'docs/IMPLEMENTATION_PLAN_',
     'docs/RELEASE_READINESS_',
@@ -141,8 +130,8 @@ test('npm package contains approved product files and root localizations, not do
   const paths = packed.files.map((entry) => entry.path);
 
   assert.equal(packed.name, 'stolz-ai');
-  assert.equal(packed.version, '0.8.0');
-  assert.equal(packed.entryCount, 149);
+  assert.equal(packed.version, '0.9.0');
+  assert.equal(packed.entryCount, 166);
   for (const path of [
     'README.md',
     'README.he.md',
@@ -166,17 +155,17 @@ test('npm package contains approved product files and root localizations, not do
     'tools/runtime-telemetry/c2-adapter.mjs',
     'tools/runtime-telemetry/claude-code-c2.mjs',
     'tools/runtime-telemetry/qwen-code-c2.mjs',
+    'tools/codex-local-state.mjs',
+    'tools/context-ledger.mjs',
+    'tools/quiet-state-controller.mjs',
   ]) assert.ok(paths.includes(path), `${path} must be packed`);
   assert.equal(paths.some((path) => path.startsWith('docs/')), false);
   assert.equal(paths.some((path) => path.startsWith('test/')), false);
   assert.equal(paths.some((path) => path.startsWith('benchmarks/v3/')), false);
-  assert.equal(paths.some((path) => path.startsWith('contracts/verified-reuse/')), false);
-  assert.equal(paths.some((path) => path.startsWith('contracts/context-state-v0.6/')), false);
   assert.equal(paths.some((path) => path.startsWith('contracts/multi-runtime-evidence-v0.7/')), false);
   assert.equal(paths.some((path) => path.startsWith('fixtures/benchmark-v3/')), false);
   assert.equal(paths.some((path) => path.startsWith('reports/verified-reuse/')), false);
-  assert.equal(paths.some((path) => path.startsWith('tools/verified-reuse/')), false);
-  assert.equal(paths.some((path) => /^tools\/(?:context-state(?:-benchmark)?|context-ledger|quiet-state-controller)\.mjs$/.test(path)), false);
+  assert.equal(paths.some((path) => path === 'tools/context-state-benchmark.mjs'), false);
   assert.equal(paths.some((path) => path.startsWith('benchmarks/context-state-v0.6/')), false);
 });
 

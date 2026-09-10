@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 420" role="img" aria-labelledby="title desc">
+  <title id="title">Маршрут Штольц А.И.</title>
+  <desc id="desc">Задача проходит по одному узкому маршруту, сохраняет обязательные проверки и даёт надёжный результат.</desc>
+  <rect width="360" height="420" fill="#171916"/>
+  <path d="M32 24h296M32 396h296" stroke="#464945"/>
+  <path d="M52 54v294" stroke="#464945" stroke-width="2"/>
+  <path d="M52 54v186" stroke="#e04a2f" stroke-width="3"/>
+  <circle cx="52" cy="62" r="7" fill="#e04a2f"/>
+  <circle cx="52" cy="154" r="7" fill="#e04a2f"/>
+  <circle cx="52" cy="246" r="7" fill="#171916" stroke="#f1e9db" stroke-width="3"/>
+  <circle cx="52" cy="340" r="7" fill="#f1e9db"/>
+  <text x="82" y="56" fill="#afb2ad" font-family="Arial, sans-serif" font-size="11" font-weight="700" letter-spacing="1.4">ЗАДАЧА</text>
+  <text x="82" y="79" fill="#f1e9db" font-family="Georgia, 'Noto Serif', serif" font-size="18" font-weight="700">Понятный запрос</text>
+  <path d="M82 101h246" stroke="#464945"/>
+  <text x="82" y="148" fill="#afb2ad" font-family="Arial, sans-serif" font-size="11" font-weight="700" letter-spacing="1.4">ОДИН МАРШРУТ</text>
+  <text x="82" y="174" fill="#f1e9db" font-family="Courier New, monospace" font-size="19" font-weight="700">stolz-route</text>
+  <text x="82" y="194" fill="#afb2ad" font-family="Arial, sans-serif" font-size="13">одна узкая ветка</text>
+  <path d="M82 217h246" stroke="#464945"/>
+  <text x="82" y="240" fill="#afb2ad" font-family="Arial, sans-serif" font-size="11" font-weight="700" letter-spacing="1.4">ПРОВЕРКА</text>
+  <text x="82" y="266" fill="#f1e9db" font-family="Georgia, 'Noto Serif', serif" font-size="18" font-weight="700">Обязательные проверки</text>
+  <path d="M82 289h246" stroke="#464945"/>
+  <rect x="82" y="312" width="246" height="56" fill="#f1e9db"/>
+  <text x="102" y="336" fill="#e04a2f" font-family="Arial, sans-serif" font-size="10" font-weight="700" letter-spacing="1.3">РЕЗУЛЬТАТ</text>
+  <text x="102" y="357" fill="#11110f" font-family="Georgia, 'Noto Serif', serif" font-size="18" font-weight="700">Надёжный итог</text>
+  <text x="180" y="389" fill="#afb2ad" font-family="Georgia, 'Noto Serif', serif" font-size="13" font-style="italic" text-anchor="middle">Ни одного лишнего токена.</text>
+</svg>

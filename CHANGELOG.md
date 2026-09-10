@@ -373,7 +373,7 @@ This is a private GitLab release candidate, not a published release. No
 `v0.2.0` tag, GitLab Release, package publication, `main` promotion,
 deployment, production smoke, or hypercare is created or claimed by this
 entry. Publication remains subject to the manual gates in
-[`docs/RELEASE_READINESS_V0.2.md`](docs/RELEASE_READINESS_V0.2.md).
+the historical v0.2 release-readiness record.
 
 ### Added
 
@@ -406,7 +406,7 @@ entry. Publication remains subject to the manual gates in
 - The candidate records a prospective `stolz-ai-0.2.0.tgz` file inventory,
   deterministic checksum procedure, private-access verification, controlled
   rollback path, and manual production-promotion gates in
-  [`docs/RELEASE_READINESS_V0.2.md`](docs/RELEASE_READINESS_V0.2.md).
+  the historical v0.2 release-readiness record.
 
 ## [0.1.0] - 2026-08-28
 
@@ -440,6 +440,6 @@ entry. Publication remains subject to the manual gates in
 
 ## Release format
 
-Use [docs/RELEASE_NOTES_TEMPLATE.md](docs/RELEASE_NOTES_TEMPLATE.md) for later
+Use the release-notes template from the maintainer workflow for later
 releases. The `v0.1.0` record is
 [docs/RELEASE_NOTES_v0.1.0.md](docs/RELEASE_NOTES_v0.1.0.md).
