@@ -64,7 +64,7 @@ test('public documents have valid local links and no internal process residue', 
   }
 });
 
-test('public documentation exposes the exact v0.7 evidence boundary', async () => {
+test('public documentation preserves the exact v0.8 evidence and lifecycle boundaries', async () => {
   const texts = await Promise.all(publicDocuments.map((document) => readFile(document, 'utf8')));
   const combined = texts.join('\n');
   for (const version of ['2.1.251', '0.22.3', '0.153.4']) {
@@ -75,7 +75,11 @@ test('public documentation exposes the exact v0.7 evidence boundary', async () =
   assert.match(combined, /runtime_measured/);
   assert.match(combined, /provider-native/);
   assert.match(combined, /input_identity_changed/);
-  assert.doesNotMatch(combined, /general v0\.7\.1 savings|универсальн\w+ экономи\w+ v0\.7\.1/i);
+  assert.match(combined, /status/);
+  assert.match(combined, /doctor/);
+  assert.match(combined, /rollback/);
+  assert.match(combined, /uninstall/);
+  assert.doesNotMatch(combined, /general v0\.8\.0 savings|универсальн\w+ экономи\w+ v0\.8\.0/i);
 });
 
 test('tracked GitHub tree stays inside the public allowlist', async () => {
@@ -137,8 +141,8 @@ test('npm package contains approved product files and root localizations, not do
   const paths = packed.files.map((entry) => entry.path);
 
   assert.equal(packed.name, 'stolz-ai');
-  assert.equal(packed.version, '0.7.1');
-  assert.equal(packed.entryCount, 147);
+  assert.equal(packed.version, '0.8.0');
+  assert.equal(packed.entryCount, 149);
   for (const path of [
     'README.md',
     'README.he.md',
@@ -156,6 +160,8 @@ test('npm package contains approved product files and root localizations, not do
     'fixtures/runtime-adapters/claude-code/c2.sanitized-telemetry.json',
     'fixtures/runtime-adapters/qwen-code/c2.sanitized-telemetry.json',
     'tools/c3-provider-pair-admission.mjs',
+    'contracts/install-lifecycle-manifest.schema.json',
+    'tools/profile-lifecycle.mjs',
     'tools/runtime-lifecycle.mjs',
     'tools/runtime-telemetry/c2-adapter.mjs',
     'tools/runtime-telemetry/claude-code-c2.mjs',
@@ -172,6 +178,15 @@ test('npm package contains approved product files and root localizations, not do
   assert.equal(paths.some((path) => path.startsWith('tools/verified-reuse/')), false);
   assert.equal(paths.some((path) => /^tools\/(?:context-state(?:-benchmark)?|context-ledger|quiet-state-controller)\.mjs$/.test(path)), false);
   assert.equal(paths.some((path) => path.startsWith('benchmarks/context-state-v0.6/')), false);
+});
+
+test('v0.8 public-release evidence records the private-validated archive identity', async () => {
+  const checksum = await readFile('.github/releases/stolz-ai-0.8.0.tgz.sha256', 'utf8');
+  const inventory = await readFile('.github/releases/stolz-ai-0.8.0.tgz.inventory.txt', 'utf8');
+  assert.match(checksum, /^c6ee64dfcb247f8fa0880d59469f30b4af688c2829bbc323bd9ed4ad725189f9\s+stolz-ai-0\.8\.0\.tgz/m);
+  assert.equal(inventory.trim().split(/\r?\n/).length, 149);
+  assert.match(inventory, /package\/contracts\/install-lifecycle-manifest\.schema\.json/);
+  assert.match(inventory, /package\/tools\/profile-lifecycle\.mjs/);
 });
 
 test('GitHub CI runs full public checks with read-only permissions', async () => {

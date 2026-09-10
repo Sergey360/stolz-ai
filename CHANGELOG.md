@@ -4,6 +4,16 @@ Notable user-facing changes to STOLZ A.I. are recorded here.
 
 ## Unreleased
 
+## 0.8.0 — 2026-09-10
+
+- Added an owned-install manifest, inspection-only `status` and `doctor`,
+  dry-run-first update, rollback, explicit v0.7.1 migration, and owned-only
+  uninstall commands.
+- Kept installation local: no provider or model call, daemon, shared cache,
+  durable state store, or automatic polling controller is created.
+- Published the exact 149-file archive validated by the private release; no
+  provider, percentage, cost, or generalized savings claim is broadened.
+
 ## 0.7.1 — 2026-09-10
 
 - Reconciled the five localized READMEs and three public guides with the

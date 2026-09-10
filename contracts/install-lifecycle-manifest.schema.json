@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stolz-ai.dev/contracts/install-lifecycle-manifest.schema.json",
+  "title": "STOLZ A.I. Owned Installation Manifest",
+  "description": "Records only files copied and owned by a v0.8 lifecycle installation. Files not listed here remain outside STOLZ ownership.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["manifest_version", "install_id", "package", "installation", "profile_installations", "managed_files"],
+  "properties": {
+    "manifest_version": { "const": "4.0" },
+    "install_id": { "type": "string", "pattern": "^stolz-[a-f0-9]{16}$" },
+    "package": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version"],
+      "properties": { "name": { "const": "stolz-ai" }, "version": { "type": "string", "minLength": 1 } }
+    },
+    "installation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scope", "runtime_id", "destination_layout"],
+      "properties": {
+        "scope": { "enum": ["project", "user"] },
+        "runtime_id": { "enum": ["codex", "claude-code", "qwen-code"] },
+        "destination_layout": { "enum": ["nested-skills", "runtime-skills-root"] }
+      }
+    },
+    "profile_installations": { "type": "array", "minItems": 1 },
+    "runtime_installations": { "type": "array", "minItems": 1 },
+    "managed_files": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["source_path", "destination_path", "sha256", "bytes"],
+        "properties": {
+          "source_path": { "type": "string", "pattern": "^skills/[^/]+/.+" },
+          "destination_path": { "type": "string", "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$)).+" },
+          "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+          "bytes": { "type": "integer", "minimum": 0 }
+        }
+      }
+    }
+  }
+}
