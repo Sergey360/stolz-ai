@@ -1,68 +1,101 @@
 # Installation
 
-STOLZ A.I. ships as five standalone skill directories. Codex can load them from a project or user skills directory; no runtime package or provider credential is required.
+STOLZ A.I. v0.7.1 installs five provider-neutral skill directories. It can
+resolve a runtime profile and copy those skills to a destination you select.
+It does not start a service, discover credentials, create a shared cache,
+persist runtime state, or run an automatic polling controller.
 
 ## Requirements
 
-- Git;
-- Node.js 20 or newer for the repository tests and benchmark;
-- Codex desktop, CLI, or IDE extension with local skills support.
+The release was verified with Node.js 22.22.2 and npm 10.9.7. The package has
+no runtime dependencies. Git is needed only when installing from a checkout.
 
-## Verify the checkout
-
-Keep the STOLZ A.I. checkout next to the project where you want to use it:
+Use the immutable `stolz-ai-0.7.1.tgz` asset from the v0.7.1 release when exact
+release identity matters. Verify its published SHA-256 before extracting it.
 
 ```bash
-git clone https://github.com/Sergey360/stolz-ai.git ../stolz-ai
-npm --prefix ../stolz-ai ci
-npm --prefix ../stolz-ai test
+tar -xzf stolz-ai-0.7.1.tgz
+cd package
+node -p "require('./package.json').version"
 ```
 
-`npm ci` installs test tooling only. The skills themselves have no runtime dependency and do not ask for provider credentials.
+The last command must print `0.7.1`.
 
-## Install for one repository
+## Resolve a profile
 
-Codex scans `.agents/skills` between the current directory and the repository root. Repository scope is the recommended default because the installed skills travel with the project and remain reviewable.
-
-### macOS and Linux
-
-Run from the target project:
+Runtime selection and provider selection are separate. Resolving a profile
+does not call a provider or infer a model.
 
 ```bash
-mkdir -p .agents/skills
-cp -R ../stolz-ai/skills/stolz-* .agents/skills/
+node tools/profile-cli.mjs resolve --runtime codex
+node tools/profile-cli.mjs resolve --runtime claude-code
+node tools/profile-cli.mjs resolve --runtime qwen-code
 ```
 
-### Windows PowerShell
+Each supported profile selects the same five skills and one lazy adapter. The
+adapter remains inactive until the host uses it.
 
-Run from the target project:
+## Preview an installation
 
-```powershell
-$source = (Resolve-Path '..\stolz-ai\skills').Path
-$destination = Join-Path (Get-Location) '.agents\skills'
-New-Item -ItemType Directory -Force -Path $destination | Out-Null
-Get-ChildItem -LiteralPath $source -Directory -Filter 'stolz-*' |
-  ForEach-Object { Copy-Item -LiteralPath $_.FullName -Destination $destination -Recurse }
+Always choose the destination explicitly. The installer validates the
+runtime-specific path but does not discover it for you.
+
+```bash
+node tools/profile-cli.mjs install --runtime codex --destination /absolute/path/to/skills --dry-run
+node tools/profile-cli.mjs install --runtime claude-code --destination /absolute/project/.claude/skills --dry-run
+node tools/profile-cli.mjs install --runtime qwen-code --destination /absolute/project/.qwen/skills --dry-run
 ```
 
-The result should contain five files at paths like `.agents/skills/stolz-route/SKILL.md`.
+Remove `--dry-run` only after reviewing the reported profile, adapter,
+destination, five skill names, and install manifest.
 
-## Install for the current user
-
-Codex also scans `$HOME/.agents/skills`. Copy the same five `stolz-*` directories there when you want them available in every repository. Prefer repository scope when a team should review or pin the exact skill revision.
-
-## Use a skill
-
-Start with `$stolz-route` when the route is unclear:
-
-```text
-$stolz-route choose the smallest sufficient route for this task, then keep all required verification.
+```bash
+node tools/profile-cli.mjs install --runtime claude-code --destination /absolute/project/.claude/skills
 ```
 
-You can also invoke a focused skill directly, for example `$stolz-context`. Codex may select one implicitly when the request matches the skill description.
+For Claude Code and Qwen Code, project destinations end in `.claude/skills/`
+and `.qwen/skills/`. For Codex, use the skills directory configured by your
+Codex environment; v0.7.1 does not guess a user-wide location.
 
-## Update or remove
+## Manual Codex copy
 
-To update, pull a reviewed STOLZ A.I. revision and replace the five installed `stolz-*` directories. To remove the suite, delete only those five directories. Restart Codex if a changed skill does not appear immediately.
+From a reviewed checkout, a repository-local Codex installation can be made
+without the profile installer:
 
-STOLZ A.I. is built and documented for Codex. The skill format may be readable by other agents, but this repository makes no compatibility promise for them.
+```bash
+mkdir -p /absolute/path/to/skills
+cp -R skills/stolz-* /absolute/path/to/skills/
+test -f /absolute/path/to/skills/stolz-route/SKILL.md
+```
+
+The installed set must be exactly:
+
+- `stolz-route`
+- `stolz-context`
+- `stolz-reuse`
+- `stolz-quiet-state`
+- `stolz-benchmark`
+
+Keep each skill's `references/` directory with its `SKILL.md`.
+
+## What the installer manages
+
+The public CLI supports only `resolve` and `install`. It does not implement
+status, doctor, update, uninstall, rollback, hooks, MCP configuration, daemon
+management, shared cache management, or durable state management.
+
+To update, resolve and dry-run the new immutable version, then replace only the
+five STOLZ directories at the selected destination. To remove the suite,
+delete only those five directories and the STOLZ install manifest after
+checking that no unrelated skills share the destination.
+
+## Evidence boundary
+
+- Claude Code C2 evidence applies only to runtime 2.1.251 with adapter 1.0.0.
+- Qwen Code C2 evidence applies only to runtime 0.22.3 with adapter 1.0.0.
+- Codex CLI 0.153.4 has verified installed-local executions but no v0.7 C2
+  evidence row.
+- Every current C3 provider pair remains withheld.
+
+Installation proves only that the selected files were resolved and copied. It
+does not extend certification to another version, model, provider, or task.

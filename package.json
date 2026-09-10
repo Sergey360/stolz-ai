@@ -1,6 +1,6 @@
 {
   "name": "stolz-ai",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "A token-efficient skill suite for Codex and compatible AI coding agents.",
   "license": "MIT",
   "private": false,
