@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stolz.ai/contracts/context-state-v0.6/delta-context.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_id", "schema_version", "repository", "base_git_object", "head_git_object", "changed_ranges", "retrieval"],
+  "properties": {
+    "schema_id": { "const": "delta-context" },
+    "schema_version": { "const": "0.6.0" },
+    "repository": { "$ref": "#/$defs/repository" },
+    "base_git_object": { "$ref": "#/$defs/gitObject" },
+    "head_git_object": { "$ref": "#/$defs/gitObject" },
+    "changed_ranges": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/changedRange" } },
+    "retrieval": {
+      "type": "object", "additionalProperties": false,
+      "required": ["strategy", "max_fragments", "max_total_bytes", "full_repository_reread", "full_repository_hash_required"],
+      "properties": {
+        "strategy": { "const": "changed_ranges_only" },
+        "max_fragments": { "type": "integer", "minimum": 1, "maximum": 256 },
+        "max_total_bytes": { "type": "integer", "minimum": 1, "maximum": 1048576 },
+        "full_repository_reread": { "const": false },
+        "full_repository_hash_required": { "const": false }
+      }
+    }
+  },
+  "$defs": {
+    "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "repository": { "type": "object", "additionalProperties": false, "required": ["repository_id", "canonical_remote"], "properties": { "repository_id": { "type": "string", "minLength": 1, "maxLength": 256 }, "canonical_remote": { "type": "string", "minLength": 1, "maxLength": 2048 } } },
+    "gitObject": { "type": "object", "additionalProperties": false, "required": ["object_type", "object_id"], "properties": { "object_type": { "enum": ["commit", "tree", "blob"] }, "object_id": { "$ref": "#/$defs/sha256" } } },
+    "changedRange": { "type": "object", "additionalProperties": false, "required": ["path", "head_blob", "start_byte", "end_byte", "content_sha256"], "properties": { "path": { "type": "string", "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.?/)[^\\\\\\u0000]+$", "minLength": 1, "maxLength": 4096 }, "head_blob": { "$ref": "#/$defs/sha256" }, "start_byte": { "type": "integer", "minimum": 0 }, "end_byte": { "type": "integer", "minimum": 1 }, "content_sha256": { "$ref": "#/$defs/sha256" } }, "allOf": [{ "not": { "properties": { "start_byte": { "const": 1 }, "end_byte": { "const": 0 } } } }] }
+  }
+}

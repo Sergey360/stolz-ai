@@ -1,6 +1,6 @@
 {
   "name": "stolz-ai",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "description": "A token-efficient skill suite for Codex and compatible AI coding agents.",
   "license": "MIT",
   "private": false,
@@ -16,15 +16,15 @@
     "skills/",
     "adapters/",
     "contracts/",
-    "!contracts/verified-reuse/",
-    "!contracts/context-state-v0.6/",
     "!contracts/multi-runtime-evidence-v0.7/",
     "tools/",
-    "!tools/verified-reuse/",
-    "!tools/context-state.mjs",
     "!tools/context-state-benchmark.mjs",
-    "!tools/context-ledger.mjs",
-    "!tools/quiet-state-controller.mjs",
+    "!tools/verified-reuse/claim-admission.mjs",
+    "!tools/verified-reuse/coalescing.mjs",
+    "!tools/verified-reuse/measurement.mjs",
+    "!tools/verified-reuse/projection.mjs",
+    "!tools/verified-reuse/run-installed-local-codex-scenarios.mjs",
+    "!tools/verified-reuse/scenario-record.mjs",
     "profiles/",
     "fixtures/runtime-adapters/claude-code/c0.fixture.json",
     "fixtures/runtime-adapters/claude-code/c2.sanitized-telemetry.json",
@@ -58,18 +58,22 @@
   "homepage": "https://github.com/Sergey360/stolz-ai#readme",
   "scripts": {
     "test": "node --test test/*.test.mjs",
+    "build": "node scripts/build-static.mjs",
     "benchmark": "node tools/benchmark-cli.mjs --suite benchmarks/suites/context-selection-v1.json --json benchmarks/reports/context-selection-v1.json --markdown benchmarks/reports/context-selection-v1.md",
     "benchmark:check": "npm run benchmark -- --check",
     "benchmark:v2": "node tools/benchmark-v2-cli.mjs --fixture benchmarks/v2/fixtures/context-selection-v2/suite.json",
     "benchmark:v2:check": "npm run benchmark:v2 -- --check",
     "benchmark:v3": "node tools/benchmark-v3-cli.mjs",
-    "profile": "node tools/profile-cli.mjs"
+    "profile": "node tools/profile-cli.mjs",
+    "check:public-surface": "node scripts/check-public-surface.mjs",
+    "verify:reuse:local-codex": "node tools/verified-reuse/run-installed-local-codex-scenarios.mjs"
   },
   "exports": {
     "./profile-resolver": "./tools/profile-resolver.mjs",
-    "./profile-installer": "./tools/profile-installer.mjs"
+    "./profile-installer": "./tools/profile-installer.mjs",
+    "./codex-local-state": "./tools/codex-local-state.mjs"
   },
-  "devDependencies": {
+  "dependencies": {
     "ajv": "8.20.0"
   }
 }

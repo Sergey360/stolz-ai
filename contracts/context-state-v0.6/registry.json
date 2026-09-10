@@ -1,0 +1,11 @@
+{
+  "schema_id": "stolz-context-state-registry",
+  "schema_version": "0.6.0",
+  "contracts": [
+    { "schema_id": "delta-context", "schema_version": "0.6.0", "path": "contracts/context-state-v0.6/delta-context.schema.json" },
+    { "schema_id": "read-fragment-ledger", "schema_version": "0.6.0", "path": "contracts/context-state-v0.6/read-fragment-ledger.schema.json" },
+    { "schema_id": "quiet-external-state", "schema_version": "0.6.0", "path": "contracts/context-state-v0.6/quiet-state.schema.json" },
+    { "schema_id": "runtime-profile-route", "schema_version": "0.6.0", "path": "contracts/context-state-v0.6/runtime-route.schema.json" },
+    { "schema_id": "separated-evidence-claim", "schema_version": "0.6.0", "path": "contracts/context-state-v0.6/evidence-claim.schema.json" }
+  ]
+}

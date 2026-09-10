@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stolz.ai/contracts/context-state-v0.6/runtime-route.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_id", "schema_version", "runtime", "profile_identity", "economic_evidence_identity", "requested_capabilities", "route_disposition", "mechanisms", "router_model_invocations", "bounded_mechanisms"],
+  "properties": {
+    "schema_id": { "const": "runtime-profile-route" },
+    "schema_version": { "const": "0.6.0" },
+    "runtime": { "type": "string", "enum": ["codex", "claude-code", "qwen-code"] },
+    "profile_identity": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "economic_evidence_identity": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "requested_capabilities": { "type": "array", "items": { "type": "string", "pattern": "^[a-z][a-z0-9_-]{0,63}$" }, "uniqueItems": true },
+    "route_disposition": { "enum": ["selected", "safe_baseline"] },
+    "mechanisms": { "type": "array", "maxItems": 16, "items": { "type": "object", "additionalProperties": false, "required": ["mechanism_id", "source", "eligible", "activated", "sequence_rank", "cost_rank", "measured_benefit_units", "total_overhead_units", "net_benefit_units", "decision"], "properties": { "mechanism_id": { "type": "string", "pattern": "^[a-z][a-z0-9_-]{0,63}$" }, "source": { "const": "runtime_profile" }, "eligible": { "type": "boolean" }, "activated": { "type": "boolean" }, "sequence_rank": { "type": "integer", "minimum": 0, "maximum": 15 }, "cost_rank": { "type": "integer", "minimum": 0, "maximum": 999 }, "measured_benefit_units": { "type": "integer", "minimum": 0 }, "total_overhead_units": { "type": "integer", "minimum": 0 }, "net_benefit_units": { "type": "integer" }, "decision": { "enum": ["activated", "runtime_mismatch", "profile_mismatch", "capability_missing", "profile_ineligible", "uneconomic_after_all_overhead", "mechanism_limit_reached"] } } } },
+    "router_model_invocations": { "const": 0 },
+    "bounded_mechanisms": { "type": "integer", "minimum": 1, "maximum": 16 }
+  }
+}

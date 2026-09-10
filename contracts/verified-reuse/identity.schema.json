@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stolz.ai/contracts/verified-reuse/identity/1.0.0",
+  "title": "STOLZ A.I. Verified Reuse Identity v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_id", "schema_version", "canonicalization_version", "program", "argv", "cwd", "inputs", "tool_runtime", "policy", "environment"],
+  "properties": {
+    "schema_id": { "const": "reuse-identity" },
+    "schema_version": { "const": "1.0.0" },
+    "canonicalization_version": { "const": "1" },
+    "program": { "$ref": "#/$defs/program" },
+    "argv": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+    "cwd": { "$ref": "#/$defs/cwd" },
+    "inputs": { "$ref": "#/$defs/inputs" },
+    "tool_runtime": { "$ref": "#/$defs/toolRuntime" },
+    "policy": { "$ref": "#/$defs/policyRef" },
+    "environment": { "type": "array", "items": { "$ref": "#/$defs/environment" } }
+  },
+  "$defs": {
+    "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "program": { "type": "object", "additionalProperties": false, "required": ["path_class", "digest_sha256", "version"], "properties": { "path_class": { "const": "workspace" }, "digest_sha256": { "$ref": "#/$defs/sha256" }, "version": { "type": "string", "minLength": 1 } } },
+    "cwd": { "type": "object", "additionalProperties": false, "required": ["path_class", "normalized_resolved_path"], "properties": { "path_class": { "const": "workspace" }, "normalized_resolved_path": { "type": "string", "minLength": 1 } } },
+    "input": { "type": "object", "additionalProperties": false, "required": ["path_class", "path", "digest_sha256"], "properties": { "path_class": { "const": "workspace" }, "path": { "type": "string", "minLength": 1 }, "digest_sha256": { "$ref": "#/$defs/sha256" } } },
+    "inputs": { "type": "object", "additionalProperties": false, "required": ["declared", "discovered", "discovery"], "properties": { "declared": { "type": "array", "items": { "$ref": "#/$defs/input" } }, "discovered": { "type": "array", "items": { "$ref": "#/$defs/input" } }, "discovery": { "type": "object", "additionalProperties": false, "required": ["state", "method_id"], "properties": { "state": { "const": "complete" }, "method_id": { "type": "string", "minLength": 1 } } } } },
+    "toolRuntime": { "type": "object", "additionalProperties": false, "required": ["tool", "tool_version", "runtime", "runtime_version"], "properties": { "tool": { "type": "string", "minLength": 1 }, "tool_version": { "type": "string", "minLength": 1 }, "runtime": { "type": "string", "minLength": 1 }, "runtime_version": { "type": "string", "minLength": 1 } } },
+    "policyRef": { "type": "object", "additionalProperties": false, "required": ["policy_id", "policy_version"], "properties": { "policy_id": { "type": "string", "minLength": 1 }, "policy_version": { "type": "string", "pattern": "^1\\.[0-9]+\\.[0-9]+$" } } },
+    "environment": { "type": "object", "additionalProperties": false, "required": ["name", "disposition", "digest_sha256"], "properties": { "name": { "type": "string", "minLength": 1 }, "disposition": { "const": "allowlisted_digest" }, "digest_sha256": { "$ref": "#/$defs/sha256" } } }
+  }
+}

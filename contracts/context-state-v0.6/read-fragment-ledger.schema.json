@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stolz.ai/contracts/context-state-v0.6/read-fragment-ledger.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_id", "schema_version", "fragment_id", "delta_identity", "range", "content_sha256", "identity", "durability", "invalidation"],
+  "properties": {
+    "schema_id": { "const": "read-fragment-ledger" },
+    "schema_version": { "const": "0.6.0" },
+    "fragment_id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._:-]{0,127}$" },
+    "delta_identity": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "range": { "type": "object", "additionalProperties": false, "required": ["path", "git_blob", "start_byte", "end_byte"], "properties": { "path": { "type": "string", "minLength": 1, "maxLength": 4096 }, "git_blob": { "type": "string", "pattern": "^[a-f0-9]{64}$" }, "start_byte": { "type": "integer", "minimum": 0 }, "end_byte": { "type": "integer", "minimum": 1 } } },
+    "content_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "identity": { "type": "object", "additionalProperties": false, "required": ["policy_identity", "schema_identity", "tool_identity"], "properties": { "policy_identity": { "type": "string", "pattern": "^[a-f0-9]{64}$" }, "schema_identity": { "type": "string", "pattern": "^[a-f0-9]{64}$" }, "tool_identity": { "type": "string", "pattern": "^[a-f0-9]{64}$" } } },
+    "durability": { "type": "object", "additionalProperties": false, "required": ["write_protocol", "commit_acknowledged", "stored_at"], "properties": { "write_protocol": { "enum": ["atomic_rename_fsync", "append_fsync"] }, "commit_acknowledged": { "const": true }, "stored_at": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(?:\\.[0-9]+)?Z$" } } },
+    "invalidation": { "type": "object", "additionalProperties": false, "required": ["state", "reasons"], "properties": { "state": { "enum": ["valid", "invalidated", "expired"] }, "reasons": { "type": "array", "items": { "enum": ["head_changed", "range_changed", "content_mismatch", "retention_expired", "integrity_failed", "policy_revoked", "policy_changed", "schema_changed", "tool_changed", "manual_purged"] }, "uniqueItems": true } } }
+  }
+}

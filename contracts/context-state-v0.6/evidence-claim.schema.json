@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stolz.ai/contracts/context-state-v0.6/evidence-claim.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_id", "schema_version", "scenario_id", "provider_native_evidence", "runtime_evidence", "outcome_identity", "verification_identity", "admission"],
+  "properties": {
+    "schema_id": { "const": "separated-evidence-claim" },
+    "schema_version": { "const": "0.6.0" },
+    "scenario_id": { "type": "string", "minLength": 1, "maxLength": 256 },
+    "provider_native_evidence": { "$ref": "#/$defs/evidence" },
+    "runtime_evidence": { "$ref": "#/$defs/evidence" },
+    "outcome_identity": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "verification_identity": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "admission": { "enum": ["admitted_scenario", "withheld"] },
+    "withheld_reason": { "type": "string", "pattern": "^[a-z][a-z0-9_:-]{0,127}$" }
+  },
+  "$defs": {
+    "evidence": { "type": "object", "additionalProperties": false, "required": ["kind", "record_sha256", "outcome_identity", "verification_identity", "available"], "properties": { "kind": { "enum": ["provider_native", "runtime_measured"] }, "record_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }, "outcome_identity": { "type": "string", "pattern": "^[a-f0-9]{64}$" }, "verification_identity": { "type": "string", "pattern": "^[a-f0-9]{64}$" }, "available": { "type": "boolean" } } }
+  }
+}
