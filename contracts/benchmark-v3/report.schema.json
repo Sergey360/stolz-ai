@@ -41,7 +41,7 @@
       "additionalProperties": false,
       "required": ["scenario_id", "cohort_id", "runtime_id", "provider_id", "model_configuration", "configuration_sha256", "environment_sha256"],
       "properties": {
-        "scenario_id": { "enum": ["reads-navigation", "build-check-invalidation", "quiet-wait-transition"] },
+        "scenario_id": { "enum": ["reads-navigation", "build-check-invalidation", "quiet-wait-transition", "bug-fix-delta", "code-review-fragments", "tests-invalidation", "docs-research-delta", "multi-step-state-transition", "handoff-state-summary"] },
         "cohort_id": { "$ref": "common.schema.json#/$defs/identifier" },
         "runtime_id": { "$ref": "common.schema.json#/$defs/identifier" },
         "provider_id": { "$ref": "common.schema.json#/$defs/identifier" },

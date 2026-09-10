@@ -1,0 +1,357 @@
+{
+  "schema_id": "benchmark-report",
+  "schema_version": "3.0.0",
+  "record_id": "report-81b2073f94c495c327af0cf1",
+  "captured_at": "2026-09-10T13:43:58.494Z",
+  "track": "provider_native",
+  "manifest": {
+    "schema_id": "pilot-manifest",
+    "schema_version": "1.0.0",
+    "record_id": "pilot-tests-invalidation-codex-cli-20260910",
+    "canonical_sha256": "082a903dd204a22b0c7b9c34943e205e3e6b963282d3adc6ad16fe7076e22c5f"
+  },
+  "scope": {
+    "scenario_id": "tests-invalidation",
+    "cohort_id": "tests-invalidation-codex-cli-20260910-133858-c2781688",
+    "runtime_id": "codex-cli",
+    "provider_id": "openai",
+    "model_configuration": "gpt-5.6-terra",
+    "configuration_sha256": "e1a164010288941e6a2d036716526a6752c826d840496c9cec157f8ee81ce567",
+    "environment_sha256": "657997c15d0e80da29e04de9010fa322d483f94e0ea7ebc493f53e7987e875b1"
+  },
+  "admission": {
+    "schema_id": "report-admission",
+    "schema_version": "1.0.0",
+    "record_id": "admission-81b2073f94c495c327af0cf1",
+    "captured_at": "2026-09-10T13:43:58.494Z",
+    "track": "provider_native",
+    "manifest": {
+      "schema_id": "pilot-manifest",
+      "schema_version": "1.0.0",
+      "record_id": "pilot-tests-invalidation-codex-cli-20260910",
+      "canonical_sha256": "082a903dd204a22b0c7b9c34943e205e3e6b963282d3adc6ad16fe7076e22c5f"
+    },
+    "included_attempts": [
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "tests-baseline-codex-001",
+        "canonical_sha256": "64360c682a20b73e33992c3894f06d955c060fdac97c672a9c47562f79f272df"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "tests-stolz-codex-001",
+        "canonical_sha256": "a24aa41ff44c5c7050043c3254905e676aa9564b8d7a110c6fb5385d6f39e8d8"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "tests-stolz-codex-002",
+        "canonical_sha256": "d0aa4c7d176045f788f1407ba46d081d7f47028da867865115e82b69dd276259"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "tests-baseline-codex-002",
+        "canonical_sha256": "6a9e40e6d4c0b5f56d7cd6b253e8ff36ce72703e79c25b04b058c5bbd5ff11bf"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "tests-baseline-codex-003",
+        "canonical_sha256": "e671677db1dea9811636bbffb26f02659d3c7e2b4e9044f41615c059eb35a260"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "tests-stolz-codex-003",
+        "canonical_sha256": "7b9bda40a7d4cc7d7ee319ee87ab998f4de8c10958e774b21b5ee7877e954a89"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "tests-stolz-codex-004",
+        "canonical_sha256": "1a29863608370d18ca0be8b7b4849ddc669ac9c33c38ca381d108cddaca8dd63"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "tests-baseline-codex-004",
+        "canonical_sha256": "8aae2fefd5675b68f0fc971d0f92992a627a0453462ae829342388dbc44402c3"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "tests-baseline-codex-005",
+        "canonical_sha256": "c284ae9f5d23a40879894893ab3d4a593428c85e1a9789a7a6f5c0e2f4ccdc7e"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "tests-stolz-codex-005",
+        "canonical_sha256": "0471b468811dbd6f76105c114702909155ef020a6bbe8d3bbfc330e938732f7a"
+      }
+    ],
+    "excluded_attempts": [],
+    "included_pairs": [
+      {
+        "schema_id": "benchmark-pair",
+        "schema_version": "1.0.0",
+        "record_id": "pair-10770f2d7a08cb2b08494020",
+        "canonical_sha256": "75edb8caf31595144a91dbc0243e74fe42fdbacff16ff86895f99e5b4acd7142"
+      },
+      {
+        "schema_id": "benchmark-pair",
+        "schema_version": "1.0.0",
+        "record_id": "pair-f9209cca62c1a5f60da7811e",
+        "canonical_sha256": "5c361a9118e3e95545f7d1b223def9bcc9ee99088a613af57a7247f95e07c151"
+      },
+      {
+        "schema_id": "benchmark-pair",
+        "schema_version": "1.0.0",
+        "record_id": "pair-b278b79a6dd393f4ccbf5799",
+        "canonical_sha256": "f42aa932731b20ceef02fdb792e028351f28b3a4a25e64272db1bd89b5efe137"
+      },
+      {
+        "schema_id": "benchmark-pair",
+        "schema_version": "1.0.0",
+        "record_id": "pair-8422da1736bc65bda9a71c8c",
+        "canonical_sha256": "412e27460674fc79ea919e127c7a56181c036496f82ce36fa9cc3c94f07f91c4"
+      },
+      {
+        "schema_id": "benchmark-pair",
+        "schema_version": "1.0.0",
+        "record_id": "pair-569941c98418d3283a96ec93",
+        "canonical_sha256": "4abf679f4332dfd7db9f9c7fa7f45601a50c1766456af4fc2534208b4384bb58"
+      }
+    ],
+    "excluded_pairs": [],
+    "gates": {
+      "track_authority": {
+        "status": "passed"
+      },
+      "provenance": {
+        "status": "passed"
+      },
+      "redaction_retention": {
+        "status": "passed"
+      },
+      "pricing": {
+        "status": "passed"
+      },
+      "overhead": {
+        "status": "passed"
+      },
+      "equal_outcome": {
+        "status": "passed"
+      },
+      "equal_verification": {
+        "status": "passed"
+      },
+      "release_publication": {
+        "status": "not_run",
+        "reason": "Aggregate/public claims remain withheld pending the stronger release/publication gates."
+      }
+    },
+    "admission": "withheld",
+    "admission_reason": "Aggregate admission is fail-closed until a complete cohort and every required gate pass.",
+    "public_claim": {
+      "kind": "provider_savings",
+      "disposition": "withheld",
+      "reason": "No release-admitted complete scoped cohort is available; aggregate claims remain withheld."
+    },
+    "canonical_sha256": "6525d511554c29e1788ebefeddcc200cefc6ed3750cd2bce264fd0f0a1df74b6"
+  },
+  "attempts": {
+    "included": [
+      "tests-baseline-codex-001",
+      "tests-stolz-codex-001",
+      "tests-stolz-codex-002",
+      "tests-baseline-codex-002",
+      "tests-baseline-codex-003",
+      "tests-stolz-codex-003",
+      "tests-stolz-codex-004",
+      "tests-baseline-codex-004",
+      "tests-baseline-codex-005",
+      "tests-stolz-codex-005"
+    ],
+    "excluded": []
+  },
+  "pairs": {
+    "included": [
+      "pair-10770f2d7a08cb2b08494020",
+      "pair-f9209cca62c1a5f60da7811e",
+      "pair-b278b79a6dd393f4ccbf5799",
+      "pair-8422da1736bc65bda9a71c8c",
+      "pair-569941c98418d3283a96ec93"
+    ],
+    "excluded": []
+  },
+  "metrics": [
+    {
+      "name": "net_token_delta",
+      "availability": "available",
+      "provenance": "derived",
+      "source_identity": "098f25f8e3ec52721373991ed02f95e79915fb17051540045c732e8d14a07f17",
+      "unit": "tokens",
+      "value": 23070,
+      "formula": "sum(admitted_pair_deltas)",
+      "component_ids": [
+        "pair-10770f2d7a08cb2b08494020",
+        "pair-f9209cca62c1a5f60da7811e",
+        "pair-b278b79a6dd393f4ccbf5799",
+        "pair-8422da1736bc65bda9a71c8c",
+        "pair-569941c98418d3283a96ec93"
+      ]
+    },
+    {
+      "name": "net_cost_delta",
+      "availability": "unknown",
+      "provenance": "derived",
+      "source_identity": "098f25f8e3ec52721373991ed02f95e79915fb17051540045c732e8d14a07f17",
+      "unit": "currency_minor_units",
+      "reason": "No complete admitted cohort metric is available."
+    }
+  ],
+  "pricing": {
+    "availability": "unavailable",
+    "reason": "The Codex CLI stream provides no admissible billing price; token comparison remains available while cost is unavailable."
+  },
+  "overhead_attribution": [
+    {
+      "component_id": "routing",
+      "availability": "available",
+      "source_identity": "283525d3d5df07ca3baa7eea9d5d9d679d1b1c5d970cdfc0b2e3491a53ccf85b",
+      "attribution_owner": "report-routing",
+      "unit": "count",
+      "value": 5
+    },
+    {
+      "component_id": "context_selection",
+      "availability": "available",
+      "source_identity": "ad481ada0f28963bfc7cebf6d144c0497c6afad8d25f61c65ee86877dcc4e0ec",
+      "attribution_owner": "report-context-selection",
+      "unit": "count",
+      "value": 5
+    },
+    {
+      "component_id": "reuse",
+      "availability": "available",
+      "source_identity": "b55c0e563b98a619b1a9822e9a758bc82e6f2d058fe30fe7638b3c7940c5645e",
+      "attribution_owner": "report-reuse",
+      "unit": "count",
+      "value": 0
+    },
+    {
+      "component_id": "quiet_state",
+      "availability": "available",
+      "source_identity": "5b30a85d52ed595aa3b948c5e03940fb0e9c9d4ab76b4452cfb5c6fba1f36dea",
+      "attribution_owner": "report-quiet-state",
+      "unit": "count",
+      "value": 0
+    },
+    {
+      "component_id": "benchmark_capture",
+      "availability": "available",
+      "source_identity": "938b82750c8c37fcf7804b1238271027efb11adc91de3332632e3fa6b95794bb",
+      "attribution_owner": "report-benchmark-capture",
+      "unit": "count",
+      "value": 5
+    },
+    {
+      "component_id": "verification",
+      "availability": "available",
+      "source_identity": "793a8f9f301ddac59d776c1691449eb4593719e3724ab90a5d8ef6b6ca07dfb8",
+      "attribution_owner": "report-verification",
+      "unit": "count",
+      "value": 5
+    },
+    {
+      "component_id": "retry",
+      "availability": "available",
+      "source_identity": "1662e0be78a7879f68584aca6bab3ad125a542fa87b0f7deabe1e074b96afba6",
+      "attribution_owner": "report-retry",
+      "unit": "count",
+      "value": 0
+    },
+    {
+      "component_id": "fallback",
+      "availability": "available",
+      "source_identity": "2d2ac3c93a940bd66444d4fafc92fd0ea0c410662f8071bfb6c89f4afc63fa60",
+      "attribution_owner": "report-fallback",
+      "unit": "count",
+      "value": 0
+    }
+  ],
+  "evidence": [
+    {
+      "attempt_id": "tests-baseline-codex-001",
+      "raw_evidence_sha256": "62ad4d82f0504a3f7781b1fac8da17bfdaadf70169a52f499bbb8dfaa59c6fb9",
+      "retained_evidence_sha256": "441836a8e8bafbca7f14781c21405897fb95591e918c031ebcd95f1a60934d4b",
+      "retained_locator": "retained:tests-invalidation-codex-cli-20260910-133858-c2781688:tests-baseline-codex-001"
+    },
+    {
+      "attempt_id": "tests-stolz-codex-001",
+      "raw_evidence_sha256": "a2ea9a1f4bb01ec55591a15b9aaea155d2a46d18ffa547f0f9e2d01219a4c6ec",
+      "retained_evidence_sha256": "c2989baae32a0e1273bd79cc9a775dec71dd1e9088a1e252eba0ee16544720c3",
+      "retained_locator": "retained:tests-invalidation-codex-cli-20260910-133858-c2781688:tests-stolz-codex-001"
+    },
+    {
+      "attempt_id": "tests-stolz-codex-002",
+      "raw_evidence_sha256": "0e2ebe2983d5c9dc9213818ac0415d5bff15a101dc6b6697a96262e719db4f75",
+      "retained_evidence_sha256": "72e53ef4a2a589ced9773fd930f31dcb70aa7f596f7e05665eb2e44eb49e00de",
+      "retained_locator": "retained:tests-invalidation-codex-cli-20260910-133858-c2781688:tests-stolz-codex-002"
+    },
+    {
+      "attempt_id": "tests-baseline-codex-002",
+      "raw_evidence_sha256": "9e8cfd277220b12c20034593b7d1972001da6663bcd6a1a09619fff1fb084af2",
+      "retained_evidence_sha256": "f9c27a8f6d2faf49f555d4d3123fb73964b8a243b6ba2bc15ea1ceffd8e4ed30",
+      "retained_locator": "retained:tests-invalidation-codex-cli-20260910-133858-c2781688:tests-baseline-codex-002"
+    },
+    {
+      "attempt_id": "tests-baseline-codex-003",
+      "raw_evidence_sha256": "20975a3fe9ee53a85e2c87a36121946a0f41fd69002bf3f7937c77c340a90cea",
+      "retained_evidence_sha256": "492a52fa37c63c11a5114c5f8f9e18062d7cf80cfa91d5a66e7c6622834d5cb3",
+      "retained_locator": "retained:tests-invalidation-codex-cli-20260910-133858-c2781688:tests-baseline-codex-003"
+    },
+    {
+      "attempt_id": "tests-stolz-codex-003",
+      "raw_evidence_sha256": "011ae1e137fb6de7afe02b3e7c7e41aab4060212f8a8bad8a7ab987d9bde2210",
+      "retained_evidence_sha256": "0b28f098cc58a4eb6ceffeac4678c7123fb37ab32bf524cd6945f6a331068fac",
+      "retained_locator": "retained:tests-invalidation-codex-cli-20260910-133858-c2781688:tests-stolz-codex-003"
+    },
+    {
+      "attempt_id": "tests-stolz-codex-004",
+      "raw_evidence_sha256": "744514f2dca32f6c0d5ecde91cb9846b1a0f5c092cb870bae0b404e11a82551b",
+      "retained_evidence_sha256": "50a3454c1b663523e6193df10a2791d2b3ff5c837970f50c6c16d4c1060a07b1",
+      "retained_locator": "retained:tests-invalidation-codex-cli-20260910-133858-c2781688:tests-stolz-codex-004"
+    },
+    {
+      "attempt_id": "tests-baseline-codex-004",
+      "raw_evidence_sha256": "8e7c8bcbdcdd317f5ecc97950da23499ab17706c2517cfd786d035a4ae0deef3",
+      "retained_evidence_sha256": "aed38c38430118856cb29e4bf4199e7a13863083d1370b38d42b998fc399d758",
+      "retained_locator": "retained:tests-invalidation-codex-cli-20260910-133858-c2781688:tests-baseline-codex-004"
+    },
+    {
+      "attempt_id": "tests-baseline-codex-005",
+      "raw_evidence_sha256": "ac83893cf43827f758f99fb0fafbd2fcb0ffd11da2e63e06a1e65943f7227153",
+      "retained_evidence_sha256": "e7e6205529d2c68892c6a949a76f5c6b3d51ce04949f6032e7cd80a768a5c07c",
+      "retained_locator": "retained:tests-invalidation-codex-cli-20260910-133858-c2781688:tests-baseline-codex-005"
+    },
+    {
+      "attempt_id": "tests-stolz-codex-005",
+      "raw_evidence_sha256": "59e304080c209fd2c0b6e3832444fc22788b34d7808dfabe410a2d8f1cfed985",
+      "retained_evidence_sha256": "f263c5a8594d073ed5a67af61bfb74676d5262a141400b328e7fa4b25800ed86",
+      "retained_locator": "retained:tests-invalidation-codex-cli-20260910-133858-c2781688:tests-stolz-codex-005"
+    }
+  ],
+  "claim": {
+    "kind": "provider_savings_percentage",
+    "disposition": "withheld",
+    "scope_statement": "Exact tests-invalidation cohort tests-invalidation-codex-cli-20260910-133858-c2781688; aggregate claim not admitted.",
+    "reason": "No release-admitted complete scoped cohort is available; aggregate claims remain withheld."
+  },
+  "reproduce_command": "benchmark:v3 --report benchmarks/v3/real/manifests/v010-tests-invalidation.json --output reports/benchmark-v3/real/v010-tests-invalidation.json",
+  "canonical_sha256": "f9d675286bb04d3c084b2ec066b1cad0dc183d86f52815166c998f89b217303b"
+}

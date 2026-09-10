@@ -32,7 +32,9 @@
   "allowed_docs": [
     "docs/architecture.md",
     "docs/benchmarking.md",
-    "docs/installation.md"
+    "docs/installation.md",
+    "docs/SOLUTION_DESIGN.md",
+    "docs/BRAND_PLATFORM.md"
   ],
   "forbidden_roots": [
     "internal",

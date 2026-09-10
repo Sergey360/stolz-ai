@@ -18,6 +18,8 @@ const publicDocuments = [
   'docs/installation.md',
   'docs/architecture.md',
   'docs/benchmarking.md',
+  'docs/SOLUTION_DESIGN.md',
+  'docs/BRAND_PLATFORM.md',
   'benchmarks/README.md',
 ];
 
@@ -130,8 +132,8 @@ test('npm package contains approved product files and root localizations, not do
   const paths = packed.files.map((entry) => entry.path);
 
   assert.equal(packed.name, 'stolz-ai');
-  assert.equal(packed.version, '0.9.0');
-  assert.equal(packed.entryCount, 166);
+  assert.equal(packed.version, '0.10.0');
+  assert.equal(packed.entryCount, 173);
   for (const path of [
     'README.md',
     'README.he.md',

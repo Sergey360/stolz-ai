@@ -31,7 +31,7 @@
     "captured_at": { "$ref": "common.schema.json#/$defs/utcTimestamp" },
     "canonical_sha256": { "$ref": "common.schema.json#/$defs/sha256" },
     "track": { "enum": ["provider_native", "runtime_measured"] },
-    "scenario_id": { "enum": ["reads-navigation", "build-check-invalidation", "quiet-wait-transition"] },
+    "scenario_id": { "enum": ["reads-navigation", "build-check-invalidation", "quiet-wait-transition", "bug-fix-delta", "code-review-fragments", "tests-invalidation", "docs-research-delta", "multi-step-state-transition", "handoff-state-summary"] },
     "cohort_id": { "$ref": "common.schema.json#/$defs/identifier" },
     "baseline": {
       "allOf": [

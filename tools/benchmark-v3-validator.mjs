@@ -249,7 +249,8 @@ function validatePilotManifest(record, errors) {
   add(errors, record.pair_order.filter((role) => role === 'baseline').length === record.repetitions, 'manifest_baseline_order_count_mismatch', '/pair_order');
   add(errors, record.pair_order.filter((role) => role === 'stolz').length === record.repetitions, 'manifest_stolz_order_count_mismatch', '/pair_order');
   add(errors, record.commands.reproduce.includes(`--scenario ${record.scenario_id} `), 'manifest_reproduce_scenario_mismatch', '/commands/reproduce');
-  add(errors, record.scenario_id === 'build-check-invalidation' ? record.invalidation_action.material : !record.invalidation_action.material, 'manifest_material_invalidation_mismatch', '/invalidation_action/material');
+  const materialScenarios = new Set(['build-check-invalidation', 'bug-fix-delta', 'tests-invalidation', 'multi-step-state-transition']);
+  add(errors, materialScenarios.has(record.scenario_id) ? record.invalidation_action.material : !record.invalidation_action.material, 'manifest_material_invalidation_mismatch', '/invalidation_action/material');
 }
 
 function refs(records, nestedKey) {
