@@ -61,7 +61,13 @@
           "enum": [
             "reads-navigation",
             "build-check-invalidation",
-            "quiet-wait-transition"
+            "quiet-wait-transition",
+            "bug-fix-delta",
+            "code-review-fragments",
+            "tests-invalidation",
+            "docs-research-delta",
+            "multi-step-state-transition",
+            "handoff-state-summary"
           ]
         },
         "cohort_id": { "$ref": "common.schema.json#/$defs/identifier" },

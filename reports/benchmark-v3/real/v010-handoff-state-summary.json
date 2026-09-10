@@ -1,0 +1,357 @@
+{
+  "schema_id": "benchmark-report",
+  "schema_version": "3.0.0",
+  "record_id": "report-8e25047209108fa4e17fa87e",
+  "captured_at": "2026-09-10T13:43:56.283Z",
+  "track": "provider_native",
+  "manifest": {
+    "schema_id": "pilot-manifest",
+    "schema_version": "1.0.0",
+    "record_id": "pilot-handoff-state-summary-codex-cli-20260910",
+    "canonical_sha256": "9754b14ce765406538517ae8ea2d4ece58e8be4e1ec80f1b7380147b112dc151"
+  },
+  "scope": {
+    "scenario_id": "handoff-state-summary",
+    "cohort_id": "handoff-state-summary-codex-cli-20260910-133858-b16070a8",
+    "runtime_id": "codex-cli",
+    "provider_id": "openai",
+    "model_configuration": "gpt-5.6-terra",
+    "configuration_sha256": "938604babc730185b2b2235a170c0522720466080f7d656169deab169b412cde",
+    "environment_sha256": "657997c15d0e80da29e04de9010fa322d483f94e0ea7ebc493f53e7987e875b1"
+  },
+  "admission": {
+    "schema_id": "report-admission",
+    "schema_version": "1.0.0",
+    "record_id": "admission-8e25047209108fa4e17fa87e",
+    "captured_at": "2026-09-10T13:43:56.283Z",
+    "track": "provider_native",
+    "manifest": {
+      "schema_id": "pilot-manifest",
+      "schema_version": "1.0.0",
+      "record_id": "pilot-handoff-state-summary-codex-cli-20260910",
+      "canonical_sha256": "9754b14ce765406538517ae8ea2d4ece58e8be4e1ec80f1b7380147b112dc151"
+    },
+    "included_attempts": [
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "handoff-baseline-codex-001",
+        "canonical_sha256": "a8ba5313d114f8854eb446bb33e62aa7c75d24a9266823ae151c76de30fd5882"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "handoff-stolz-codex-001",
+        "canonical_sha256": "e210f2581f0b40fe264be6ba3f202615a53106ad27767615a9d4081dd88b4830"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "handoff-stolz-codex-002",
+        "canonical_sha256": "737c11da1184dd0460577d536beabb50c24d7fa8889ac067cf4725ef91fc96ec"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "handoff-baseline-codex-002",
+        "canonical_sha256": "f1462ef48781e8290e64df6d75395ab6d2c858b0546e98c5eb9bc30b065942be"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "handoff-baseline-codex-003",
+        "canonical_sha256": "8507921a042a6e2c784b58a1b66dd0be43678f45bb0623bae95088dfe0c53dc4"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "handoff-stolz-codex-003",
+        "canonical_sha256": "76ec8965baf2d775f1bc65a0dd4f4857aabfb9644648726680dcb71850ee6a28"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "handoff-stolz-codex-004",
+        "canonical_sha256": "c9c7ab53afa682c18a62fbe8edd8c993e1c78a011bded3878be94e010f74d2e8"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "handoff-baseline-codex-004",
+        "canonical_sha256": "bb4484ea227da58dab4927768f3ed58b73d429f0843acfe178da7717a5c61b24"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "handoff-baseline-codex-005",
+        "canonical_sha256": "5c8de9d5ee8923cb6982b9994335e0739dcb63f15e9e2b18e13b7893233e6de2"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "handoff-stolz-codex-005",
+        "canonical_sha256": "2bbe49079822259cf5902cb094df6cb95821ec942215905b094aac213a3c80fc"
+      }
+    ],
+    "excluded_attempts": [],
+    "included_pairs": [
+      {
+        "schema_id": "benchmark-pair",
+        "schema_version": "1.0.0",
+        "record_id": "pair-03d17d1f1e4e0b78376de24e",
+        "canonical_sha256": "7ba43762604385f32127ab61d748fd06ef29949eee42bba6dc6fca70415a4f6a"
+      },
+      {
+        "schema_id": "benchmark-pair",
+        "schema_version": "1.0.0",
+        "record_id": "pair-93c9d60fabbecf21c3fb0e32",
+        "canonical_sha256": "c44861671c64c1a90f2c74a8369917d112b2f9b690c219312af60d2eaf575c34"
+      },
+      {
+        "schema_id": "benchmark-pair",
+        "schema_version": "1.0.0",
+        "record_id": "pair-5691a489ab83423ea2d2ea17",
+        "canonical_sha256": "5a2a177dc58a2f1bb999b84519110564feb207313eff130ddecaebb9ee289a50"
+      },
+      {
+        "schema_id": "benchmark-pair",
+        "schema_version": "1.0.0",
+        "record_id": "pair-85166053260654a19c1fbe38",
+        "canonical_sha256": "752e31d1f21d4282dde242551d91bf1eeec51f30a189e60b78fc55e95f50b49c"
+      },
+      {
+        "schema_id": "benchmark-pair",
+        "schema_version": "1.0.0",
+        "record_id": "pair-89dd53579352bf42a3f26387",
+        "canonical_sha256": "1f26eb198cb5692f07b7cb1bf5e54e644cbb54d38409d146aec87c47826fdad8"
+      }
+    ],
+    "excluded_pairs": [],
+    "gates": {
+      "track_authority": {
+        "status": "passed"
+      },
+      "provenance": {
+        "status": "passed"
+      },
+      "redaction_retention": {
+        "status": "passed"
+      },
+      "pricing": {
+        "status": "passed"
+      },
+      "overhead": {
+        "status": "passed"
+      },
+      "equal_outcome": {
+        "status": "passed"
+      },
+      "equal_verification": {
+        "status": "passed"
+      },
+      "release_publication": {
+        "status": "not_run",
+        "reason": "Aggregate/public claims remain withheld pending the stronger release/publication gates."
+      }
+    },
+    "admission": "withheld",
+    "admission_reason": "Aggregate admission is fail-closed until a complete cohort and every required gate pass.",
+    "public_claim": {
+      "kind": "provider_savings",
+      "disposition": "withheld",
+      "reason": "No release-admitted complete scoped cohort is available; aggregate claims remain withheld."
+    },
+    "canonical_sha256": "df9014064f3f53c19fb4a8e61f3f0a6220532924ead368cc6d77ef88e6e3c68b"
+  },
+  "attempts": {
+    "included": [
+      "handoff-baseline-codex-001",
+      "handoff-stolz-codex-001",
+      "handoff-stolz-codex-002",
+      "handoff-baseline-codex-002",
+      "handoff-baseline-codex-003",
+      "handoff-stolz-codex-003",
+      "handoff-stolz-codex-004",
+      "handoff-baseline-codex-004",
+      "handoff-baseline-codex-005",
+      "handoff-stolz-codex-005"
+    ],
+    "excluded": []
+  },
+  "pairs": {
+    "included": [
+      "pair-03d17d1f1e4e0b78376de24e",
+      "pair-93c9d60fabbecf21c3fb0e32",
+      "pair-5691a489ab83423ea2d2ea17",
+      "pair-85166053260654a19c1fbe38",
+      "pair-89dd53579352bf42a3f26387"
+    ],
+    "excluded": []
+  },
+  "metrics": [
+    {
+      "name": "net_token_delta",
+      "availability": "available",
+      "provenance": "derived",
+      "source_identity": "14a41997fa16c894037bfca9019124d063a6f47f22da603c759f340436d9a13d",
+      "unit": "tokens",
+      "value": 22643,
+      "formula": "sum(admitted_pair_deltas)",
+      "component_ids": [
+        "pair-03d17d1f1e4e0b78376de24e",
+        "pair-93c9d60fabbecf21c3fb0e32",
+        "pair-5691a489ab83423ea2d2ea17",
+        "pair-85166053260654a19c1fbe38",
+        "pair-89dd53579352bf42a3f26387"
+      ]
+    },
+    {
+      "name": "net_cost_delta",
+      "availability": "unknown",
+      "provenance": "derived",
+      "source_identity": "14a41997fa16c894037bfca9019124d063a6f47f22da603c759f340436d9a13d",
+      "unit": "currency_minor_units",
+      "reason": "No complete admitted cohort metric is available."
+    }
+  ],
+  "pricing": {
+    "availability": "unavailable",
+    "reason": "The Codex CLI stream provides no admissible billing price; token comparison remains available while cost is unavailable."
+  },
+  "overhead_attribution": [
+    {
+      "component_id": "routing",
+      "availability": "available",
+      "source_identity": "a57e9361cd7bd3dd3d4e9a8279e179c81c916809783294f31640301de9ab18d3",
+      "attribution_owner": "report-routing",
+      "unit": "count",
+      "value": 5
+    },
+    {
+      "component_id": "context_selection",
+      "availability": "available",
+      "source_identity": "702553ca2eec39dc4a75e17c4c70ff2382ff6f5a71ba49194804c114ad611513",
+      "attribution_owner": "report-context-selection",
+      "unit": "count",
+      "value": 5
+    },
+    {
+      "component_id": "reuse",
+      "availability": "available",
+      "source_identity": "38c769c950432b5e1aea715d90cc70db462704aa2d80482779ced07e35ee5f01",
+      "attribution_owner": "report-reuse",
+      "unit": "count",
+      "value": 0
+    },
+    {
+      "component_id": "quiet_state",
+      "availability": "available",
+      "source_identity": "7294b2d9f9b596f2386a187733842a6d7eff4c834e9d999f4223f7dfa24d0b61",
+      "attribution_owner": "report-quiet-state",
+      "unit": "count",
+      "value": 0
+    },
+    {
+      "component_id": "benchmark_capture",
+      "availability": "available",
+      "source_identity": "4bd4576dd6ee1484eae899c372a9e32f0342378cc686a6816016d00209745772",
+      "attribution_owner": "report-benchmark-capture",
+      "unit": "count",
+      "value": 5
+    },
+    {
+      "component_id": "verification",
+      "availability": "available",
+      "source_identity": "1fa84c8229ae6167b39c314e51cd5aa84fc116f8f50fa1f93da598bb9bccf362",
+      "attribution_owner": "report-verification",
+      "unit": "count",
+      "value": 5
+    },
+    {
+      "component_id": "retry",
+      "availability": "available",
+      "source_identity": "b3d01cfd548fcd655fc0b907487183baa11a522c80c2ef41058449697732606c",
+      "attribution_owner": "report-retry",
+      "unit": "count",
+      "value": 0
+    },
+    {
+      "component_id": "fallback",
+      "availability": "available",
+      "source_identity": "ee8d98faaedd156b6342f37e5e4c53a6e4a8adf2f3560ccd8a1151c15c377518",
+      "attribution_owner": "report-fallback",
+      "unit": "count",
+      "value": 0
+    }
+  ],
+  "evidence": [
+    {
+      "attempt_id": "handoff-baseline-codex-001",
+      "raw_evidence_sha256": "14d6d407324a8229c08371286fb1f902cba9032fc1741b2293fcaa130ba4f3b6",
+      "retained_evidence_sha256": "c9b5434cf886b60f932458646324fc6f57ca6644595229a70327c6a1b7a6605c",
+      "retained_locator": "retained:handoff-state-summary-codex-cli-20260910-133858-b16070a8:handoff-baseline-codex-001"
+    },
+    {
+      "attempt_id": "handoff-stolz-codex-001",
+      "raw_evidence_sha256": "1bb78416bbbc5899ce98aa98ab2e736adbac781fbfe75450b808dcc0b1030ea9",
+      "retained_evidence_sha256": "6a7e64e90f5185b1a5d54a8fb7506c46412fd7e612200430604a6105a1574e3c",
+      "retained_locator": "retained:handoff-state-summary-codex-cli-20260910-133858-b16070a8:handoff-stolz-codex-001"
+    },
+    {
+      "attempt_id": "handoff-stolz-codex-002",
+      "raw_evidence_sha256": "f44d3907366c4bca4ad4872f00d800dabe29720a13522fcd860ad7279a14eea7",
+      "retained_evidence_sha256": "f0dbbb130ba0ddbca08139f245d773692c9b33617f452a66b3db9263904fc54b",
+      "retained_locator": "retained:handoff-state-summary-codex-cli-20260910-133858-b16070a8:handoff-stolz-codex-002"
+    },
+    {
+      "attempt_id": "handoff-baseline-codex-002",
+      "raw_evidence_sha256": "b29cfdf46501899388b7083f1cce420ba5f79dc8f7047eca7ef10f642bdd522e",
+      "retained_evidence_sha256": "9103248c3560113112ecde1a4bb9452fc3eaa781ed53c42119c5ae20b615226a",
+      "retained_locator": "retained:handoff-state-summary-codex-cli-20260910-133858-b16070a8:handoff-baseline-codex-002"
+    },
+    {
+      "attempt_id": "handoff-baseline-codex-003",
+      "raw_evidence_sha256": "b5a8b365c3abfdddfb5a607278e530014625ac4006a9079c01fa0f84b148c6eb",
+      "retained_evidence_sha256": "1b3a8151c389fb43cafe74d0e9ecc5c8a65903d1e66dc7297e21744ccb2f9aef",
+      "retained_locator": "retained:handoff-state-summary-codex-cli-20260910-133858-b16070a8:handoff-baseline-codex-003"
+    },
+    {
+      "attempt_id": "handoff-stolz-codex-003",
+      "raw_evidence_sha256": "cb1ad7392c45630aa641138f862e5f379a0146d25748d13f82db5d7701bd9e33",
+      "retained_evidence_sha256": "b9a6330e7e4e7f6a9f4e00bf906fa23fa85671c8a9e567eaefff5807a9f82679",
+      "retained_locator": "retained:handoff-state-summary-codex-cli-20260910-133858-b16070a8:handoff-stolz-codex-003"
+    },
+    {
+      "attempt_id": "handoff-stolz-codex-004",
+      "raw_evidence_sha256": "f0b65fdedc3f72f0553996955ca95fa4d4331bcaa9efab34e29b725448ab60f9",
+      "retained_evidence_sha256": "d199ccbfe5504fc4d60cef0283556f10a0963250ce18b01d6058e10cde8e3997",
+      "retained_locator": "retained:handoff-state-summary-codex-cli-20260910-133858-b16070a8:handoff-stolz-codex-004"
+    },
+    {
+      "attempt_id": "handoff-baseline-codex-004",
+      "raw_evidence_sha256": "334d07b5dbcd6e67c4767508a432006c05ce60381dbe56ba0f564f7d4fb9b537",
+      "retained_evidence_sha256": "9d6d98299e97c0dce14dff07abe151ff5f27b99b5e71ec6a143685b55037a5e9",
+      "retained_locator": "retained:handoff-state-summary-codex-cli-20260910-133858-b16070a8:handoff-baseline-codex-004"
+    },
+    {
+      "attempt_id": "handoff-baseline-codex-005",
+      "raw_evidence_sha256": "ab79f2a994a7a2ad19f35622732cfc4e68de7e1af8d019868745712c2c110631",
+      "retained_evidence_sha256": "23185b5bf5f9f4d64db771f3a7dde3534bf6f1b1d5375871c1ce1f4dda2b37a0",
+      "retained_locator": "retained:handoff-state-summary-codex-cli-20260910-133858-b16070a8:handoff-baseline-codex-005"
+    },
+    {
+      "attempt_id": "handoff-stolz-codex-005",
+      "raw_evidence_sha256": "b00552928aa874b256574d92b6ddf109ac62cd03dbf1dc0af6aa067c7c77caa2",
+      "retained_evidence_sha256": "d25cccd644088692eb012f17decde0d8418be023e2cb59836e16bdf1831808c8",
+      "retained_locator": "retained:handoff-state-summary-codex-cli-20260910-133858-b16070a8:handoff-stolz-codex-005"
+    }
+  ],
+  "claim": {
+    "kind": "provider_savings_percentage",
+    "disposition": "withheld",
+    "scope_statement": "Exact handoff-state-summary cohort handoff-state-summary-codex-cli-20260910-133858-b16070a8; aggregate claim not admitted.",
+    "reason": "No release-admitted complete scoped cohort is available; aggregate claims remain withheld."
+  },
+  "reproduce_command": "benchmark:v3 --report benchmarks/v3/real/manifests/v010-handoff-state-summary.json --output reports/benchmark-v3/real/v010-handoff-state-summary.json",
+  "canonical_sha256": "089568a7acf7517313f47bf469b915c041fe604d24bfc5173d2f2ebbbb0a7a42"
+}

@@ -3,6 +3,20 @@
 All notable changes to STOLZ A.I. are recorded here. Releases follow the
 repository's immutable-tag policy; unpublished work is not a release.
 
+## [0.10.0] - 2026-09-10
+
+### Added
+
+- Added sealed, real Codex CLI comparisons of the publicly installed v0.9.0
+  package across bug-fix, code review, tests, documentation research,
+  multi-step work, and handoff tasks.
+
+### Boundaries
+
+- Provider-token, cost, aggregate, and percentage claims remain withheld when
+  provider-native billing telemetry is unavailable. Runtime observations never
+  become provider usage or cost evidence.
+
 ## [0.9.0] - Unreleased
 
 ### Added
@@ -373,7 +387,7 @@ This is a private GitLab release candidate, not a published release. No
 `v0.2.0` tag, GitLab Release, package publication, `main` promotion,
 deployment, production smoke, or hypercare is created or claimed by this
 entry. Publication remains subject to the manual gates in
-the historical v0.2 release-readiness record.
+[`docs/RELEASE_READINESS_V0.2.md`](docs/RELEASE_READINESS_V0.2.md).
 
 ### Added
 
@@ -406,7 +420,7 @@ the historical v0.2 release-readiness record.
 - The candidate records a prospective `stolz-ai-0.2.0.tgz` file inventory,
   deterministic checksum procedure, private-access verification, controlled
   rollback path, and manual production-promotion gates in
-  the historical v0.2 release-readiness record.
+  [`docs/RELEASE_READINESS_V0.2.md`](docs/RELEASE_READINESS_V0.2.md).
 
 ## [0.1.0] - 2026-08-28
 
@@ -440,6 +454,6 @@ the historical v0.2 release-readiness record.
 
 ## Release format
 
-Use the release-notes template from the maintainer workflow for later
+Use [docs/RELEASE_NOTES_TEMPLATE.md](docs/RELEASE_NOTES_TEMPLATE.md) for later
 releases. The `v0.1.0` record is
 [docs/RELEASE_NOTES_v0.1.0.md](docs/RELEASE_NOTES_v0.1.0.md).
