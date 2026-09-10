@@ -6,7 +6,7 @@
   <img src="assets/brand/stolz-readme-light.png" width="820" alt="STOLZ A.I. — a folded book-page S with a red bookmark">
 </picture>
 
-**Five focused Codex skills for efficient AI-agent work.**  
+**Five focused skills for efficient, verifiable coding-agent work.**
 *No token wasted.*
 
 **English** · [Русский](README.ru.md) · [Nederlands](README.nl.md) · [中文](README.zh.md) · [עברית](README.he.md)
@@ -31,7 +31,7 @@ The project follows the same principle: **every token should do useful work**.
 
 ## 🎯 What it saves
 
-STOLZ A.I. is five small, composable skills for Codex:
+STOLZ A.I. is five small, composable skills for Codex and compatible coding-agent runtimes:
 
 - 🧭 **Route** — choose one sufficient route instead of loading every instruction;
 - 📖 **Context** — read only the context required by that route;
@@ -55,11 +55,13 @@ This proves that the benchmark harness and the narrow-context route work on that
 
 ### Multi-runtime evidence in v0.7
 
-STOLZ A.I. can retain sanitized C2 runtime evidence for the exact tested versions Claude Code 2.1.251 and Qwen Code 0.22.3. A C3 comparison is admitted only when two distinct sanitized provider exports belong to the same scenario and carry equal outcome and verification identities. Version drift, missing exports, mismatched outcomes, or unsafe data withhold the claim and require a new check.
+STOLZ A.I. retains sanitized C2 runtime evidence only for the exact tested versions Claude Code 2.1.251 and Qwen Code 0.22.3, both with adapter 1.0.0. Codex CLI 0.153.4 has four verified installed-local executions but no v0.7 C2 evidence row. C3 pair admission is implemented fail-closed, and every current provider pair remains withheld. Version drift, missing exports, mismatched outcomes, or unsafe data require a new check.
 
 This evidence is scenario-scoped. It does not support aggregate, percentage, cost, provider-wide, or generalized superiority claims.
 
-## 🚀 Install in Codex
+Installing STOLZ copies five skills and selects a profile plus a lazy adapter. It does not start a daemon, shared cache, durable state store, or automatic polling controller.
+
+## 🚀 Install
 
 Codex discovers repository skills in `.agents/skills`. From your project directory:
 
@@ -71,7 +73,7 @@ mkdir -p .agents/skills
 cp -R ../stolz-ai/skills/stolz-* .agents/skills/
 ```
 
-Then mention `$stolz-route` in Codex, or let Codex select a skill when the task matches its description. Windows and user-wide installation are covered in the [installation guide](docs/installation.md).
+Then mention `$stolz-route` in Codex, or let Codex select a skill when the task matches its description. Claude Code, Qwen Code, Windows, and user-wide installation are covered in the [installation guide](docs/installation.md).
 
 ## 🧰 The five skills
 

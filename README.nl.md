@@ -6,7 +6,7 @@
   <img src="assets/brand/stolz-readme-light.png" width="820" alt="STOLZ A.I. — een S van gevouwen boekpagina's met een rode bladwijzer">
 </picture>
 
-**Vijf gerichte Codex-skills voor efficiënt werk van AI-agents.**  
+**Vijf gerichte skills voor efficiënt en verifieerbaar werk van programmeeragents.**
 *Geen token verspild.*
 
 [English](README.md) · [Русский](README.ru.md) · **Nederlands** · [中文](README.zh.md) · [עברית](README.he.md)
@@ -31,7 +31,7 @@ Het project volgt hetzelfde principe: **elke token moet nuttig werk verrichten**
 
 ## 🎯 Wat het bespaart
 
-STOLZ A.I. bestaat uit vijf kleine, combineerbare skills voor Codex:
+STOLZ A.I. bestaat uit vijf kleine, combineerbare skills voor Codex en compatibele runtimes:
 
 - 🧭 **Route** — kies één toereikende route in plaats van alle instructies te laden;
 - 📖 **Context** — lees alleen de context die voor die route nodig is;
@@ -52,6 +52,10 @@ De meegeleverde synthetische fixture voor contextselectie bereikt hetzelfde geva
 | Verschil | **−550 (−35,95%)** | −1 | −4 | gelijkwaardig resultaat |
 
 Dit toont aan dat de benchmark-harness en de route met beperkte context op deze fixture werken. Het is **geen** meting van Codex-gebruik en **geen** algemene claim over besparingen in productie. STOLZ A.I. heeft nog geen gemeten claim over provider-tokens. Zie [benchmarking](docs/benchmarking.md) voor het bewijs en de grenzen ervan.
+
+### Multi-runtime-bewijs in v0.7
+
+C2-bewijs geldt uitsluitend voor Claude Code 2.1.251 en Qwen Code 0.22.3 met adapter 1.0.0. Vier lokale uitvoeringen zijn geverifieerd met Codex CLI 0.153.4, maar Codex heeft geen v0.7 C2-rij. C3-paaradmissie is fail-closed geïmplementeerd en alle huidige providerparen blijven `withheld`. Installatie start geen daemon, gedeelde cache, duurzame opslag of automatische pollingcontroller.
 
 ## 🚀 Installeren in Codex
 

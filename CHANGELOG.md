@@ -4,6 +4,22 @@ Notable user-facing changes to STOLZ A.I. are recorded here.
 
 ## Unreleased
 
+## 0.7.1 — 2026-09-10
+
+- Reconciled the five localized READMEs and three public guides with the
+  surface that v0.7 actually ships.
+- Published an exact capability matrix: Claude Code 2.1.251 and Qwen Code
+  0.22.3 retain their C2 evidence; Codex CLI 0.153.4 is verified
+  installed-local but has no v0.7 C2 row; every current C3 provider pair
+  remains withheld.
+- Added checked installation commands for Codex, Claude Code, and Qwen Code,
+  plus examples of minimal context selection and safe refusal of stale reuse.
+- Distinguished fixture-only, runtime-measured, and provider-native evidence
+  and recorded the mixed historical v0.4.1 measurements without turning them
+  into a general savings claim.
+- Published the byte-identical 147-file archive accepted by the private
+  release; no runtime, provider, or savings claim was broadened.
+
 ## 0.7.0 — 2026-09-10
 
 - Added fail-closed C2 runtime evidence for the exact tested versions Claude

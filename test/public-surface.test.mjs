@@ -64,6 +64,20 @@ test('public documents have valid local links and no internal process residue', 
   }
 });
 
+test('public documentation exposes the exact v0.7 evidence boundary', async () => {
+  const texts = await Promise.all(publicDocuments.map((document) => readFile(document, 'utf8')));
+  const combined = texts.join('\n');
+  for (const version of ['2.1.251', '0.22.3', '0.153.4']) {
+    assert.match(combined, new RegExp(version.replaceAll('.', '\\.')));
+  }
+  assert.match(combined, /C3[^\n]*(?:withheld|остаются `withheld`)/i);
+  assert.match(combined, /fixture_only/);
+  assert.match(combined, /runtime_measured/);
+  assert.match(combined, /provider-native/);
+  assert.match(combined, /input_identity_changed/);
+  assert.doesNotMatch(combined, /general v0\.7\.1 savings|универсальн\w+ экономи\w+ v0\.7\.1/i);
+});
+
 test('tracked GitHub tree stays inside the public allowlist', async () => {
   const manifest = JSON.parse(await readFile('.github/public-surface.json', 'utf8'));
   const { stdout } = await execFileAsync('git', ['ls-files', '-z']);
@@ -123,7 +137,7 @@ test('npm package contains approved product files and root localizations, not do
   const paths = packed.files.map((entry) => entry.path);
 
   assert.equal(packed.name, 'stolz-ai');
-  assert.equal(packed.version, '0.7.0');
+  assert.equal(packed.version, '0.7.1');
   assert.equal(packed.entryCount, 147);
   for (const path of [
     'README.md',
