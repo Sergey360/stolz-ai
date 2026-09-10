@@ -1,8 +1,7 @@
-import { cp, lstat, mkdir, realpath, writeFile } from 'node:fs/promises';
-import { createHash } from 'node:crypto';
+import { cp, lstat, mkdir, realpath, rm, writeFile } from 'node:fs/promises';
 import { basename, dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { UNIVERSAL_SKILLS } from './profile-resolver.mjs';
+import { createInstallManifest, installManifestPath, readInstallManifest, verifyInstallManifest } from './profile-lifecycle.mjs';
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 
@@ -30,58 +29,39 @@ function selectedFiles(resolution) {
   return [...resolution.core_skills].map((skill) => `skills/${skill}`).sort();
 }
 
-export function createInstallManifest(resolution) {
-  if (resolution.resolution !== 'profile') {
-    return { manifest_version: '1.0', install_id: 'provider-neutral-fallback', profile_installations: [{ profile_id: 'provider-neutral-fallback', profile_kind: 'minimal', core_skills: [...UNIVERSAL_SKILLS], adapter: { adapter_id: 'none' }, optional_integrations: [], resolution: 'lazy' }] };
-  }
-  const installation = {
-    profile_id: resolution.profile.profile_id,
-    profile_kind: resolution.profile.profile_kind,
-    core_skills: [...resolution.core_skills].sort(),
-    adapter: resolution.adapter.adapter_id === 'none' ? { adapter_id: 'none' } : { adapter_id: resolution.adapter.adapter_id, version: resolution.adapter.adapter_version },
-    optional_integrations: [...resolution.optional_integrations].sort().map((integration_id) => ({
-      integration_id,
-      trigger_id: integrationTrigger(integration_id),
-      resolution: 'lazy',
-    })),
-    resolution: 'lazy',
-  };
-  const stable = JSON.stringify(installation);
-  if (!resolution.profile.runtime_install) return { manifest_version: '1.0', install_id: `stolz-${createHash('sha256').update(stable).digest('hex').slice(0, 16)}`, profile_installations: [installation] };
-  const runtimeInstall = resolution.profile.runtime_install;
-  return {
-    manifest_version: '3.0', install_id: `stolz-${createHash('sha256').update(stable).digest('hex').slice(0, 16)}`,
-    profile_installations: [installation],
-    runtime_installations: [{ profile_id: resolution.profile.profile_id, runtime_id: runtimeInstall.runtime_id, adapter_id: resolution.adapter.adapter_id, destination: runtimeInstall.destination, selected_only: true, adapter_activation: 'lazy', hooks: 'not_installed', mcp: 'not_installed', fallback: runtimeInstall.fallback }],
-  };
-}
+export { createInstallManifest } from './profile-lifecycle.mjs';
 
-function integrationTrigger(integrationId) {
-  const triggers = {
-    filesystem: 'integration:filesystem:approved-file-access',
-    gitlab: 'integration:gitlab:approved-project-access',
-    'benchmark-capture': 'integration:benchmark-capture:raw-evidence',
-  };
-  return triggers[integrationId];
-}
-
-export async function installProfile(resolution, { destination, dryRun = false } = {}) {
+export async function installProfile(resolution, { destination, dryRun = false, scope = 'project' } = {}) {
   const target = assertDestination(destination, resolution);
-  const manifest = createInstallManifest(resolution);
+  const manifest = await createInstallManifest(resolution, { scope });
   const files = selectedFiles(resolution);
   const plan = { destination: target, manifest, files };
   if (dryRun) return { ...plan, dry_run: true };
 
+  const existing = await readInstallManifest(target);
+  if (existing) {
+    const verification = await verifyInstallManifest(target, existing);
+    if (verification.state === 'healthy' && existing.install_id === manifest.install_id) return { ...plan, dry_run: false, idempotent: true };
+    throw new Error(`existing installation is ${verification.state}; use status, update, or uninstall before install`);
+  }
+
   await mkdir(target, { recursive: true });
   const destinationRoot = await realpath(target);
-  for (const sourceRelative of files) {
-    const source = resolve(root, sourceRelative);
-    const destinationPath = resolve(destinationRoot, resolution.runtime === 'codex' ? sourceRelative : sourceRelative.slice('skills/'.length));
-    if (!destinationPath.startsWith(`${destinationRoot}${sep}`)) throw new Error('refusing to write outside destination');
-    await lstat(source);
-    await mkdir(dirname(destinationPath), { recursive: true });
-    await cp(source, destinationPath, { recursive: true, force: false, errorOnExist: true });
+  const created = [];
+  try {
+    for (const sourceRelative of files) {
+      const source = resolve(root, sourceRelative);
+      const destinationPath = resolve(destinationRoot, resolution.runtime === 'codex' ? sourceRelative : sourceRelative.slice('skills/'.length));
+      if (!destinationPath.startsWith(`${destinationRoot}${sep}`)) throw new Error('refusing to write outside destination');
+      await lstat(source);
+      await mkdir(dirname(destinationPath), { recursive: true });
+      await cp(source, destinationPath, { recursive: true, force: false, errorOnExist: true });
+      created.push(destinationPath);
+    }
+    await writeFile(installManifestPath(destinationRoot), `${JSON.stringify(manifest, null, 2)}\n`, 'utf8');
+  } catch (error) {
+    await Promise.all(created.reverse().map((path) => rm(path, { recursive: true, force: true })));
+    throw error;
   }
-  await writeFile(join(destinationRoot, 'install-manifest.json'), `${JSON.stringify(manifest, null, 2)}\n`, 'utf8');
-  return { ...plan, dry_run: false };
+  return { ...plan, dry_run: false, idempotent: false };
 }
