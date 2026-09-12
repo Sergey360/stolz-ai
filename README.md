@@ -1,22 +1,23 @@
 <div align="center">
-  <h1><picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/logo-lockup-dark.svg">
-    <img src="assets/logo-lockup.svg" width="340" alt="STOLZ A.I.">
-  </picture></h1>
-  <p><strong>Rational skills for Codex and compatible AI coding agents.</strong></p>
-  <p><em>No token wasted.</em></p>
-  <p>
-    <a href="README.md">English</a> ·
-    <a href="README.ru.md">Русский</a> ·
-    <a href="README.nl.md">Nederlands</a> ·
-    <a href="README.zh.md">中文</a> ·
-    <a href="README.he.md">עברית</a>
-  </p>
-  <p>
-    <a href="https://github.com/Sergey360/stolz-ai/actions/workflows/ci.yml"><img src="https://github.com/Sergey360/stolz-ai/actions/workflows/ci.yml/badge.svg" alt="CI status"></a>
-    <a href="https://github.com/Sergey360/stolz-ai/releases/latest"><img src="https://img.shields.io/github/v/release/Sergey360/stolz-ai?display_name=tag&color=2F7656" alt="Latest release"></a>
-    <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-2F7656.svg" alt="MIT License"></a>
-  </p>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/brand/stolz-readme-dark.png">
+  <source media="(prefers-color-scheme: light)" srcset="assets/brand/stolz-readme-light.png">
+  <img src="assets/brand/stolz-readme-light.png" width="820" alt="STOLZ A.I. — a folded book-page S with a red bookmark">
+</picture>
+
+**Rational skills for Codex and compatible AI coding agents.**
+*No token wasted.*
+
+**English** · [Русский](README.ru.md) · [Nederlands](README.nl.md) · [中文](README.zh.md) · [עברית](README.he.md)
+
+[![CI](https://github.com/Sergey360/stolz-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/Sergey360/stolz-ai/actions/workflows/ci.yml)
+[![Latest release](https://img.shields.io/github/v/release/Sergey360/stolz-ai?display_name=tag&color=416B51&style=flat-square)](https://github.com/Sergey360/stolz-ai/releases/latest)
+[![Node.js ≥20](https://img.shields.io/badge/Node.js-%E2%89%A520-416B51?logo=nodedotjs&logoColor=white&style=flat-square)](package.json)
+[![5 skills](https://img.shields.io/badge/focused_skills-5-BB7A2A?style=flat-square)](skills)
+[![MIT](https://img.shields.io/badge/license-MIT-6F5B4E?style=flat-square)](LICENSE)
+[![No token wasted](https://img.shields.io/badge/no_token-wasted-AD3F2E?style=flat-square)](docs/architecture.md)
+
 </div>
 
 **STOLZ A.I.** keeps agent work focused: choose the smallest sufficient route,
@@ -189,3 +190,7 @@ npm run benchmark:check
 
 Read [Contributing](CONTRIBUTING.md) before opening a change. License and legal
 notices are in [LICENSE](LICENSE) and [NOTICE](NOTICE).
+
+<p align="center">
+  <sub>Created by <a href="https://github.com/Sergey360">Sergey360</a> · movement without the unnecessary</sub>
+</p>
