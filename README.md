@@ -104,7 +104,6 @@ The documented validation surface is deliberately small:
 
 ```bash
 npm test
-npm run build
 ```
 
 ### Optional local Codex state
@@ -184,7 +183,6 @@ saving. See `skills/stolz-benchmark/` for the admission rules.
 
 ```bash
 npm test
-npm run build
 npm run benchmark:check
 ```
 
