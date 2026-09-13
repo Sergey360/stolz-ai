@@ -22,6 +22,23 @@ const publicDocuments = [
   'docs/BRAND_PLATFORM.md',
   'benchmarks/README.md',
 ];
+const rootReadmes = [
+  'README.md',
+  'README.ru.md',
+  'README.nl.md',
+  'README.zh.md',
+  'README.he.md',
+];
+const readmeBrandMarkers = [
+  '<div align="center">',
+  'assets/brand/stolz-readme-light.png',
+  'assets/brand/stolz-readme-dark.png',
+  'actions/workflows/ci.yml/badge.svg',
+  'shields.io/github/v/release/Sergey360/stolz-ai',
+  'focused_skills-5',
+  '](LICENSE)',
+  'no_token-wasted',
+];
 
 function localTargets(text) {
   return [
@@ -47,6 +64,24 @@ test('public documentation is compact and tells one consistent product story', a
   assert.match(russian, /STOLZ A\.I\./);
   assert.match(russian, /Ни одного лишнего токена/);
   assert.match(readme, /five core skills/i);
+});
+
+test('root READMEs preserve the branded multilingual GitHub presentation', async () => {
+  for (const document of rootReadmes) {
+    const text = await readFile(document, 'utf8');
+    assert.ok(text.split(/\r?\n/).length >= 80, `${document} looks abbreviated`);
+    for (const marker of readmeBrandMarkers) {
+      assert.ok(text.includes(marker), `${document} is missing ${marker}`);
+    }
+
+    const languageLinks = new Set(text.match(/README(?:\.(?:ru|nl|zh|he))?\.md/g) ?? []);
+    assert.ok(languageLinks.size >= 4, `${document} is missing multilingual navigation`);
+  }
+
+  await Promise.all([
+    access('assets/brand/stolz-readme-light.png'),
+    access('assets/brand/stolz-readme-dark.png'),
+  ]);
 });
 
 test('public documents have valid local links and no internal process residue', async () => {
