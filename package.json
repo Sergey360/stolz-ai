@@ -1,6 +1,6 @@
 {
   "name": "stolz-ai",
-  "version": "0.12.0",
+  "version": "0.13.0",
   "description": "A token-efficient skill suite for Codex and compatible AI coding agents.",
   "license": "MIT",
   "private": false,
@@ -37,6 +37,11 @@
     "reports/benchmark-v3/",
     "!benchmarks/README.md",
     "!benchmarks/context-state-v0.6/",
+    "docs/architecture.md",
+    "docs/benchmarking.md",
+    "docs/installation.md",
+    "docs/PILOT_JOURNAL_TEMPLATE.md",
+    "examples/verify-public-package.mjs",
     "README.md",
     "README.ru.md",
     "README.nl.md",
@@ -56,6 +61,9 @@
     "url": "https://github.com/Sergey360/stolz-ai/issues"
   },
   "homepage": "https://github.com/Sergey360/stolz-ai#readme",
+  "bin": {
+    "stolz-profile": "tools/profile-cli.mjs"
+  },
   "scripts": {
     "test": "node --test test/*.test.mjs",
     "build": "node scripts/build-static.mjs",
@@ -65,6 +73,7 @@
     "benchmark:v2:check": "npm run benchmark:v2 -- --check",
     "benchmark:v3": "node tools/benchmark-v3-cli.mjs",
     "profile": "node tools/profile-cli.mjs",
+    "smoke:public-package": "node examples/verify-public-package.mjs",
     "check:public-surface": "node scripts/check-public-surface.mjs",
     "verify:reuse:local-codex": "node tools/verified-reuse/run-installed-local-codex-scenarios.mjs"
   },

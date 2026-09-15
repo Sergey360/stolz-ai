@@ -3,6 +3,33 @@
 All notable changes to STOLZ A.I. are recorded here. Releases follow the
 repository's immutable-tag policy; unpublished work is not a release.
 
+## [0.13.0] - 2026-09-15
+
+### Added
+
+- Added the `stolz-profile` package CLI with a versioned JSON success envelope
+  and reviewed team locks for package, runtime/profile, skills, lazy adapter,
+  and optional-integration selection.
+- Added fail-closed lock verification for CI, including non-zero drift,
+  unsupported-version, invalid-lock, and reported runtime-version mismatch
+  results.
+- Added explicit interrupted-update recovery backed by a verified transaction
+  journal and the prior owned-file snapshot.
+- Added version-4 ownership handoff checks for v0.11.0 and v0.12.0, followed by
+  the normal transactional update and rollback path.
+- Added public-package setup documentation, a real-project pilot journal, and a
+  clean-consumer smoke covering install, diagnosis, lock, update, recovery,
+  local-conflict refusal, rollback, and explicit local Codex state.
+
+### Boundaries
+
+- A lock or successful install does not prove that a runtime discovered or
+  executed the skills, that a selected model is compatible, or that provider
+  token, cost, or savings evidence exists.
+- v0.13.0 supplies testable setup mechanisms; it does not declare v1.0
+  stability. Real sequential pilot updates and at least 28 days of relevant
+  observation remain open v1.0 dependencies.
+
 ## [0.12.0] - 2026-09-15
 
 ### Changed

@@ -72,6 +72,16 @@ cp -R ../stolz-ai/skills/stolz-* .agents/skills/
 
 之后可在 Codex 中提及 `$stolz-route`；也可以让 Codex 在任务符合描述时自动选择技能。Windows 与用户级安装方式见[安装指南](docs/installation.md)。
 
+v0.13 公共归档还包含 `stolz-profile` CLI：它可以生成可审查的团队锁，在配置漂移时让 CI 失败，
+分别报告运行时兼容性与惰性适配器可用性，并支持更新、中断更新恢复与回滚。安装指南和可执行的
+全新消费者冒烟测试位于同一归档中，无需访问私有仓库。
+
+```bash
+npm install --save-dev /absolute/downloads/stolz-ai-0.13.0.tgz
+npx --no-install stolz-profile lock --apply --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
+npx --no-install stolz-profile verify-lock --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
+```
+
 ## 🧰 五个技能
 
 | 技能 | 适用场景 |

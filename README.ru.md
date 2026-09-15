@@ -76,6 +76,19 @@ cp -R ../stolz-ai/skills/stolz-* .agents/skills/
 
 После этого упомяните `$stolz-route` в Codex или позвольте Codex выбрать навык, когда задача соответствует его описанию. Установка для Claude Code, Qwen Code, Windows и на уровне пользователя описана в [руководстве по установке](docs/installation.md).
 
+В публичном архиве v0.13 есть CLI `stolz-profile`: он создаёт проверяемый
+командный lock, завершает CI с ошибкой при расхождении конфигурации, раздельно
+показывает совместимость среды и доступность ленивого адаптера, а также
+поддерживает обновление, восстановление прерванной операции и откат. Инструкции
+и проверочный сценарий чистого потребителя входят в тот же архив; доступ к
+приватному репозиторию не нужен.
+
+```bash
+npm install --save-dev /absolute/downloads/stolz-ai-0.13.0.tgz
+npx --no-install stolz-profile lock --apply --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
+npx --no-install stolz-profile verify-lock --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
+```
+
 ## 🧰 Пять навыков
 
 | Навык | Когда использовать |

@@ -1,6 +1,6 @@
 # Architecture and exact capability matrix
 
-STOLZ A.I. v0.12.0 exposes a small public surface: five independent skills, a
+STOLZ A.I. v0.13.0 exposes a small public surface: five independent skills, a
 profile resolver and installer, runtime profiles and lazy adapters, sanitized
 evidence records, and the explicit `codex-local-state` entry point. It uses
 one runtime dependency (`ajv`) only to validate the versioned local contracts.
@@ -44,6 +44,32 @@ or storage exhaustion is a miss or unavailable result with
 
 The package documents the stable API only; its internal implementations,
 helper paths, and on-disk records are not compatibility promises.
+
+## Reproducible project setup in v0.13
+
+The profile CLI owns a versioned JSON envelope, a reviewed team lock, and the
+managed installation lifecycle. The lock binds the package, selected profile,
+five skills, lazy adapter, optional integrations, and declared runtime tuple.
+It deliberately excludes credentials, local paths, and model identity.
+
+`status` and `doctor` inspect without mutation. `update` snapshots the previous
+owned files before changing them. A version-2 transaction journal makes an
+interrupted update distinguishable from an ordinary local edit; `recover`
+verifies both the backup and the remaining owned bytes before restoring them.
+After a completed update, `rollback` restores the previous owned manifest and
+files. Foreign files are never added to STOLZ ownership.
+
+| Contract | Owner | Compatibility boundary | Conformance check |
+| --- | --- | --- | --- |
+| Profile-CLI success JSON | `tools/profile-cli.mjs` | `format_version: "1.0"`; failures remain non-zero | `test/profile-cli-lifecycle.test.mjs` |
+| Team profile lock | `tools/profile-lifecycle.mjs` | Lock version `1.0`; unknown version and drift are denied | `test/profile-lock.test.mjs` |
+| Installation and recovery | `tools/profile-lifecycle.mjs` | Manifest version `4.0`; transaction version `2.0`; ownership is explicit | `test/profile-lifecycle-manifest.test.mjs` |
+| Public archive path | npm package inventory and `examples/verify-public-package.mjs` | Runs without private-repository files | `test/public-package-path.test.mjs` |
+| Local Codex state | `tools/codex-local-state.mjs` | Explicit API `1.0.0`; caller-selected local workspace only | `test/codex-local-state.test.mjs` |
+
+These are testable minor-release mechanisms, not a v1.0 stability declaration.
+The v1.0 gate still depends on real sequential pilot updates and sufficient
+relevant observation.
 
 ## Evidence levels
 

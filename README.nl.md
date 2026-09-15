@@ -72,6 +72,19 @@ cp -R ../stolz-ai/skills/stolz-* .agents/skills/
 
 Noem daarna `$stolz-route` in Codex, of laat Codex een skill kiezen wanneer de taak bij de beschrijving past. Installatie voor Windows en voor de huidige gebruiker staat in de [installatiehandleiding](docs/installation.md).
 
+Het openbare v0.13-archief bevat ook de `stolz-profile`-CLI. Die maakt een
+controleerbare team-lock, laat CI mislukken bij configuratiedrift, rapporteert
+runtimecompatibiliteit en de beschikbaarheid van de lazy adapter afzonderlijk,
+en ondersteunt update, herstel van een onderbroken update en rollback. De
+handleiding en een uitvoerbare clean-consumer-smoke zitten in hetzelfde archief;
+toegang tot de privé-repository is niet nodig.
+
+```bash
+npm install --save-dev /absolute/downloads/stolz-ai-0.13.0.tgz
+npx --no-install stolz-profile lock --apply --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
+npx --no-install stolz-profile verify-lock --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
+```
+
 ## 🧰 De vijf skills
 
 | Skill | Gebruik deze wanneer… |

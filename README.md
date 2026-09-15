@@ -102,6 +102,19 @@ mkdir -p /path/to/agent-skills
 cp -R skills/stolz-route /path/to/agent-skills/stolz-route
 ```
 
+The v0.13 public archive also provides the `stolz-profile` CLI for a managed
+project setup. It creates a reviewed team lock, makes CI fail on drift, reports
+runtime and lazy-adapter compatibility separately, and supports transactional
+update, interrupted-update recovery, and rollback. The same archive includes
+the setup guides and an executable clean-consumer smoke; no private repository
+is required.
+
+```bash
+npm install --save-dev /absolute/downloads/stolz-ai-0.13.0.tgz
+npx --no-install stolz-profile lock --apply --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
+npx --no-install stolz-profile verify-lock --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
+```
+
 The documented validation surface is deliberately small:
 
 ```bash
@@ -133,7 +146,8 @@ it stores private evidence locally and returns compact identities rather than
 raw logs or prompts.
 
 For deterministic profile selection, dry-run/install commands, lazy-loading
-rules, and removal, read [Installation and compatibility](docs/installation.md).
+rules, lock verification, recovery, rollback, and removal, read
+[Installation and compatibility](docs/installation.md).
 
 ## Compatibility without overclaiming
 

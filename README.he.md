@@ -72,6 +72,18 @@ cp -R ../stolz-ai/skills/stolz-* .agents/skills/
 
 לאחר מכן ציינו את `$stolz-route` ב-Codex, או תנו ל-Codex לבחור מיומנות כשהמשימה מתאימה לתיאור שלה. התקנה ב-Windows והתקנה ברמת המשתמש מתוארות ב[מדריך ההתקנה](docs/installation.md).
 
+הארכיון הציבורי של v0.13 כולל גם את ה-CLI ‏`stolz-profile`. הוא יוצר נעילת צוות
+ניתנת לבדיקה, מכשיל CI במקרה של סטיית תצורה, מדווח בנפרד על תאימות סביבת הריצה
+ועל זמינות המתאם הנטען לפי הצורך, ותומך בעדכון, בשחזור עדכון שנקטע ובחזרה לגרסה
+הקודמת. המדריך ובדיקת smoke ניתנת להרצה עבור צרכן נקי נמצאים באותו ארכיון;
+אין צורך בגישה למאגר הפרטי.
+
+```bash
+npm install --save-dev /absolute/downloads/stolz-ai-0.13.0.tgz
+npx --no-install stolz-profile lock --apply --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
+npx --no-install stolz-profile verify-lock --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
+```
+
 ## 🧰 חמש המיומנויות
 
 | מיומנות | מתי להשתמש בה |

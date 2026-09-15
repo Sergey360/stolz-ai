@@ -1,6 +1,6 @@
 # Installation and compatibility
 
-STOLZ A.I. v0.12.0 is a package of five focused skill directories. Installing
+STOLZ A.I. v0.13.0 is a package of five focused skill directories. Installing
 it makes the skills available to an agent runtime; it does not start a service,
 instrument a provider, or install the private context-state and verified-reuse
 implementations used to develop the project. Those boundaries are described in
@@ -8,8 +8,8 @@ implementations used to develop the project. Those boundaries are described in
 
 ## Requirements
 
-The v0.12 CI image is pinned to Node.js 22.22.2 on Alpine Linux; local release
-validation also runs on Windows with Node.js 22.16.0 and npm 10.9.2. Its
+The v0.13 CI image is pinned to Node.js 22.22.2 on Alpine Linux; local release
+validation also runs on Windows. Its
 installed-skill diagnostic used Codex CLI 0.153.4 with `gpt-5.6-sol` at `xhigh`
 reasoning. Claude Code 2.1.251 and Qwen Code 0.22.3 retain their exact
 profile evidence boundaries; other runtime versions are usable only through
@@ -24,19 +24,31 @@ model, account, hook, MCP server, or GitLab credential.
 
 ## Verify the release artifact
 
-Download `stolz-ai-0.12.0.tgz` and its `.sha256` file from the release, then
+Download `stolz-ai-0.13.0.tgz` and its `.sha256` file from the release, then
 verify the checksum with the tool available on your operating system. Extract
-the archive before running the included profile CLI:
+the archive, or install that exact local archive with npm:
 
 ```bash
-tar -xzf stolz-ai-0.12.0.tgz
+tar -xzf stolz-ai-0.13.0.tgz
 cd package
 node -p "require('./package.json').version"
+
+# From a consumer project, using the downloaded archive rather than a registry:
+npm install --save-dev /absolute/downloads/stolz-ai-0.13.0.tgz
+npx --no-install stolz-profile resolve --runtime codex
 ```
 
-The final command must print `0.12.0`. The release inventory and checksum prove
+The version command must print `0.13.0`. The release inventory and checksum prove
 the bytes that were published; they do not prove runtime compatibility or
 token savings.
+
+The public archive includes this guide, the architecture and benchmarking
+boundaries, the real-pilot journal template, and an executable package-path
+smoke example. From an extracted archive or installed package, run:
+
+```bash
+npm run smoke:public-package
+```
 
 ## Resolve a profile before installing
 
@@ -68,7 +80,7 @@ node tools/profile-cli.mjs install --runtime claude-code --destination /absolute
 
 The profile declarations for Claude Code and Qwen Code use project destinations
 `.claude/skills/` and `.qwen/skills/`. Codex installations must use the skills
-directory configured by the Codex environment; v0.12.0 does not guess a global
+directory configured by the Codex environment; v0.13.0 does not guess a global
 path.
 
 ## What installation proves
@@ -107,7 +119,7 @@ The five installable skills are `stolz-route`, `stolz-context`, `stolz-reuse`,
 `stolz-quiet-state`, and `stolz-benchmark`. Copying a `SKILL.md` without its
 routed references is incomplete.
 
-## Lifecycle commands in v0.12.0
+## Lifecycle commands in v0.13.0
 
 Every managed installation writes `install-manifest.json`. Version 4 records
 the package version, selected runtime and scope (`project` or `user`), and the
@@ -122,24 +134,57 @@ node tools/profile-cli.mjs doctor --runtime claude-code --runtime-version 2.1.25
 # Show the exact future update/rollback/removal plan, then opt in to apply it.
 node tools/profile-cli.mjs update --runtime claude-code --destination /absolute/project/.claude/skills
 node tools/profile-cli.mjs update --apply --runtime claude-code --destination /absolute/project/.claude/skills
+node tools/profile-cli.mjs recover --dry-run --destination /absolute/project/.claude/skills
 node tools/profile-cli.mjs rollback --dry-run --destination /absolute/project/.claude/skills
 node tools/profile-cli.mjs uninstall --dry-run --destination /absolute/project/.claude/skills
 ```
 
 `update` stops before writing if an owned file is missing or locally changed.
 On apply it snapshots only prior STOLZ-owned files and restores them if a copy
-fails. `rollback` also refuses to overwrite a locally changed owned file.
+fails. If the process ends between owned-file changes, `doctor` reports
+`recovery_required`; `recover --dry-run` verifies the recorded backup and every
+remaining owned file before `recover --apply` restores the prior installation.
+`rollback` also refuses to overwrite a locally changed owned file.
 `uninstall --apply` removes only manifest-listed files and its current STOLZ
 rollback snapshot; an unrelated skill beside them remains untouched. Repeating
 an already-complete uninstall is a no-op.
 
-To adopt an existing v0.7.1 installation, first inspect it, then explicitly
-identify its version. Migration fails closed unless every expected skill file
-still has the matching hash:
+To adopt an existing v0.7.1 installation with an older ownership manifest,
+first inspect it, then explicitly identify its version. Migration fails closed
+unless every expected skill file still has the matching hash. Version-4
+installations from v0.8.0 through v0.12.0 already record ownership: the
+`migrate` command confirms that identity, then directs the user through the
+normal reviewed update and rollback path. Unknown historical versions are
+rejected.
 
 ```bash
 node tools/profile-cli.mjs migrate --apply --legacy-version 0.7.1 --runtime qwen-code --destination /absolute/project/.qwen/skills
+node tools/profile-cli.mjs migrate --apply --legacy-version 0.12.0 --runtime qwen-code --destination /absolute/project/.qwen/skills
 ```
+
+## Team lock and CI check
+
+Every successful profile-CLI response contains `"format_version":"1.0"`.
+Create a reviewed lock in a developer checkout, commit it to the consuming
+project, and verify the same selection in CI:
+
+```bash
+node tools/profile-cli.mjs lock --runtime claude-code --lockfile /absolute/project/stolz-profile.lock.json
+node tools/profile-cli.mjs lock --apply --runtime claude-code --lockfile /absolute/project/stolz-profile.lock.json
+node tools/profile-cli.mjs verify-lock --runtime claude-code --lockfile /absolute/project/stolz-profile.lock.json
+```
+
+The lock records package identity, runtime/profile declarations, five selected
+skills, the lazy adapter, and optional integrations. It contains no local path,
+provider account, or credential. `verify-lock` exits with code 2 for lock drift,
+an unsupported lock version, an invalid lock, or a reported runtime-version
+mismatch, so an ordinary CI step fails closed.
+
+Use `--runtime-version` when the exact runtime version is available. Without it,
+the lock still verifies the package configuration but reports that the runtime
+version was not observed. `doctor` shows the installation difference, runtime
+version state, compatibility basis, adapter availability, and a next action.
+A model identifier is never compatibility evidence.
 
 ## Recheck rules
 
@@ -151,7 +196,7 @@ node tools/profile-cli.mjs migrate --apply --legacy-version 0.7.1 --runtime qwen
   stale. It must enter `recheck_required` and receive fresh exact-tuple evidence
   before it can be certified again.
 - An unknown runtime or version may still use the five provider-neutral skills
-if its host can load them, but v0.12.0 makes no runtime-certification promise
+if its host can load them, but v0.13.0 makes no runtime-certification promise
   for that environment.
 - A missing or insufficient capability requires the normal verified route. It
   never permits a weaker outcome or skipped check.
@@ -161,7 +206,7 @@ describing any measured result.
 
 ## Optional local Codex state
 
-Version 0.12.0 retains one explicit Node API for a local Codex workspace. It is
+Version 0.13.0 retains one explicit Node API for a local Codex workspace. It is
 not installed into a skill directory, does not alter profile lifecycle files,
 and does not begin polling. Call it only where the application owns the
 workspace and can provide complete input identities and verification records.
@@ -193,3 +238,11 @@ a package, an artifact upload, or another workspace. `recover()` removes
 abandoned temporary data and rechecks durable stores; it never turns a corrupt
 record into a reuse hit. `overhead()` reports the current local storage use and
 configured budget. It reports no token, cost, or saving estimate.
+
+## Real pilots
+
+Use the included [real-project pilot journal](PILOT_JOURNAL_TEMPLATE.md) only
+after a real project owner agrees to participate. Record first-success time,
+sequential updates, conflicts, recovery or rollback, and actual relevant use.
+No participant or observation period is inferred from CI, examples, or elapsed
+calendar time.

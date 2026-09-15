@@ -1,6 +1,7 @@
 import { createHash, randomUUID } from 'node:crypto';
 import { copyFile, lstat, mkdir, readdir, readFile, rm, rmdir, writeFile } from 'node:fs/promises';
 import { dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
+import { isDeepStrictEqual } from 'node:util';
 import { fileURLToPath } from 'node:url';
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
@@ -88,6 +89,129 @@ export async function createInstallManifest(resolution, { scope = 'project', pac
   return manifest;
 }
 
+function profileLockProjection(resolution, packageIdentity) {
+  const profile = resolution.profile;
+  return {
+    lock_version: '1.0',
+    package: packageIdentity,
+    runtime: {
+      id: resolution.runtime,
+      profile_id: profile?.profile_id ?? 'provider-neutral-fallback',
+      profile_version: profile?.profile_version ?? null,
+      declared_version: profile?.agent_runtime?.version ?? null,
+      configuration_identity: profile?.configuration_identity ?? null,
+    },
+    selection: {
+      resolution: resolution.resolution,
+      core_skills: [...resolution.core_skills].sort(),
+      adapter: resolution.adapter.adapter_id === 'none'
+        ? { adapter_id: 'none' }
+        : { adapter_id: resolution.adapter.adapter_id, version: resolution.adapter.adapter_version },
+      optional_integrations: [...resolution.optional_integrations].sort(),
+      provider_overlay: resolution.provider_overlay?.overlay_id ?? 'none',
+    },
+    compatibility: {
+      cli_output_format: '1.0',
+      unknown_lock_version: 'deny',
+      configuration_drift: 'deny',
+      model_identity_is_compatibility_evidence: false,
+    },
+  };
+}
+
+function hasSecretLikeKey(value) {
+  if (!value || typeof value !== 'object') return false;
+  return Object.entries(value).some(([key, nested]) => (
+    /(?:token|secret|password|credential|authorization|api[_-]?key)/i.test(key)
+    || hasSecretLikeKey(nested)
+  ));
+}
+
+export async function createProfileLock(resolution, { packageIdentity = null } = {}) {
+  const installedPackage = packageIdentity ?? await sourcePackage();
+  const lock = profileLockProjection(resolution, installedPackage);
+  if (hasSecretLikeKey(lock)) throw new Error('profile lock must not contain secret-like fields');
+  return lock;
+}
+
+export async function writeProfileLock(lockPath, lock) {
+  if (typeof lockPath !== 'string' || !isAbsolute(lockPath)) throw new TypeError('lockfile must be an absolute path');
+  if (hasSecretLikeKey(lock)) throw new Error('profile lock must not contain secret-like fields');
+  await mkdir(dirname(lockPath), { recursive: true });
+  await writeFile(lockPath, `${JSON.stringify(lock, null, 2)}\n`, 'utf8');
+}
+
+export async function readProfileLock(lockPath) {
+  if (typeof lockPath !== 'string' || !isAbsolute(lockPath)) throw new TypeError('lockfile must be an absolute path');
+  try {
+    return JSON.parse(await readFile(lockPath, 'utf8'));
+  } catch (error) {
+    if (error?.code === 'ENOENT') throw new Error('profile lockfile is missing');
+    throw new Error(`cannot read profile lockfile: ${error.message}`);
+  }
+}
+
+function runtimeVersionReport(resolution, runtimeVersion) {
+  const declared = resolution.profile?.agent_runtime?.version ?? null;
+  const state = declared === null
+    ? 'not_certified'
+    : runtimeVersion === null || runtimeVersion === undefined
+      ? 'runtime_version_not_reported'
+      : runtimeVersion === declared
+        ? 'exact_profile_version'
+        : 'recheck_required';
+  return { reported: runtimeVersion ?? null, declared, state };
+}
+
+export async function verifyProfileLock(lock, resolution, { runtimeVersion = null } = {}) {
+  const environment = runtimeVersionReport(resolution, runtimeVersion);
+  if (!lock || lock.lock_version !== '1.0') {
+    return {
+      state: 'unsupported_lock_version',
+      differences: ['lock_version'],
+      environment,
+      next_action: 'regenerate the lock with the current STOLZ profile CLI',
+    };
+  }
+  if (hasSecretLikeKey(lock)) {
+    return {
+      state: 'invalid_lock',
+      differences: ['secret-like field'],
+      environment,
+      next_action: 'remove the secret-like field and regenerate the lock',
+    };
+  }
+  const expected = await createProfileLock(resolution);
+  const differences = [];
+  for (const section of ['package', 'runtime', 'selection', 'compatibility']) {
+    if (!isDeepStrictEqual(lock[section], expected[section])) differences.push(section);
+  }
+  if (differences.length > 0) {
+    return {
+      state: 'drift',
+      differences,
+      environment,
+      next_action: 'review the resolved profile, then regenerate and commit the lock intentionally',
+    };
+  }
+  if (environment.state === 'recheck_required') {
+    return {
+      state: 'environment_mismatch',
+      differences: ['environment.runtime_version'],
+      environment,
+      next_action: 'use the provider-neutral skills and recheck this exact runtime and adapter tuple before claiming compatibility',
+    };
+  }
+  return {
+    state: 'healthy',
+    differences: [],
+    environment,
+    next_action: environment.state === 'runtime_version_not_reported'
+      ? 'configuration matches; report the runtime version separately before claiming exact compatibility'
+      : 'no_action_required',
+  };
+}
+
 function integrationTrigger(integrationId) {
   return {
     filesystem: 'integration:filesystem:approved-file-access',
@@ -137,7 +261,7 @@ function nextAction(state) {
     modified: 'run update --dry-run after reviewing local modifications',
     partial: 'run doctor, then update --dry-run or restore from rollback evidence',
     outdated: 'run update --dry-run to review the replacement plan',
-    legacy_manifest: 'run status with the v0.7 package, then migrate explicitly before update',
+    legacy_manifest: 'identify a supported historical installation, then migrate explicitly before update',
     missing: 'run install --dry-run and review the selected profile',
     unmanaged_destination: 'choose an empty destination or remove only files you own',
     invalid_manifest: 'do not mutate the destination; inspect or restore the manifest first',
@@ -179,7 +303,7 @@ async function fileExists(path) {
 export async function createUpdatePlan(destination, resolution) {
   const inspection = await inspectInstallation(destination, resolution);
   if (inspection.state === 'legacy_manifest') {
-    return { state: 'migration_required', destination, changes: [], conflicts: [], next_action: 'run migrate with an explicitly identified v0.7.1 installation before update' };
+    return { state: 'migration_required', destination, changes: [], conflicts: [], next_action: 'run migrate with an explicitly identified supported historical installation before update' };
   }
   if (inspection.state !== 'healthy' && inspection.state !== 'outdated') {
     return { state: inspection.state, destination, changes: [], conflicts: [...(inspection.verification?.missing ?? []), ...(inspection.verification?.modified ?? [])], next_action: inspection.next_action };
@@ -245,10 +369,13 @@ async function restoreBackup(destination, backupDirectory) {
   return { backup, manifest };
 }
 
-async function restoreManifest(destination, previousManifest, backupDirectory) {
+async function restoreManifest(destination, previousManifest, backupDirectory, { removePaths = [] } = {}) {
   const { backup } = await restoreBackup(destination, backupDirectory);
   const current = await readInstallManifest(destination);
   const previousPaths = new Set(previousManifest.managed_files.map((file) => file.destination_path));
+  for (const path of removePaths) {
+    if (!previousPaths.has(path)) await rm(resolve(destination, path), { force: true });
+  }
   for (const file of current?.managed_files ?? []) {
     if (!previousPaths.has(file.destination_path)) await rm(resolve(destination, file.destination_path), { force: true });
   }
@@ -261,14 +388,21 @@ async function restoreManifest(destination, previousManifest, backupDirectory) {
   await writeFile(join(destination, manifestName), `${JSON.stringify(previousManifest, null, 2)}\n`, 'utf8');
 }
 
-export async function applyUpdate(destination, resolution, { faultAfterChanges = null } = {}) {
+export async function applyUpdate(destination, resolution, { faultAfterChanges = null, leaveInterruptedState = false } = {}) {
   const plan = await createUpdatePlan(destination, resolution);
   if (plan.state === 'noop') return { applied: false, plan };
   if (plan.state !== 'ready') throw new Error(`update cannot apply while installation is ${plan.state}`);
   const current = await readInstallManifest(destination);
   const target = resolve(destination);
   const backup_directory = await makeBackup(target, current);
-  const journal = { transaction_version: '1.0', operation: 'update', backup_directory, previous_install_id: current.install_id, target_install_id: plan.manifest.install_id };
+  const journal = {
+    transaction_version: '2.0',
+    operation: 'update',
+    backup_directory,
+    previous_install_id: current.install_id,
+    target_install_id: plan.manifest.install_id,
+    target_managed_files: plan.manifest.managed_files.map((file) => ({ path: file.destination_path, sha256: file.sha256 })),
+  };
   await writeFile(join(target, transactionName), `${JSON.stringify(journal, null, 2)}\n`, 'utf8');
   let mutations = 0;
   try {
@@ -288,16 +422,109 @@ export async function applyUpdate(destination, resolution, { faultAfterChanges =
     await rm(join(target, transactionName), { force: true });
     return { applied: true, plan, manifest: appliedManifest };
   } catch (error) {
-    await restoreManifest(target, current, backup_directory);
-    await rm(join(target, transactionName), { force: true });
+    if (leaveInterruptedState) throw error;
+    try {
+      await applyRecovery(target);
+    } catch (recoveryError) {
+      throw new Error(`${error.message}; automatic recovery failed: ${recoveryError.message}`);
+    }
     throw error;
   }
 }
 
+async function currentOwnedFile(path) {
+  try {
+    const info = await lstat(path);
+    if (!info.isFile()) return { state: 'not_a_file', sha256: null };
+    return { state: 'file', sha256: sha256(await readFile(path)) };
+  } catch (error) {
+    if (error?.code === 'ENOENT') return { state: 'missing', sha256: null };
+    throw error;
+  }
+}
+
+function validTransactionTargetFiles(value) {
+  return Array.isArray(value) && value.every((file) => (
+    file && isSafeRelativePath(file.path) && /^[a-f0-9]{64}$/.test(file.sha256)
+  ));
+}
+
+export async function createRecoveryPlan(destination) {
+  const target = resolve(destination);
+  const journal = await readJsonIfPresent(join(target, transactionName));
+  if (!journal) {
+    return { state: 'unavailable', destination: target, changes: [], conflicts: [], next_action: 'no interrupted STOLZ update is recorded' };
+  }
+  if (
+    journal.transaction_version !== '2.0'
+    || journal.operation !== 'update'
+    || !safeBackupDirectory(journal.backup_directory)
+    || !validTransactionTargetFiles(journal.target_managed_files)
+  ) {
+    return { state: 'invalid_transaction', destination: target, changes: [], conflicts: [], next_action: 'preserve the destination and inspect the transaction journal before changing files' };
+  }
+  let previous;
+  try {
+    ({ manifest: previous } = await restoreBackup(target, journal.backup_directory));
+  } catch (error) {
+    return { state: 'invalid_backup', destination: target, changes: [], conflicts: [], next_action: `preserve the destination; the recorded rollback snapshot cannot be verified: ${error.message}` };
+  }
+  if (previous.install_id !== journal.previous_install_id) {
+    return { state: 'invalid_backup', destination: target, changes: [], conflicts: [], next_action: 'preserve the destination; the rollback snapshot does not match the interrupted transaction' };
+  }
+  const previousByPath = new Map(previous.managed_files.map((file) => [file.destination_path, file.sha256]));
+  const targetByPath = new Map(journal.target_managed_files.map((file) => [file.path, file.sha256]));
+  const conflicts = [];
+  const paths = [...new Set([...previousByPath.keys(), ...targetByPath.keys()])].sort();
+  for (const path of paths) {
+    const current = await currentOwnedFile(resolve(target, path));
+    if (current.state === 'missing') continue;
+    const allowed = new Set([previousByPath.get(path), targetByPath.get(path)].filter(Boolean));
+    if (current.state !== 'file' || !allowed.has(current.sha256)) {
+      conflicts.push({ path, reason: 'unexpected_local_content', sha256: current.sha256 });
+    }
+  }
+  const changes = [
+    ...previous.managed_files.map((file) => ({ action: 'restore', path: file.destination_path })),
+    ...journal.target_managed_files
+      .filter((file) => !previousByPath.has(file.path))
+      .map((file) => ({ action: 'remove_interrupted_create', path: file.path })),
+    { action: 'replace_manifest', path: manifestName },
+    { action: 'remove_transaction', path: transactionName },
+  ];
+  return {
+    state: conflicts.length > 0 ? 'conflict' : 'ready',
+    operation: 'recover_interrupted_update',
+    destination: target,
+    backup_directory: journal.backup_directory,
+    previous_install_id: journal.previous_install_id,
+    target_install_id: journal.target_install_id,
+    changes,
+    conflicts,
+    next_action: conflicts.length > 0
+      ? 'preserve or remove every conflicting local file, then rerun recover --dry-run'
+      : 'review this plan, then run recover --apply',
+  };
+}
+
+export async function applyRecovery(destination) {
+  const target = resolve(destination);
+  const plan = await createRecoveryPlan(target);
+  if (plan.state !== 'ready') throw new Error(`recovery cannot apply while state is ${plan.state}`);
+  const { manifest: previous } = await restoreBackup(target, plan.backup_directory);
+  const removePaths = plan.changes
+    .filter((change) => change.action === 'remove_interrupted_create')
+    .map((change) => change.path);
+  await restoreManifest(target, previous, plan.backup_directory, { removePaths });
+  await rm(join(target, transactionName), { force: true });
+  return { applied: true, plan, manifest: previous };
+}
+
 export async function createRollbackPlan(destination) {
+  const recovery = await createRecoveryPlan(destination);
+  if (recovery.state !== 'unavailable') return recovery;
   const manifest = await readInstallManifest(destination);
-  const journal = await readJsonIfPresent(join(destination, transactionName));
-  const backup_directory = journal?.backup_directory ?? manifest?.rollback?.backup_directory;
+  const backup_directory = manifest?.rollback?.backup_directory;
   if (!manifest || !backup_directory) return { state: 'unavailable', destination, changes: [], conflicts: [], next_action: 'no STOLZ rollback snapshot is available' };
   const verification = await verifyInstallManifest(destination, manifest);
   if (verification.state !== 'healthy') return { state: 'conflict', destination, changes: [], conflicts: [...verification.missing, ...verification.modified], next_action: 'restore or remove local modifications before rollback' };
@@ -323,6 +550,7 @@ async function readJsonIfPresent(path) {
 }
 
 export async function applyRollback(destination) {
+  if (await fileExists(join(destination, transactionName))) return applyRecovery(destination);
   const plan = await createRollbackPlan(destination);
   if (plan.state !== 'ready') throw new Error(`rollback cannot apply while state is ${plan.state}`);
   const { manifest: previous } = await restoreBackup(destination, plan.backup_directory);
@@ -332,9 +560,19 @@ export async function applyRollback(destination) {
 }
 
 export async function migrateLegacyInstallation(destination, resolution, { legacyVersion, scope = 'project' } = {}) {
-  if (legacyVersion !== '0.7.1') throw new Error('only explicitly identified v0.7.1 installations can be migrated');
+  const supportedVersions = ['0.7.1', '0.8.0', '0.9.0', '0.10.0', '0.11.0', '0.12.0'];
+  if (!supportedVersions.includes(legacyVersion)) throw new Error(`unsupported historical version; identify one of: ${supportedVersions.join(', ')}`);
   const legacy = await readInstallManifest(destination);
-  if (!legacy || !['1.0', '3.0'].includes(legacy.manifest_version)) throw new Error('migration requires a v0.7 legacy install manifest');
+  if (!legacy) throw new Error('migration requires an existing STOLZ install manifest');
+  if (legacy.manifest_version === '4.0') {
+    if (legacy.package?.name !== 'stolz-ai' || legacy.package?.version !== legacyVersion) throw new Error('historical manifest package identity does not match --legacy-version');
+    const verification = await verifyInstallManifest(destination, legacy);
+    if (verification.state !== 'healthy') throw new Error(`historical installation cannot be safely updated: ${verification.state}`);
+    return { migrated: false, state: 'update_required', verification, next_action: 'ownership is already version 4; run update --dry-run, then update --apply' };
+  }
+  if (legacyVersion !== '0.7.1' || !['1.0', '3.0'].includes(legacy.manifest_version)) {
+    throw new Error('only a v0.7.1 manifest version 1.0 or 3.0 can be adopted into version 4 ownership');
+  }
   const legacyProfileId = legacy.profile_installations?.[0]?.profile_id;
   if (!legacyProfileId || legacyProfileId !== resolution.profile?.profile_id) throw new Error('legacy manifest profile does not match the selected runtime profile');
   const migrated = await createInstallManifest(resolution, { scope, packageIdentity: { name: 'stolz-ai', version: legacyVersion } });
@@ -347,7 +585,7 @@ export async function migrateLegacyInstallation(destination, resolution, { legac
 export async function createUninstallPlan(destination) {
   const manifest = await readInstallManifest(destination);
   if (!manifest) return { state: 'missing', destination, changes: [], conflicts: [], next_action: 'no STOLZ manifest is present; no files will be removed' };
-  if (manifest.manifest_version !== '4.0') return { state: 'migration_required', destination, changes: [], conflicts: [], next_action: 'legacy ownership is not inferred; migrate only after an explicit v0.7.1 identification' };
+  if (manifest.manifest_version !== '4.0') return { state: 'migration_required', destination, changes: [], conflicts: [], next_action: 'legacy ownership is not inferred; migrate only after an explicit supported historical-version identification' };
   const verification = await verifyInstallManifest(destination, manifest);
   if (verification.state === 'modified' || verification.state === 'invalid_manifest') return { state: 'conflict', destination, changes: [], conflicts: verification.modified, next_action: 'preserve or move local modifications before uninstall' };
   if (!['healthy', 'partial'].includes(verification.state)) return { state: verification.state, destination, changes: [], conflicts: verification.missing, next_action: nextAction(verification.state) };
