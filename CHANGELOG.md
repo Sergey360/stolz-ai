@@ -3,6 +3,37 @@
 All notable changes to STOLZ A.I. are recorded here. Releases follow the
 repository's immutable-tag policy; unpublished work is not a release.
 
+## [0.12.0] - 2026-09-15
+
+### Changed
+
+- Narrowed `stolz-context` discovery to existing context manifests and read
+  ledgers, and narrowed `stolz-reuse` discovery to existing reusable results
+  or identical in-flight commands. Ordinary first reads remain outside both
+  skills.
+- Added a frozen 36-prompt development/held-out corpus and a replacement
+  24-prompt held-out set spanning context, reuse, state, measurement, ordinary,
+  and ambiguous requests.
+- Added an installed-skill live evaluator and a public report that retains all
+  68 attempts, including collector failures, oracle defects, routing misses,
+  fixes, and the final gate result.
+- Strengthened the public archive guard so every shipped skill root and every
+  local reference it links must be present in the created and extracted npm
+  package.
+- Updated the five localized READMEs, public architecture, benchmarking,
+  installation, CI evidence, and release-note fields for exact model/runtime
+  evidence boundaries.
+
+### Evidence boundary
+
+- The release gate passed on the untouched replacement held-out set: 23/24
+  strict routes, 24/24 required outcomes, 24/24 permission decisions, and at
+  least 3/4 strict routes in every group under Codex CLI 0.153.4 with
+  `gpt-5.6-sol` at `xhigh` reasoning.
+- This is a small installed-skill diagnostic, not a universal routing-accuracy,
+  provider-token, cost, or savings claim. The full public report is
+  `benchmarks/skill-selection-v012/results.md`.
+
 ## [0.11.0] - 2026-09-15
 
 ### Changed
@@ -44,7 +75,7 @@ repository's immutable-tag policy; unpublished work is not a release.
   provider-native billing telemetry is unavailable. Runtime observations never
   become provider usage or cost evidence.
 
-## [0.9.0] - Unreleased
+## [0.9.0] - 2026-09-10
 
 ### Added
 
@@ -66,7 +97,7 @@ repository's immutable-tag policy; unpublished work is not a release.
   contain bounded identities and metadata, never prompts, raw logs, secrets,
   or user data. No token, cost, saving, pilot, or provider claim is added.
 
-## [0.8.0] - Unreleased
+## [0.8.0] - 2026-09-10
 
 ### Added
 

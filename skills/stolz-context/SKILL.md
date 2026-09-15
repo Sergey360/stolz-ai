@@ -1,6 +1,6 @@
 ---
 name: stolz-context
-description: Validate STOLZ manifests and identity-bound reads. Use for manifest or read-ledger decisions.
+description: Validate an existing STOLZ context manifest or read-ledger entry. Use only for trust, provenance or invalidation decisions about those artifacts.
 ---
 
 # Context

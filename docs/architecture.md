@@ -1,6 +1,6 @@
 # Architecture and exact capability matrix
 
-STOLZ A.I. v0.11.0 exposes a small public surface: five independent skills, a
+STOLZ A.I. v0.12.0 exposes a small public surface: five independent skills, a
 profile resolver and installer, runtime profiles and lazy adapters, sanitized
 evidence records, and the explicit `codex-local-state` entry point. It uses
 one runtime dependency (`ajv`) only to validate the versioned local contracts.
@@ -62,7 +62,7 @@ provider-native token count.
 
 | Environment | Exact version or tested contour | Skills installation | Profile / adapter | Evidence | Limitation and recheck trigger |
 | --- | --- | --- | --- | --- | --- |
-| Codex CLI | 0.153.4 on Windows with Node.js 22.22.2 and npm 10.9.7 | Manual copy or `profile-cli install --runtime codex` | `codex-minimal` / `codex-local` | Four installed-local executions passed in the [v0.7.0 release evidence](https://github.com/Sergey360/stolz-ai/releases/tag/v0.7.0); no v0.7 C2 row exists for Codex | This is one verified local contour, not a Codex-wide or future-version certification |
+| Codex CLI | 0.153.4 on Windows with Node.js 22.22.2 and npm 10.9.7 | Manual copy or `profile-cli install --runtime codex` | `codex-minimal` / `codex-local` | Four installed-local executions passed in the [v0.7.0 release evidence](https://github.com/Sergey360/stolz-ai/releases/tag/v0.7.0); the v0.12 `gpt-5.6-sol` / `xhigh` diagnostic passed its final 24-case gate | These are bounded contours, not Codex-wide, future-version, provider-token, cost, or universal routing certifications |
 | Claude Code | 2.1.251 | `profile-cli install --runtime claude-code` to a configured skills directory, normally project `.claude/skills/` | [`claude-code-minimal` 3.0.0](../profiles/claude-code-minimal.v3.json) / [`claude-code` 1.0.0](../adapters/claude-code/capabilities.json) | C0/C1 plus exact-version C2 [`certified`](../fixtures/runtime-adapters/claude-code/c2.sanitized-telemetry.json) | Any runtime, adapter, schema, or evidence-expiry change requires fresh evidence; no provider-native or C3 claim |
 | Qwen Code | 0.22.3 | `profile-cli install --runtime qwen-code` to a configured skills directory, normally project `.qwen/skills/` | [`qwen-code-minimal` 3.0.0](../profiles/qwen-code-minimal.v3.json) / [`qwen-code` 1.0.0](../adapters/qwen-code/capabilities.json) | C0/C1 plus exact-version C2 [`certified`](../fixtures/runtime-adapters/qwen-code/c2.sanitized-telemetry.json) | Any runtime, adapter, schema, or evidence-expiry change requires fresh evidence; no provider-native or C3 claim |
 | Other runtime or version | Not certified | The five skills may be copied only if the host supports compatible skill directories | No matching certified profile/adapter tuple | Provider-neutral policy only | Use the normal verified route; do not inherit a nearby version's evidence |
@@ -105,7 +105,20 @@ export or a persistent-state format change.
 For prompt authoring, the router offers an optional task-brief reference with
 bounded research, scoped local authority, existing authorization and observable
 completion. It is not loaded for ordinary route selection. These instructions
-are model-independent; v0.11 does not certify any model's routing accuracy.
+remain provider-neutral.
+
+v0.12 adds a bounded live diagnostic of discovery from natural-language
+requests. Codex CLI 0.153.4 ran with `gpt-5.6-sol` at `xhigh` reasoning in
+isolated workspaces containing the five product skills and three neutral
+competitors. The untouched replacement held-out set passed 23/24 strict routes,
+24/24 required outcomes, and 24/24 permission decisions. Every one of its six
+groups passed at least 3/4 strict routes. All 68 attempts across smoke,
+development, and held-out runs remain represented in the
+[public report](../benchmarks/skill-selection-v012/results.md).
+
+This establishes only the observed behavior of that small diagnostic and exact
+tuple. It does not certify universal routing accuracy, another model or runtime,
+provider token usage, cost, or savings.
 
 ## Example: refuse unsafe reuse
 

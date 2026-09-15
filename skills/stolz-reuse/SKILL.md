@@ -1,6 +1,6 @@
 ---
 name: stolz-reuse
-description: Decide whether to reuse a prior verified result or coalesce an identical in-flight command.
+description: Admit an existing prior result or coalesce an identical in-flight command. Use only when a reusable result or competing execution actually exists.
 ---
 
 # Verified Reuse

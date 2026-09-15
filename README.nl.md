@@ -77,15 +77,20 @@ Noem daarna `$stolz-route` in Codex, of laat Codex een skill kiezen wanneer de t
 | Skill | Gebruik deze wanneer… |
 | --- | --- |
 | [`stolz-route`](skills/stolz-route/SKILL.md) | de optimalisatiekeuze of adapterfallback onduidelijk is |
-| [`stolz-context`](skills/stolz-context/SKILL.md) | een manifest of leesactie met bronidentiteit gevalideerd moet worden |
-| [`stolz-reuse`](skills/stolz-reuse/SKILL.md) | een eerder resultaat herbruikbaar is of identieke lopende opdrachten samen kunnen komen |
+| [`stolz-context`](skills/stolz-context/SKILL.md) | een bestaand STOLZ-contextmanifest of leeslogboek moet worden gevalideerd |
+| [`stolz-reuse`](skills/stolz-reuse/SKILL.md) | er werkelijk een eerder resultaat of identieke lopende opdracht bestaat |
 | [`stolz-quiet-state`](skills/stolz-quiet-state/SKILL.md) | polling of herhaalde pogingen anders dezelfde status opnieuw zouden melden |
 | [`stolz-benchmark`](skills/stolz-benchmark/SKILL.md) | een efficiëntiewijziging een vergelijking met gelijkwaardig resultaat nodig heeft |
 
 Kies bij een bekende behoefte direct de passende skill. Gewone codewijzigingen
 hebben geen STOLZ-route nodig. Verdiepende regels worden alleen geladen wanneer
-de geselecteerde skill ze nodig heeft. v0.11 biedt ook een optioneel taaksjabloon
-met onderzoeksgrenzen, lokale bevoegdheden en controleerbare voltooiing.
+de geselecteerde skill ze nodig heeft. Een gewone eerste leesactie activeert
+`stolz-context` niet en zonder eerder resultaat wordt `stolz-reuse` niet gekozen.
+De v0.12-diagnose met Codex CLI 0.153.4, `gpt-5.6-sol` en `xhigh` slaagde voor
+23/24 strikte routes, 24/24 resultaten en 24/24 bevoegdheidsbeslissingen. Het
+[rapport van alle 68 pogingen](benchmarks/skill-selection-v012/results.md)
+bevat ook fouten en correcties; het is geen algemene claim over nauwkeurigheid,
+tokens, kosten of besparingen.
 
 ## 🛡️ Zuinigheid zonder zwakkere verificatie
 

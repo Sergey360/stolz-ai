@@ -1,6 +1,6 @@
 # Installation and compatibility
 
-STOLZ A.I. v0.11.0 is a package of five focused skill directories. Installing
+STOLZ A.I. v0.12.0 is a package of five focused skill directories. Installing
 it makes the skills available to an agent runtime; it does not start a service,
 instrument a provider, or install the private context-state and verified-reuse
 implementations used to develop the project. Those boundaries are described in
@@ -8,11 +8,13 @@ implementations used to develop the project. Those boundaries are described in
 
 ## Requirements
 
-The v0.9 release is verified with Node.js 22.22.2 and npm 10.9.7 on Windows
-and Linux. Claude Code 2.1.251 and Qwen Code 0.22.3 retain their exact
+The v0.12 CI image is pinned to Node.js 22.22.2 on Alpine Linux; local release
+validation also runs on Windows with Node.js 22.16.0 and npm 10.9.2. Its
+installed-skill diagnostic used Codex CLI 0.153.4 with `gpt-5.6-sol` at `xhigh`
+reasoning. Claude Code 2.1.251 and Qwen Code 0.22.3 retain their exact
 profile evidence boundaries; other runtime versions are usable only through
 the documented fallback until rechecked.
-The CI image is also pinned to Node.js 22.22.2. Git is needed when installing
+Git is needed when installing
 from a source checkout. A runtime-specific skills directory must already be
 configured or selected by the user; the installer does not discover it.
 
@@ -22,17 +24,17 @@ model, account, hook, MCP server, or GitLab credential.
 
 ## Verify the release artifact
 
-Download `stolz-ai-0.11.0.tgz` and its `.sha256` file from the release, then
+Download `stolz-ai-0.12.0.tgz` and its `.sha256` file from the release, then
 verify the checksum with the tool available on your operating system. Extract
 the archive before running the included profile CLI:
 
 ```bash
-tar -xzf stolz-ai-0.11.0.tgz
+tar -xzf stolz-ai-0.12.0.tgz
 cd package
 node -p "require('./package.json').version"
 ```
 
-The final command must print `0.11.0`. The release inventory and checksum prove
+The final command must print `0.12.0`. The release inventory and checksum prove
 the bytes that were published; they do not prove runtime compatibility or
 token savings.
 
@@ -66,7 +68,7 @@ node tools/profile-cli.mjs install --runtime claude-code --destination /absolute
 
 The profile declarations for Claude Code and Qwen Code use project destinations
 `.claude/skills/` and `.qwen/skills/`. Codex installations must use the skills
-directory configured by the Codex environment; v0.11.0 does not guess a global
+directory configured by the Codex environment; v0.12.0 does not guess a global
 path.
 
 ## What installation proves
@@ -105,7 +107,7 @@ The five installable skills are `stolz-route`, `stolz-context`, `stolz-reuse`,
 `stolz-quiet-state`, and `stolz-benchmark`. Copying a `SKILL.md` without its
 routed references is incomplete.
 
-## Lifecycle commands in v0.11.0
+## Lifecycle commands in v0.12.0
 
 Every managed installation writes `install-manifest.json`. Version 4 records
 the package version, selected runtime and scope (`project` or `user`), and the
@@ -149,7 +151,7 @@ node tools/profile-cli.mjs migrate --apply --legacy-version 0.7.1 --runtime qwen
   stale. It must enter `recheck_required` and receive fresh exact-tuple evidence
   before it can be certified again.
 - An unknown runtime or version may still use the five provider-neutral skills
-if its host can load them, but v0.11.0 makes no runtime-certification promise
+if its host can load them, but v0.12.0 makes no runtime-certification promise
   for that environment.
 - A missing or insufficient capability requires the normal verified route. It
   never permits a weaker outcome or skipped check.
@@ -159,7 +161,7 @@ describing any measured result.
 
 ## Optional local Codex state
 
-Version 0.11.0 retains one explicit Node API for a local Codex workspace. It is
+Version 0.12.0 retains one explicit Node API for a local Codex workspace. It is
 not installed into a skill directory, does not alter profile lifecycle files,
 and does not begin polling. Call it only where the application owns the
 workspace and can provide complete input identities and verification records.

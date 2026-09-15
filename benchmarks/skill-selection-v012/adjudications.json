@@ -1,0 +1,69 @@
+{
+  "schema": "stolz.skill-selection-adjudications.v1",
+  "version": "0.12.0",
+  "entries": [
+    {
+      "run": "smoke-initial",
+      "case_ids": ["dev-context-explicit-manifest", "dev-reuse-explicit-hit", "dev-state-explicit-unchanged", "dev-measurement-explicit-pair"],
+      "classification": "collector_invocation_failure",
+      "disposition": "retained_failure",
+      "detail": "Codex CLI rejected the simultaneous --approve-for-me and --sandbox flags before any model turn. The four raw stderr records are retained; commit 931aa261 removed the incompatible duplicate flag."
+    },
+    {
+      "run": "smoke-recovery",
+      "case_ids": ["dev-reuse-explicit-hit", "dev-state-explicit-unchanged", "dev-measurement-explicit-pair"],
+      "classification": "collector_path_detection_failure",
+      "disposition": "retained_failure",
+      "detail": "The model read the required roots and references through Windows paths containing doubled backslashes, but collector v1.0.0 initially failed to recognize those paths. Raw traces are retained; commit 7534a1a9 fixed normalization."
+    },
+    {
+      "run": "smoke-recovery",
+      "case_ids": ["dev-context-explicit-manifest"],
+      "classification": "development_fixture_incomplete",
+      "disposition": "retained_failure",
+      "detail": "The minimal fixture omitted manifest fields required by the published context rules, so the model correctly chose the normal route. The development fixture was completed before the full development split."
+    },
+    {
+      "run": "development",
+      "case_ids": ["dev-context-first-read"],
+      "classification": "confirmed_skill_trigger_defect",
+      "disposition": "fixed",
+      "detail": "An ordinary first read incorrectly selected stolz-context. Commit 15864e0e narrowed discovery to an existing STOLZ context manifest or read-ledger artifact."
+    },
+    {
+      "run": "heldout-a",
+      "case_ids": ["hold-context-mismatch"],
+      "classification": "runtime_shell_read_failure",
+      "disposition": "retained_failure",
+      "detail": "The model selected stolz-context and returned the correct fallback, but two cmd.exe quoting attempts failed to read the root/reference. The failure remains visible and was not counted as a passing strict route."
+    },
+    {
+      "run": "heldout-a",
+      "case_ids": ["hold-context-goal-switch"],
+      "classification": "oracle_incomplete_identity",
+      "disposition": "retained_failure",
+      "detail": "The fixed oracle expected reuse although the fixture lacked required input, invalidation, tool, timestamp, and evidence identities. The model followed the skill's fail-closed rule and returned reuse_miss."
+    },
+    {
+      "run": "heldout-a",
+      "case_ids": ["hold-reuse-first-read"],
+      "classification": "confirmed_skill_trigger_defect",
+      "disposition": "fixed_with_replacement_set",
+      "detail": "A first file read with no prior result incorrectly selected stolz-reuse. Commit c1769978 limited discovery to an existing reusable result or competing execution; the replacement held-out set was frozen first."
+    },
+    {
+      "run": "heldout-a",
+      "case_ids": ["hold-measurement-complete-provider"],
+      "classification": "collector_external_skill_classification_failure",
+      "disposition": "retained_failure",
+      "detail": "The model correctly selected stolz-benchmark and also followed the host powershell-shell instruction. Collector scoring wrongly treated that external host skill as a disallowed product route; commit 1ad444ba separated external skills."
+    },
+    {
+      "run": "heldout-b",
+      "case_ids": ["b-context-ordinary-read"],
+      "classification": "neutral_skill_selected",
+      "disposition": "accepted_automatic_miss",
+      "detail": "No STOLZ skill was selected. The neutral release-note-editor skill matched a version-label lookup and the requested outcome was correct. The strict predeclared oracle allowed no skill, so the automatic miss remains unchanged."
+    }
+  ]
+}

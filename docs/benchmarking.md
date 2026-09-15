@@ -1,76 +1,108 @@
-# Benchmarking
+# Benchmarking and evidence interpretation
 
-STOLZ A.I. reports an efficiency result only when baseline and optimized routes
-solve the same versioned task, produce equivalent outcomes, and pass the same
-required verification.
+STOLZ benchmarks compare a baseline route with a STOLZ route only after both
+produce the required outcome and pass the same verification. A shorter answer,
+fewer tool calls, or a successful package check is not a token-saving result.
 
-## Evidence classes
+## Evidence classes are not interchangeable
 
-| Class | Source | What it can establish |
-| --- | --- | --- |
-| `fixture_only` | Authored deterministic fixture | Harness and route behavior on that fixture only. |
-| `runtime_measured` | Sanitized measurement from an exact runtime and adapter | Scenario-scoped runtime behavior for that exact tuple. |
-| provider-native | Sanitized primary provider export | Provider claims only after paired C3 admission. |
+| Class | Source | Appropriate statement | Statement it cannot support by itself |
+| --- | --- | --- | --- |
+| `fixture_only` | Authored deterministic values in a versioned fixture | The harness and gates behave reproducibly on that fixture | Runtime behavior, provider tokens, billing, or general savings |
+| `runtime_measured` | Sanitized events emitted by an exact runtime contour | The named runtime event or counter was observed for that tuple | Provider billing or provider-native token totals |
+| `provider_native` / C3 provider export | Two comparable provider-owned exports retained as sanitized descriptors | A scoped provider comparison may be considered after every gate passes | Another provider, model, runtime, version, scenario, or aggregate claim |
 
-Missing evidence is unavailable, not zero. These classes must not be combined
-as if they measured the same thing.
+The v0.7 C2 records for Claude Code 2.1.251 and Qwen Code 0.22.3 are
+`runtime_measured` evidence. They certify sanitized runtime-telemetry handling
+for those exact tuples; they do not contain provider-native token totals. The
+C3 admission implementation exists, but all currently retained provider pairs
+remain `withheld` because no complete comparable export pair has been admitted.
 
-## Fixture result
+## Reproducible fixture examples
 
-The checked-in `context-selection-v1` fixture compares eager context loading
-with required-only context loading.
-
-| Route | Authored token units | Model wakeups | Tool calls | Outcome | Verification |
-| --- | ---: | ---: | ---: | --- | --- |
-| eager context | 1,530 | 4 | 8 | `validated-context-plan-v1` | pass |
-| required context | 980 | 3 | 4 | `validated-context-plan-v1` | pass |
-
-The optimized route uses 550 fewer authored units on this fixture. Those units
-are not Codex usage, API billing, or provider telemetry, so the percentage
-cannot be generalized to real tasks.
-
-## Historical runtime-measured evidence
-
-The v0.4.1 Codex cohort produced mixed signed token deltas (`baseline - STOLZ`):
-
-| Scenario | Signed delta | Interpretation |
-| --- | ---: | --- |
-| reads/navigation | +2,867 | STOLZ used fewer measured tokens. |
-| build/check invalidation | -2,880 | STOLZ used more measured tokens. |
-| quiet/wait transition | -1,330 | STOLZ used more measured tokens. |
-
-Because the scenarios are mixed and bounded, they do not establish a general
-v0.7.1 savings rate, provider-wide advantage, percentage claim, or cost claim.
-
-## v0.7 runtime and provider evidence
-
-Claude Code C2 evidence is limited to 2.1.251 with adapter 1.0.0. Qwen Code C2
-evidence is limited to 0.22.3 with adapter 1.0.0. Codex CLI 0.153.4 has verified
-installed-local executions but no v0.7 C2 evidence row.
-
-C3 admission requires two distinct sanitized provider exports for the same
-scenario with equal outcome and required-verification identities. Unsafe data,
-missing exports, version drift, unequal outcomes, or incomparable evidence
-withhold the claim. All current provider pairs remain withheld.
-
-## Reproduce public checks
+From a source checkout with development dependencies installed:
 
 ```bash
-npm ci --ignore-scripts
-npm test
 npm run benchmark:check
 npm run benchmark:v2:check
-npm run benchmark:v3 -- --verify-report reports/benchmark-v3/real/reads-navigation.json --check
 ```
 
-The first two benchmark commands validate fixture-scoped reports. The final
-command validates one sanitized runtime-measured report. None of them performs
-a live provider call.
+Benchmark v1 records 1,530 versus 980 authored synthetic token units for one
+context-selection fixture. Its 550-unit difference and 35.95% fixture result
+validate that fixture and harness only. Benchmark v2 repeats the fixture five
+times per route and explicitly records provider and runtime metrics as
+unavailable. See the [v1 report](../benchmarks/reports/context-selection-v1.md)
+and [v2 report](../benchmarks/v2/reports/context-selection-v2.md).
 
-## Admission rules
+These commands are source-validation commands. They are not required to use an
+installed skill, and their output must not be advertised as observed provider
+usage.
 
-A comparison is withheld when either route misses the required outcome, either
-route fails verification, identities differ, evidence is missing, privacy
-checks fail, token sources are incomparable, or the proposed claim exceeds the
-evidence class. A smaller run with weaker verification is a regression, not a
-saving.
+## Historical real-result boundary
+
+The v0.4.1 evidence contains three five-pair Codex CLI scenarios. Using the
+report convention `baseline - STOLZ`, their token deltas were:
+
+| Scenario | Delta | Interpretation |
+| --- | ---: | --- |
+| Reads and navigation | +2,867 tokens | Less recorded usage on the STOLZ route in that scoped cohort |
+| Build/check invalidation | -2,880 tokens | More recorded usage on the STOLZ route |
+| Quiet/wait transition | -1,330 tokens | More recorded usage on the STOLZ route |
+
+The result is mixed, historical, and tied to its exact Codex CLI/model/config
+cohorts. It is not evidence that v0.7.1 generally saves tokens. The current
+records preserve the individual reports for
+[reads/navigation](../reports/benchmark-v3/real/reads-navigation.json),
+[build/check](../reports/benchmark-v3/real/build-check-invalidation.json), and
+[quiet/wait](../reports/benchmark-v3/real/quiet-wait-transition.json); their
+aggregate public claims remain withheld. The immutable publication is the
+[v0.4.1 release](https://github.com/Sergey360/stolz-ai/releases/tag/v0.4.1).
+
+The v0.7 release added exact-version C2 records and exercised four installed
+local Codex executions with equal output hashes. Those checks demonstrate
+compatibility and verification for the recorded cases, not a new general
+efficiency result.
+
+The v0.10 release ran paired Codex CLI tasks against the publicly installed
+v0.9.0 package across bug fixes, code review, tests, documentation research,
+multi-step work, and handoff. The retained reports preserve individual runtime
+observations and equal-outcome gates. Provider-native token totals and billing
+were unavailable, so provider-token, cost, percentage, aggregate-savings, and
+provider-wide claims remain withheld.
+
+## Installed-skill selection diagnostic in v0.12
+
+v0.12 evaluates whether an installed runtime selects the intended STOLZ skill,
+loads its required local files, avoids unnecessary permission requests, and
+still produces the required outcome. The exact tuple was Codex CLI 0.153.4,
+`gpt-5.6-sol`, and `xhigh` reasoning in isolated workspaces with five product
+skills and three neutral competitors.
+
+The untouched replacement held-out gate passed with 23/24 strict routes,
+24/24 required outcomes, 24/24 permission decisions, and at least 3/4 strict
+routes in each of six groups. The [public report](../benchmarks/skill-selection-v012/results.md)
+retains all 68 attempts across smoke, development, and held-out runs, including
+collector failures, an incomplete oracle, confirmed trigger defects, fixes,
+and the final automatic miss.
+
+This evidence is `bounded_live_diagnostic`. It is not a provider-native token
+measurement, cost comparison, general accuracy estimate, or certification for
+another model, runtime, task distribution, or skill population.
+
+## Admission checklist
+
+A publishable scoped comparison needs all of the following:
+
+1. The same versioned task fixture or input identity.
+2. Named baseline and STOLZ routes.
+3. Equal required outcome identities.
+4. Equal passing verification identities.
+5. A declared evidence class and collector.
+6. Complete metric availability or an explicit unavailable value.
+7. Sanitized raw-evidence identities and retention checks.
+8. All attempts, including failures and exclusions, retained in the cohort.
+9. Version, runtime, provider, model/configuration, and environment boundaries.
+10. A claim no broader than the admitted cohort.
+
+If any item is missing, the claim is `withheld`. Correct withholding is a
+successful safety outcome, not a benchmark failure.
