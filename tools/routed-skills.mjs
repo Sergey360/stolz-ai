@@ -54,6 +54,29 @@ export function selectRoutedSkill({ concern, adapter = null }) {
   return { skill: route.skill, ...selection, references: route.references };
 }
 
+/**
+ * Plan instruction reads after the caller identifies the current decision.
+ * Discovery descriptions do not require opening every root. Legacy selectors
+ * still expose allowed references; this plan includes only requested details.
+ * This function performs no file reads, adapter imports or model calls.
+ */
+export function planSkillContext({ concern, adapter = null, needsReference = false } = {}) {
+  if (typeof needsReference !== 'boolean') throw new TypeError('needsReference must be a boolean');
+  if (concern === 'none') {
+    return { skill: null, route: 'normal', reason: 'no_optimization', references: [], instruction_reads: [] };
+  }
+  const selected = selectRoutedSkill({ concern, adapter });
+  const available = selected.skill === 'stolz-route'
+    ? ['skills/stolz-route/references/route-selection.md']
+    : selected.references;
+  const references = needsReference ? [...available] : [];
+  return {
+    ...selected,
+    references,
+    instruction_reads: [`skills/${selected.skill}/SKILL.md`, ...references],
+  };
+}
+
 export function prepareContext(manifest, route) {
   const checked = validateManifest(manifest);
   if (!checked.valid) return { ok: false, reason: 'invalid_manifest', errors: checked.errors, reads: [] };

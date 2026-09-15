@@ -76,11 +76,15 @@ cp -R ../stolz-ai/skills/stolz-* .agents/skills/
 
 | מיומנות | מתי להשתמש בה |
 | --- | --- |
-| [`stolz-route`](skills/stolz-route/SKILL.md) | כשנדרש המסלול הקטן ביותר שמספיק למשימה |
-| [`stolz-context`](skills/stolz-context/SKILL.md) | כשההקשר צריך לעבור אימות ולהיטען בדיוק בזמן |
-| [`stolz-reuse`](skills/stolz-reuse/SKILL.md) | כשקריאה, פקודה, הפעלת כלי או תוצאה מאומתת עשויות לחזור |
+| [`stolz-route`](skills/stolz-route/SKILL.md) | כשבחירת האופטימיזציה או מסלול הגיבוי של המתאם אינה ברורה |
+| [`stolz-context`](skills/stolz-context/SKILL.md) | כשצריך לאמת מניפסט או קריאה הקשורה לזהות המקור |
+| [`stolz-reuse`](skills/stolz-reuse/SKILL.md) | כשצריך להחליט על שימוש בתוצאה קודמת או איחוד פקודות זהות שכבר רצות |
 | [`stolz-quiet-state`](skills/stolz-quiet-state/SKILL.md) | כש-polling או ניסיונות חוזרים היו מדווחים שוב על מצב שלא השתנה |
 | [`stolz-benchmark`](skills/stolz-benchmark/SKILL.md) | כששינוי יעילות דורש השוואה שמותנית בתוצאה שקולה |
+
+כשהצורך ברור, בחרו ישירות במיומנות המתאימה. משימות קוד רגילות אינן דורשות מסלול STOLZ.
+כללים מפורטים נטענים רק כשהמיומנות שנבחרה צריכה אותם. גרסה v0.11 מוסיפה תבנית משימה
+אופציונלית עם גבולות מחקר, הרשאות לעבודה מקומית ותנאי השלמה שניתן לבדוק.
 
 ## 🛡️ חיסכון בלי להחליש את האימות
 

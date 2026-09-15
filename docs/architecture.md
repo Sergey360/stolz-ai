@@ -1,6 +1,6 @@
 # Architecture and exact capability matrix
 
-STOLZ A.I. v0.9.0 exposes a small public surface: five independent skills, a
+STOLZ A.I. v0.11.0 exposes a small public surface: five independent skills, a
 profile resolver and installer, runtime profiles and lazy adapters, sanitized
 evidence records, and the explicit `codex-local-state` entry point. It uses
 one runtime dependency (`ajv`) only to validate the versioned local contracts.
@@ -75,19 +75,37 @@ adapter availability, C2 certification, and C3 certification are not synonyms.
 
 Suppose a task asks whether a configuration change affects the installer.
 
-1. `stolz-route` selects the context concern; it does not preload benchmark or
-   quiet-state references.
-2. `stolz-context` requires an immutable source identity, such as a commit SHA,
-   and a route manifest naming only `tools/profile-installer.mjs` and the
-   relevant profile.
-3. The agent reads those named sources, records their identities, and answers
-   the question.
-4. The task's normal verification still runs. If the identity is unavailable
-   or a required file falls outside the manifest, the optimized read stops and
-   the agent uses the normal verified route.
+An ordinary source question can be answered directly from the installer and
+relevant profile, without a STOLZ manifest or routing skill. When the task
+explicitly requires identity-bound reads, select `stolz-context` directly.
+Validate the manifest and immutable identities before using the optimized
+read. If the manifest or identity is unavailable, use the normal verified
+route. An unavailable optimization does not end the user's task.
 
 This example is context discipline. It is not proof that a private context
 ledger or automatic delta reader was installed with the five skills.
+
+## Conditional instruction loading
+
+The host discovers five short descriptions. A known concern loads its one
+`SKILL.md`; the root states when deeper rules are needed. `stolz-route` is for
+an unclear optimization decision, not a prerequisite for every task. There is
+no repository `AGENTS.md` or mandatory repository-map preload.
+
+The internal helper `planSkillContext` in `tools/routed-skills.mjs` makes the
+read boundary explicit: `concern: 'none'` opens nothing, a known concern opens
+one root, and `needsReference: true` adds only that concern's rules. An unknown
+concern opens the router. Its `references` can be passed to `prepareContext`
+to exclude unneeded manifest references while retaining required sources.
+The existing selectors still return their compatible reference allowlists.
+Callers identify the concern; this helper does not classify natural language
+or automatically connect a model to tools. It is not another stable package
+export or a persistent-state format change.
+
+For prompt authoring, the router offers an optional task-brief reference with
+bounded research, scoped local authority, existing authorization and observable
+completion. It is not loaded for ordinary route selection. These instructions
+are model-independent; v0.11 does not certify any model's routing accuracy.
 
 ## Example: refuse unsafe reuse
 

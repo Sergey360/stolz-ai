@@ -1,25 +1,19 @@
 ---
 name: stolz-context
-description: Validate a route manifest and load only immutable, route-required context before an agent reads project material.
+description: Validate STOLZ manifests and identity-bound reads. Use for manifest or read-ledger decisions.
 ---
 
-# STOLZ A.I. Context
+# Context
 
-Use this skill when a task has a route manifest or when context must be selected
-before a file, instruction, or reference is read. Do not use it as a general
-project-summary skill.
+Ordinary source browsing needs no manifest. For an optimized read, require a
+valid manifest, matching route and immutable source identity before trusting
+the result. A mismatch disables the optimization; continue through the normal
+verified route without inventing identities.
 
-1. Validate the route manifest before reading anything.
-2. Read every required source identity once and record its SHA-256/version in
-   the durable read-fragment ledger. Store bounded fragments only; pass compact
-   references, never source bytes, into model-facing context.
-3. Load a conditional reference only when the selected route names it.
-4. Hand the verified identities to `stolz-reuse`; unchanged inputs are not
-   reread or whole-repository hashed. Invalidate on Git/content, policy,
-   schema, tool, expiry, integrity, or manual-purge changes.
-5. Stop safely on a malformed manifest or route mismatch. Do not guess a
-   source identity.
+Load [manifest and read rules](references/manifest-and-reads.md) when validating
+a manifest, recording a fragment, or resolving invalidation. Read only the
+sources needed for the decision and references whose conditions hold. Reuse
+is a separate decision only when a prior result may replace new work.
 
-Use [manifest and read rules](references/manifest-and-reads.md) only for a
-manifest/read decision. STOLZ A.I. keeps context disciplined so an agent can
-do the same quality work with less waste—not by skipping evidence.
+Done: required context is available with verified provenance, or the normal
+route supplies it and the optimization's unavailable reason is recorded.

@@ -1,25 +1,18 @@
 ---
 name: stolz-quiet-state
-description: Report only material operation transitions through one deterministic controller.
+description: Suppress duplicate wakes in a polled operation. Use for durable cursor, retry or notification decisions.
 ---
 
-# STOLZ A.I. Quiet State
+# Quiet State
 
-Use this skill for polling, retries, cursors, asynchronous operation status, or
-handoffs that could otherwise create repeated model narration.
+Use when an operation has repeated snapshots, not for a one-off status answer
+or ordinary handoff. One durable controller owns scheduling and cursors;
+unchanged state never invokes the model.
 
-1. Assign one durable controller owner for each operation. Persist its monotonic
-   cursor before reporting a transition so a restart cannot replay old state.
-2. Poll only when the persisted schedule is due. Retry transient poll errors
-   with bounded deterministic backoff and debounce flapping state using the
-   declared consecutive-poll threshold.
-3. Emit `started`, `progressed`, `waiting`, `needs_decision`, `failed`, or
-   `done` only when state, cursor, retry count, or reason materially changes.
-4. Keep unchanged, stale, duplicate, debouncing, and not-due polls outside the
-   model; they emit no notification or heartbeat narrative.
-5. Wake once for each new failure, `needs_decision` revision, or terminal result.
-   Escalate only the compact reason identity and next safe action.
+Load [material transition rules](references/material-transitions.md) when
+implementing or diagnosing cursor acceptance, backoff, debounce or wake
+admission. A material event is not automatically a user notification.
 
-Load [material transition rules](references/material-transitions.md) only when
-classifying a state change. Quiet reporting preserves attention for evidence
-and decisions.
+Done: persist accepted state and emit at most one admitted wake for a failure,
+decision revision or terminal result. Suppressed snapshots remain outside the
+model. Report an actionable blocker without hiding it in retries.

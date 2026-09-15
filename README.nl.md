@@ -76,11 +76,16 @@ Noem daarna `$stolz-route` in Codex, of laat Codex een skill kiezen wanneer de t
 
 | Skill | Gebruik deze wanneer… |
 | --- | --- |
-| [`stolz-route`](skills/stolz-route/SKILL.md) | je de kleinste toereikende route voor de taak nodig hebt |
-| [`stolz-context`](skills/stolz-context/SKILL.md) | context gevalideerd en precies op tijd geladen moet worden |
-| [`stolz-reuse`](skills/stolz-reuse/SKILL.md) | een geverifieerde leesactie, opdracht, toolaanroep of uitkomst zich kan herhalen |
+| [`stolz-route`](skills/stolz-route/SKILL.md) | de optimalisatiekeuze of adapterfallback onduidelijk is |
+| [`stolz-context`](skills/stolz-context/SKILL.md) | een manifest of leesactie met bronidentiteit gevalideerd moet worden |
+| [`stolz-reuse`](skills/stolz-reuse/SKILL.md) | een eerder resultaat herbruikbaar is of identieke lopende opdrachten samen kunnen komen |
 | [`stolz-quiet-state`](skills/stolz-quiet-state/SKILL.md) | polling of herhaalde pogingen anders dezelfde status opnieuw zouden melden |
 | [`stolz-benchmark`](skills/stolz-benchmark/SKILL.md) | een efficiëntiewijziging een vergelijking met gelijkwaardig resultaat nodig heeft |
+
+Kies bij een bekende behoefte direct de passende skill. Gewone codewijzigingen
+hebben geen STOLZ-route nodig. Verdiepende regels worden alleen geladen wanneer
+de geselecteerde skill ze nodig heeft. v0.11 biedt ook een optioneel taaksjabloon
+met onderzoeksgrenzen, lokale bevoegdheden en controleerbare voltooiing.
 
 ## 🛡️ Zuinigheid zonder zwakkere verificatie
 

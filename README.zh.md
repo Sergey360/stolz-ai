@@ -76,11 +76,14 @@ cp -R ../stolz-ai/skills/stolz-* .agents/skills/
 
 | 技能 | 适用场景 |
 | --- | --- |
-| [`stolz-route`](skills/stolz-route/SKILL.md) | 任务需要最小且足够的执行路径 |
-| [`stolz-context`](skills/stolz-context/SKILL.md) | 上下文应先验证，并在真正需要时加载 |
-| [`stolz-reuse`](skills/stolz-reuse/SKILL.md) | 已验证的读取、命令、工具调用或结果可能重复出现 |
+| [`stolz-route`](skills/stolz-route/SKILL.md) | 尚不明确应选择哪种优化或适配器回退路径 |
+| [`stolz-context`](skills/stolz-context/SKILL.md) | 需要验证清单或绑定来源身份的读取 |
+| [`stolz-reuse`](skills/stolz-reuse/SKILL.md) | 需要判断旧结果是否可复用，或合并正在执行的相同命令 |
 | [`stolz-quiet-state`](skills/stolz-quiet-state/SKILL.md) | 轮询或重试否则会重复报告未变化的状态 |
 | [`stolz-benchmark`](skills/stolz-benchmark/SKILL.md) | 效率变更需要在结果等价的前提下进行比较 |
+
+需求明确时直接选择对应技能。普通代码任务无需 STOLZ 路由；详细规则只在所选技能需要时加载。
+v0.11 还提供可选任务模板，用于明确研究范围、本地操作权限和可验证的完成条件。
 
 ## 🛡️ 节省不能削弱验证
 

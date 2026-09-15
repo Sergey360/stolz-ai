@@ -1,24 +1,17 @@
 ---
 name: stolz-benchmark
-description: Evaluate equivalent baseline and optimized routes and accept efficiency evidence only after outcome and verification gates pass.
+description: Admit or reject paired STOLZ efficiency evidence. Use to compare baseline and optimized runs.
 ---
 
-# STOLZ A.I. Benchmark
+# Benchmark Evidence
 
-Use this skill to assess a proposed efficiency improvement; it does not create
-a claim from prose, intuition, or one unverified run.
+Use for a paired efficiency claim, not general tests or an unmeasured estimate.
+Both routes must pass verification and match the required outcome on the same
+versioned fixture. Fewer tokens never compensate for lower quality.
 
-1. Run baseline and optimized routes on the same versioned fixture.
-2. Capture route IDs, token counts, model wakeups, tool calls, wall time,
-   interventions, outcomes, verification, and raw evidence locations.
-3. Accept a comparison only when both routes verify and have equivalent
-   required outcomes.
-4. Treat a lower-token run with weaker outcome or verification as rejected,
-   never as a saving.
-5. Do not publish a token-saving statement until reproducible benchmark
-   evidence exists.
-6. Use `npm run benchmark:check` to verify the checked-in example and inspect
-   `benchmarks/README.md` before adding a new suite or collector.
+Load [outcome-gate rules](references/outcome-gates.md) when evaluating a record
+or adding a collector. The reference includes available local checks.
 
-Use [outcome-gate rules](references/outcome-gates.md) for benchmark decisions.
-STOLZ A.I. does not make the model think less; it helps it waste less.
+Done: return an admission decision with raw evidence locations and the measured
+scope, or withhold the claim with a concrete rejection reason. Synthetic units
+and source bytes are not provider token telemetry.
