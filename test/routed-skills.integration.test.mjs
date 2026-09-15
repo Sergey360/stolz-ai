@@ -27,7 +27,6 @@ test('five installable skill entrypoints are narrow and use progressive-disclosu
     assert.match(skill, new RegExp(`name: ${name}`));
     assert.match(skill, /references\//);
   }
-  assert.equal((await readFile('skills/stolz-route/SKILL.md', 'utf8')).includes('unbenchmarked savings claim'), true);
 });
 
 test('route selection chooses one smallest route and safely falls back for unsupported adapters', () => {

@@ -167,8 +167,8 @@ test('npm package contains approved product files and root localizations, not do
   const paths = packed.files.map((entry) => entry.path);
 
   assert.equal(packed.name, 'stolz-ai');
-  assert.equal(packed.version, '0.10.0');
-  assert.equal(packed.entryCount, 173);
+  assert.equal(packed.version, '0.11.0');
+  assert.equal(packed.entryCount, 174);
   for (const path of [
     'README.md',
     'README.he.md',

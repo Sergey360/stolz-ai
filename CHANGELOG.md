@@ -3,6 +3,33 @@
 All notable changes to STOLZ A.I. are recorded here. Releases follow the
 repository's immutable-tag policy; unpublished work is not a release.
 
+## [0.11.0] - 2026-09-15
+
+### Changed
+
+- Narrowed five skill descriptions and removed compulsory routing before
+  ordinary code work, context-to-reuse handoffs, and unconditional reference
+  loading. Each skill keeps its admission invariants and a concrete outcome.
+- Added caller-driven `planSkillContext` for root-only, detailed and no-skill
+  instruction plans while preserving existing routing selectors and the three
+  stable package exports. Manifest reads retain identity and capability gates.
+- Added an optional task brief for bounded research, scoped local autonomy,
+  existing authorization and completion. Detailed domain rules remain in
+  conditional references; benchmark instructions no longer require an excluded
+  repository-only README.
+- Updated all five branded README languages and public architecture guidance.
+- Fixed the public-surface CLI entry-point check on Windows so running the
+  guard cannot silently skip validation.
+
+### Evidence boundary
+
+- A reproducible source audit and deterministic routing/read scenarios check
+  discovery size and conditional loading. Source bytes are not token telemetry;
+  authored concern labels are not evidence of a model's classification accuracy.
+- This is a model-independent skill architecture update informed by the Astra
+  guidance, not an Astra certification or provider savings claim. Existing
+  historical runtime evidence keeps its original scope.
+
 ## [0.10.0] - 2026-09-10
 
 ### Added

@@ -53,15 +53,16 @@ character's initials and artificial intelligence.
   <img src="assets/route-flow.svg" width="360" alt="A task is routed through one focused concern, verified, and delivered as a reliable outcome.">
 </picture>
 
-`stolz-route` chooses one focused concern—context, reuse, quiet state, or
-benchmarking. Every route keeps the required verification before the outcome.
+Choose a known concern directly: context, reuse, quiet state, or benchmarking.
+`stolz-route` helps when that choice is unclear. Ordinary coding needs no STOLZ
+route. Each selected skill loads its detailed rules only when needed and keeps
+the required verification before the outcome.
 
 ## The five core skills
 
 ### `stolz-route` — choose a route
 
-Use it when an optimization route is needed. It selects the smallest sufficient
-route and preserves the safe fallback.
+Use it when the optimization concern or adapter fallback is unclear.
 
 ### `stolz-context` — validate context before reading
 
@@ -70,14 +71,13 @@ route-required context and records identities.
 
 ### `stolz-reuse` — reuse verified results only
 
-Use it when a read, command, tool call, or result may repeat. It reuses only
+Use it to admit a prior result or coalesce an identical in-flight command. It reuses only
 verified, identity-matched results; otherwise it runs and verifies once.
 
 ### `stolz-quiet-state` — report meaningful changes
 
-Use it while polling, retrying, following cursors, or handling an asynchronous
-handoff. It surfaces material transitions only, keeping unchanged state out of
-model narration.
+Use it to suppress duplicate wakes from repeated operation snapshots. Durable
+cursor, retry and notification decisions keep unchanged state outside the model.
 
 ### `stolz-benchmark` — compare equivalent routes
 

@@ -1,6 +1,6 @@
 # Installation and compatibility
 
-STOLZ A.I. v0.9.0 is a package of five focused skill directories. Installing
+STOLZ A.I. v0.11.0 is a package of five focused skill directories. Installing
 it makes the skills available to an agent runtime; it does not start a service,
 instrument a provider, or install the private context-state and verified-reuse
 implementations used to develop the project. Those boundaries are described in
@@ -22,17 +22,17 @@ model, account, hook, MCP server, or GitLab credential.
 
 ## Verify the release artifact
 
-Download `stolz-ai-0.9.0.tgz` and its `.sha256` file from the release, then
+Download `stolz-ai-0.11.0.tgz` and its `.sha256` file from the release, then
 verify the checksum with the tool available on your operating system. Extract
 the archive before running the included profile CLI:
 
 ```bash
-tar -xzf stolz-ai-0.9.0.tgz
+tar -xzf stolz-ai-0.11.0.tgz
 cd package
 node -p "require('./package.json').version"
 ```
 
-The final command must print `0.9.0`. The release inventory and checksum prove
+The final command must print `0.11.0`. The release inventory and checksum prove
 the bytes that were published; they do not prove runtime compatibility or
 token savings.
 
@@ -66,7 +66,7 @@ node tools/profile-cli.mjs install --runtime claude-code --destination /absolute
 
 The profile declarations for Claude Code and Qwen Code use project destinations
 `.claude/skills/` and `.qwen/skills/`. Codex installations must use the skills
-directory configured by the Codex environment; v0.9.0 does not guess a global
+directory configured by the Codex environment; v0.11.0 does not guess a global
 path.
 
 ## What installation proves
@@ -105,7 +105,7 @@ The five installable skills are `stolz-route`, `stolz-context`, `stolz-reuse`,
 `stolz-quiet-state`, and `stolz-benchmark`. Copying a `SKILL.md` without its
 routed references is incomplete.
 
-## Lifecycle commands in v0.9.0
+## Lifecycle commands in v0.11.0
 
 Every managed installation writes `install-manifest.json`. Version 4 records
 the package version, selected runtime and scope (`project` or `user`), and the
@@ -149,7 +149,7 @@ node tools/profile-cli.mjs migrate --apply --legacy-version 0.7.1 --runtime qwen
   stale. It must enter `recheck_required` and receive fresh exact-tuple evidence
   before it can be certified again.
 - An unknown runtime or version may still use the five provider-neutral skills
-if its host can load them, but v0.9.0 makes no runtime-certification promise
+if its host can load them, but v0.11.0 makes no runtime-certification promise
   for that environment.
 - A missing or insufficient capability requires the normal verified route. It
   never permits a weaker outcome or skipped check.
@@ -159,7 +159,7 @@ describing any measured result.
 
 ## Optional local Codex state
 
-Version 0.9.0 adds one explicit Node API for a local Codex workspace. It is
+Version 0.11.0 retains one explicit Node API for a local Codex workspace. It is
 not installed into a skill directory, does not alter profile lifecycle files,
 and does not begin polling. Call it only where the application owns the
 workspace and can provide complete input identities and verification records.

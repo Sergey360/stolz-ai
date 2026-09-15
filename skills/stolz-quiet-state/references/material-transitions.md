@@ -2,6 +2,13 @@
 
 - A transition is material when state, cursor, retry count, or reason changes.
 - Timestamps alone are not material.
+- The legacy `reportQuietState` helper returns material events (`started`,
+  `progressed`, `waiting`, `needs_decision`, `failed`, `done`). It does not own
+  scheduling or decide whether to invoke a model. The durable controller admits
+  wakes only for a new failure, decision revision or terminal result; progress
+  can update stored state while remaining quiet.
+- Persist accepted state/cursor and wake identity before reporting, so restart
+  cannot replay a prior notification. Poll only when the persisted schedule is due.
 - A cursor is monotonic and durable. A lower cursor is stale; an equal cursor
   with different material state is a conflict. Neither can wake or overwrite
   the accepted cursor.
