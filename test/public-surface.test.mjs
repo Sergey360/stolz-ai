@@ -18,6 +18,11 @@ const publicDocuments = [
   'docs/installation.md',
   'docs/architecture.md',
   'docs/benchmarking.md',
+  'docs/PILOT_JOURNAL_TEMPLATE.md',
+  'docs/README.he.md',
+  'docs/README.nl.md',
+  'docs/README.ru.md',
+  'docs/README.zh.md',
   'docs/SOLUTION_DESIGN.md',
   'docs/BRAND_PLATFORM.md',
   'benchmarks/README.md',
@@ -39,6 +44,10 @@ const readmeBrandMarkers = [
   '](LICENSE)',
   'no_token-wasted',
 ];
+const historicalLocalizedDocLinksOutsidePackage = new Set([
+  'RELEASE_NOTES_TEMPLATE.md',
+  'RUNTIME_PROVIDER_CAPABILITY_MATRIX.md',
+]);
 
 function localTargets(text) {
   return [
@@ -91,6 +100,7 @@ test('public documents have valid local links and no internal process residue', 
     assert.doesNotMatch(text, forbidden, `${document} contains internal process language`);
     for (const target of localTargets(text)) {
       const path = target.split('#')[0];
+      if (document.startsWith('docs/README.') && historicalLocalizedDocLinksOutsidePackage.has(path)) continue;
       if (path) await access(resolve(dirname(document), decodeURIComponent(path)));
     }
   }
@@ -156,7 +166,7 @@ test('tracked GitHub tree stays inside the public allowlist', async () => {
   }
 });
 
-test('npm package contains approved product files and root localizations, not docs or project tests', async () => {
+test('npm package contains the approved product files, setup docs, and public smoke, not project tests', async () => {
   const npmExecPath = process.env.npm_execpath;
   const command = npmExecPath ? process.execPath : 'npm';
   const args = npmExecPath
@@ -167,8 +177,8 @@ test('npm package contains approved product files and root localizations, not do
   const paths = packed.files.map((entry) => entry.path);
 
   assert.equal(packed.name, 'stolz-ai');
-  assert.equal(packed.version, '0.12.0');
-  assert.equal(packed.entryCount, 181);
+  assert.equal(packed.version, '0.13.0');
+  assert.equal(packed.entryCount, 191);
   for (const path of [
     'README.md',
     'README.he.md',
@@ -202,9 +212,15 @@ test('npm package contains approved product files and root localizations, not do
     'benchmarks/skill-selection-v012/results.md',
     'tools/skill-selection-eval.mjs',
     'tools/skill-selection-report.mjs',
+    'contracts/profile-lock.schema.json',
+    'docs/architecture.md',
+    'docs/benchmarking.md',
+    'docs/installation.md',
+    'docs/PILOT_JOURNAL_TEMPLATE.md',
+    'examples/verify-public-package.mjs',
   ]) assert.ok(paths.includes(path), `${path} must be packed`);
 
-  const expectedInventory = (await readFile('.github/releases/stolz-ai-0.12.0.tgz.inventory.txt', 'utf8'))
+  const expectedInventory = (await readFile('.github/releases/stolz-ai-0.13.0.tgz.inventory.txt', 'utf8'))
     .trim().split(/\r?\n/).map((path) => path.replace(/^package\//, '')).sort();
   assert.deepEqual([...paths].sort(), expectedInventory, 'public source reproduces the private release inventory');
   for (const skill of ['stolz-benchmark', 'stolz-context', 'stolz-quiet-state', 'stolz-reuse', 'stolz-route']) {
@@ -215,7 +231,16 @@ test('npm package contains approved product files and root localizations, not do
       assert.ok(paths.includes(`skills/${skill}/${target}`), `${entrypoint} reference ${target} must be packed`);
     }
   }
-  assert.equal(paths.some((path) => path.startsWith('docs/')), false);
+  assert.deepEqual(paths.filter((path) => path.startsWith('docs/')).sort(), [
+    'docs/PILOT_JOURNAL_TEMPLATE.md',
+    'docs/README.he.md',
+    'docs/README.nl.md',
+    'docs/README.ru.md',
+    'docs/README.zh.md',
+    'docs/architecture.md',
+    'docs/benchmarking.md',
+    'docs/installation.md',
+  ]);
   assert.equal(paths.some((path) => path.startsWith('test/')), false);
   assert.equal(paths.some((path) => path.startsWith('benchmarks/v3/')), false);
   assert.equal(paths.some((path) => path.startsWith('contracts/multi-runtime-evidence-v0.7/')), false);
@@ -247,6 +272,20 @@ test('v0.12 public-release evidence records the private archive and bounded live
   assert.equal(report.release_gate.observed.permission_correct, 24);
 });
 
+test('v0.13 public-release evidence records the exact private archive and both platform smokes', async () => {
+  const checksum = await readFile('.github/releases/stolz-ai-0.13.0.tgz.sha256', 'utf8');
+  const inventory = await readFile('.github/releases/stolz-ai-0.13.0.tgz.inventory.txt', 'utf8');
+  const linux = JSON.parse(await readFile('.github/releases/public-package-smoke-linux.json', 'utf8'));
+  const windows = JSON.parse(await readFile('.github/releases/public-package-smoke-windows.json', 'utf8'));
+  assert.match(checksum, /^05645ff2d899dee7a8c3231c04e069a11f7e6bccb044509f9d39e58f1b34c82c\s+stolz-ai-0\.13\.0\.tgz/m);
+  assert.equal(inventory.trim().split(/\r?\n/).length, 191);
+  assert.equal(linux.status, 'passed');
+  assert.equal(linux.node_version, 'v22.22.2');
+  assert.equal(windows.status, 'passed');
+  assert.equal(windows.node_version, 'v22.22.2');
+  assert.deepEqual(windows.scenarios, linux.scenarios);
+});
+
 test('GitHub CI runs full public checks with read-only permissions', async () => {
   const workflow = await readFile('.github/workflows/ci.yml', 'utf8');
   assert.match(workflow, /permissions:\s*\n\s*contents: read/);
@@ -254,6 +293,8 @@ test('GitHub CI runs full public checks with read-only permissions', async () =>
   assert.match(workflow, /npm run benchmark:check/);
   assert.match(workflow, /npm run benchmark:v2:check/);
   assert.match(workflow, /--verify-report reports\/benchmark-v3\/real\/reads-navigation\.json --check/);
+  assert.match(workflow, /npm run smoke:public-package/);
   assert.match(workflow, /npm pack --dry-run --json --ignore-scripts/);
-  assert.doesNotMatch(workflow, /npm run build|sha256sum --check/);
+  assert.match(workflow, /sha256sum --check \.github\/releases\/stolz-ai-0\.13\.0\.tgz\.sha256/);
+  assert.doesNotMatch(workflow, /npm run build/);
 });

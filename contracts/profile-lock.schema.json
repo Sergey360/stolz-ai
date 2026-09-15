@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stolz-ai.com/contracts/profile-lock.schema.json",
+  "title": "STOLZ team profile lock",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["lock_version", "package", "runtime", "selection", "compatibility"],
+  "properties": {
+    "lock_version": { "const": "1.0" },
+    "package": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version"],
+      "properties": {
+        "name": { "const": "stolz-ai" },
+        "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" }
+      }
+    },
+    "runtime": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "profile_id", "profile_version", "declared_version", "configuration_identity"],
+      "properties": {
+        "id": { "type": ["string", "null"] },
+        "profile_id": { "type": "string" },
+        "profile_version": { "type": ["string", "null"] },
+        "declared_version": { "type": ["string", "null"] },
+        "configuration_identity": { "type": ["object", "null"] }
+      }
+    },
+    "selection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["resolution", "core_skills", "adapter", "optional_integrations", "provider_overlay"],
+      "properties": {
+        "resolution": { "type": "string" },
+        "core_skills": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "adapter": {
+          "type": "object",
+          "required": ["adapter_id"],
+          "properties": {
+            "adapter_id": { "type": "string" },
+            "version": { "type": "string" }
+          },
+          "additionalProperties": false
+        },
+        "optional_integrations": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "provider_overlay": { "type": "string" }
+      }
+    },
+    "compatibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cli_output_format", "unknown_lock_version", "configuration_drift", "model_identity_is_compatibility_evidence"],
+      "properties": {
+        "cli_output_format": { "const": "1.0" },
+        "unknown_lock_version": { "const": "deny" },
+        "configuration_drift": { "const": "deny" },
+        "model_identity_is_compatibility_evidence": { "const": false }
+      }
+    }
+  }
+}
