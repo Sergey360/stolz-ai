@@ -167,8 +167,8 @@ test('npm package contains approved product files and root localizations, not do
   const paths = packed.files.map((entry) => entry.path);
 
   assert.equal(packed.name, 'stolz-ai');
-  assert.equal(packed.version, '0.11.0');
-  assert.equal(packed.entryCount, 174);
+  assert.equal(packed.version, '0.12.0');
+  assert.equal(packed.entryCount, 181);
   for (const path of [
     'README.md',
     'README.he.md',
@@ -195,7 +195,26 @@ test('npm package contains approved product files and root localizations, not do
     'tools/codex-local-state.mjs',
     'tools/context-ledger.mjs',
     'tools/quiet-state-controller.mjs',
+    'benchmarks/skill-selection-v012/adjudications.json',
+    'benchmarks/skill-selection-v012/corpus-heldout-b.json',
+    'benchmarks/skill-selection-v012/corpus.json',
+    'benchmarks/skill-selection-v012/results.json',
+    'benchmarks/skill-selection-v012/results.md',
+    'tools/skill-selection-eval.mjs',
+    'tools/skill-selection-report.mjs',
   ]) assert.ok(paths.includes(path), `${path} must be packed`);
+
+  const expectedInventory = (await readFile('.github/releases/stolz-ai-0.12.0.tgz.inventory.txt', 'utf8'))
+    .trim().split(/\r?\n/).map((path) => path.replace(/^package\//, '')).sort();
+  assert.deepEqual([...paths].sort(), expectedInventory, 'public source reproduces the private release inventory');
+  for (const skill of ['stolz-benchmark', 'stolz-context', 'stolz-quiet-state', 'stolz-reuse', 'stolz-route']) {
+    const entrypoint = `skills/${skill}/SKILL.md`;
+    assert.ok(paths.includes(entrypoint));
+    const text = await readFile(entrypoint, 'utf8');
+    for (const [, target] of text.matchAll(/\[[^\]]+\]\((references\/[^)]+)\)/g)) {
+      assert.ok(paths.includes(`skills/${skill}/${target}`), `${entrypoint} reference ${target} must be packed`);
+    }
+  }
   assert.equal(paths.some((path) => path.startsWith('docs/')), false);
   assert.equal(paths.some((path) => path.startsWith('test/')), false);
   assert.equal(paths.some((path) => path.startsWith('benchmarks/v3/')), false);
@@ -213,6 +232,19 @@ test('v0.8 public-release evidence records the private-validated archive identit
   assert.equal(inventory.trim().split(/\r?\n/).length, 149);
   assert.match(inventory, /package\/contracts\/install-lifecycle-manifest\.schema\.json/);
   assert.match(inventory, /package\/tools\/profile-lifecycle\.mjs/);
+});
+
+test('v0.12 public-release evidence records the private archive and bounded live gate', async () => {
+  const checksum = await readFile('.github/releases/stolz-ai-0.12.0.tgz.sha256', 'utf8');
+  const inventory = await readFile('.github/releases/stolz-ai-0.12.0.tgz.inventory.txt', 'utf8');
+  const report = JSON.parse(await readFile('benchmarks/skill-selection-v012/results.json', 'utf8'));
+  assert.match(checksum, /^b5c04072774c0b78c99893b82e4312643c0390b2be704babcb31a27a2ebd1f9a\s+stolz-ai-0\.12\.0\.tgz/m);
+  assert.equal(inventory.trim().split(/\r?\n/).length, 181);
+  assert.equal(report.total_attempts, 68);
+  assert.equal(report.release_gate.passed, true);
+  assert.equal(report.release_gate.observed.route_correct, 23);
+  assert.equal(report.release_gate.observed.outcome_correct, 24);
+  assert.equal(report.release_gate.observed.permission_correct, 24);
 });
 
 test('GitHub CI runs full public checks with read-only permissions', async () => {

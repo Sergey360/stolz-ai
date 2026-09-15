@@ -64,15 +64,17 @@ the required verification before the outcome.
 
 Use it when the optimization concern or adapter fallback is unclear.
 
-### `stolz-context` — validate context before reading
+### `stolz-context` — validate existing context evidence
 
-Use it when a route manifest must be validated before reads. It loads immutable,
-route-required context and records identities.
+Use it when an existing STOLZ context manifest or read-ledger entry must be
+validated for trust, provenance, or invalidation. An ordinary first read does
+not trigger it.
 
 ### `stolz-reuse` — reuse verified results only
 
-Use it to admit a prior result or coalesce an identical in-flight command. It reuses only
-verified, identity-matched results; otherwise it runs and verifies once.
+Use it only when a prior result or identical in-flight command actually exists.
+It admits only verified, identity-matched results; otherwise it runs and
+verifies once.
 
 ### `stolz-quiet-state` — report meaningful changes
 
@@ -150,6 +152,13 @@ no complete comparable provider-export pair has been admitted.
 Read the [exact capability matrix](docs/architecture.md#exact-capability-matrix)
 before describing support. A missing or insufficient capability must select a
 safe fallback; it must never lower the required outcome or verification.
+
+The v0.12 installed-skill diagnostic used Codex CLI 0.153.4 with
+`gpt-5.6-sol` at `xhigh` reasoning. Its untouched replacement held-out gate
+passed 23/24 strict routes, 24/24 required outcomes, and 24/24 permission
+decisions. The [full 68-attempt report](benchmarks/skill-selection-v012/results.md)
+includes every failure and correction. This small diagnostic is not a universal
+accuracy, provider-token, cost, or savings claim.
 
 ## Evidence boundary
 

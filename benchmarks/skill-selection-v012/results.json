@@ -1,0 +1,3397 @@
+{
+  "schema": "stolz.skill-selection-public-report.v1",
+  "version": "0.12.0",
+  "published_scope": "small diagnostic corpus; no universal accuracy or savings claim",
+  "environment": {
+    "codex_cli_version": "0.153.4",
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "xhigh",
+    "authentication_mode": "chatgpt_managed",
+    "session": "ephemeral",
+    "sandbox": "workspace-write-auto-approved (--approve-for-me)",
+    "timeout_ms": 180000,
+    "automatic_retries": 0
+  },
+  "total_attempts": 68,
+  "raw_retention": "private_retained; public report includes hashes and opaque locators only",
+  "runs": [
+    {
+      "label": "smoke-initial",
+      "run_id": "skill-selection-2026-09-15T134550737Z-2dd9f1a9",
+      "captured_at": "2026-09-15T13:45:50.992Z",
+      "corpus_sha256": "05909b43f9e5bfb5c343dc0bd0f8f06afa1403e5b51217c8bded7f3491f5c3ff",
+      "candidate_sha": "b915331e91a5dda42e9a15c40d23ca554cb3a207",
+      "canonical_sha256": "aa145c4ce3027c4637e6280bee60735b2ec141ecc027e129dd88c48d44ddb54a",
+      "aggregate": {
+        "attempts": 4,
+        "execution_completed": 0,
+        "route_correct": 0,
+        "outcome_correct": 0,
+        "permission_correct": 4,
+        "failures": [
+          "dev-context-explicit-manifest",
+          "dev-reuse-explicit-hit",
+          "dev-state-explicit-unchanged",
+          "dev-measurement-explicit-pair"
+        ],
+        "by_group": {
+          "context": {
+            "attempts": 1,
+            "route_correct": 0,
+            "outcome_correct": 0
+          },
+          "reuse": {
+            "attempts": 1,
+            "route_correct": 0,
+            "outcome_correct": 0
+          },
+          "state": {
+            "attempts": 1,
+            "route_correct": 0,
+            "outcome_correct": 0
+          },
+          "measurement": {
+            "attempts": 1,
+            "route_correct": 0,
+            "outcome_correct": 0
+          },
+          "ordinary": {
+            "attempts": 0,
+            "route_correct": 0,
+            "outcome_correct": 0
+          },
+          "ambiguous": {
+            "attempts": 0,
+            "route_correct": 0,
+            "outcome_correct": 0
+          }
+        }
+      }
+    },
+    {
+      "label": "smoke-recovery",
+      "run_id": "skill-selection-2026-09-15T134655952Z-a16a5ed9",
+      "captured_at": "2026-09-15T13:49:10.898Z",
+      "corpus_sha256": "05909b43f9e5bfb5c343dc0bd0f8f06afa1403e5b51217c8bded7f3491f5c3ff",
+      "candidate_sha": "931aa261e0c287e248752494d47db4f7514be5a0",
+      "canonical_sha256": "774b43a9a4dfe753b45a30d76cf9701e853b1eff00d37a973caa239a493541df",
+      "aggregate": {
+        "attempts": 4,
+        "execution_completed": 4,
+        "route_correct": 1,
+        "outcome_correct": 3,
+        "permission_correct": 4,
+        "failures": [
+          "dev-context-explicit-manifest",
+          "dev-reuse-explicit-hit",
+          "dev-state-explicit-unchanged",
+          "dev-measurement-explicit-pair"
+        ],
+        "by_group": {
+          "context": {
+            "attempts": 1,
+            "route_correct": 1,
+            "outcome_correct": 0
+          },
+          "reuse": {
+            "attempts": 1,
+            "route_correct": 0,
+            "outcome_correct": 1
+          },
+          "state": {
+            "attempts": 1,
+            "route_correct": 0,
+            "outcome_correct": 1
+          },
+          "measurement": {
+            "attempts": 1,
+            "route_correct": 0,
+            "outcome_correct": 1
+          },
+          "ordinary": {
+            "attempts": 0,
+            "route_correct": 0,
+            "outcome_correct": 0
+          },
+          "ambiguous": {
+            "attempts": 0,
+            "route_correct": 0,
+            "outcome_correct": 0
+          }
+        }
+      }
+    },
+    {
+      "label": "development",
+      "run_id": "skill-selection-2026-09-15T135112763Z-d9c52553",
+      "captured_at": "2026-09-15T14:00:42.762Z",
+      "corpus_sha256": "a8db13f8e83d90a3392c026ce0fb1ce8ec9d0833350f836cfc51feaad2886790",
+      "candidate_sha": "7534a1a9f23f432abe538b374cb53054f12ed924",
+      "canonical_sha256": "a0a0bbc5611d0498e9e0b653f10feb2480aa074398ccb2b58a7349c311332fc1",
+      "aggregate": {
+        "attempts": 12,
+        "execution_completed": 12,
+        "route_correct": 11,
+        "outcome_correct": 12,
+        "permission_correct": 12,
+        "failures": [
+          "dev-context-first-read"
+        ],
+        "by_group": {
+          "context": {
+            "attempts": 2,
+            "route_correct": 1,
+            "outcome_correct": 2
+          },
+          "reuse": {
+            "attempts": 2,
+            "route_correct": 2,
+            "outcome_correct": 2
+          },
+          "state": {
+            "attempts": 2,
+            "route_correct": 2,
+            "outcome_correct": 2
+          },
+          "measurement": {
+            "attempts": 2,
+            "route_correct": 2,
+            "outcome_correct": 2
+          },
+          "ordinary": {
+            "attempts": 2,
+            "route_correct": 2,
+            "outcome_correct": 2
+          },
+          "ambiguous": {
+            "attempts": 2,
+            "route_correct": 2,
+            "outcome_correct": 2
+          }
+        }
+      }
+    },
+    {
+      "label": "heldout-a",
+      "run_id": "skill-selection-2026-09-15T140208889Z-2c7ab062",
+      "captured_at": "2026-09-15T14:17:29.388Z",
+      "corpus_sha256": "a8db13f8e83d90a3392c026ce0fb1ce8ec9d0833350f836cfc51feaad2886790",
+      "candidate_sha": "15864e0e5ba2186765589dbcb5942cb552bff637",
+      "canonical_sha256": "da99cde4d75cfc7c9d2556541a22b4d24bb43d18ec67fc4dcb2096c76826dfb8",
+      "aggregate": {
+        "attempts": 24,
+        "execution_completed": 24,
+        "route_correct": 21,
+        "outcome_correct": 23,
+        "permission_correct": 24,
+        "failures": [
+          "hold-context-mismatch",
+          "hold-context-goal-switch",
+          "hold-reuse-first-read",
+          "hold-measurement-complete-provider"
+        ],
+        "by_group": {
+          "context": {
+            "attempts": 4,
+            "route_correct": 3,
+            "outcome_correct": 3
+          },
+          "reuse": {
+            "attempts": 4,
+            "route_correct": 3,
+            "outcome_correct": 4
+          },
+          "state": {
+            "attempts": 4,
+            "route_correct": 4,
+            "outcome_correct": 4
+          },
+          "measurement": {
+            "attempts": 4,
+            "route_correct": 3,
+            "outcome_correct": 4
+          },
+          "ordinary": {
+            "attempts": 4,
+            "route_correct": 4,
+            "outcome_correct": 4
+          },
+          "ambiguous": {
+            "attempts": 4,
+            "route_correct": 4,
+            "outcome_correct": 4
+          }
+        }
+      }
+    },
+    {
+      "label": "heldout-b",
+      "run_id": "skill-selection-2026-09-15T142149104Z-bd9e08fd",
+      "captured_at": "2026-09-15T14:39:11.201Z",
+      "corpus_sha256": "a85690ea232b82e46aa318bcc5823b57d9f9756f4766210868072c459bcc03cc",
+      "candidate_sha": "c176997850f6350199167a75ed17ada44b7bd3c2",
+      "canonical_sha256": "9c8e19eb28b87fbfe1064c6d6c5d652efd7574ed9048a8df5bf6359318f2cdda",
+      "aggregate": {
+        "attempts": 24,
+        "execution_completed": 24,
+        "route_correct": 23,
+        "outcome_correct": 24,
+        "permission_correct": 24,
+        "failures": [
+          "b-context-ordinary-read"
+        ],
+        "by_group": {
+          "context": {
+            "attempts": 4,
+            "route_correct": 3,
+            "outcome_correct": 4
+          },
+          "reuse": {
+            "attempts": 4,
+            "route_correct": 4,
+            "outcome_correct": 4
+          },
+          "state": {
+            "attempts": 4,
+            "route_correct": 4,
+            "outcome_correct": 4
+          },
+          "measurement": {
+            "attempts": 4,
+            "route_correct": 4,
+            "outcome_correct": 4
+          },
+          "ordinary": {
+            "attempts": 4,
+            "route_correct": 4,
+            "outcome_correct": 4
+          },
+          "ambiguous": {
+            "attempts": 4,
+            "route_correct": 4,
+            "outcome_correct": 4
+          }
+        }
+      }
+    }
+  ],
+  "release_gate": {
+    "run_label": "heldout-b",
+    "route_threshold": "at least 22/24",
+    "outcome_threshold": "24/24",
+    "permission_threshold": "24/24",
+    "per_group_route_threshold": "at least 3/4",
+    "observed": {
+      "attempts": 24,
+      "execution_completed": 24,
+      "route_correct": 23,
+      "outcome_correct": 24,
+      "permission_correct": 24,
+      "failures": [
+        "b-context-ordinary-read"
+      ],
+      "by_group": {
+        "context": {
+          "attempts": 4,
+          "route_correct": 3,
+          "outcome_correct": 4
+        },
+        "reuse": {
+          "attempts": 4,
+          "route_correct": 4,
+          "outcome_correct": 4
+        },
+        "state": {
+          "attempts": 4,
+          "route_correct": 4,
+          "outcome_correct": 4
+        },
+        "measurement": {
+          "attempts": 4,
+          "route_correct": 4,
+          "outcome_correct": 4
+        },
+        "ordinary": {
+          "attempts": 4,
+          "route_correct": 4,
+          "outcome_correct": 4
+        },
+        "ambiguous": {
+          "attempts": 4,
+          "route_correct": 4,
+          "outcome_correct": 4
+        }
+      }
+    },
+    "passed": true
+  },
+  "adjudications": [
+    {
+      "run": "smoke-initial",
+      "case_ids": [
+        "dev-context-explicit-manifest",
+        "dev-reuse-explicit-hit",
+        "dev-state-explicit-unchanged",
+        "dev-measurement-explicit-pair"
+      ],
+      "classification": "collector_invocation_failure",
+      "disposition": "retained_failure",
+      "detail": "Codex CLI rejected the simultaneous --approve-for-me and --sandbox flags before any model turn. The four raw stderr records are retained; commit 931aa261 removed the incompatible duplicate flag."
+    },
+    {
+      "run": "smoke-recovery",
+      "case_ids": [
+        "dev-reuse-explicit-hit",
+        "dev-state-explicit-unchanged",
+        "dev-measurement-explicit-pair"
+      ],
+      "classification": "collector_path_detection_failure",
+      "disposition": "retained_failure",
+      "detail": "The model read the required roots and references through Windows paths containing doubled backslashes, but collector v1.0.0 initially failed to recognize those paths. Raw traces are retained; commit 7534a1a9 fixed normalization."
+    },
+    {
+      "run": "smoke-recovery",
+      "case_ids": [
+        "dev-context-explicit-manifest"
+      ],
+      "classification": "development_fixture_incomplete",
+      "disposition": "retained_failure",
+      "detail": "The minimal fixture omitted manifest fields required by the published context rules, so the model correctly chose the normal route. The development fixture was completed before the full development split."
+    },
+    {
+      "run": "development",
+      "case_ids": [
+        "dev-context-first-read"
+      ],
+      "classification": "confirmed_skill_trigger_defect",
+      "disposition": "fixed",
+      "detail": "An ordinary first read incorrectly selected stolz-context. Commit 15864e0e narrowed discovery to an existing STOLZ context manifest or read-ledger artifact."
+    },
+    {
+      "run": "heldout-a",
+      "case_ids": [
+        "hold-context-mismatch"
+      ],
+      "classification": "runtime_shell_read_failure",
+      "disposition": "retained_failure",
+      "detail": "The model selected stolz-context and returned the correct fallback, but two cmd.exe quoting attempts failed to read the root/reference. The failure remains visible and was not counted as a passing strict route."
+    },
+    {
+      "run": "heldout-a",
+      "case_ids": [
+        "hold-context-goal-switch"
+      ],
+      "classification": "oracle_incomplete_identity",
+      "disposition": "retained_failure",
+      "detail": "The fixed oracle expected reuse although the fixture lacked required input, invalidation, tool, timestamp, and evidence identities. The model followed the skill's fail-closed rule and returned reuse_miss."
+    },
+    {
+      "run": "heldout-a",
+      "case_ids": [
+        "hold-reuse-first-read"
+      ],
+      "classification": "confirmed_skill_trigger_defect",
+      "disposition": "fixed_with_replacement_set",
+      "detail": "A first file read with no prior result incorrectly selected stolz-reuse. Commit c1769978 limited discovery to an existing reusable result or competing execution; the replacement held-out set was frozen first."
+    },
+    {
+      "run": "heldout-a",
+      "case_ids": [
+        "hold-measurement-complete-provider"
+      ],
+      "classification": "collector_external_skill_classification_failure",
+      "disposition": "retained_failure",
+      "detail": "The model correctly selected stolz-benchmark and also followed the host powershell-shell instruction. Collector scoring wrongly treated that external host skill as a disallowed product route; commit 1ad444ba separated external skills."
+    },
+    {
+      "run": "heldout-b",
+      "case_ids": [
+        "b-context-ordinary-read"
+      ],
+      "classification": "neutral_skill_selected",
+      "disposition": "accepted_automatic_miss",
+      "detail": "No STOLZ skill was selected. The neutral release-note-editor skill matched a version-label lookup and the requested outcome was correct. The strict predeclared oracle allowed no skill, so the automatic miss remains unchanged."
+    }
+  ],
+  "attempts": [
+    {
+      "run": "smoke-initial",
+      "case_id": "dev-context-explicit-manifest",
+      "split": "development",
+      "group": "context",
+      "traits": [
+        "explicit_skill",
+        "analysis_only"
+      ],
+      "prompt": "Use $stolz-context to assess input.json. The manifest and source identities match. Do not change files. Return only DECISION=verified_context or DECISION=normal_route.",
+      "candidate_sha": "b915331e91a5dda42e9a15c40d23ca554cb3a207",
+      "started_at": "2026-09-15T13:45:50.771Z",
+      "ended_at": "2026-09-15T13:45:50.808Z",
+      "execution_completed": false,
+      "process_exit_code": 2,
+      "timed_out": false,
+      "decision": null,
+      "expected_decision": "verified_context",
+      "route_correct": false,
+      "outcome_correct": false,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [],
+      "evaluated_skills": [],
+      "external_skills": [],
+      "read_references": [],
+      "tool_calls": 0,
+      "failed_tool_calls": 0,
+      "usage": null,
+      "final_answer": "",
+      "raw_evidence_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "42d4eeb1d04c7232c5075ef6d4cf2674c374a37b96c9d2c4499cfcc19ef166ae",
+      "private_locator": "private_retained:skill-selection-2026-09-15T134550737Z-2dd9f1a9:dev-context-explicit-manifest"
+    },
+    {
+      "run": "smoke-initial",
+      "case_id": "dev-reuse-explicit-hit",
+      "split": "development",
+      "group": "reuse",
+      "traits": [
+        "explicit_skill",
+        "prior_result"
+      ],
+      "prompt": "Use $stolz-reuse to decide input.json. The prior result is verified and current. Return only DECISION=reuse_hit or DECISION=reuse_miss.",
+      "candidate_sha": "b915331e91a5dda42e9a15c40d23ca554cb3a207",
+      "started_at": "2026-09-15T13:45:50.841Z",
+      "ended_at": "2026-09-15T13:45:50.874Z",
+      "execution_completed": false,
+      "process_exit_code": 2,
+      "timed_out": false,
+      "decision": null,
+      "expected_decision": "reuse_hit",
+      "route_correct": false,
+      "outcome_correct": false,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [],
+      "evaluated_skills": [],
+      "external_skills": [],
+      "read_references": [],
+      "tool_calls": 0,
+      "failed_tool_calls": 0,
+      "usage": null,
+      "final_answer": "",
+      "raw_evidence_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "42d4eeb1d04c7232c5075ef6d4cf2674c374a37b96c9d2c4499cfcc19ef166ae",
+      "private_locator": "private_retained:skill-selection-2026-09-15T134550737Z-2dd9f1a9:dev-reuse-explicit-hit"
+    },
+    {
+      "run": "smoke-initial",
+      "case_id": "dev-state-explicit-unchanged",
+      "split": "development",
+      "group": "state",
+      "traits": [
+        "explicit_skill",
+        "repeated_snapshot"
+      ],
+      "prompt": "Use $stolz-quiet-state for snapshots.json. The second durable snapshot is unchanged. Return only DECISION=suppress or DECISION=wake.",
+      "candidate_sha": "b915331e91a5dda42e9a15c40d23ca554cb3a207",
+      "started_at": "2026-09-15T13:45:50.904Z",
+      "ended_at": "2026-09-15T13:45:50.933Z",
+      "execution_completed": false,
+      "process_exit_code": 2,
+      "timed_out": false,
+      "decision": null,
+      "expected_decision": "suppress",
+      "route_correct": false,
+      "outcome_correct": false,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [],
+      "evaluated_skills": [],
+      "external_skills": [],
+      "read_references": [],
+      "tool_calls": 0,
+      "failed_tool_calls": 0,
+      "usage": null,
+      "final_answer": "",
+      "raw_evidence_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "42d4eeb1d04c7232c5075ef6d4cf2674c374a37b96c9d2c4499cfcc19ef166ae",
+      "private_locator": "private_retained:skill-selection-2026-09-15T134550737Z-2dd9f1a9:dev-state-explicit-unchanged"
+    },
+    {
+      "run": "smoke-initial",
+      "case_id": "dev-measurement-explicit-pair",
+      "split": "development",
+      "group": "measurement",
+      "traits": [
+        "explicit_skill",
+        "paired_evidence"
+      ],
+      "prompt": "Use $stolz-benchmark to assess pair.json. Both routes pass the same outcome and verification and provider-native usage is present. Return only DECISION=admit or DECISION=withhold.",
+      "candidate_sha": "b915331e91a5dda42e9a15c40d23ca554cb3a207",
+      "started_at": "2026-09-15T13:45:50.960Z",
+      "ended_at": "2026-09-15T13:45:50.991Z",
+      "execution_completed": false,
+      "process_exit_code": 2,
+      "timed_out": false,
+      "decision": null,
+      "expected_decision": "admit",
+      "route_correct": false,
+      "outcome_correct": false,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [],
+      "evaluated_skills": [],
+      "external_skills": [],
+      "read_references": [],
+      "tool_calls": 0,
+      "failed_tool_calls": 0,
+      "usage": null,
+      "final_answer": "",
+      "raw_evidence_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "42d4eeb1d04c7232c5075ef6d4cf2674c374a37b96c9d2c4499cfcc19ef166ae",
+      "private_locator": "private_retained:skill-selection-2026-09-15T134550737Z-2dd9f1a9:dev-measurement-explicit-pair"
+    },
+    {
+      "run": "smoke-recovery",
+      "case_id": "dev-context-explicit-manifest",
+      "split": "development",
+      "group": "context",
+      "traits": [
+        "explicit_skill",
+        "analysis_only"
+      ],
+      "prompt": "Use $stolz-context to assess input.json. The manifest and source identities match. Do not change files. Return only DECISION=verified_context or DECISION=normal_route.",
+      "candidate_sha": "931aa261e0c287e248752494d47db4f7514be5a0",
+      "started_at": "2026-09-15T13:46:55.994Z",
+      "ended_at": "2026-09-15T13:47:30.750Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "normal_route",
+      "expected_decision": "verified_context",
+      "route_correct": true,
+      "outcome_correct": false,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "stolz-context"
+      ],
+      "evaluated_skills": [
+        "stolz-context"
+      ],
+      "external_skills": [],
+      "read_references": [
+        "manifest-and-reads.md"
+      ],
+      "tool_calls": 1,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 41937,
+        "cached_input_tokens": 30208,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 714,
+        "reasoning_output_tokens": 470
+      },
+      "final_answer": "DECISION=normal_route",
+      "raw_evidence_sha256": "d418335e742de029e3142b26e658bd45a8e5da4bfb99de98e7331f7f2f650581",
+      "stderr_sha256": "7bf245df5afeb76880645d57c6c5f8811a4ec4c01a05d23e45b46d53949ab92b",
+      "private_locator": "private_retained:skill-selection-2026-09-15T134655952Z-a16a5ed9:dev-context-explicit-manifest"
+    },
+    {
+      "run": "smoke-recovery",
+      "case_id": "dev-reuse-explicit-hit",
+      "split": "development",
+      "group": "reuse",
+      "traits": [
+        "explicit_skill",
+        "prior_result"
+      ],
+      "prompt": "Use $stolz-reuse to decide input.json. The prior result is verified and current. Return only DECISION=reuse_hit or DECISION=reuse_miss.",
+      "candidate_sha": "931aa261e0c287e248752494d47db4f7514be5a0",
+      "started_at": "2026-09-15T13:47:30.803Z",
+      "ended_at": "2026-09-15T13:48:06.979Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "reuse_hit",
+      "expected_decision": "reuse_hit",
+      "route_correct": false,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [],
+      "evaluated_skills": [],
+      "external_skills": [],
+      "read_references": [],
+      "tool_calls": 3,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 60281,
+        "cached_input_tokens": 50176,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 638,
+        "reasoning_output_tokens": 248
+      },
+      "final_answer": "DECISION=reuse_hit",
+      "raw_evidence_sha256": "7b05a92c7a450516e87a147a2a5f6d21aad4c93b0200114ac950e8826b206a4f",
+      "stderr_sha256": "94dc43c61677aca342989169d82a211996cddf43b0c4a26147d8c73e66acbe9c",
+      "private_locator": "private_retained:skill-selection-2026-09-15T134655952Z-a16a5ed9:dev-reuse-explicit-hit"
+    },
+    {
+      "run": "smoke-recovery",
+      "case_id": "dev-state-explicit-unchanged",
+      "split": "development",
+      "group": "state",
+      "traits": [
+        "explicit_skill",
+        "repeated_snapshot"
+      ],
+      "prompt": "Use $stolz-quiet-state for snapshots.json. The second durable snapshot is unchanged. Return only DECISION=suppress or DECISION=wake.",
+      "candidate_sha": "931aa261e0c287e248752494d47db4f7514be5a0",
+      "started_at": "2026-09-15T13:48:07.015Z",
+      "ended_at": "2026-09-15T13:48:38.140Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "suppress",
+      "expected_decision": "suppress",
+      "route_correct": false,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [],
+      "evaluated_skills": [],
+      "external_skills": [],
+      "read_references": [],
+      "tool_calls": 1,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 40111,
+        "cached_input_tokens": 30208,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 387,
+        "reasoning_output_tokens": 217
+      },
+      "final_answer": "DECISION=suppress",
+      "raw_evidence_sha256": "eee106f117941f6b6e85fcf2e5e3558d8d2003bc87232d93ac6bbee9c7dc2ef5",
+      "stderr_sha256": "7e10c378821620f70539de0970477aff9e47ba423c562f55a879e55eb7dc2c5b",
+      "private_locator": "private_retained:skill-selection-2026-09-15T134655952Z-a16a5ed9:dev-state-explicit-unchanged"
+    },
+    {
+      "run": "smoke-recovery",
+      "case_id": "dev-measurement-explicit-pair",
+      "split": "development",
+      "group": "measurement",
+      "traits": [
+        "explicit_skill",
+        "paired_evidence"
+      ],
+      "prompt": "Use $stolz-benchmark to assess pair.json. Both routes pass the same outcome and verification and provider-native usage is present. Return only DECISION=admit or DECISION=withhold.",
+      "candidate_sha": "931aa261e0c287e248752494d47db4f7514be5a0",
+      "started_at": "2026-09-15T13:48:38.185Z",
+      "ended_at": "2026-09-15T13:49:10.896Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "admit",
+      "expected_decision": "admit",
+      "route_correct": false,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [],
+      "evaluated_skills": [],
+      "external_skills": [],
+      "read_references": [],
+      "tool_calls": 1,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 40073,
+        "cached_input_tokens": 30208,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 466,
+        "reasoning_output_tokens": 266
+      },
+      "final_answer": "DECISION=admit",
+      "raw_evidence_sha256": "69a8fee1462f44690ed1460aa5bdd0bd288e5f4c6993004a56a41015993b75da",
+      "stderr_sha256": "cedf4ff2b6c7253115cfc2e93f2587d589f621b0e9e38a81b4649dfdc44142ba",
+      "private_locator": "private_retained:skill-selection-2026-09-15T134655952Z-a16a5ed9:dev-measurement-explicit-pair"
+    },
+    {
+      "run": "development",
+      "case_id": "dev-context-explicit-manifest",
+      "split": "development",
+      "group": "context",
+      "traits": [
+        "explicit_skill",
+        "analysis_only"
+      ],
+      "prompt": "Use $stolz-context to assess input.json. The manifest and source identities match. Do not change files. Return only DECISION=verified_context or DECISION=normal_route.",
+      "candidate_sha": "7534a1a9f23f432abe538b374cb53054f12ed924",
+      "started_at": "2026-09-15T13:51:12.806Z",
+      "ended_at": "2026-09-15T13:53:09.682Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "verified_context",
+      "expected_decision": "verified_context",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "stolz-context"
+      ],
+      "evaluated_skills": [
+        "stolz-context"
+      ],
+      "external_skills": [],
+      "read_references": [
+        "manifest-and-reads.md"
+      ],
+      "tool_calls": 8,
+      "failed_tool_calls": 3,
+      "usage": {
+        "input_tokens": 190759,
+        "cached_input_tokens": 177536,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2083,
+        "reasoning_output_tokens": 920
+      },
+      "final_answer": "DECISION=verified_context",
+      "raw_evidence_sha256": "52e4f3727dbbcef6f1e665adc8c9fa05f7d20da8a8bdc3330c8d51c3e6fcadd1",
+      "stderr_sha256": "bdf0adedd4a2254788520562ec970a33436786b737e6b94791778c769458f48a",
+      "private_locator": "private_retained:skill-selection-2026-09-15T135112763Z-d9c52553:dev-context-explicit-manifest"
+    },
+    {
+      "run": "development",
+      "case_id": "dev-context-first-read",
+      "split": "development",
+      "group": "context",
+      "traits": [
+        "ordinary_first_read"
+      ],
+      "prompt": "Read note.txt and report its single release name. This is an ordinary first read with no manifest. Return only DECISION=v012 or DECISION=unknown.",
+      "candidate_sha": "7534a1a9f23f432abe538b374cb53054f12ed924",
+      "started_at": "2026-09-15T13:53:09.713Z",
+      "ended_at": "2026-09-15T13:53:45.851Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "v012",
+      "expected_decision": "v012",
+      "route_correct": false,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "stolz-context"
+      ],
+      "evaluated_skills": [
+        "stolz-context"
+      ],
+      "external_skills": [],
+      "read_references": [],
+      "tool_calls": 2,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 59445,
+        "cached_input_tokens": 38912,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 599,
+        "reasoning_output_tokens": 324
+      },
+      "final_answer": "DECISION=v012",
+      "raw_evidence_sha256": "12204b9715dbeb23955dd145de0d3e7c8241062fc5660bf6f68d9ce0b9fba9a2",
+      "stderr_sha256": "6359fdd7bac5ced2142f50be924fa5a5910642e235c8e3a5a721b210dfe8921f",
+      "private_locator": "private_retained:skill-selection-2026-09-15T135112763Z-d9c52553:dev-context-first-read"
+    },
+    {
+      "run": "development",
+      "case_id": "dev-reuse-explicit-hit",
+      "split": "development",
+      "group": "reuse",
+      "traits": [
+        "explicit_skill",
+        "prior_result"
+      ],
+      "prompt": "Use $stolz-reuse to decide input.json. The prior result is verified and current. Return only DECISION=reuse_hit or DECISION=reuse_miss.",
+      "candidate_sha": "7534a1a9f23f432abe538b374cb53054f12ed924",
+      "started_at": "2026-09-15T13:53:45.896Z",
+      "ended_at": "2026-09-15T13:54:24.966Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "reuse_hit",
+      "expected_decision": "reuse_hit",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "stolz-reuse"
+      ],
+      "evaluated_skills": [
+        "stolz-reuse"
+      ],
+      "external_skills": [],
+      "read_references": [
+        "ledger-and-invalidation.md"
+      ],
+      "tool_calls": 1,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 40625,
+        "cached_input_tokens": 30208,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 783,
+        "reasoning_output_tokens": 591
+      },
+      "final_answer": "DECISION=reuse_hit",
+      "raw_evidence_sha256": "c53fb53cf38ad4a9b3313566dd59b8bc6f9cd939d274fbbf4b714c652fd194a1",
+      "stderr_sha256": "4b4647d005c60851dbcb0dc6734d085a023a41148bf3eb0a31c98a63521e3833",
+      "private_locator": "private_retained:skill-selection-2026-09-15T135112763Z-d9c52553:dev-reuse-explicit-hit"
+    },
+    {
+      "run": "development",
+      "case_id": "dev-reuse-first-command",
+      "split": "development",
+      "group": "reuse",
+      "traits": [
+        "no_prior_result",
+        "neutral_competition"
+      ],
+      "prompt": "Review function.js for the obvious off-by-one bug. There is no prior result or competing execution. Return only DECISION=line2 or DECISION=none.",
+      "candidate_sha": "7534a1a9f23f432abe538b374cb53054f12ed924",
+      "started_at": "2026-09-15T13:54:25.011Z",
+      "ended_at": "2026-09-15T13:54:53.289Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "line2",
+      "expected_decision": "line2",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "plain-code-review"
+      ],
+      "evaluated_skills": [
+        "plain-code-review"
+      ],
+      "external_skills": [],
+      "read_references": [],
+      "tool_calls": 1,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 40927,
+        "cached_input_tokens": 29952,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 507,
+        "reasoning_output_tokens": 253
+      },
+      "final_answer": "DECISION=line2",
+      "raw_evidence_sha256": "90503a6e59024fcdc44d68d045fbbb3f0bbd82afda0e2829a430bf4a59e6f935",
+      "stderr_sha256": "8abc2f96fbe60db689d6ee263cccfe49dfd596f3e949a3241050556541cdc23e",
+      "private_locator": "private_retained:skill-selection-2026-09-15T135112763Z-d9c52553:dev-reuse-first-command"
+    },
+    {
+      "run": "development",
+      "case_id": "dev-state-explicit-unchanged",
+      "split": "development",
+      "group": "state",
+      "traits": [
+        "explicit_skill",
+        "repeated_snapshot"
+      ],
+      "prompt": "Use $stolz-quiet-state for snapshots.json. The second durable snapshot is unchanged. Return only DECISION=suppress or DECISION=wake.",
+      "candidate_sha": "7534a1a9f23f432abe538b374cb53054f12ed924",
+      "started_at": "2026-09-15T13:54:53.345Z",
+      "ended_at": "2026-09-15T13:55:44.298Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "suppress",
+      "expected_decision": "suppress",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "stolz-quiet-state"
+      ],
+      "evaluated_skills": [
+        "stolz-quiet-state"
+      ],
+      "external_skills": [],
+      "read_references": [
+        "material-transitions.md"
+      ],
+      "tool_calls": 4,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 102192,
+        "cached_input_tokens": 81920,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 833,
+        "reasoning_output_tokens": 370
+      },
+      "final_answer": "DECISION=suppress",
+      "raw_evidence_sha256": "c487288863fedba0a5cd013c90b242014332700402de5699f1426f9de1ed5815",
+      "stderr_sha256": "e6e9c9c152e85c55d9cfb83a5405a4bd1d8d90a32841c179740d6fcab4f05d30",
+      "private_locator": "private_retained:skill-selection-2026-09-15T135112763Z-d9c52553:dev-state-explicit-unchanged"
+    },
+    {
+      "run": "development",
+      "case_id": "dev-state-one-off",
+      "split": "development",
+      "group": "state",
+      "traits": [
+        "one_off_status"
+      ],
+      "prompt": "Give the one-off state from status.json. No polling or durable cursor is involved. Return only DECISION=running or DECISION=failed.",
+      "candidate_sha": "7534a1a9f23f432abe538b374cb53054f12ed924",
+      "started_at": "2026-09-15T13:55:44.339Z",
+      "ended_at": "2026-09-15T13:56:20.119Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "running",
+      "expected_decision": "running",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [],
+      "evaluated_skills": [],
+      "external_skills": [],
+      "read_references": [],
+      "tool_calls": 2,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 62132,
+        "cached_input_tokens": 40704,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 437,
+        "reasoning_output_tokens": 227
+      },
+      "final_answer": "DECISION=running",
+      "raw_evidence_sha256": "dd88964f950dcb4a99f3bbb0679913e16cc750528e05aebb78a646862194ad51",
+      "stderr_sha256": "84715bb9dc975513a561422967b0a3b969ed4acd08ed4d041ea6b8752c188ee6",
+      "private_locator": "private_retained:skill-selection-2026-09-15T135112763Z-d9c52553:dev-state-one-off"
+    },
+    {
+      "run": "development",
+      "case_id": "dev-measurement-explicit-pair",
+      "split": "development",
+      "group": "measurement",
+      "traits": [
+        "explicit_skill",
+        "paired_evidence"
+      ],
+      "prompt": "Use $stolz-benchmark to assess pair.json. Both routes pass the same outcome and verification and provider-native usage is present. Return only DECISION=admit or DECISION=withhold.",
+      "candidate_sha": "7534a1a9f23f432abe538b374cb53054f12ed924",
+      "started_at": "2026-09-15T13:56:20.159Z",
+      "ended_at": "2026-09-15T13:57:14.672Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "admit",
+      "expected_decision": "admit",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "stolz-benchmark"
+      ],
+      "evaluated_skills": [
+        "stolz-benchmark"
+      ],
+      "external_skills": [],
+      "read_references": [
+        "outcome-gates.md"
+      ],
+      "tool_calls": 2,
+      "failed_tool_calls": 1,
+      "usage": {
+        "input_tokens": 60956,
+        "cached_input_tokens": 50304,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1181,
+        "reasoning_output_tokens": 837
+      },
+      "final_answer": "DECISION=admit",
+      "raw_evidence_sha256": "605f4e2e2ca6641ae1355d3691bd830a19ebb62a173b301ca8aebb1e20142aa8",
+      "stderr_sha256": "64fd337948ce455b21b457a5f5cb40605d90e4b41802b0ae3a67ec1b9d8686c5",
+      "private_locator": "private_retained:skill-selection-2026-09-15T135112763Z-d9c52553:dev-measurement-explicit-pair"
+    },
+    {
+      "run": "development",
+      "case_id": "dev-measurement-estimate",
+      "split": "development",
+      "group": "measurement",
+      "traits": [
+        "unmeasured_claim",
+        "analysis_only"
+      ],
+      "prompt": "Estimate a public token-saving percentage from note.txt, which contains only an intuition and no paired measurements. Return only DECISION=publish or DECISION=withhold.",
+      "candidate_sha": "7534a1a9f23f432abe538b374cb53054f12ed924",
+      "started_at": "2026-09-15T13:57:14.714Z",
+      "ended_at": "2026-09-15T13:58:08.859Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "withhold",
+      "expected_decision": "withhold",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "stolz-benchmark"
+      ],
+      "evaluated_skills": [
+        "stolz-benchmark"
+      ],
+      "external_skills": [],
+      "read_references": [
+        "outcome-gates.md"
+      ],
+      "tool_calls": 3,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 60120,
+        "cached_input_tokens": 49792,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 990,
+        "reasoning_output_tokens": 521
+      },
+      "final_answer": "DECISION=withhold",
+      "raw_evidence_sha256": "7eb195b6371775273575a246ba599633f6eeb6b9b4f529b0d263d175cc0fcc8a",
+      "stderr_sha256": "6b6900d4f5b4d800b36f72f1e4674a4aa4bd2664d8d008627447acd8648d03a3",
+      "private_locator": "private_retained:skill-selection-2026-09-15T135112763Z-d9c52553:dev-measurement-estimate"
+    },
+    {
+      "run": "development",
+      "case_id": "dev-ordinary-release-note",
+      "split": "development",
+      "group": "ordinary",
+      "traits": [
+        "neutral_competition",
+        "ordinary_task"
+      ],
+      "prompt": "Review release-note.txt for the one incorrect version and return the corrected version only as DECISION=0.12.0 or DECISION=0.21.0.",
+      "candidate_sha": "7534a1a9f23f432abe538b374cb53054f12ed924",
+      "started_at": "2026-09-15T13:58:08.904Z",
+      "ended_at": "2026-09-15T13:58:42.390Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "0.12.0",
+      "expected_decision": "0.12.0",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "release-note-editor"
+      ],
+      "evaluated_skills": [
+        "release-note-editor"
+      ],
+      "external_skills": [],
+      "read_references": [],
+      "tool_calls": 2,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 62328,
+        "cached_input_tokens": 38272,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 512,
+        "reasoning_output_tokens": 156
+      },
+      "final_answer": "DECISION=0.12.0",
+      "raw_evidence_sha256": "6a4ad186d53f0d7c8a72d2bc116c994cbc6f172a7f938080cc6f9fe9452fa66e",
+      "stderr_sha256": "ddf950f0740b0e3c7449c355cad96a51821c3653e9f5ce68f5ecdfe914fc61bb",
+      "private_locator": "private_retained:skill-selection-2026-09-15T135112763Z-d9c52553:dev-ordinary-release-note"
+    },
+    {
+      "run": "development",
+      "case_id": "dev-ordinary-code-review",
+      "split": "development",
+      "group": "ordinary",
+      "traits": [
+        "neutral_competition",
+        "analysis_only"
+      ],
+      "prompt": "Review function.js without editing it. Identify the buggy return line. Return only DECISION=line2 or DECISION=none.",
+      "candidate_sha": "7534a1a9f23f432abe538b374cb53054f12ed924",
+      "started_at": "2026-09-15T13:58:42.428Z",
+      "ended_at": "2026-09-15T13:59:22.499Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "line2",
+      "expected_decision": "line2",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "plain-code-review"
+      ],
+      "evaluated_skills": [
+        "plain-code-review"
+      ],
+      "external_skills": [],
+      "read_references": [],
+      "tool_calls": 3,
+      "failed_tool_calls": 1,
+      "usage": {
+        "input_tokens": 79173,
+        "cached_input_tokens": 60288,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 612,
+        "reasoning_output_tokens": 203
+      },
+      "final_answer": "DECISION=line2",
+      "raw_evidence_sha256": "498a101a1a31dccd9ba8f13d563429d9385485c00cecf06a3e542f8636a08ebf",
+      "stderr_sha256": "f788e2a55214d9ba1de21dd4f4c00917f070293eb9c14769dac7383155b37823",
+      "private_locator": "private_retained:skill-selection-2026-09-15T135112763Z-d9c52553:dev-ordinary-code-review"
+    },
+    {
+      "run": "development",
+      "case_id": "dev-ambiguous-overlap",
+      "split": "development",
+      "group": "ambiguous",
+      "traits": [
+        "overlap",
+        "route_selection"
+      ],
+      "prompt": "A task mentions context, a prior result, and repeated status snapshots, but does not say which current decision matters. Choose how to begin. Return only DECISION=route_first or DECISION=all_skills.",
+      "candidate_sha": "7534a1a9f23f432abe538b374cb53054f12ed924",
+      "started_at": "2026-09-15T13:59:22.550Z",
+      "ended_at": "2026-09-15T14:00:00.826Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "route_first",
+      "expected_decision": "route_first",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "stolz-route"
+      ],
+      "evaluated_skills": [
+        "stolz-route"
+      ],
+      "external_skills": [],
+      "read_references": [
+        "route-selection.md"
+      ],
+      "tool_calls": 2,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 59589,
+        "cached_input_tokens": 46080,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 581,
+        "reasoning_output_tokens": 289
+      },
+      "final_answer": "DECISION=route_first",
+      "raw_evidence_sha256": "695cdf8b7431d480724f3ac1d484a7ed59441a803ebd1ca458d6f18dc789b7c4",
+      "stderr_sha256": "67184832293e8352118fb373456c45deef3c1fdc0ec96f691b40d7910ac2ac67",
+      "private_locator": "private_retained:skill-selection-2026-09-15T135112763Z-d9c52553:dev-ambiguous-overlap"
+    },
+    {
+      "run": "development",
+      "case_id": "dev-ambiguous-feature-question",
+      "split": "development",
+      "group": "ambiguous",
+      "traits": [
+        "missing_concern",
+        "route_selection"
+      ],
+      "prompt": "Which STOLZ optimization should handle this request? The request only says 'make repeated agent work more efficient' and gives no prior result, manifest, polling state, or measurement. Return only DECISION=route_first or DECISION=reuse.",
+      "candidate_sha": "7534a1a9f23f432abe538b374cb53054f12ed924",
+      "started_at": "2026-09-15T14:00:00.857Z",
+      "ended_at": "2026-09-15T14:00:42.760Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "route_first",
+      "expected_decision": "route_first",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "stolz-route"
+      ],
+      "evaluated_skills": [
+        "stolz-route"
+      ],
+      "external_skills": [],
+      "read_references": [
+        "route-selection.md"
+      ],
+      "tool_calls": 2,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 59954,
+        "cached_input_tokens": 33664,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 671,
+        "reasoning_output_tokens": 404
+      },
+      "final_answer": "DECISION=route_first",
+      "raw_evidence_sha256": "d75113e5804d292b95eeeb83feaa6097bf97c9d6b1d37c5e932bf31f81ffd737",
+      "stderr_sha256": "7682c15ba2c91151d0c609837bddb58eed4639700a1d3f33029d9bb51b0e6e45",
+      "private_locator": "private_retained:skill-selection-2026-09-15T135112763Z-d9c52553:dev-ambiguous-feature-question"
+    },
+    {
+      "run": "heldout-a",
+      "case_id": "hold-context-mismatch",
+      "split": "heldout",
+      "group": "context",
+      "traits": [
+        "fallback",
+        "correctness"
+      ],
+      "prompt": "Assess whether the optimized fragment in input.json may be trusted. Do not edit files. Return only DECISION=verified_context or DECISION=normal_route.",
+      "candidate_sha": "15864e0e5ba2186765589dbcb5942cb552bff637",
+      "started_at": "2026-09-15T14:02:08.920Z",
+      "ended_at": "2026-09-15T14:03:13.858Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "normal_route",
+      "expected_decision": "normal_route",
+      "route_correct": false,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "stolz-context"
+      ],
+      "evaluated_skills": [
+        "stolz-context"
+      ],
+      "external_skills": [],
+      "read_references": [],
+      "tool_calls": 3,
+      "failed_tool_calls": 2,
+      "usage": {
+        "input_tokens": 80687,
+        "cached_input_tokens": 70016,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1582,
+        "reasoning_output_tokens": 1116
+      },
+      "final_answer": "DECISION=normal_route",
+      "raw_evidence_sha256": "e203e08893e6fb5562db5a9774c2d798e244dcc9320ac039ec3324ca794044f5",
+      "stderr_sha256": "50b1dd6ab049e512aaa3fdd0e6c8c42e4d1638fa195b3428ac4b41894370f15a",
+      "private_locator": "private_retained:skill-selection-2026-09-15T140208889Z-2c7ab062:hold-context-mismatch"
+    },
+    {
+      "run": "heldout-a",
+      "case_id": "hold-context-valid-range",
+      "split": "heldout",
+      "group": "context",
+      "traits": [
+        "identity_bound_read"
+      ],
+      "prompt": "input.json describes a bounded read whose manifest, route, source hash, and range all match. Decide whether it can be used. Return only DECISION=verified_context or DECISION=normal_route.",
+      "candidate_sha": "15864e0e5ba2186765589dbcb5942cb552bff637",
+      "started_at": "2026-09-15T14:03:13.901Z",
+      "ended_at": "2026-09-15T14:03:53.968Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "verified_context",
+      "expected_decision": "verified_context",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "stolz-context"
+      ],
+      "evaluated_skills": [
+        "stolz-context"
+      ],
+      "external_skills": [],
+      "read_references": [
+        "manifest-and-reads.md"
+      ],
+      "tool_calls": 2,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 62999,
+        "cached_input_tokens": 51328,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 653,
+        "reasoning_output_tokens": 279
+      },
+      "final_answer": "DECISION=verified_context",
+      "raw_evidence_sha256": "d2d343c6997a997305bbb0eba2530ddf3cd290ce4af2fc1127b2fc6a7616f0f5",
+      "stderr_sha256": "01e60f7d1e871afb89f9a4adf53a5aa81d484f4136abed55e9283adf15f635e9",
+      "private_locator": "private_retained:skill-selection-2026-09-15T140208889Z-2c7ab062:hold-context-valid-range"
+    },
+    {
+      "run": "heldout-a",
+      "case_id": "hold-context-plain-summary",
+      "split": "heldout",
+      "group": "context",
+      "traits": [
+        "ordinary_source_browsing"
+      ],
+      "prompt": "Read status.txt once and return its state. There is no optimized manifest or prior result. Return only DECISION=ready or DECISION=blocked.",
+      "candidate_sha": "15864e0e5ba2186765589dbcb5942cb552bff637",
+      "started_at": "2026-09-15T14:03:54.010Z",
+      "ended_at": "2026-09-15T14:04:15.248Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "ready",
+      "expected_decision": "ready",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [],
+      "evaluated_skills": [],
+      "external_skills": [],
+      "read_references": [],
+      "tool_calls": 1,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 39095,
+        "cached_input_tokens": 29952,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 360,
+        "reasoning_output_tokens": 241
+      },
+      "final_answer": "DECISION=ready",
+      "raw_evidence_sha256": "aa05d9e132d671417f1d5ff15e1efe9c743237776f4eea98978a3a2695af025a",
+      "stderr_sha256": "7787373b44c7dc8c348b07a4bde56703c0fe7e8345fe2cb97227fa35ab488044",
+      "private_locator": "private_retained:skill-selection-2026-09-15T140208889Z-2c7ab062:hold-context-plain-summary"
+    },
+    {
+      "run": "heldout-a",
+      "case_id": "hold-context-goal-switch",
+      "split": "heldout",
+      "group": "context",
+      "traits": [
+        "goal_change",
+        "prior_result"
+      ],
+      "prompt": "I originally wanted a manifest review, but the goal has changed: decide whether the prior verified result in input.json may replace a new run. Return only DECISION=reuse_hit or DECISION=reuse_miss.",
+      "candidate_sha": "15864e0e5ba2186765589dbcb5942cb552bff637",
+      "started_at": "2026-09-15T14:04:15.287Z",
+      "ended_at": "2026-09-15T14:04:50.815Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "reuse_miss",
+      "expected_decision": "reuse_hit",
+      "route_correct": true,
+      "outcome_correct": false,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "stolz-reuse"
+      ],
+      "evaluated_skills": [
+        "stolz-reuse"
+      ],
+      "external_skills": [],
+      "read_references": [
+        "ledger-and-invalidation.md"
+      ],
+      "tool_calls": 3,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 79926,
+        "cached_input_tokens": 49664,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 743,
+        "reasoning_output_tokens": 257
+      },
+      "final_answer": "DECISION=reuse_miss",
+      "raw_evidence_sha256": "5ecc119e68cf57fbdcfb1e903c06a3f07716942db5cb3e80e11497e5a5b52296",
+      "stderr_sha256": "bf013bc4c3ed64e96a0f5c884061d7534477b2a7ac8d13964e5f30f6e58101ce",
+      "private_locator": "private_retained:skill-selection-2026-09-15T140208889Z-2c7ab062:hold-context-goal-switch"
+    },
+    {
+      "run": "heldout-a",
+      "case_id": "hold-reuse-identity-miss",
+      "split": "heldout",
+      "group": "reuse",
+      "traits": [
+        "identity_mismatch",
+        "correctness"
+      ],
+      "prompt": "A verified prior result exists in input.json. Decide whether it may replace the requested command. Return only DECISION=reuse_hit or DECISION=reuse_miss.",
+      "candidate_sha": "15864e0e5ba2186765589dbcb5942cb552bff637",
+      "started_at": "2026-09-15T14:04:50.854Z",
+      "ended_at": "2026-09-15T14:05:32.129Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "reuse_miss",
+      "expected_decision": "reuse_miss",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "stolz-reuse"
+      ],
+      "evaluated_skills": [
+        "stolz-reuse"
+      ],
+      "external_skills": [],
+      "read_references": [
+        "ledger-and-invalidation.md"
+      ],
+      "tool_calls": 3,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 79955,
+        "cached_input_tokens": 69760,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 726,
+        "reasoning_output_tokens": 230
+      },
+      "final_answer": "DECISION=reuse_miss",
+      "raw_evidence_sha256": "b4997179d40b7d67c88b9271b1aa02fb8305b64bdcb4792d37fd3fc4560d18e5",
+      "stderr_sha256": "0de9427088ed064dd7b1a7fd4703dbd86817d7e7390eb911e79234e659b0b67a",
+      "private_locator": "private_retained:skill-selection-2026-09-15T140208889Z-2c7ab062:hold-reuse-identity-miss"
+    },
+    {
+      "run": "heldout-a",
+      "case_id": "hold-reuse-coalesce",
+      "split": "heldout",
+      "group": "reuse",
+      "traits": [
+        "in_flight",
+        "coalescing"
+      ],
+      "prompt": "input.json records an identical verified-policy command already in flight under a live owner. Decide the next action. Return only DECISION=join_owner or DECISION=new_execution.",
+      "candidate_sha": "15864e0e5ba2186765589dbcb5942cb552bff637",
+      "started_at": "2026-09-15T14:05:32.159Z",
+      "ended_at": "2026-09-15T14:06:14.820Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "join_owner",
+      "expected_decision": "join_owner",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "stolz-reuse"
+      ],
+      "evaluated_skills": [
+        "stolz-reuse"
+      ],
+      "external_skills": [],
+      "read_references": [
+        "ledger-and-invalidation.md"
+      ],
+      "tool_calls": 2,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 63290,
+        "cached_input_tokens": 51584,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 846,
+        "reasoning_output_tokens": 479
+      },
+      "final_answer": "DECISION=join_owner",
+      "raw_evidence_sha256": "9024785b09c101eddd023c75f7b107297b7d56e457a7448badbd5bc2a8cda0ea",
+      "stderr_sha256": "296fbe5ec9e101827fa674c1300011713aecc7a801cfb19103ca033a03a1e3c7",
+      "private_locator": "private_retained:skill-selection-2026-09-15T140208889Z-2c7ab062:hold-reuse-coalesce"
+    },
+    {
+      "run": "heldout-a",
+      "case_id": "hold-reuse-first-read",
+      "split": "heldout",
+      "group": "reuse",
+      "traits": [
+        "first_read",
+        "negative_boundary"
+      ],
+      "prompt": "Read value.txt for the first time and return the integer. No cache, ledger, or prior result exists. Return only DECISION=17 or DECISION=unknown.",
+      "candidate_sha": "15864e0e5ba2186765589dbcb5942cb552bff637",
+      "started_at": "2026-09-15T14:06:14.863Z",
+      "ended_at": "2026-09-15T14:06:50.262Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "17",
+      "expected_decision": "17",
+      "route_correct": false,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "stolz-reuse"
+      ],
+      "evaluated_skills": [
+        "stolz-reuse"
+      ],
+      "external_skills": [],
+      "read_references": [],
+      "tool_calls": 2,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 59198,
+        "cached_input_tokens": 37120,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 443,
+        "reasoning_output_tokens": 207
+      },
+      "final_answer": "DECISION=17",
+      "raw_evidence_sha256": "712024bd5b50e14e43ec48210195df719ce8542491df78b750bc42fb4361f9b0",
+      "stderr_sha256": "b890633c1697d883a93185a025c177bb784623b96ba7d9438c3fb4a41b07d813",
+      "private_locator": "private_retained:skill-selection-2026-09-15T140208889Z-2c7ab062:hold-reuse-first-read"
+    },
+    {
+      "run": "heldout-a",
+      "case_id": "hold-reuse-authorized-finish",
+      "split": "heldout",
+      "group": "reuse",
+      "traits": [
+        "existing_authorization",
+        "finish_implementation",
+        "prior_result"
+      ],
+      "prompt": "You already have permission to finish this local task. input.json says the previous test result has a different source SHA. Decide whether to reuse it before continuing normally; do not ask for confirmation. Return only DECISION=reuse_hit or DECISION=reuse_miss.",
+      "candidate_sha": "15864e0e5ba2186765589dbcb5942cb552bff637",
+      "started_at": "2026-09-15T14:06:50.305Z",
+      "ended_at": "2026-09-15T14:07:31.411Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "reuse_miss",
+      "expected_decision": "reuse_miss",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "stolz-reuse"
+      ],
+      "evaluated_skills": [
+        "stolz-reuse"
+      ],
+      "external_skills": [],
+      "read_references": [
+        "ledger-and-invalidation.md"
+      ],
+      "tool_calls": 3,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 79781,
+        "cached_input_tokens": 69632,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 649,
+        "reasoning_output_tokens": 182
+      },
+      "final_answer": "DECISION=reuse_miss",
+      "raw_evidence_sha256": "db7decfe4045f1d5f7c4229a5d8bef822533e3053d98a72115406056e4578cd0",
+      "stderr_sha256": "9522780cf0b2866d6b38535e7d5a66ee653345a4749859109d9f3761352a54ad",
+      "private_locator": "private_retained:skill-selection-2026-09-15T140208889Z-2c7ab062:hold-reuse-authorized-finish"
+    },
+    {
+      "run": "heldout-a",
+      "case_id": "hold-state-terminal",
+      "split": "heldout",
+      "group": "state",
+      "traits": [
+        "terminal_transition"
+      ],
+      "prompt": "Compare snapshots.json under a durable polling controller and decide whether to admit a model wake. Return only DECISION=suppress or DECISION=wake_terminal.",
+      "candidate_sha": "15864e0e5ba2186765589dbcb5942cb552bff637",
+      "started_at": "2026-09-15T14:07:31.439Z",
+      "ended_at": "2026-09-15T14:08:16.684Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "wake_terminal",
+      "expected_decision": "wake_terminal",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "stolz-quiet-state"
+      ],
+      "evaluated_skills": [
+        "stolz-quiet-state"
+      ],
+      "external_skills": [],
+      "read_references": [
+        "material-transitions.md"
+      ],
+      "tool_calls": 2,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 63177,
+        "cached_input_tokens": 51456,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 699,
+        "reasoning_output_tokens": 353
+      },
+      "final_answer": "DECISION=wake_terminal",
+      "raw_evidence_sha256": "fd40cec6f31850b62dd4726dc5616e543f6822537ae00cd6bca8df4990e5b782",
+      "stderr_sha256": "65602a0855fccea816fc8f44afc81d0cd8928fbd08a565ab8b699497afc284d7",
+      "private_locator": "private_retained:skill-selection-2026-09-15T140208889Z-2c7ab062:hold-state-terminal"
+    },
+    {
+      "run": "heldout-a",
+      "case_id": "hold-state-goal-switch",
+      "split": "heldout",
+      "group": "state",
+      "traits": [
+        "goal_change",
+        "one_off_status"
+      ],
+      "prompt": "Stop designing the monitor; the goal is now only a one-time answer from status.json. Return only DECISION=paused or DECISION=running.",
+      "candidate_sha": "15864e0e5ba2186765589dbcb5942cb552bff637",
+      "started_at": "2026-09-15T14:08:16.738Z",
+      "ended_at": "2026-09-15T14:08:49.979Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "paused",
+      "expected_decision": "paused",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [],
+      "evaluated_skills": [],
+      "external_skills": [],
+      "read_references": [],
+      "tool_calls": 2,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 62433,
+        "cached_input_tokens": 51200,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 571,
+        "reasoning_output_tokens": 310
+      },
+      "final_answer": "DECISION=paused",
+      "raw_evidence_sha256": "746e987fd5ed4718348cdaf1c92a4f28738ba0c2d2e1a7dfd7caea7440722750",
+      "stderr_sha256": "201f9c4011888c263fdecc681e80102929418966d6c5083d98809a184ca2807d",
+      "private_locator": "private_retained:skill-selection-2026-09-15T140208889Z-2c7ab062:hold-state-goal-switch"
+    },
+    {
+      "run": "heldout-a",
+      "case_id": "hold-state-retry-same-failure",
+      "split": "heldout",
+      "group": "state",
+      "traits": [
+        "retry",
+        "duplicate_failure"
+      ],
+      "prompt": "A durable controller already emitted the failure at revision 12. snapshots.json repeats that exact failure. Decide whether another wake is admitted. Return only DECISION=suppress or DECISION=wake.",
+      "candidate_sha": "15864e0e5ba2186765589dbcb5942cb552bff637",
+      "started_at": "2026-09-15T14:08:50.012Z",
+      "ended_at": "2026-09-15T14:09:40.141Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "suppress",
+      "expected_decision": "suppress",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "stolz-quiet-state"
+      ],
+      "evaluated_skills": [
+        "stolz-quiet-state"
+      ],
+      "external_skills": [],
+      "read_references": [
+        "material-transitions.md"
+      ],
+      "tool_calls": 4,
+      "failed_tool_calls": 1,
+      "usage": {
+        "input_tokens": 80571,
+        "cached_input_tokens": 69760,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1037,
+        "reasoning_output_tokens": 504
+      },
+      "final_answer": "DECISION=suppress",
+      "raw_evidence_sha256": "b215921f5cd41f9604784433ca7a4ed6d43244cf7424473021ffb08ff400790e",
+      "stderr_sha256": "b91e835ff4d3ef7d3504f09574173a1a9abb22589a2a86108cf19b869232e2fa",
+      "private_locator": "private_retained:skill-selection-2026-09-15T140208889Z-2c7ab062:hold-state-retry-same-failure"
+    },
+    {
+      "run": "heldout-a",
+      "case_id": "hold-state-authorized-persist",
+      "split": "heldout",
+      "group": "state",
+      "traits": [
+        "existing_authorization",
+        "terminal_transition"
+      ],
+      "prompt": "The local controller is already authorized to persist accepted state. snapshots.json contains a new terminal revision. Do not ask for permission; decide the wake. Return only DECISION=suppress or DECISION=wake_terminal.",
+      "candidate_sha": "15864e0e5ba2186765589dbcb5942cb552bff637",
+      "started_at": "2026-09-15T14:09:40.189Z",
+      "ended_at": "2026-09-15T14:10:27.353Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "wake_terminal",
+      "expected_decision": "wake_terminal",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "stolz-quiet-state"
+      ],
+      "evaluated_skills": [
+        "stolz-quiet-state"
+      ],
+      "external_skills": [],
+      "read_references": [
+        "material-transitions.md"
+      ],
+      "tool_calls": 2,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 63554,
+        "cached_input_tokens": 33664,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1047,
+        "reasoning_output_tokens": 587
+      },
+      "final_answer": "DECISION=wake_terminal",
+      "raw_evidence_sha256": "8977f2a7a132c80990526883d5082f881b623e45ec321e3706121b24a987fafc",
+      "stderr_sha256": "dd0845618d4249e97751161f5b94c44941719469486839cdbc10f1f98954de64",
+      "private_locator": "private_retained:skill-selection-2026-09-15T140208889Z-2c7ab062:hold-state-authorized-persist"
+    },
+    {
+      "run": "heldout-a",
+      "case_id": "hold-measurement-source-bytes",
+      "split": "heldout",
+      "group": "measurement",
+      "traits": [
+        "source_bytes",
+        "evidence_boundary"
+      ],
+      "prompt": "metrics.json shows that five skill roots became smaller in UTF-8 bytes, but contains no provider telemetry. Decide whether a token-saving percentage may be published. Return only DECISION=publish or DECISION=withhold.",
+      "candidate_sha": "15864e0e5ba2186765589dbcb5942cb552bff637",
+      "started_at": "2026-09-15T14:10:27.418Z",
+      "ended_at": "2026-09-15T14:11:16.068Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "withhold",
+      "expected_decision": "withhold",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "stolz-benchmark"
+      ],
+      "evaluated_skills": [
+        "stolz-benchmark"
+      ],
+      "external_skills": [],
+      "read_references": [
+        "outcome-gates.md"
+      ],
+      "tool_calls": 4,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 100353,
+        "cached_input_tokens": 89984,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 702,
+        "reasoning_output_tokens": 168
+      },
+      "final_answer": "DECISION=withhold",
+      "raw_evidence_sha256": "58bc254d40111d6c58e643027655d4d28ddeb240e6983295e8b7e8c81081371c",
+      "stderr_sha256": "df51a4fbe327fa7b7b329e530641827cb95e3149e0411f177f28e60b572f5d83",
+      "private_locator": "private_retained:skill-selection-2026-09-15T140208889Z-2c7ab062:hold-measurement-source-bytes"
+    },
+    {
+      "run": "heldout-a",
+      "case_id": "hold-measurement-outcome-mismatch",
+      "split": "heldout",
+      "group": "measurement",
+      "traits": [
+        "outcome_mismatch",
+        "failed_attempt"
+      ],
+      "prompt": "Assess pair.json for a scoped efficiency claim. The optimized route used fewer tokens but failed the required outcome. Return only DECISION=admit or DECISION=withhold.",
+      "candidate_sha": "15864e0e5ba2186765589dbcb5942cb552bff637",
+      "started_at": "2026-09-15T14:11:16.107Z",
+      "ended_at": "2026-09-15T14:11:49.944Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "withhold",
+      "expected_decision": "withhold",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "stolz-benchmark"
+      ],
+      "evaluated_skills": [
+        "stolz-benchmark"
+      ],
+      "external_skills": [],
+      "read_references": [
+        "outcome-gates.md"
+      ],
+      "tool_calls": 2,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 63133,
+        "cached_input_tokens": 40704,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 670,
+        "reasoning_output_tokens": 283
+      },
+      "final_answer": "DECISION=withhold",
+      "raw_evidence_sha256": "cee505fa7abf58e538e367d2713859b58ffe5cecd041a73776ef978e0485acf7",
+      "stderr_sha256": "bc553bfb718ad99a882b3416ba04baf19f93eb385ef0669601a873c34c8d619d",
+      "private_locator": "private_retained:skill-selection-2026-09-15T140208889Z-2c7ab062:hold-measurement-outcome-mismatch"
+    },
+    {
+      "run": "heldout-a",
+      "case_id": "hold-measurement-unit-tests",
+      "split": "heldout",
+      "group": "measurement",
+      "traits": [
+        "ordinary_tests",
+        "neutral_competition"
+      ],
+      "prompt": "Read test-summary.txt and report whether the unit test suite passed. This is not an efficiency comparison. Return only DECISION=passed or DECISION=failed.",
+      "candidate_sha": "15864e0e5ba2186765589dbcb5942cb552bff637",
+      "started_at": "2026-09-15T14:11:49.995Z",
+      "ended_at": "2026-09-15T14:12:14.480Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "passed",
+      "expected_decision": "passed",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "test-triage"
+      ],
+      "evaluated_skills": [
+        "test-triage"
+      ],
+      "external_skills": [],
+      "read_references": [],
+      "tool_calls": 1,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 39246,
+        "cached_input_tokens": 29952,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 433,
+        "reasoning_output_tokens": 267
+      },
+      "final_answer": "DECISION=passed",
+      "raw_evidence_sha256": "c65dde158c01f3158c007459115becafe84c4af131042c4ae1474fbba0cc5613",
+      "stderr_sha256": "6184591a4cfba9768515015d8a205e52dc4f9e5eee8407719066f7d7fccb522c",
+      "private_locator": "private_retained:skill-selection-2026-09-15T140208889Z-2c7ab062:hold-measurement-unit-tests"
+    },
+    {
+      "run": "heldout-a",
+      "case_id": "hold-measurement-complete-provider",
+      "split": "heldout",
+      "group": "measurement",
+      "traits": [
+        "provider_native",
+        "scoped_claim"
+      ],
+      "prompt": "pair.json contains a complete same-fixture provider-owned pair with equal outcome and verification. Decide whether the narrowly scoped comparison is admissible. Return only DECISION=admit or DECISION=withhold.",
+      "candidate_sha": "15864e0e5ba2186765589dbcb5942cb552bff637",
+      "started_at": "2026-09-15T14:12:14.518Z",
+      "ended_at": "2026-09-15T14:12:56.024Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "admit",
+      "expected_decision": "admit",
+      "route_correct": false,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "powershell-shell",
+        "stolz-benchmark"
+      ],
+      "evaluated_skills": [
+        "powershell-shell",
+        "stolz-benchmark"
+      ],
+      "external_skills": [],
+      "read_references": [
+        "outcome-gates.md"
+      ],
+      "tool_calls": 2,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 61677,
+        "cached_input_tokens": 40704,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 742,
+        "reasoning_output_tokens": 280
+      },
+      "final_answer": "DECISION=admit",
+      "raw_evidence_sha256": "4194742ae85e400dc2c334b67542db3d8618402dc95deeb87941934363dcbc59",
+      "stderr_sha256": "c6be15332e7cedf93a7d1e0a4772a57dd3012cff014fa30a289a3dd77194024c",
+      "private_locator": "private_retained:skill-selection-2026-09-15T140208889Z-2c7ab062:hold-measurement-complete-provider"
+    },
+    {
+      "run": "heldout-a",
+      "case_id": "hold-ordinary-one-off-status",
+      "split": "heldout",
+      "group": "ordinary",
+      "traits": [
+        "one_off_status",
+        "negative_boundary"
+      ],
+      "prompt": "Read build.json once and report its status. Do not design polling. Return only DECISION=success or DECISION=failed.",
+      "candidate_sha": "15864e0e5ba2186765589dbcb5942cb552bff637",
+      "started_at": "2026-09-15T14:12:56.076Z",
+      "ended_at": "2026-09-15T14:13:25.135Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "success",
+      "expected_decision": "success",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [],
+      "evaluated_skills": [],
+      "external_skills": [],
+      "read_references": [],
+      "tool_calls": 1,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 39278,
+        "cached_input_tokens": 29952,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 545,
+        "reasoning_output_tokens": 411
+      },
+      "final_answer": "DECISION=success",
+      "raw_evidence_sha256": "d029c01dd5b7b77af14f79d32698556e46e5f3ee2e483529e56eabcb9cc436f0",
+      "stderr_sha256": "6cdd778adcfbae97b291aca5599c36f3bbc0211e73178002842a7cb53e8548a6",
+      "private_locator": "private_retained:skill-selection-2026-09-15T140208889Z-2c7ab062:hold-ordinary-one-off-status"
+    },
+    {
+      "run": "heldout-a",
+      "case_id": "hold-ordinary-test-triage",
+      "split": "heldout",
+      "group": "ordinary",
+      "traits": [
+        "neutral_competition",
+        "ordinary_tests"
+      ],
+      "prompt": "Inspect test-summary.txt and name the failing test identifier. This is ordinary test triage, not an efficiency measurement. Return only DECISION=parser-2 or DECISION=none.",
+      "candidate_sha": "15864e0e5ba2186765589dbcb5942cb552bff637",
+      "started_at": "2026-09-15T14:13:25.167Z",
+      "ended_at": "2026-09-15T14:13:55.463Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "parser-2",
+      "expected_decision": "parser-2",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "test-triage"
+      ],
+      "evaluated_skills": [
+        "test-triage"
+      ],
+      "external_skills": [],
+      "read_references": [],
+      "tool_calls": 2,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 59314,
+        "cached_input_tokens": 40704,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 573,
+        "reasoning_output_tokens": 295
+      },
+      "final_answer": "DECISION=parser-2",
+      "raw_evidence_sha256": "edf74a722c5c92fde5adbeb270960dd8e4ad9fc8a3b453c5f1eace4aa9f9008b",
+      "stderr_sha256": "f64fc4a74dadd3ccfd55bb817b799784d82e537869c48290aadbcdee1043a1d7",
+      "private_locator": "private_retained:skill-selection-2026-09-15T140208889Z-2c7ab062:hold-ordinary-test-triage"
+    },
+    {
+      "run": "heldout-a",
+      "case_id": "hold-ordinary-doc-analysis",
+      "split": "heldout",
+      "group": "ordinary",
+      "traits": [
+        "analysis_only",
+        "neutral_competition"
+      ],
+      "prompt": "Analyze note.txt only; do not edit it. Report the duplicated word. Return only DECISION=the or DECISION=none.",
+      "candidate_sha": "15864e0e5ba2186765589dbcb5942cb552bff637",
+      "started_at": "2026-09-15T14:13:55.511Z",
+      "ended_at": "2026-09-15T14:14:32.360Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "the",
+      "expected_decision": "the",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "release-note-editor"
+      ],
+      "evaluated_skills": [
+        "release-note-editor"
+      ],
+      "external_skills": [],
+      "read_references": [],
+      "tool_calls": 2,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 62703,
+        "cached_input_tokens": 44288,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 649,
+        "reasoning_output_tokens": 308
+      },
+      "final_answer": "DECISION=the",
+      "raw_evidence_sha256": "08a4adadd129f599027a468d516ba4b6631a8943a560dee5544ba23ac54f8bd4",
+      "stderr_sha256": "d4515284a3a488e1df0dba5410f2d2ec71294d944a5a93facf36e6122540a499",
+      "private_locator": "private_retained:skill-selection-2026-09-15T140208889Z-2c7ab062:hold-ordinary-doc-analysis"
+    },
+    {
+      "run": "heldout-a",
+      "case_id": "hold-ordinary-authorized-finish",
+      "split": "heldout",
+      "group": "ordinary",
+      "traits": [
+        "existing_authorization",
+        "finish_implementation"
+      ],
+      "prompt": "You are already authorized to finish this local implementation. Read function.js, identify the missing fallback, and do not ask whether to continue. Return only DECISION=zero or DECISION=throw.",
+      "candidate_sha": "15864e0e5ba2186765589dbcb5942cb552bff637",
+      "started_at": "2026-09-15T14:14:32.393Z",
+      "ended_at": "2026-09-15T14:15:18.376Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "zero",
+      "expected_decision": "zero",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "plain-code-review"
+      ],
+      "evaluated_skills": [
+        "plain-code-review"
+      ],
+      "external_skills": [],
+      "read_references": [],
+      "tool_calls": 3,
+      "failed_tool_calls": 1,
+      "usage": {
+        "input_tokens": 80054,
+        "cached_input_tokens": 69888,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1018,
+        "reasoning_output_tokens": 632
+      },
+      "final_answer": "DECISION=zero",
+      "raw_evidence_sha256": "d9a265a3e4f1e669f9260eb4b881d3c5a92936086441d93600897a2ffbd7081e",
+      "stderr_sha256": "db625e6d713043dac0a117198b43b0f03610dc47171aeb8e53c12cf72dd873cc",
+      "private_locator": "private_retained:skill-selection-2026-09-15T140208889Z-2c7ab062:hold-ordinary-authorized-finish"
+    },
+    {
+      "run": "heldout-a",
+      "case_id": "hold-ambiguous-context-reuse",
+      "split": "heldout",
+      "group": "ambiguous",
+      "traits": [
+        "overlap",
+        "current_decision"
+      ],
+      "prompt": "input.json has both a manifest and a prior-result record, but the request does not identify whether the current decision is read trust or result reuse. Choose the first skill boundary. Return only DECISION=route_first or DECISION=preload_both.",
+      "candidate_sha": "15864e0e5ba2186765589dbcb5942cb552bff637",
+      "started_at": "2026-09-15T14:15:18.415Z",
+      "ended_at": "2026-09-15T14:15:50.849Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "route_first",
+      "expected_decision": "route_first",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "stolz-route"
+      ],
+      "evaluated_skills": [
+        "stolz-route"
+      ],
+      "external_skills": [],
+      "read_references": [
+        "route-selection.md"
+      ],
+      "tool_calls": 2,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 59907,
+        "cached_input_tokens": 49792,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 631,
+        "reasoning_output_tokens": 259
+      },
+      "final_answer": "DECISION=route_first",
+      "raw_evidence_sha256": "730d47e6a6fc52f59e32820a48b48f27ed533d576f38cda775968d7ff3918a64",
+      "stderr_sha256": "e2f6807d98716e841b831c2ba70361f1bc5eb903eac76c5063df07fb84f5fb39",
+      "private_locator": "private_retained:skill-selection-2026-09-15T140208889Z-2c7ab062:hold-ambiguous-context-reuse"
+    },
+    {
+      "run": "heldout-a",
+      "case_id": "hold-ambiguous-adapter",
+      "split": "heldout",
+      "group": "ambiguous",
+      "traits": [
+        "missing_capability",
+        "overlap"
+      ],
+      "prompt": "The request says to measure a cached-result optimization, but adapter capability is unknown and the current concern is unclear. Choose how to start without weakening verification. Return only DECISION=route_first or DECISION=benchmark_only.",
+      "candidate_sha": "15864e0e5ba2186765589dbcb5942cb552bff637",
+      "started_at": "2026-09-15T14:15:50.885Z",
+      "ended_at": "2026-09-15T14:16:32.408Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "route_first",
+      "expected_decision": "route_first",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "stolz-route"
+      ],
+      "evaluated_skills": [
+        "stolz-route"
+      ],
+      "external_skills": [],
+      "read_references": [
+        "route-selection.md"
+      ],
+      "tool_calls": 3,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 84967,
+        "cached_input_tokens": 72832,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 836,
+        "reasoning_output_tokens": 351
+      },
+      "final_answer": "DECISION=route_first",
+      "raw_evidence_sha256": "525eb509af7b2e5be6c13ec76bea06fbb72307a34d0619ef6a05ba28d4e783e7",
+      "stderr_sha256": "104f00838391ad64ee610e666970f7d3828606896cfba1808d292e781d5d9e51",
+      "private_locator": "private_retained:skill-selection-2026-09-15T140208889Z-2c7ab062:hold-ambiguous-adapter"
+    },
+    {
+      "run": "heldout-a",
+      "case_id": "hold-ambiguous-goal-switch-status",
+      "split": "heldout",
+      "group": "ambiguous",
+      "traits": [
+        "goal_change",
+        "one_off_status"
+      ],
+      "prompt": "Ignore the earlier idea to benchmark polling. The current goal is only to read status.json once and answer. Return only DECISION=idle or DECISION=route_first.",
+      "candidate_sha": "15864e0e5ba2186765589dbcb5942cb552bff637",
+      "started_at": "2026-09-15T14:16:32.452Z",
+      "ended_at": "2026-09-15T14:16:54.567Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "idle",
+      "expected_decision": "idle",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [],
+      "evaluated_skills": [],
+      "external_skills": [],
+      "read_references": [],
+      "tool_calls": 1,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 39131,
+        "cached_input_tokens": 29952,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 372,
+        "reasoning_output_tokens": 255
+      },
+      "final_answer": "DECISION=idle",
+      "raw_evidence_sha256": "84671c06f479831ed730e7c10de33d1cf0228378b141ebb36a4bd49a600fbe0c",
+      "stderr_sha256": "4b17dbc37956e5cebf2780995de08dfb279e7fe4b3c6d634f4a7500fefac937b",
+      "private_locator": "private_retained:skill-selection-2026-09-15T140208889Z-2c7ab062:hold-ambiguous-goal-switch-status"
+    },
+    {
+      "run": "heldout-a",
+      "case_id": "hold-ambiguous-task-brief",
+      "split": "heldout",
+      "group": "ambiguous",
+      "traits": [
+        "task_brief",
+        "analysis_only"
+      ],
+      "prompt": "Draft the boundary for a future research prompt whose optimization concern is intentionally undecided. Do not start the research. Return only DECISION=task_brief or DECISION=benchmark_now.",
+      "candidate_sha": "15864e0e5ba2186765589dbcb5942cb552bff637",
+      "started_at": "2026-09-15T14:16:54.611Z",
+      "ended_at": "2026-09-15T14:17:29.378Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "task_brief",
+      "expected_decision": "task_brief",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "stolz-route"
+      ],
+      "evaluated_skills": [
+        "stolz-route"
+      ],
+      "external_skills": [],
+      "read_references": [
+        "task-brief.md"
+      ],
+      "tool_calls": 2,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 59946,
+        "cached_input_tokens": 49664,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 810,
+        "reasoning_output_tokens": 468
+      },
+      "final_answer": "DECISION=task_brief",
+      "raw_evidence_sha256": "9aa0c714c534eccc775b88de1455a0e92bfc226ba10298f7b19ae265c92f765b",
+      "stderr_sha256": "17b12d3576d4774c304191437c4baec9c68a2ba7f9c21aa4ce284a18daf37071",
+      "private_locator": "private_retained:skill-selection-2026-09-15T140208889Z-2c7ab062:hold-ambiguous-task-brief"
+    },
+    {
+      "run": "heldout-b",
+      "case_id": "b-context-version-change",
+      "split": "heldout_b",
+      "group": "context",
+      "traits": [
+        "identity_mismatch",
+        "fallback"
+      ],
+      "prompt": "An optimized STOLZ context manifest in record.json names source version 3, while the requested source is version 4. Decide whether the recorded fragment can be trusted. Return only DECISION=verified_context or DECISION=normal_route.",
+      "candidate_sha": "c176997850f6350199167a75ed17ada44b7bd3c2",
+      "started_at": "2026-09-15T14:21:49.144Z",
+      "ended_at": "2026-09-15T14:22:32.059Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "normal_route",
+      "expected_decision": "normal_route",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "stolz-context"
+      ],
+      "evaluated_skills": [
+        "stolz-context"
+      ],
+      "external_skills": [],
+      "read_references": [
+        "manifest-and-reads.md"
+      ],
+      "tool_calls": 4,
+      "failed_tool_calls": 1,
+      "usage": {
+        "input_tokens": 100167,
+        "cached_input_tokens": 89600,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 676,
+        "reasoning_output_tokens": 187
+      },
+      "final_answer": "DECISION=normal_route",
+      "raw_evidence_sha256": "4303660f9f9d6e8d04b65f5d88d91a8273c8f83e9a5a0106ff168955b9dc24a1",
+      "stderr_sha256": "58bf0a5ba2d45982c7be9c5bf6c68bc529b8358d1340626d3ee28296f18871bd",
+      "private_locator": "private_retained:skill-selection-2026-09-15T142149104Z-bd9e08fd:b-context-version-change"
+    },
+    {
+      "run": "heldout-b",
+      "case_id": "b-context-valid-manifest",
+      "split": "heldout_b",
+      "group": "context",
+      "traits": [
+        "identity_bound_read"
+      ],
+      "prompt": "record.json is an existing STOLZ context manifest. Its selected route, immutable source identities, and invalidation identities all match the requested bounded read. Return only DECISION=verified_context or DECISION=normal_route.",
+      "candidate_sha": "c176997850f6350199167a75ed17ada44b7bd3c2",
+      "started_at": "2026-09-15T14:22:32.098Z",
+      "ended_at": "2026-09-15T14:23:29.040Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "verified_context",
+      "expected_decision": "verified_context",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "stolz-context"
+      ],
+      "evaluated_skills": [
+        "stolz-context"
+      ],
+      "external_skills": [],
+      "read_references": [
+        "manifest-and-reads.md"
+      ],
+      "tool_calls": 3,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 80645,
+        "cached_input_tokens": 70272,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 915,
+        "reasoning_output_tokens": 502
+      },
+      "final_answer": "DECISION=verified_context",
+      "raw_evidence_sha256": "9c204536881b09511969308bc47e1f5cf5254a1e1fb16ddaae055956070cc966",
+      "stderr_sha256": "a2a8703483b13e08589d02b3019915b2da56f1b628ef45f0cdde6cb96ac598fe",
+      "private_locator": "private_retained:skill-selection-2026-09-15T142149104Z-bd9e08fd:b-context-valid-manifest"
+    },
+    {
+      "run": "heldout-b",
+      "case_id": "b-context-ordinary-read",
+      "split": "heldout_b",
+      "group": "context",
+      "traits": [
+        "ordinary_first_read",
+        "negative_boundary"
+      ],
+      "prompt": "Read release.txt once and report the version. There is no STOLZ manifest, read ledger, cache, or previous result. Return only DECISION=0.12.0 or DECISION=unknown.",
+      "candidate_sha": "c176997850f6350199167a75ed17ada44b7bd3c2",
+      "started_at": "2026-09-15T14:23:29.080Z",
+      "ended_at": "2026-09-15T14:24:38.658Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "0.12.0",
+      "expected_decision": "0.12.0",
+      "route_correct": false,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "release-note-editor"
+      ],
+      "evaluated_skills": [
+        "release-note-editor"
+      ],
+      "external_skills": [],
+      "read_references": [],
+      "tool_calls": 4,
+      "failed_tool_calls": 1,
+      "usage": {
+        "input_tokens": 106332,
+        "cached_input_tokens": 74624,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1325,
+        "reasoning_output_tokens": 725
+      },
+      "final_answer": "DECISION=0.12.0",
+      "raw_evidence_sha256": "d9ba3f90ae2d7d09dfa29a6c476cdad578980e1f3b852298d4e6cb1df1c91f67",
+      "stderr_sha256": "a464836c8f24487cb5e981b5e081d43628e24f56391ef5e01854b4d0050895af",
+      "private_locator": "private_retained:skill-selection-2026-09-15T142149104Z-bd9e08fd:b-context-ordinary-read"
+    },
+    {
+      "run": "heldout-b",
+      "case_id": "b-context-goal-switch",
+      "split": "heldout_b",
+      "group": "context",
+      "traits": [
+        "goal_change",
+        "analysis_only"
+      ],
+      "prompt": "The old goal was result reuse. The current goal is only to validate source provenance in the existing STOLZ context manifest record.json. Do not change files. Return only DECISION=verified_context or DECISION=normal_route.",
+      "candidate_sha": "c176997850f6350199167a75ed17ada44b7bd3c2",
+      "started_at": "2026-09-15T14:24:38.689Z",
+      "ended_at": "2026-09-15T14:25:28.166Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "verified_context",
+      "expected_decision": "verified_context",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "powershell-shell",
+        "stolz-context"
+      ],
+      "evaluated_skills": [
+        "stolz-context"
+      ],
+      "external_skills": [
+        "powershell-shell"
+      ],
+      "read_references": [
+        "manifest-and-reads.md"
+      ],
+      "tool_calls": 5,
+      "failed_tool_calls": 1,
+      "usage": {
+        "input_tokens": 85355,
+        "cached_input_tokens": 60800,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1066,
+        "reasoning_output_tokens": 338
+      },
+      "final_answer": "DECISION=verified_context",
+      "raw_evidence_sha256": "d6ac3e4a1a3a58bc89a1ccef3709ec4178596a89472dcb141443392bb38f2560",
+      "stderr_sha256": "4c80db629e5fa94a0e772afe6a673c1030ef3f713a43200575e22873d40d8157",
+      "private_locator": "private_retained:skill-selection-2026-09-15T142149104Z-bd9e08fd:b-context-goal-switch"
+    },
+    {
+      "run": "heldout-b",
+      "case_id": "b-reuse-complete-hit",
+      "split": "heldout_b",
+      "group": "reuse",
+      "traits": [
+        "prior_result",
+        "verified_identity"
+      ],
+      "prompt": "Decide whether the complete prior-result record in ledger.json may replace the requested command. Return only DECISION=reuse_hit or DECISION=reuse_miss.",
+      "candidate_sha": "c176997850f6350199167a75ed17ada44b7bd3c2",
+      "started_at": "2026-09-15T14:25:28.233Z",
+      "ended_at": "2026-09-15T14:26:07.858Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "reuse_hit",
+      "expected_decision": "reuse_hit",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "stolz-reuse"
+      ],
+      "evaluated_skills": [
+        "stolz-reuse"
+      ],
+      "external_skills": [],
+      "read_references": [
+        "ledger-and-invalidation.md"
+      ],
+      "tool_calls": 4,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 100176,
+        "cached_input_tokens": 89728,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 745,
+        "reasoning_output_tokens": 282
+      },
+      "final_answer": "DECISION=reuse_hit",
+      "raw_evidence_sha256": "65cf8e897e847f003ca11623fedb4142526a254a1e22fa9e93f11775c7410ad8",
+      "stderr_sha256": "4686c4f846fc4887d56c510278bed9ce079756704d82b360b306f02fc43136a6",
+      "private_locator": "private_retained:skill-selection-2026-09-15T142149104Z-bd9e08fd:b-reuse-complete-hit"
+    },
+    {
+      "run": "heldout-b",
+      "case_id": "b-reuse-expired",
+      "split": "heldout_b",
+      "group": "reuse",
+      "traits": [
+        "prior_result",
+        "expiry"
+      ],
+      "prompt": "ledger.json contains a previously verified result whose freshness flag is false. Decide whether to reuse it. Return only DECISION=reuse_hit or DECISION=reuse_miss.",
+      "candidate_sha": "c176997850f6350199167a75ed17ada44b7bd3c2",
+      "started_at": "2026-09-15T14:26:07.888Z",
+      "ended_at": "2026-09-15T14:26:54.287Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "reuse_miss",
+      "expected_decision": "reuse_miss",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "stolz-reuse"
+      ],
+      "evaluated_skills": [
+        "stolz-reuse"
+      ],
+      "external_skills": [],
+      "read_references": [
+        "ledger-and-invalidation.md"
+      ],
+      "tool_calls": 4,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 84118,
+        "cached_input_tokens": 63488,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1101,
+        "reasoning_output_tokens": 413
+      },
+      "final_answer": "DECISION=reuse_miss",
+      "raw_evidence_sha256": "7adf4d14d78bc19fb1d406636d600743e30e8b8387e68076b47e5fbf77dcdf3f",
+      "stderr_sha256": "bdf6871b04508ee94659cfadc3a4b7014242427c0d22834ce48bd9aa5c1a752b",
+      "private_locator": "private_retained:skill-selection-2026-09-15T142149104Z-bd9e08fd:b-reuse-expired"
+    },
+    {
+      "run": "heldout-b",
+      "case_id": "b-reuse-live-owner",
+      "split": "heldout_b",
+      "group": "reuse",
+      "traits": [
+        "in_flight",
+        "coalescing"
+      ],
+      "prompt": "An identical command with matching inputs and policy is already running under a valid owner lease in ledger.json. Decide whether to join or duplicate it. Return only DECISION=join_owner or DECISION=new_execution.",
+      "candidate_sha": "c176997850f6350199167a75ed17ada44b7bd3c2",
+      "started_at": "2026-09-15T14:26:54.325Z",
+      "ended_at": "2026-09-15T14:27:55.847Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "join_owner",
+      "expected_decision": "join_owner",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "stolz-reuse"
+      ],
+      "evaluated_skills": [
+        "stolz-reuse"
+      ],
+      "external_skills": [],
+      "read_references": [
+        "ledger-and-invalidation.md"
+      ],
+      "tool_calls": 5,
+      "failed_tool_calls": 1,
+      "usage": {
+        "input_tokens": 121299,
+        "cached_input_tokens": 101120,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1038,
+        "reasoning_output_tokens": 442
+      },
+      "final_answer": "DECISION=join_owner",
+      "raw_evidence_sha256": "b1bd9467b78f220cc23e15237c47415e9b05eb3faa9fbbabf5acb75acca173c5",
+      "stderr_sha256": "2d0908d16085eac5765d726fd52f60ea27c7a5c4057438527d4e0ecb240753a8",
+      "private_locator": "private_retained:skill-selection-2026-09-15T142149104Z-bd9e08fd:b-reuse-live-owner"
+    },
+    {
+      "run": "heldout-b",
+      "case_id": "b-reuse-ordinary-lookup",
+      "split": "heldout_b",
+      "group": "reuse",
+      "traits": [
+        "first_read",
+        "negative_boundary"
+      ],
+      "prompt": "Look up the color in value.txt for the first time. No reusable result, cache entry, ledger, or in-flight command exists. Return only DECISION=blue or DECISION=unknown.",
+      "candidate_sha": "c176997850f6350199167a75ed17ada44b7bd3c2",
+      "started_at": "2026-09-15T14:27:55.892Z",
+      "ended_at": "2026-09-15T14:28:16.467Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "blue",
+      "expected_decision": "blue",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [],
+      "evaluated_skills": [],
+      "external_skills": [],
+      "read_references": [],
+      "tool_calls": 1,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 39062,
+        "cached_input_tokens": 29952,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 305,
+        "reasoning_output_tokens": 170
+      },
+      "final_answer": "DECISION=blue",
+      "raw_evidence_sha256": "bf964bfc473e0a6fdf1bc800750106559e03608e6610f54454bd0b2b39632d42",
+      "stderr_sha256": "b92bc3cdbe2ebb66114e32c4e08ffa378b62e83d9749b0ba43ccdd0dd9bf8f2d",
+      "private_locator": "private_retained:skill-selection-2026-09-15T142149104Z-bd9e08fd:b-reuse-ordinary-lookup"
+    },
+    {
+      "run": "heldout-b",
+      "case_id": "b-state-timestamp-only",
+      "split": "heldout_b",
+      "group": "state",
+      "traits": [
+        "repeated_snapshot",
+        "timestamp_only"
+      ],
+      "prompt": "A durable poller observed snapshots.json twice. Only the timestamp changed. Decide whether another model wake is admitted. Return only DECISION=suppress or DECISION=wake.",
+      "candidate_sha": "c176997850f6350199167a75ed17ada44b7bd3c2",
+      "started_at": "2026-09-15T14:28:16.517Z",
+      "ended_at": "2026-09-15T14:29:57.624Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "suppress",
+      "expected_decision": "suppress",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "stolz-quiet-state"
+      ],
+      "evaluated_skills": [
+        "stolz-quiet-state"
+      ],
+      "external_skills": [],
+      "read_references": [
+        "material-transitions.md"
+      ],
+      "tool_calls": 10,
+      "failed_tool_calls": 4,
+      "usage": {
+        "input_tokens": 232072,
+        "cached_input_tokens": 208256,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1943,
+        "reasoning_output_tokens": 1106
+      },
+      "final_answer": "DECISION=suppress",
+      "raw_evidence_sha256": "082c6cff9eb5f0006881a85113a019c1a465bf30bc1953a3bbb5cfebc818b33b",
+      "stderr_sha256": "e225c1ce16bf2f8aea2c2a4f78d8654d208fc9728202e3217d14f5012aa9499c",
+      "private_locator": "private_retained:skill-selection-2026-09-15T142149104Z-bd9e08fd:b-state-timestamp-only"
+    },
+    {
+      "run": "heldout-b",
+      "case_id": "b-state-decision-revision",
+      "split": "heldout_b",
+      "group": "state",
+      "traits": [
+        "decision_revision"
+      ],
+      "prompt": "snapshots.json shows a new needs-decision revision with a new reason under the same durable controller. Decide the wake. Return only DECISION=wake_decision or DECISION=suppress.",
+      "candidate_sha": "c176997850f6350199167a75ed17ada44b7bd3c2",
+      "started_at": "2026-09-15T14:29:57.653Z",
+      "ended_at": "2026-09-15T14:30:38.882Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "wake_decision",
+      "expected_decision": "wake_decision",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "stolz-quiet-state"
+      ],
+      "evaluated_skills": [
+        "stolz-quiet-state"
+      ],
+      "external_skills": [],
+      "read_references": [
+        "material-transitions.md"
+      ],
+      "tool_calls": 2,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 63929,
+        "cached_input_tokens": 43392,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1078,
+        "reasoning_output_tokens": 707
+      },
+      "final_answer": "DECISION=wake_decision",
+      "raw_evidence_sha256": "6350dadcbe32df70fe9bdf47263184297919bb9a1544b3aa9459bbeac5950cc8",
+      "stderr_sha256": "ada554bf8a05a10337861a753656da4c144a7eb48bf1a2dc25cec31f2c15385d",
+      "private_locator": "private_retained:skill-selection-2026-09-15T142149104Z-bd9e08fd:b-state-decision-revision"
+    },
+    {
+      "run": "heldout-b",
+      "case_id": "b-state-one-time",
+      "split": "heldout_b",
+      "group": "state",
+      "traits": [
+        "one_off_status"
+      ],
+      "prompt": "Read service.json once and report the state. This is not a monitor, retry loop, or durable cursor decision. Return only DECISION=healthy or DECISION=failed.",
+      "candidate_sha": "c176997850f6350199167a75ed17ada44b7bd3c2",
+      "started_at": "2026-09-15T14:30:38.924Z",
+      "ended_at": "2026-09-15T14:31:01.653Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "healthy",
+      "expected_decision": "healthy",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [],
+      "evaluated_skills": [],
+      "external_skills": [],
+      "read_references": [],
+      "tool_calls": 1,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 39187,
+        "cached_input_tokens": 29952,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 450,
+        "reasoning_output_tokens": 294
+      },
+      "final_answer": "DECISION=healthy",
+      "raw_evidence_sha256": "486c8715c23036df5b3884cdc4bdd86634d29c1bdfc8e1fdf9a262967c4fe787",
+      "stderr_sha256": "171d657aa2aa15aae6866022d9059d3dd60890602256757dc6bc45e3a677d1b5",
+      "private_locator": "private_retained:skill-selection-2026-09-15T142149104Z-bd9e08fd:b-state-one-time"
+    },
+    {
+      "run": "heldout-b",
+      "case_id": "b-state-terminal-replay",
+      "split": "heldout_b",
+      "group": "state",
+      "traits": [
+        "terminal_replay",
+        "existing_authorization"
+      ],
+      "prompt": "The authorized durable controller already persisted and notified terminal identity done-7. snapshots.json repeats done-7 after restart. Do not ask for confirmation. Return only DECISION=suppress or DECISION=wake_terminal.",
+      "candidate_sha": "c176997850f6350199167a75ed17ada44b7bd3c2",
+      "started_at": "2026-09-15T14:31:01.693Z",
+      "ended_at": "2026-09-15T14:31:42.124Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "suppress",
+      "expected_decision": "suppress",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "stolz-quiet-state"
+      ],
+      "evaluated_skills": [
+        "stolz-quiet-state"
+      ],
+      "external_skills": [],
+      "read_references": [
+        "material-transitions.md"
+      ],
+      "tool_calls": 2,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 60060,
+        "cached_input_tokens": 49920,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 735,
+        "reasoning_output_tokens": 451
+      },
+      "final_answer": "DECISION=suppress",
+      "raw_evidence_sha256": "1e61f7d58a250c13446fb9094161a1132a6e384f6b719abb31cb8dbe0d48b8bf",
+      "stderr_sha256": "604c47cfb2a55847615119f9083f2079ed4320f8c8100f98b4673b6aec15a169",
+      "private_locator": "private_retained:skill-selection-2026-09-15T142149104Z-bd9e08fd:b-state-terminal-replay"
+    },
+    {
+      "run": "heldout-b",
+      "case_id": "b-measurement-fixture-only",
+      "split": "heldout_b",
+      "group": "measurement",
+      "traits": [
+        "fixture_only",
+        "evidence_boundary"
+      ],
+      "prompt": "pair.json contains equal verified fixture-only routes with authored token units. Decide whether it supports a public provider-token saving. Return only DECISION=publish or DECISION=withhold.",
+      "candidate_sha": "c176997850f6350199167a75ed17ada44b7bd3c2",
+      "started_at": "2026-09-15T14:31:42.160Z",
+      "ended_at": "2026-09-15T14:32:14.842Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "withhold",
+      "expected_decision": "withhold",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "stolz-benchmark"
+      ],
+      "evaluated_skills": [
+        "stolz-benchmark"
+      ],
+      "external_skills": [],
+      "read_references": [
+        "outcome-gates.md"
+      ],
+      "tool_calls": 2,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 63304,
+        "cached_input_tokens": 51584,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 781,
+        "reasoning_output_tokens": 435
+      },
+      "final_answer": "DECISION=withhold",
+      "raw_evidence_sha256": "e4469b8fcd040b2af0c24ae6bcea5864254475e385d27755e3fcd0b6f0862a63",
+      "stderr_sha256": "48045976ca47ed3d1d97e6a1b96e87667472afd9e931596d2dcba4dc5f3184c6",
+      "private_locator": "private_retained:skill-selection-2026-09-15T142149104Z-bd9e08fd:b-measurement-fixture-only"
+    },
+    {
+      "run": "heldout-b",
+      "case_id": "b-measurement-missing-attempt",
+      "split": "heldout_b",
+      "group": "measurement",
+      "traits": [
+        "failed_attempt",
+        "retention"
+      ],
+      "prompt": "pair.json has provider-native counters and equal outputs, but one failed attempt was discarded. Decide whether the comparison is admissible. Return only DECISION=admit or DECISION=withhold.",
+      "candidate_sha": "c176997850f6350199167a75ed17ada44b7bd3c2",
+      "started_at": "2026-09-15T14:32:14.893Z",
+      "ended_at": "2026-09-15T14:32:58.275Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "withhold",
+      "expected_decision": "withhold",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "stolz-benchmark"
+      ],
+      "evaluated_skills": [
+        "stolz-benchmark"
+      ],
+      "external_skills": [],
+      "read_references": [
+        "outcome-gates.md"
+      ],
+      "tool_calls": 3,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 80667,
+        "cached_input_tokens": 70272,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 908,
+        "reasoning_output_tokens": 450
+      },
+      "final_answer": "DECISION=withhold",
+      "raw_evidence_sha256": "a2d12fdc8ed5c9fdcf697428bcfe2a47878f5971d65cf4b69dcbbaa40357f559",
+      "stderr_sha256": "aea6508dcbcf6435bb6e8d52325d06515c1b524a93f8cbe80388ba63e866ff9c",
+      "private_locator": "private_retained:skill-selection-2026-09-15T142149104Z-bd9e08fd:b-measurement-missing-attempt"
+    },
+    {
+      "run": "heldout-b",
+      "case_id": "b-measurement-scoped-admit",
+      "split": "heldout_b",
+      "group": "measurement",
+      "traits": [
+        "provider_native",
+        "scoped_claim"
+      ],
+      "prompt": "pair.json is a complete provider-owned comparison on one versioned fixture. Outcomes and required verification match and all attempts are retained. Decide its narrow admission. Return only DECISION=admit or DECISION=withhold.",
+      "candidate_sha": "c176997850f6350199167a75ed17ada44b7bd3c2",
+      "started_at": "2026-09-15T14:32:58.313Z",
+      "ended_at": "2026-09-15T14:33:31.482Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "admit",
+      "expected_decision": "admit",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "stolz-benchmark"
+      ],
+      "evaluated_skills": [
+        "stolz-benchmark"
+      ],
+      "external_skills": [],
+      "read_references": [
+        "outcome-gates.md"
+      ],
+      "tool_calls": 2,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 62868,
+        "cached_input_tokens": 51328,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 765,
+        "reasoning_output_tokens": 380
+      },
+      "final_answer": "DECISION=admit",
+      "raw_evidence_sha256": "3ec3592f5081e5bbb7243300a3cb6ecd7bcb62dc68a0dc148baab0a6076c0d5a",
+      "stderr_sha256": "156c659cd50017f0052b5647aab99fc665e8c4a98fedd37c0752f87ca28a1b25",
+      "private_locator": "private_retained:skill-selection-2026-09-15T142149104Z-bd9e08fd:b-measurement-scoped-admit"
+    },
+    {
+      "run": "heldout-b",
+      "case_id": "b-measurement-ordinary-speed-bug",
+      "split": "heldout_b",
+      "group": "measurement",
+      "traits": [
+        "ordinary_task",
+        "neutral_competition"
+      ],
+      "prompt": "Review function.js for the obvious accidental quadratic loop. This is ordinary code review, not a STOLZ baseline/optimized evidence claim. Return only DECISION=nested_loop or DECISION=none.",
+      "candidate_sha": "c176997850f6350199167a75ed17ada44b7bd3c2",
+      "started_at": "2026-09-15T14:33:31.547Z",
+      "ended_at": "2026-09-15T14:34:03.319Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "nested_loop",
+      "expected_decision": "nested_loop",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "plain-code-review"
+      ],
+      "evaluated_skills": [
+        "plain-code-review"
+      ],
+      "external_skills": [],
+      "read_references": [],
+      "tool_calls": 2,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 62794,
+        "cached_input_tokens": 51328,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 674,
+        "reasoning_output_tokens": 304
+      },
+      "final_answer": "DECISION=nested_loop",
+      "raw_evidence_sha256": "9c7c065fa2af1d0d9f928bd302748d4969a9143fb97b45284a6a5982aa6d32a8",
+      "stderr_sha256": "bc6c3d4a06de65edaf0934167954aed5f9afc45da5663bea3f2c9fa7a40ed8ba",
+      "private_locator": "private_retained:skill-selection-2026-09-15T142149104Z-bd9e08fd:b-measurement-ordinary-speed-bug"
+    },
+    {
+      "run": "heldout-b",
+      "case_id": "b-ordinary-version-copy",
+      "split": "heldout_b",
+      "group": "ordinary",
+      "traits": [
+        "neutral_competition"
+      ],
+      "prompt": "Check note.txt and return the duplicated version label. This is ordinary release-note editing. Return only DECISION=0.12.0 or DECISION=none.",
+      "candidate_sha": "c176997850f6350199167a75ed17ada44b7bd3c2",
+      "started_at": "2026-09-15T14:34:03.368Z",
+      "ended_at": "2026-09-15T14:34:36.537Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "0.12.0",
+      "expected_decision": "0.12.0",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "release-note-editor"
+      ],
+      "evaluated_skills": [
+        "release-note-editor"
+      ],
+      "external_skills": [],
+      "read_references": [],
+      "tool_calls": 2,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 62580,
+        "cached_input_tokens": 42880,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 586,
+        "reasoning_output_tokens": 231
+      },
+      "final_answer": "DECISION=0.12.0",
+      "raw_evidence_sha256": "1ae27d4ac866e8af0eed7b26e39b2af0acda44ae39607da7af19dc11a4981d65",
+      "stderr_sha256": "1c6a1058cc1ad58c601985f11a9e854957b8c055d41d8e1e0203ee16d211f516",
+      "private_locator": "private_retained:skill-selection-2026-09-15T142149104Z-bd9e08fd:b-ordinary-version-copy"
+    },
+    {
+      "run": "heldout-b",
+      "case_id": "b-ordinary-null-bug",
+      "split": "heldout_b",
+      "group": "ordinary",
+      "traits": [
+        "analysis_only",
+        "neutral_competition"
+      ],
+      "prompt": "Review function.js only and identify the unsafe operation. Do not edit files. Return only DECISION=trim or DECISION=none.",
+      "candidate_sha": "c176997850f6350199167a75ed17ada44b7bd3c2",
+      "started_at": "2026-09-15T14:34:36.579Z",
+      "ended_at": "2026-09-15T14:35:15.108Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "trim",
+      "expected_decision": "trim",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "plain-code-review",
+        "powershell-shell"
+      ],
+      "evaluated_skills": [
+        "plain-code-review"
+      ],
+      "external_skills": [
+        "powershell-shell"
+      ],
+      "read_references": [],
+      "tool_calls": 2,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 61073,
+        "cached_input_tokens": 49664,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 615,
+        "reasoning_output_tokens": 231
+      },
+      "final_answer": "DECISION=trim",
+      "raw_evidence_sha256": "eddc49c0af0992d6625e0a3267658922ec0d980a53ca6a68124d77b4a088d0da",
+      "stderr_sha256": "9826a74345273b65a23b89994bb741011e51f1f1cd0fce911ba4af10b03a9f7b",
+      "private_locator": "private_retained:skill-selection-2026-09-15T142149104Z-bd9e08fd:b-ordinary-null-bug"
+    },
+    {
+      "run": "heldout-b",
+      "case_id": "b-ordinary-test-pass",
+      "split": "heldout_b",
+      "group": "ordinary",
+      "traits": [
+        "ordinary_tests",
+        "neutral_competition"
+      ],
+      "prompt": "Read results.txt and report the total passed tests. This is not an efficiency benchmark. Return only DECISION=27 or DECISION=0.",
+      "candidate_sha": "c176997850f6350199167a75ed17ada44b7bd3c2",
+      "started_at": "2026-09-15T14:35:15.157Z",
+      "ended_at": "2026-09-15T14:35:49.483Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "27",
+      "expected_decision": "27",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "test-triage"
+      ],
+      "evaluated_skills": [
+        "test-triage"
+      ],
+      "external_skills": [],
+      "read_references": [],
+      "tool_calls": 2,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 62574,
+        "cached_input_tokens": 40704,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 576,
+        "reasoning_output_tokens": 218
+      },
+      "final_answer": "DECISION=27",
+      "raw_evidence_sha256": "04296b1306f1cfc4ba714bd4f8318beccb6198f4e8abc1bd0a140126f57d75af",
+      "stderr_sha256": "f5b9d7e1fc94dae3f916273f250933035bcc732bfdfa3ce94ca558c79533acae",
+      "private_locator": "private_retained:skill-selection-2026-09-15T142149104Z-bd9e08fd:b-ordinary-test-pass"
+    },
+    {
+      "run": "heldout-b",
+      "case_id": "b-ordinary-authorized-completion",
+      "split": "heldout_b",
+      "group": "ordinary",
+      "traits": [
+        "existing_authorization",
+        "finish_implementation"
+      ],
+      "prompt": "You already have permission to complete this local analysis. Read config.json, identify the missing required field, and do not ask whether to continue. Return only DECISION=version or DECISION=none.",
+      "candidate_sha": "c176997850f6350199167a75ed17ada44b7bd3c2",
+      "started_at": "2026-09-15T14:35:49.529Z",
+      "ended_at": "2026-09-15T14:36:29.590Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "version",
+      "expected_decision": "version",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [],
+      "evaluated_skills": [],
+      "external_skills": [],
+      "read_references": [],
+      "tool_calls": 2,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 62236,
+        "cached_input_tokens": 51072,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 475,
+        "reasoning_output_tokens": 207
+      },
+      "final_answer": "DECISION=version",
+      "raw_evidence_sha256": "930a62f29cddd269ca36ac6f81a468357494c682714923f3962516240d98c44c",
+      "stderr_sha256": "7d14f53a836ae77b82ec9c414102a95dc17e0e95b2b63db024363abaec351c50",
+      "private_locator": "private_retained:skill-selection-2026-09-15T142149104Z-bd9e08fd:b-ordinary-authorized-completion"
+    },
+    {
+      "run": "heldout-b",
+      "case_id": "b-ambiguous-two-concerns",
+      "split": "heldout_b",
+      "group": "ambiguous",
+      "traits": [
+        "overlap",
+        "route_selection"
+      ],
+      "prompt": "The request names both validating a context fragment and reusing an older command result, but does not identify the current decision. Choose how to start. Return only DECISION=route_first or DECISION=preload_both.",
+      "candidate_sha": "c176997850f6350199167a75ed17ada44b7bd3c2",
+      "started_at": "2026-09-15T14:36:29.666Z",
+      "ended_at": "2026-09-15T14:37:17.010Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "route_first",
+      "expected_decision": "route_first",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "stolz-route"
+      ],
+      "evaluated_skills": [
+        "stolz-route"
+      ],
+      "external_skills": [],
+      "read_references": [
+        "route-selection.md"
+      ],
+      "tool_calls": 2,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 63175,
+        "cached_input_tokens": 51456,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 651,
+        "reasoning_output_tokens": 333
+      },
+      "final_answer": "DECISION=route_first",
+      "raw_evidence_sha256": "0cfe33656c33a2853f9bef2c26af4710fdc7fd2ca619aa479a703c4d00da0ebb",
+      "stderr_sha256": "93c96b6b3e233b42da1713d765619b13d86bf7c1e9118bfaa905f5866fc44f46",
+      "private_locator": "private_retained:skill-selection-2026-09-15T142149104Z-bd9e08fd:b-ambiguous-two-concerns"
+    },
+    {
+      "run": "heldout-b",
+      "case_id": "b-ambiguous-research-boundary",
+      "split": "heldout_b",
+      "group": "ambiguous",
+      "traits": [
+        "task_brief",
+        "analysis_only"
+      ],
+      "prompt": "Prepare only the scope and completion boundary for a future STOLZ investigation whose optimization concern is still unknown. Do not run it. Return only DECISION=task_brief or DECISION=start_now.",
+      "candidate_sha": "c176997850f6350199167a75ed17ada44b7bd3c2",
+      "started_at": "2026-09-15T14:37:17.073Z",
+      "ended_at": "2026-09-15T14:37:54.621Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "task_brief",
+      "expected_decision": "task_brief",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "stolz-route"
+      ],
+      "evaluated_skills": [
+        "stolz-route"
+      ],
+      "external_skills": [],
+      "read_references": [
+        "task-brief.md"
+      ],
+      "tool_calls": 2,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 63331,
+        "cached_input_tokens": 51456,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 797,
+        "reasoning_output_tokens": 390
+      },
+      "final_answer": "DECISION=task_brief",
+      "raw_evidence_sha256": "8e2ebf1fa91791958d40d2366682790ce717a3b4f95c77d550d76330fb421db6",
+      "stderr_sha256": "af91590ba6ce39f3b344d306d7beeca12f392be8aaf685ca72179627f65f125e",
+      "private_locator": "private_retained:skill-selection-2026-09-15T142149104Z-bd9e08fd:b-ambiguous-research-boundary"
+    },
+    {
+      "run": "heldout-b",
+      "case_id": "b-ambiguous-goal-switch-plain",
+      "split": "heldout_b",
+      "group": "ambiguous",
+      "traits": [
+        "goal_change",
+        "ordinary_task"
+      ],
+      "prompt": "Drop the earlier optimization discussion. The current goal is only to read answer.txt once and return its word. Return only DECISION=done or DECISION=route_first.",
+      "candidate_sha": "c176997850f6350199167a75ed17ada44b7bd3c2",
+      "started_at": "2026-09-15T14:37:54.651Z",
+      "ended_at": "2026-09-15T14:38:30.054Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "done",
+      "expected_decision": "done",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [],
+      "evaluated_skills": [],
+      "external_skills": [],
+      "read_references": [],
+      "tool_calls": 1,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 39566,
+        "cached_input_tokens": 29952,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 811,
+        "reasoning_output_tokens": 657
+      },
+      "final_answer": "DECISION=done",
+      "raw_evidence_sha256": "15d04522ec7ac639d93bd88f056ba0506ae2ceb10183ef5f5e3ffdef133be9d2",
+      "stderr_sha256": "f6b68b1cc31e56905ac5ae0b9112bf41d21ded1c63474fe5126aab5287ce0780",
+      "private_locator": "private_retained:skill-selection-2026-09-15T142149104Z-bd9e08fd:b-ambiguous-goal-switch-plain"
+    },
+    {
+      "run": "heldout-b",
+      "case_id": "b-ambiguous-manifest-measurement",
+      "split": "heldout_b",
+      "group": "ambiguous",
+      "traits": [
+        "overlap",
+        "missing_concern"
+      ],
+      "prompt": "A request mentions a manifest and a token comparison but does not say whether to decide provenance or evidence admission first. Select the boundary without loading both specialist skills. Return only DECISION=route_first or DECISION=benchmark_only.",
+      "candidate_sha": "c176997850f6350199167a75ed17ada44b7bd3c2",
+      "started_at": "2026-09-15T14:38:30.096Z",
+      "ended_at": "2026-09-15T14:39:11.192Z",
+      "execution_completed": true,
+      "process_exit_code": 0,
+      "timed_out": false,
+      "decision": "route_first",
+      "expected_decision": "route_first",
+      "route_correct": true,
+      "outcome_correct": true,
+      "permission_correct": true,
+      "asked_permission": false,
+      "selected_skills": [
+        "stolz-route"
+      ],
+      "evaluated_skills": [
+        "stolz-route"
+      ],
+      "external_skills": [],
+      "read_references": [
+        "route-selection.md"
+      ],
+      "tool_calls": 2,
+      "failed_tool_calls": 0,
+      "usage": {
+        "input_tokens": 59629,
+        "cached_input_tokens": 49664,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 567,
+        "reasoning_output_tokens": 267
+      },
+      "final_answer": "DECISION=route_first",
+      "raw_evidence_sha256": "9572a0e2250a3d7476a7df9e27b426b03019d358458b07257dccdccdc97c418c",
+      "stderr_sha256": "dac0644a7fa952c138f95b7f7ca9e1c179f7f2092ec2dfe85765f41467da5b51",
+      "private_locator": "private_retained:skill-selection-2026-09-15T142149104Z-bd9e08fd:b-ambiguous-manifest-measurement"
+    }
+  ],
+  "canonical_sha256": "48a5b5ae84dadb9016f2910a4a9b7c5bcef6b209a473949d113d55a4cc7b98e1"
+}

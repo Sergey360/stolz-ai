@@ -1,0 +1,225 @@
+{
+  "schema": "stolz.skill-selection-heldout.v1",
+  "version": "0.12.0",
+  "created_at": "2026-09-15",
+  "supersedes_for_release_gate": "heldout",
+  "groups": ["context", "reuse", "state", "measurement", "ordinary", "ambiguous"],
+  "cases": [
+    {
+      "id": "b-context-version-change",
+      "split": "heldout_b",
+      "group": "context",
+      "traits": ["identity_mismatch", "fallback"],
+      "prompt": "An optimized STOLZ context manifest in record.json names source version 3, while the requested source is version 4. Decide whether the recorded fragment can be trusted. Return only DECISION=verified_context or DECISION=normal_route.",
+      "files": {"record.json": "{\"task_id\":\"ctx-b1\",\"selected_route\":\"context\",\"source_identities\":[\"version:3\"],\"actual_source_identities\":[\"version:4\"],\"invalidation_identities\":[\"policy:v1\"]}\n"},
+      "oracle": {"decision": "normal_route", "allowed_skills": ["stolz-context"], "required_root": "stolz-context", "allowed_references": ["manifest-and-reads.md"], "minimum_reference_reads": 1, "permission_question_allowed": false}
+    },
+    {
+      "id": "b-context-valid-manifest",
+      "split": "heldout_b",
+      "group": "context",
+      "traits": ["identity_bound_read"],
+      "prompt": "record.json is an existing STOLZ context manifest. Its selected route, immutable source identities, and invalidation identities all match the requested bounded read. Return only DECISION=verified_context or DECISION=normal_route.",
+      "files": {"record.json": "{\"task_id\":\"ctx-b2\",\"selected_route\":\"context\",\"source_identities\":[\"sha256:def\"],\"actual_source_identities\":[\"sha256:def\"],\"invalidation_identities\":[\"policy:v2\"],\"range\":\"4-9\",\"actual_range\":\"4-9\"}\n"},
+      "oracle": {"decision": "verified_context", "allowed_skills": ["stolz-context"], "required_root": "stolz-context", "allowed_references": ["manifest-and-reads.md"], "minimum_reference_reads": 1, "permission_question_allowed": false}
+    },
+    {
+      "id": "b-context-ordinary-read",
+      "split": "heldout_b",
+      "group": "context",
+      "traits": ["ordinary_first_read", "negative_boundary"],
+      "prompt": "Read release.txt once and report the version. There is no STOLZ manifest, read ledger, cache, or previous result. Return only DECISION=0.12.0 or DECISION=unknown.",
+      "files": {"release.txt": "version=0.12.0\n"},
+      "oracle": {"decision": "0.12.0", "allowed_skills": [], "required_root": null, "allowed_references": [], "minimum_reference_reads": 0, "permission_question_allowed": false}
+    },
+    {
+      "id": "b-context-goal-switch",
+      "split": "heldout_b",
+      "group": "context",
+      "traits": ["goal_change", "analysis_only"],
+      "prompt": "The old goal was result reuse. The current goal is only to validate source provenance in the existing STOLZ context manifest record.json. Do not change files. Return only DECISION=verified_context or DECISION=normal_route.",
+      "files": {"record.json": "{\"task_id\":\"ctx-b4\",\"selected_route\":\"context\",\"source_identities\":[\"sha256:444\"],\"actual_source_identities\":[\"sha256:444\"],\"invalidation_identities\":[\"policy:v1\"]}\n"},
+      "oracle": {"decision": "verified_context", "allowed_skills": ["stolz-context"], "required_root": "stolz-context", "allowed_references": ["manifest-and-reads.md"], "minimum_reference_reads": 1, "permission_question_allowed": false}
+    },
+    {
+      "id": "b-reuse-complete-hit",
+      "split": "heldout_b",
+      "group": "reuse",
+      "traits": ["prior_result", "verified_identity"],
+      "prompt": "Decide whether the complete prior-result record in ledger.json may replace the requested command. Return only DECISION=reuse_hit or DECISION=reuse_miss.",
+      "files": {"ledger.json": "{\"command_identity\":\"node|check.mjs\",\"requested_identity\":\"node|check.mjs\",\"input_identities\":[\"sha256:11\"],\"requested_input_identities\":[\"sha256:11\"],\"invalidation_identity\":\"policy:v1\",\"requested_invalidation_identity\":\"policy:v1\",\"tool_version\":\"22.22.2\",\"verified\":true,\"fresh\":true,\"evidence\":\"result:11\"}\n"},
+      "oracle": {"decision": "reuse_hit", "allowed_skills": ["stolz-reuse"], "required_root": "stolz-reuse", "allowed_references": ["ledger-and-invalidation.md"], "minimum_reference_reads": 1, "permission_question_allowed": false}
+    },
+    {
+      "id": "b-reuse-expired",
+      "split": "heldout_b",
+      "group": "reuse",
+      "traits": ["prior_result", "expiry"],
+      "prompt": "ledger.json contains a previously verified result whose freshness flag is false. Decide whether to reuse it. Return only DECISION=reuse_hit or DECISION=reuse_miss.",
+      "files": {"ledger.json": "{\"command_identity\":\"npm|test\",\"requested_identity\":\"npm|test\",\"verified\":true,\"fresh\":false,\"evidence\":\"result:old\"}\n"},
+      "oracle": {"decision": "reuse_miss", "allowed_skills": ["stolz-reuse"], "required_root": "stolz-reuse", "allowed_references": ["ledger-and-invalidation.md"], "minimum_reference_reads": 1, "permission_question_allowed": false}
+    },
+    {
+      "id": "b-reuse-live-owner",
+      "split": "heldout_b",
+      "group": "reuse",
+      "traits": ["in_flight", "coalescing"],
+      "prompt": "An identical command with matching inputs and policy is already running under a valid owner lease in ledger.json. Decide whether to join or duplicate it. Return only DECISION=join_owner or DECISION=new_execution.",
+      "files": {"ledger.json": "{\"command_identity\":\"node|lint.mjs\",\"requested_identity\":\"node|lint.mjs\",\"inputs_match\":true,\"policy_match\":true,\"owner_lease\":\"valid\"}\n"},
+      "oracle": {"decision": "join_owner", "allowed_skills": ["stolz-reuse"], "required_root": "stolz-reuse", "allowed_references": ["ledger-and-invalidation.md"], "minimum_reference_reads": 1, "permission_question_allowed": false}
+    },
+    {
+      "id": "b-reuse-ordinary-lookup",
+      "split": "heldout_b",
+      "group": "reuse",
+      "traits": ["first_read", "negative_boundary"],
+      "prompt": "Look up the color in value.txt for the first time. No reusable result, cache entry, ledger, or in-flight command exists. Return only DECISION=blue or DECISION=unknown.",
+      "files": {"value.txt": "blue\n"},
+      "oracle": {"decision": "blue", "allowed_skills": [], "required_root": null, "allowed_references": [], "minimum_reference_reads": 0, "permission_question_allowed": false}
+    },
+    {
+      "id": "b-state-timestamp-only",
+      "split": "heldout_b",
+      "group": "state",
+      "traits": ["repeated_snapshot", "timestamp_only"],
+      "prompt": "A durable poller observed snapshots.json twice. Only the timestamp changed. Decide whether another model wake is admitted. Return only DECISION=suppress or DECISION=wake.",
+      "files": {"snapshots.json": "[{\"cursor\":31,\"state\":\"running\",\"time\":1},{\"cursor\":31,\"state\":\"running\",\"time\":2}]\n"},
+      "oracle": {"decision": "suppress", "allowed_skills": ["stolz-quiet-state"], "required_root": "stolz-quiet-state", "allowed_references": ["material-transitions.md"], "minimum_reference_reads": 1, "permission_question_allowed": false}
+    },
+    {
+      "id": "b-state-decision-revision",
+      "split": "heldout_b",
+      "group": "state",
+      "traits": ["decision_revision"],
+      "prompt": "snapshots.json shows a new needs-decision revision with a new reason under the same durable controller. Decide the wake. Return only DECISION=wake_decision or DECISION=suppress.",
+      "files": {"snapshots.json": "[{\"cursor\":40,\"state\":\"running\"},{\"cursor\":41,\"state\":\"needs_decision\",\"reason\":\"choose rollback\"}]\n"},
+      "oracle": {"decision": "wake_decision", "allowed_skills": ["stolz-quiet-state"], "required_root": "stolz-quiet-state", "allowed_references": ["material-transitions.md"], "minimum_reference_reads": 1, "permission_question_allowed": false}
+    },
+    {
+      "id": "b-state-one-time",
+      "split": "heldout_b",
+      "group": "state",
+      "traits": ["one_off_status"],
+      "prompt": "Read service.json once and report the state. This is not a monitor, retry loop, or durable cursor decision. Return only DECISION=healthy or DECISION=failed.",
+      "files": {"service.json": "{\"state\":\"healthy\"}\n"},
+      "oracle": {"decision": "healthy", "allowed_skills": [], "required_root": null, "allowed_references": [], "minimum_reference_reads": 0, "permission_question_allowed": false}
+    },
+    {
+      "id": "b-state-terminal-replay",
+      "split": "heldout_b",
+      "group": "state",
+      "traits": ["terminal_replay", "existing_authorization"],
+      "prompt": "The authorized durable controller already persisted and notified terminal identity done-7. snapshots.json repeats done-7 after restart. Do not ask for confirmation. Return only DECISION=suppress or DECISION=wake_terminal.",
+      "files": {"snapshots.json": "{\"terminal_identity\":\"done-7\",\"persisted\":true,\"notified\":true,\"replayed_identity\":\"done-7\"}\n"},
+      "oracle": {"decision": "suppress", "allowed_skills": ["stolz-quiet-state"], "required_root": "stolz-quiet-state", "allowed_references": ["material-transitions.md"], "minimum_reference_reads": 1, "permission_question_allowed": false}
+    },
+    {
+      "id": "b-measurement-fixture-only",
+      "split": "heldout_b",
+      "group": "measurement",
+      "traits": ["fixture_only", "evidence_boundary"],
+      "prompt": "pair.json contains equal verified fixture-only routes with authored token units. Decide whether it supports a public provider-token saving. Return only DECISION=publish or DECISION=withhold.",
+      "files": {"pair.json": "{\"same_fixture\":true,\"equal_outcome\":true,\"equal_verification\":true,\"evidence_class\":\"fixture_only\",\"authored_units\":true}\n"},
+      "oracle": {"decision": "withhold", "allowed_skills": ["stolz-benchmark"], "required_root": "stolz-benchmark", "allowed_references": ["outcome-gates.md"], "minimum_reference_reads": 1, "permission_question_allowed": false}
+    },
+    {
+      "id": "b-measurement-missing-attempt",
+      "split": "heldout_b",
+      "group": "measurement",
+      "traits": ["failed_attempt", "retention"],
+      "prompt": "pair.json has provider-native counters and equal outputs, but one failed attempt was discarded. Decide whether the comparison is admissible. Return only DECISION=admit or DECISION=withhold.",
+      "files": {"pair.json": "{\"same_fixture\":true,\"equal_outcome\":true,\"equal_verification\":true,\"evidence_class\":\"provider_native\",\"usage_complete\":true,\"all_attempts_retained\":false}\n"},
+      "oracle": {"decision": "withhold", "allowed_skills": ["stolz-benchmark"], "required_root": "stolz-benchmark", "allowed_references": ["outcome-gates.md"], "minimum_reference_reads": 1, "permission_question_allowed": false}
+    },
+    {
+      "id": "b-measurement-scoped-admit",
+      "split": "heldout_b",
+      "group": "measurement",
+      "traits": ["provider_native", "scoped_claim"],
+      "prompt": "pair.json is a complete provider-owned comparison on one versioned fixture. Outcomes and required verification match and all attempts are retained. Decide its narrow admission. Return only DECISION=admit or DECISION=withhold.",
+      "files": {"pair.json": "{\"same_fixture\":true,\"fixture_version\":\"1\",\"equal_outcome\":true,\"equal_verification\":true,\"evidence_class\":\"provider_native\",\"usage_complete\":true,\"all_attempts_retained\":true}\n"},
+      "oracle": {"decision": "admit", "allowed_skills": ["stolz-benchmark"], "required_root": "stolz-benchmark", "allowed_references": ["outcome-gates.md"], "minimum_reference_reads": 1, "permission_question_allowed": false}
+    },
+    {
+      "id": "b-measurement-ordinary-speed-bug",
+      "split": "heldout_b",
+      "group": "measurement",
+      "traits": ["ordinary_task", "neutral_competition"],
+      "prompt": "Review function.js for the obvious accidental quadratic loop. This is ordinary code review, not a STOLZ baseline/optimized evidence claim. Return only DECISION=nested_loop or DECISION=none.",
+      "files": {"function.js": "export function copy(xs) { for (const x of xs) for (const y of xs) void y; return [...xs]; }\n"},
+      "oracle": {"decision": "nested_loop", "allowed_skills": ["plain-code-review"], "required_root": null, "allowed_references": [], "minimum_reference_reads": 0, "permission_question_allowed": false}
+    },
+    {
+      "id": "b-ordinary-version-copy",
+      "split": "heldout_b",
+      "group": "ordinary",
+      "traits": ["neutral_competition"],
+      "prompt": "Check note.txt and return the duplicated version label. This is ordinary release-note editing. Return only DECISION=0.12.0 or DECISION=none.",
+      "files": {"note.txt": "Release 0.12.0. Release 0.12.0.\n"},
+      "oracle": {"decision": "0.12.0", "allowed_skills": ["release-note-editor"], "required_root": null, "allowed_references": [], "minimum_reference_reads": 0, "permission_question_allowed": false}
+    },
+    {
+      "id": "b-ordinary-null-bug",
+      "split": "heldout_b",
+      "group": "ordinary",
+      "traits": ["analysis_only", "neutral_competition"],
+      "prompt": "Review function.js only and identify the unsafe operation. Do not edit files. Return only DECISION=trim or DECISION=none.",
+      "files": {"function.js": "export const clean = (value) => value.trim();\n"},
+      "oracle": {"decision": "trim", "allowed_skills": ["plain-code-review"], "required_root": null, "allowed_references": [], "minimum_reference_reads": 0, "permission_question_allowed": false}
+    },
+    {
+      "id": "b-ordinary-test-pass",
+      "split": "heldout_b",
+      "group": "ordinary",
+      "traits": ["ordinary_tests", "neutral_competition"],
+      "prompt": "Read results.txt and report the total passed tests. This is not an efficiency benchmark. Return only DECISION=27 or DECISION=0.",
+      "files": {"results.txt": "passed=27 failed=0\n"},
+      "oracle": {"decision": "27", "allowed_skills": ["test-triage"], "required_root": null, "allowed_references": [], "minimum_reference_reads": 0, "permission_question_allowed": false}
+    },
+    {
+      "id": "b-ordinary-authorized-completion",
+      "split": "heldout_b",
+      "group": "ordinary",
+      "traits": ["existing_authorization", "finish_implementation"],
+      "prompt": "You already have permission to complete this local analysis. Read config.json, identify the missing required field, and do not ask whether to continue. Return only DECISION=version or DECISION=none.",
+      "files": {"config.json": "{\"name\":\"demo\"}\n"},
+      "oracle": {"decision": "version", "allowed_skills": ["plain-code-review"], "required_root": null, "allowed_references": [], "minimum_reference_reads": 0, "permission_question_allowed": false}
+    },
+    {
+      "id": "b-ambiguous-two-concerns",
+      "split": "heldout_b",
+      "group": "ambiguous",
+      "traits": ["overlap", "route_selection"],
+      "prompt": "The request names both validating a context fragment and reusing an older command result, but does not identify the current decision. Choose how to start. Return only DECISION=route_first or DECISION=preload_both.",
+      "files": {},
+      "oracle": {"decision": "route_first", "allowed_skills": ["stolz-route"], "required_root": "stolz-route", "allowed_references": ["route-selection.md"], "minimum_reference_reads": 1, "permission_question_allowed": false}
+    },
+    {
+      "id": "b-ambiguous-research-boundary",
+      "split": "heldout_b",
+      "group": "ambiguous",
+      "traits": ["task_brief", "analysis_only"],
+      "prompt": "Prepare only the scope and completion boundary for a future STOLZ investigation whose optimization concern is still unknown. Do not run it. Return only DECISION=task_brief or DECISION=start_now.",
+      "files": {},
+      "oracle": {"decision": "task_brief", "allowed_skills": ["stolz-route"], "required_root": "stolz-route", "allowed_references": ["task-brief.md"], "minimum_reference_reads": 1, "permission_question_allowed": false}
+    },
+    {
+      "id": "b-ambiguous-goal-switch-plain",
+      "split": "heldout_b",
+      "group": "ambiguous",
+      "traits": ["goal_change", "ordinary_task"],
+      "prompt": "Drop the earlier optimization discussion. The current goal is only to read answer.txt once and return its word. Return only DECISION=done or DECISION=route_first.",
+      "files": {"answer.txt": "done\n"},
+      "oracle": {"decision": "done", "allowed_skills": [], "required_root": null, "allowed_references": [], "minimum_reference_reads": 0, "permission_question_allowed": false}
+    },
+    {
+      "id": "b-ambiguous-manifest-measurement",
+      "split": "heldout_b",
+      "group": "ambiguous",
+      "traits": ["overlap", "missing_concern"],
+      "prompt": "A request mentions a manifest and a token comparison but does not say whether to decide provenance or evidence admission first. Select the boundary without loading both specialist skills. Return only DECISION=route_first or DECISION=benchmark_only.",
+      "files": {},
+      "oracle": {"decision": "route_first", "allowed_skills": ["stolz-route"], "required_root": "stolz-route", "allowed_references": ["route-selection.md"], "minimum_reference_reads": 1, "permission_question_allowed": false}
+    }
+  ]
+}
