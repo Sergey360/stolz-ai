@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "package_version": "0.14.0",
+  "platform": "linux",
+  "arch": "x64",
+  "node_version": "v22.22.2",
+  "scenarios": [
+    "clean_install",
+    "doctor_environment_and_adapter",
+    "team_lock_and_drift_exit",
+    "v0.13_owned_update",
+    "interrupted_update_recovery",
+    "local_change_rollback_conflict",
+    "rollback_to_v0.13",
+    "explicit_codex_local_state"
+  ]
+}

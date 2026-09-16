@@ -1,0 +1,357 @@
+{
+  "schema_id": "benchmark-report",
+  "schema_version": "3.0.0",
+  "record_id": "report-2488b7c53915d5dda55bf185",
+  "captured_at": "2026-09-16T11:04:40.330Z",
+  "track": "provider_native",
+  "manifest": {
+    "schema_id": "pilot-manifest",
+    "schema_version": "1.0.0",
+    "record_id": "pilot-reads-navigation-codex-cli-20260916",
+    "canonical_sha256": "4a930a1789a846bc8f4fba64a805a819207fce0f53956240c12cff993885d702"
+  },
+  "scope": {
+    "scenario_id": "reads-navigation",
+    "cohort_id": "reads-navigation-codex-cli-20260916-105829-f3a4e7e3",
+    "runtime_id": "codex-cli",
+    "provider_id": "openai",
+    "model_configuration": "gpt-5.6-sol",
+    "configuration_sha256": "dbdd902394a9d3e6b4f9705c293f4fbaaeb92f881fc8ae857894084be14eeb1c",
+    "environment_sha256": "0f9837a136f7f8bfe0be9488674eeb6c2ffab3750948747665a5b2a3c6b1d1b9"
+  },
+  "admission": {
+    "schema_id": "report-admission",
+    "schema_version": "1.0.0",
+    "record_id": "admission-2488b7c53915d5dda55bf185",
+    "captured_at": "2026-09-16T11:04:40.330Z",
+    "track": "provider_native",
+    "manifest": {
+      "schema_id": "pilot-manifest",
+      "schema_version": "1.0.0",
+      "record_id": "pilot-reads-navigation-codex-cli-20260916",
+      "canonical_sha256": "4a930a1789a846bc8f4fba64a805a819207fce0f53956240c12cff993885d702"
+    },
+    "included_attempts": [
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "reads-baseline-codex-001",
+        "canonical_sha256": "9f2b71ede219c9eff1654a5c24963ae472c9d79b2d855a1af38675974d550cd5"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "reads-stolz-codex-001",
+        "canonical_sha256": "7cad398b5f37dfc4cd28bffba26154ebb12978ef941b6a989a58fb352e0f5514"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "reads-stolz-codex-002",
+        "canonical_sha256": "65bdaed20c088c0444edb04bc190fc66924475b33e68c7eb583e162bc15178c6"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "reads-baseline-codex-002",
+        "canonical_sha256": "f746233bdd67effe9197252b7c0e6e3e4dac3d9b330c1cb2d7c3fb3ee3a94b96"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "reads-baseline-codex-003",
+        "canonical_sha256": "e9a44914eaad57af8c2a469eab0d993af1704a0b21d486d0ef5446185c8dc026"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "reads-stolz-codex-003",
+        "canonical_sha256": "b57fbb5da725599ba31cf058310856b98850fd4a6fd2e201f14af4653f0234c5"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "reads-stolz-codex-004",
+        "canonical_sha256": "8f76234cd841ade4cb32dc9ad99f083ee51268d14326a967618247f43e2ce2f5"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "reads-baseline-codex-004",
+        "canonical_sha256": "266e2e9898636455d78a14684ad05d06886bb4306c0e0172d5b6a987bc22cfab"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "reads-baseline-codex-005",
+        "canonical_sha256": "cc71757dd6648f52602ecaea4a01ff7f12ef88f12259e500a3f9ad6af93669ba"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "reads-stolz-codex-005",
+        "canonical_sha256": "105f9d974ee3db609beb6e3932ebea47493e5ab22e29633cc1ebf5b8f1e7f3eb"
+      }
+    ],
+    "excluded_attempts": [],
+    "included_pairs": [
+      {
+        "schema_id": "benchmark-pair",
+        "schema_version": "1.0.0",
+        "record_id": "pair-58c154cdd0fff088ba9cdceb",
+        "canonical_sha256": "06720ceaa07576d910f5ca8a92f0b3b4d7493fe877682688884f0d73925ec237"
+      },
+      {
+        "schema_id": "benchmark-pair",
+        "schema_version": "1.0.0",
+        "record_id": "pair-3fa508b47d40cffc56d716a3",
+        "canonical_sha256": "450c97426bce164e280e33bc61dee9922784c8907e0018016bf6ebc81f3290e0"
+      },
+      {
+        "schema_id": "benchmark-pair",
+        "schema_version": "1.0.0",
+        "record_id": "pair-d4db75f69f6adfc8967fd61a",
+        "canonical_sha256": "07acdb80b6ae9ab3a91667e5b9d1e1845e2f48d1af9113b467a111c8420224e0"
+      },
+      {
+        "schema_id": "benchmark-pair",
+        "schema_version": "1.0.0",
+        "record_id": "pair-2e3b5e46bd2ce3dcb97782e7",
+        "canonical_sha256": "14f432fc702a5375d301533243cd0a251c710d890e07dba1d5a7e0fe33ba5034"
+      },
+      {
+        "schema_id": "benchmark-pair",
+        "schema_version": "1.0.0",
+        "record_id": "pair-8e72da58efb0aa245c38b7c2",
+        "canonical_sha256": "5e769024b294aa253c01cac47e61c9472332e626e46b2515b6766cc1dadf5121"
+      }
+    ],
+    "excluded_pairs": [],
+    "gates": {
+      "track_authority": {
+        "status": "passed"
+      },
+      "provenance": {
+        "status": "passed"
+      },
+      "redaction_retention": {
+        "status": "passed"
+      },
+      "pricing": {
+        "status": "passed"
+      },
+      "overhead": {
+        "status": "passed"
+      },
+      "equal_outcome": {
+        "status": "passed"
+      },
+      "equal_verification": {
+        "status": "passed"
+      },
+      "release_publication": {
+        "status": "not_run",
+        "reason": "Aggregate/public claims remain withheld pending the stronger release/publication gates."
+      }
+    },
+    "admission": "withheld",
+    "admission_reason": "Aggregate admission is fail-closed until a complete cohort and every required gate pass.",
+    "public_claim": {
+      "kind": "provider_savings",
+      "disposition": "withheld",
+      "reason": "No release-admitted complete scoped cohort is available; aggregate claims remain withheld."
+    },
+    "canonical_sha256": "81ef886a661efd9fa31c1c1d97162d942fa68db8725c3b4a42efbe65b4f2445c"
+  },
+  "attempts": {
+    "included": [
+      "reads-baseline-codex-001",
+      "reads-stolz-codex-001",
+      "reads-stolz-codex-002",
+      "reads-baseline-codex-002",
+      "reads-baseline-codex-003",
+      "reads-stolz-codex-003",
+      "reads-stolz-codex-004",
+      "reads-baseline-codex-004",
+      "reads-baseline-codex-005",
+      "reads-stolz-codex-005"
+    ],
+    "excluded": []
+  },
+  "pairs": {
+    "included": [
+      "pair-58c154cdd0fff088ba9cdceb",
+      "pair-3fa508b47d40cffc56d716a3",
+      "pair-d4db75f69f6adfc8967fd61a",
+      "pair-2e3b5e46bd2ce3dcb97782e7",
+      "pair-8e72da58efb0aa245c38b7c2"
+    ],
+    "excluded": []
+  },
+  "metrics": [
+    {
+      "name": "net_token_delta",
+      "availability": "available",
+      "provenance": "derived",
+      "source_identity": "8ed5078fa1d0c58869cca5921338d923477281c65b7523b7a0694681423769f0",
+      "unit": "tokens",
+      "value": -208689,
+      "formula": "sum(admitted_pair_deltas)",
+      "component_ids": [
+        "pair-58c154cdd0fff088ba9cdceb",
+        "pair-3fa508b47d40cffc56d716a3",
+        "pair-d4db75f69f6adfc8967fd61a",
+        "pair-2e3b5e46bd2ce3dcb97782e7",
+        "pair-8e72da58efb0aa245c38b7c2"
+      ]
+    },
+    {
+      "name": "net_cost_delta",
+      "availability": "unknown",
+      "provenance": "derived",
+      "source_identity": "8ed5078fa1d0c58869cca5921338d923477281c65b7523b7a0694681423769f0",
+      "unit": "currency_minor_units",
+      "reason": "No complete admitted cohort metric is available."
+    }
+  ],
+  "pricing": {
+    "availability": "unavailable",
+    "reason": "The Codex CLI stream provides no admissible billing price; token comparison remains available while cost is unavailable."
+  },
+  "overhead_attribution": [
+    {
+      "component_id": "routing",
+      "availability": "available",
+      "source_identity": "2c78e66ce13e91f6d9e134cc3831adde0ef59f0088f35e032eba9f1a8b1c5ce8",
+      "attribution_owner": "report-routing",
+      "unit": "milliseconds",
+      "value": 12696
+    },
+    {
+      "component_id": "context_selection",
+      "availability": "available",
+      "source_identity": "9c6ca5e168de41ca7ecb9c8d44c77184a4c41e08d2ec73ef18bbdfeb61ee5a40",
+      "attribution_owner": "report-context-selection",
+      "unit": "count",
+      "value": 5
+    },
+    {
+      "component_id": "reuse",
+      "availability": "available",
+      "source_identity": "c7dbbc397e04c099b1821e6bd32aa35492ff18888fdba1f50d78674bd20935c9",
+      "attribution_owner": "report-reuse",
+      "unit": "count",
+      "value": 0
+    },
+    {
+      "component_id": "quiet_state",
+      "availability": "available",
+      "source_identity": "d77a784ab084393030c72b110208d75d7db03ed400cb0690bb281d282dbab4bb",
+      "attribution_owner": "report-quiet-state",
+      "unit": "count",
+      "value": 0
+    },
+    {
+      "component_id": "benchmark_capture",
+      "availability": "available",
+      "source_identity": "2b152a5200120da2ed3d279f2183f52e59373ea030ad8dc720d60986d6346b9b",
+      "attribution_owner": "report-benchmark-capture",
+      "unit": "count",
+      "value": 5
+    },
+    {
+      "component_id": "verification",
+      "availability": "available",
+      "source_identity": "4c4b5139f52e5c3524f3ea991a0fd3591b58a84e5d7ad64eae2229c12b852ca6",
+      "attribution_owner": "report-verification",
+      "unit": "count",
+      "value": 5
+    },
+    {
+      "component_id": "retry",
+      "availability": "available",
+      "source_identity": "61bcc211a0d0f21b72d1207d376ed00b6607d6fc2aa75ee367d0972a8db57544",
+      "attribution_owner": "report-retry",
+      "unit": "count",
+      "value": 0
+    },
+    {
+      "component_id": "fallback",
+      "availability": "available",
+      "source_identity": "19786c684845c36708f9a2429151595b1d2c9f8ff8bb51160fc9ca2b80137886",
+      "attribution_owner": "report-fallback",
+      "unit": "count",
+      "value": 0
+    }
+  ],
+  "evidence": [
+    {
+      "attempt_id": "reads-baseline-codex-001",
+      "raw_evidence_sha256": "8ad085259e2e087e9c3de80e3e0c456b9103ded55586f03f2759315871873163",
+      "retained_evidence_sha256": "e7d66573fe6ff8328041f058cc939f288f71e96d09c80d29a67aa923ff33ea24",
+      "retained_locator": "retained:reads-navigation-codex-cli-20260916-105829-f3a4e7e3:reads-baseline-codex-001"
+    },
+    {
+      "attempt_id": "reads-stolz-codex-001",
+      "raw_evidence_sha256": "b0b212aaea2c44ffffdcb11bafc96e40e06f0a27b7e0e951b7e609479bebff59",
+      "retained_evidence_sha256": "b463d3384491fd26416c9d6e85ccdecaa16b8b2374fb1cdb7d487461e1ba9ec2",
+      "retained_locator": "retained:reads-navigation-codex-cli-20260916-105829-f3a4e7e3:reads-stolz-codex-001"
+    },
+    {
+      "attempt_id": "reads-stolz-codex-002",
+      "raw_evidence_sha256": "55253947a91a7733b770474fed4ec0f0fd0876c4f52cf416dde5cb7e658482d5",
+      "retained_evidence_sha256": "b383e97586379267510f0c20989820e3e0b95093a9cf2d6b53802e4fc09349cd",
+      "retained_locator": "retained:reads-navigation-codex-cli-20260916-105829-f3a4e7e3:reads-stolz-codex-002"
+    },
+    {
+      "attempt_id": "reads-baseline-codex-002",
+      "raw_evidence_sha256": "e5050fc923ca9fa3e25de49ece6c17f5a11f5d2a4a1a4a4144b6151c2226e9be",
+      "retained_evidence_sha256": "e40915a688202382ebe734f85c0b592c90e8e64257046a1c905a7dac402459ff",
+      "retained_locator": "retained:reads-navigation-codex-cli-20260916-105829-f3a4e7e3:reads-baseline-codex-002"
+    },
+    {
+      "attempt_id": "reads-baseline-codex-003",
+      "raw_evidence_sha256": "d2a2898f90b5610e0f8ed8c4f3378a12e06fa964ee8ed5dedc0f7ae0313bc320",
+      "retained_evidence_sha256": "c8d383f0d8a4d6f093748d5c5748e8f71dfd450978d0740475de36f67586de60",
+      "retained_locator": "retained:reads-navigation-codex-cli-20260916-105829-f3a4e7e3:reads-baseline-codex-003"
+    },
+    {
+      "attempt_id": "reads-stolz-codex-003",
+      "raw_evidence_sha256": "a52f6832028355c6cab78054623fe4d33d14e62ce639b0668dd77451e1239c6f",
+      "retained_evidence_sha256": "646fb8f1cb1b77b1861c3a3d5dd8f05b6b16500aed9deccfedc7d94964a44da7",
+      "retained_locator": "retained:reads-navigation-codex-cli-20260916-105829-f3a4e7e3:reads-stolz-codex-003"
+    },
+    {
+      "attempt_id": "reads-stolz-codex-004",
+      "raw_evidence_sha256": "9f6952067a77a941e7712dba38b2aeb6b990414f7ab0c4be9181e1b47309aee0",
+      "retained_evidence_sha256": "5f12d84ed077d03530a969f900e4b2a798eb1265c572ffb54d2dabb83ec19830",
+      "retained_locator": "retained:reads-navigation-codex-cli-20260916-105829-f3a4e7e3:reads-stolz-codex-004"
+    },
+    {
+      "attempt_id": "reads-baseline-codex-004",
+      "raw_evidence_sha256": "19cf1f1f04029bf7e95fa06823ab5aaba3c58f3ba171842e14b5fddedb0a4f7d",
+      "retained_evidence_sha256": "f5edc89e7cf0a66a42487eed5db31bc6d4bbf8906f96a6102ac64a883684d49e",
+      "retained_locator": "retained:reads-navigation-codex-cli-20260916-105829-f3a4e7e3:reads-baseline-codex-004"
+    },
+    {
+      "attempt_id": "reads-baseline-codex-005",
+      "raw_evidence_sha256": "b7b6b12c9a622b42089a38dd73c5dc96f85bbbca7620c3ed28cf4799a02a7989",
+      "retained_evidence_sha256": "5a15c51275aa84f0702e8f61db7341e47fb74f3d7124b0cd3e7dd628a479d98d",
+      "retained_locator": "retained:reads-navigation-codex-cli-20260916-105829-f3a4e7e3:reads-baseline-codex-005"
+    },
+    {
+      "attempt_id": "reads-stolz-codex-005",
+      "raw_evidence_sha256": "394734f9db091e27d8a5ccf0c89859de15ee543a3ed339765e4d342a9653600c",
+      "retained_evidence_sha256": "8f7488b85a1e0136a883bf3fc11557a6971f986a0bee8faed882464224ade7bd",
+      "retained_locator": "retained:reads-navigation-codex-cli-20260916-105829-f3a4e7e3:reads-stolz-codex-005"
+    }
+  ],
+  "claim": {
+    "kind": "provider_savings_percentage",
+    "disposition": "withheld",
+    "scope_statement": "Exact reads-navigation cohort reads-navigation-codex-cli-20260916-105829-f3a4e7e3; aggregate claim not admitted.",
+    "reason": "No release-admitted complete scoped cohort is available; aggregate claims remain withheld."
+  },
+  "reproduce_command": "benchmark:v3 --report benchmarks/v3/real/manifests/v014-sol-xhigh-reads-navigation.json --output reports/benchmark-v3/real/v014-sol-xhigh-reads-navigation.json",
+  "canonical_sha256": "fdb745d07a69a2329182400b33113e50769ff176a10245e2e3aebd7c1ccd9598"
+}

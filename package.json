@@ -1,6 +1,6 @@
 {
   "name": "stolz-ai",
-  "version": "0.13.0",
+  "version": "0.14.0",
   "description": "A token-efficient skill suite for Codex and compatible AI coding agents.",
   "license": "MIT",
   "private": false,
@@ -25,6 +25,7 @@
     "!tools/verified-reuse/projection.mjs",
     "!tools/verified-reuse/run-installed-local-codex-scenarios.mjs",
     "!tools/verified-reuse/scenario-record.mjs",
+    "!tools/v014-measurement-summary.mjs",
     "profiles/",
     "fixtures/runtime-adapters/claude-code/c0.fixture.json",
     "fixtures/runtime-adapters/claude-code/c2.sanitized-telemetry.json",

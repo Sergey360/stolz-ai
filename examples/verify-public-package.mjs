@@ -28,7 +28,7 @@ async function cli(args, expectedExitCode = 0) {
 
 async function main() {
   const pkg = JSON.parse(await readFile(join(packageRoot, 'package.json'), 'utf8'));
-  assert.equal(pkg.version, '0.13.0');
+  assert.equal(pkg.version, '0.14.0');
   for (const path of [
     'docs/architecture.md',
     'docs/benchmarking.md',
@@ -44,7 +44,7 @@ async function main() {
 
     const installed = await cli(['install', '--runtime', 'qwen-code', '--destination', destination, '--scope', 'project']);
     assert.equal(installed.format_version, '1.0');
-    assert.equal(installed.install.manifest.package.version, '0.13.0');
+    assert.equal(installed.install.manifest.package.version, '0.14.0');
 
     const unknownEnvironment = await cli(['doctor', '--runtime', 'qwen-code', '--destination', destination]);
     assert.equal(unknownEnvironment.environment.runtime_version_state, 'runtime_version_not_reported');
@@ -61,7 +61,7 @@ async function main() {
     assert.equal(lock.applied, true);
     assert.equal((await cli(['verify-lock', '--runtime', 'qwen-code', '--lockfile', lockfile])).verification.state, 'healthy');
     const staleLock = JSON.parse(await readFile(lockfile, 'utf8'));
-    staleLock.package.version = '0.12.0';
+    staleLock.package.version = '0.13.0';
     await writeFile(lockfile, `${JSON.stringify(staleLock, null, 2)}\n`, 'utf8');
     const drift = await cli(['verify-lock', '--runtime', 'qwen-code', '--lockfile', lockfile], 2);
     assert.equal(drift.verification.state, 'drift');
@@ -71,12 +71,12 @@ async function main() {
     const resolution = await resolveProfile({ runtime: 'qwen-code', capabilities: { command_execution: true } });
     const historical = await createInstallManifest(resolution, {
       scope: 'project',
-      packageIdentity: { name: 'stolz-ai', version: '0.12.0' },
+      packageIdentity: { name: 'stolz-ai', version: '0.13.0' },
     });
-    const interruptedOnlyPath = 'stolz-context/v012-interrupted-owned.txt';
-    const interruptedOnlyContent = 'owned by the interrupted v0.12 installation';
+    const interruptedOnlyPath = 'stolz-context/v013-interrupted-owned.txt';
+    const interruptedOnlyContent = 'owned by the interrupted v0.13 installation';
     const { createHash } = await import('node:crypto');
-    historical.install_id = 'stolz-v012-public-smoke';
+    historical.install_id = 'stolz-v013-public-smoke';
     historical.managed_files.push({
       source_path: 'skills/stolz-context/v012-interrupted-owned.txt',
       destination_path: interruptedOnlyPath,
@@ -86,7 +86,7 @@ async function main() {
     await writeFile(join(destination, interruptedOnlyPath), interruptedOnlyContent, 'utf8');
     await writeFile(join(destination, 'install-manifest.json'), `${JSON.stringify(historical, null, 2)}\n`, 'utf8');
 
-    const migration = await cli(['migrate', '--apply', '--legacy-version', '0.12.0', '--runtime', 'qwen-code', '--destination', destination]);
+    const migration = await cli(['migrate', '--apply', '--legacy-version', '0.13.0', '--runtime', 'qwen-code', '--destination', destination]);
     assert.equal(migration.applied, false);
     assert.equal(migration.migrated.state, 'update_required');
     assert.equal((await cli(['update', '--runtime', 'qwen-code', '--destination', destination])).plan.state, 'ready');
@@ -102,15 +102,15 @@ async function main() {
 
     const updated = await cli(['update', '--apply', '--runtime', 'qwen-code', '--destination', destination]);
     assert.equal(updated.applied, true);
-    assert.equal(updated.plan.current_package.version, '0.12.0');
-    assert.equal(updated.plan.target_package.version, '0.13.0');
+    assert.equal(updated.plan.current_package.version, '0.13.0');
+    assert.equal(updated.plan.target_package.version, '0.14.0');
 
     const installedSkill = join(destination, 'stolz-context', 'SKILL.md');
     await writeFile(installedSkill, 'local change', 'utf8');
     assert.equal((await cli(['rollback', '--runtime', 'qwen-code', '--destination', destination])).plan.state, 'conflict');
     await copyFile(join(packageRoot, 'skills', 'stolz-context', 'SKILL.md'), installedSkill);
     assert.equal((await cli(['rollback', '--apply', '--runtime', 'qwen-code', '--destination', destination])).applied, true);
-    assert.equal(JSON.parse(await readFile(join(destination, 'install-manifest.json'), 'utf8')).package.version, '0.12.0');
+    assert.equal(JSON.parse(await readFile(join(destination, 'install-manifest.json'), 'utf8')).package.version, '0.13.0');
 
     const localState = openCodexLocalState({ enabled: true, workspace: localStateWorkspace });
     const initialized = await localState.initialize();
@@ -128,10 +128,10 @@ async function main() {
         'clean_install',
         'doctor_environment_and_adapter',
         'team_lock_and_drift_exit',
-        'v0.12_owned_update',
+        'v0.13_owned_update',
         'interrupted_update_recovery',
         'local_change_rollback_conflict',
-        'rollback_to_v0.12',
+        'rollback_to_v0.13',
         'explicit_codex_local_state',
       ],
     }, null, 2)}\n`);

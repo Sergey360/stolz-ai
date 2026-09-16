@@ -79,7 +79,7 @@ cp -R ../stolz-ai/skills/stolz-* .agents/skills/
 אין צורך בגישה למאגר הפרטי.
 
 ```bash
-npm install --save-dev /absolute/downloads/stolz-ai-0.13.0.tgz
+npm install --save-dev /absolute/downloads/stolz-ai-0.14.0.tgz
 npx --no-install stolz-profile lock --apply --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 npx --no-install stolz-profile verify-lock --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 ```
@@ -99,6 +99,12 @@ npx --no-install stolz-profile verify-lock --runtime codex --lockfile /absolute/
 Codex CLI 0.153.4,‏ `gpt-5.6-sol` ו-`xhigh` עבר עם 23/24 מסלולים מחמירים,
 24/24 תוצאות ו-24/24 החלטות הרשאה. [הדוח על כל 68 הניסיונות](benchmarks/skill-selection-v012/results.md)
 כולל גם כשלים ותיקונים; זו אינה טענה כללית על דיוק, טוקנים, עלות או חיסכון.
+
+v0.14 מוסיף 40 הרצות תחומות מול ארכיון v0.13.0 הזהה ברמת הבתים, באמצעות
+Codex CLI 0.154.0-alpha.6.2. בכל 20 הזוגות התקבל אותו פלט ואותה תוצאת אימות,
+אך בכל קבוצות Sol ו-Astra שנבדקו מסלול STOLZ השתמש ביותר טוקני קלט ופלט בני
+השוואה וביותר זמן שעון. [סיכום v0.14](reports/benchmark-v3/real/v014-summary.md)
+מפרסם את התצורות המדויקות, התקורה, השדות שלא היו זמינים וגבולות הטענה.
 
 ## 🛡️ חיסכון בלי להחליש את האימות
 

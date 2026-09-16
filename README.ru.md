@@ -84,7 +84,7 @@ cp -R ../stolz-ai/skills/stolz-* .agents/skills/
 приватному репозиторию не нужен.
 
 ```bash
-npm install --save-dev /absolute/downloads/stolz-ai-0.13.0.tgz
+npm install --save-dev /absolute/downloads/stolz-ai-0.14.0.tgz
 npx --no-install stolz-profile lock --apply --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 npx --no-install stolz-profile verify-lock --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 ```
@@ -108,6 +108,14 @@ npx --no-install stolz-profile verify-lock --runtime codex --lockfile /absolute/
 [Отчёт обо всех 68 попытках](benchmarks/skill-selection-v012/results.md)
 публикует также сбои и исправления; это ограниченная диагностика, а не
 универсальное утверждение о точности, токенах, стоимости или экономии.
+
+В v0.14 выполнены 40 ограниченных запусков с побайтно идентичным архивом
+v0.13.0 на Codex CLI 0.154.0-alpha.6.2. Все 20 пар дали одинаковый результат
+и прошли одинаковую проверку, но во всех проверенных когортах Sol и Astra
+маршрут STOLZ потребовал больше сопоставимых входных и выходных токенов и
+больше времени. [Сводка v0.14](reports/benchmark-v3/real/v014-summary.md)
+публикует точные конфигурации, накладные расходы, недоступные поля и границы
+допустимых выводов.
 
 ## 🛡️ Экономия без ослабления проверки
 

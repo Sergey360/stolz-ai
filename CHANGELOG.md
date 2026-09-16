@@ -3,6 +3,41 @@
 All notable changes to STOLZ A.I. are recorded here. Releases follow the
 repository's immutable-tag policy; unpublished work is not a release.
 
+## [0.14.0] - 2026-09-16
+
+### Added
+
+- Added four bounded installed-product cohorts: three five-pair
+  `gpt-5.6-sol`/`xhigh` scenarios and one separate five-pair
+  `gpt-6-astra`/`medium` control, for 40 retained attempts with no automatic
+  retries or exclusions.
+- Added a deterministic summary generator and public minimized reports that
+  keep outcome, verification, time, tool activity, setup overhead, and each
+  available provider-reported token category separate.
+- Added fail-closed preflight records for the explicit data-transfer gate and
+  the exact Codex runtime identity used by the collector.
+
+### Changed
+
+- The Codex cohort runner now installs the pinned public package profile,
+  verifies that the expected product skill was actually read, records the real
+  execution plane, and attributes public-profile setup time separately.
+- The local-state scenario accepts the installed current product version rather
+  than a historical hard-coded version.
+
+### Evidence boundary
+
+- Every measured pair produced the same required outcome and passed the same
+  verification, but every cohort recorded more comparable input-plus-output
+  tokens and higher wall time on the STOLZ route for these small synthetic
+  fixtures. This is scoped evidence of overhead, not a universal conclusion.
+- Provider total tokens, cache-write input, compaction, service tier, price,
+  cost, general savings, and model-compatibility claims remain unavailable or
+  withheld. Sol and Astra cohorts are reported separately and are never pooled.
+- The measured product was the byte-identical public/private v0.13.0 archive;
+  v0.14.0 releases the corrected measurement contour and its bounded evidence.
+  It does not declare v1.0 stability.
+
 ## [0.13.0] - 2026-09-15
 
 ### Added

@@ -80,7 +80,7 @@ handleiding en een uitvoerbare clean-consumer-smoke zitten in hetzelfde archief;
 toegang tot de privé-repository is niet nodig.
 
 ```bash
-npm install --save-dev /absolute/downloads/stolz-ai-0.13.0.tgz
+npm install --save-dev /absolute/downloads/stolz-ai-0.14.0.tgz
 npx --no-install stolz-profile lock --apply --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 npx --no-install stolz-profile verify-lock --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 ```
@@ -104,6 +104,13 @@ De v0.12-diagnose met Codex CLI 0.153.4, `gpt-5.6-sol` en `xhigh` slaagde voor
 [rapport van alle 68 pogingen](benchmarks/skill-selection-v012/results.md)
 bevat ook fouten en correcties; het is geen algemene claim over nauwkeurigheid,
 tokens, kosten of besparingen.
+
+v0.14 voegt 40 begrensde runs toe met het byte-identieke v0.13.0-archief op
+Codex CLI 0.154.0-alpha.6.2. Alle 20 paren hadden hetzelfde resultaat en
+dezelfde verificatie, maar elke geteste Sol- en Astra-cohort gebruikte meer
+vergelijkbare input- plus outputtokens en meer wandtijd op de STOLZ-route. De
+[v0.14-samenvatting](reports/benchmark-v3/real/v014-summary.md) publiceert de
+exacte configuraties, overhead, ontbrekende velden en claimgrens.
 
 ## 🛡️ Zuinigheid zonder zwakkere verificatie
 

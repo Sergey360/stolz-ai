@@ -1,0 +1,363 @@
+{
+  "schema": "stolz.v014-measurement-summary.v1",
+  "release": "0.14.0",
+  "captured_at": "2026-09-16T11:24:13.812Z",
+  "product_under_test": {
+    "package": "stolz-ai",
+    "version": "0.13.0",
+    "archive_sha256": "05645ff2d899dee7a8c3231c04e069a11f7e6bccb044509f9d39e58f1b34c82c",
+    "source": "byte-identical private/public release archive",
+    "route_requirement": "installed_public_profile_and_skill"
+  },
+  "attempt_accounting": {
+    "started": 40,
+    "included": 40,
+    "excluded": 0,
+    "automatic_retries": 0,
+    "preflight_events": "benchmarks/v3/v014-preflight-events.json"
+  },
+  "series": [
+    {
+      "id": "sol-xhigh-reads-navigation",
+      "scenario_id": "reads-navigation",
+      "mode": "installed_skills_without_local_state",
+      "tuple": {
+        "execution_plane": "win32-x64",
+        "node_version": "v22.16.0",
+        "codex_cli_version": "0.154.0-alpha.6.2",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "xhigh",
+        "authentication_mode": "chatgpt_managed"
+      },
+      "product": {
+        "version": "0.13.0",
+        "archive_sha256": "05645ff2d899dee7a8c3231c04e069a11f7e6bccb044509f9d39e58f1b34c82c"
+      },
+      "quality": {
+        "included_attempts": 10,
+        "included_pairs": 5,
+        "excluded_attempts": 0,
+        "excluded_pairs": 0,
+        "equal_outcome_gate": "passed",
+        "equal_verification_gate": "passed"
+      },
+      "routes": {
+        "baseline": {
+          "attempts": 5,
+          "input_tokens": 193974,
+          "cached_input_tokens": 138240,
+          "output_tokens": 1064,
+          "reasoning_output_tokens": 350,
+          "comparable_input_plus_output_tokens": 195038,
+          "wall_time_ms": 129439,
+          "tool_calls": 5,
+          "tool_output_bytes": 4145,
+          "profile_setup_ms": 0
+        },
+        "stolz": {
+          "attempts": 5,
+          "input_tokens": 400666,
+          "cached_input_tokens": 291712,
+          "output_tokens": 3061,
+          "reasoning_output_tokens": 730,
+          "comparable_input_plus_output_tokens": 403727,
+          "wall_time_ms": 226453,
+          "tool_calls": 15,
+          "tool_output_bytes": 10126,
+          "profile_setup_ms": 12696
+        },
+        "delta_baseline_minus_stolz": {
+          "input_tokens": -206692,
+          "cached_input_tokens": -153472,
+          "output_tokens": -1997,
+          "reasoning_output_tokens": -380,
+          "comparable_input_plus_output_tokens": -208689,
+          "wall_time_ms": -97014,
+          "tool_calls": -10,
+          "tool_output_bytes": -5981,
+          "profile_setup_ms": -12696
+        }
+      },
+      "availability": {
+        "input_tokens": "available",
+        "cached_input_tokens": "available_subset_of_input_tokens",
+        "output_tokens": "available",
+        "reasoning_output_tokens": "available_subset_of_output_tokens",
+        "authoritative_total_tokens": "unavailable",
+        "cache_write_input_tokens": "unavailable",
+        "compaction_events": "unavailable",
+        "service_tier": "unavailable",
+        "price": "unavailable",
+        "cost": "unavailable"
+      },
+      "admission": "withheld",
+      "scoped_claim": "withheld",
+      "evidence": {
+        "manifest": "benchmarks/v3/real/manifests/v014-sol-xhigh-reads-navigation.json",
+        "manifest_sha256": "4a930a1789a846bc8f4fba64a805a819207fce0f53956240c12cff993885d702",
+        "report": "reports/benchmark-v3/real/v014-sol-xhigh-reads-navigation.json",
+        "report_sha256": "fdb745d07a69a2329182400b33113e50769ff176a10245e2e3aebd7c1ccd9598",
+        "raw_evidence": "private_retained_operator_store_not_packaged"
+      }
+    },
+    {
+      "id": "sol-xhigh-build-check-invalidation",
+      "scenario_id": "build-check-invalidation",
+      "mode": "installed_skills_without_local_state",
+      "tuple": {
+        "execution_plane": "win32-x64",
+        "node_version": "v22.16.0",
+        "codex_cli_version": "0.154.0-alpha.6.2",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "xhigh",
+        "authentication_mode": "chatgpt_managed"
+      },
+      "product": {
+        "version": "0.13.0",
+        "archive_sha256": "05645ff2d899dee7a8c3231c04e069a11f7e6bccb044509f9d39e58f1b34c82c"
+      },
+      "quality": {
+        "included_attempts": 10,
+        "included_pairs": 5,
+        "excluded_attempts": 0,
+        "excluded_pairs": 0,
+        "equal_outcome_gate": "passed",
+        "equal_verification_gate": "passed"
+      },
+      "routes": {
+        "baseline": {
+          "attempts": 5,
+          "input_tokens": 194517,
+          "cached_input_tokens": 150144,
+          "output_tokens": 1664,
+          "reasoning_output_tokens": 785,
+          "comparable_input_plus_output_tokens": 196181,
+          "wall_time_ms": 120462,
+          "tool_calls": 5,
+          "tool_output_bytes": 4565,
+          "profile_setup_ms": 0
+        },
+        "stolz": {
+          "attempts": 5,
+          "input_tokens": 400359,
+          "cached_input_tokens": 319104,
+          "output_tokens": 3555,
+          "reasoning_output_tokens": 799,
+          "comparable_input_plus_output_tokens": 403914,
+          "wall_time_ms": 216379,
+          "tool_calls": 15,
+          "tool_output_bytes": 7785,
+          "profile_setup_ms": 12149
+        },
+        "delta_baseline_minus_stolz": {
+          "input_tokens": -205842,
+          "cached_input_tokens": -168960,
+          "output_tokens": -1891,
+          "reasoning_output_tokens": -14,
+          "comparable_input_plus_output_tokens": -207733,
+          "wall_time_ms": -95917,
+          "tool_calls": -10,
+          "tool_output_bytes": -3220,
+          "profile_setup_ms": -12149
+        }
+      },
+      "availability": {
+        "input_tokens": "available",
+        "cached_input_tokens": "available_subset_of_input_tokens",
+        "output_tokens": "available",
+        "reasoning_output_tokens": "available_subset_of_output_tokens",
+        "authoritative_total_tokens": "unavailable",
+        "cache_write_input_tokens": "unavailable",
+        "compaction_events": "unavailable",
+        "service_tier": "unavailable",
+        "price": "unavailable",
+        "cost": "unavailable"
+      },
+      "admission": "withheld",
+      "scoped_claim": "withheld",
+      "evidence": {
+        "manifest": "benchmarks/v3/real/manifests/v014-sol-xhigh-build-check-invalidation.json",
+        "manifest_sha256": "7ce0ad425aa77d7ab4b54a4830375d33a4759d581640b2932bc913ab38171767",
+        "report": "reports/benchmark-v3/real/v014-sol-xhigh-build-check-invalidation.json",
+        "report_sha256": "f3fc89c1d21c8cc51b8bbb97a39eaff2c0a2db8051591de338d3c4fa7ffb6d2d",
+        "raw_evidence": "private_retained_operator_store_not_packaged"
+      }
+    },
+    {
+      "id": "sol-xhigh-multi-step-state-transition",
+      "scenario_id": "multi-step-state-transition",
+      "mode": "installed_skills_with_explicit_local_state",
+      "tuple": {
+        "execution_plane": "win32-x64",
+        "node_version": "v22.16.0",
+        "codex_cli_version": "0.154.0-alpha.6.2",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "xhigh",
+        "authentication_mode": "chatgpt_managed"
+      },
+      "product": {
+        "version": "0.13.0",
+        "archive_sha256": "05645ff2d899dee7a8c3231c04e069a11f7e6bccb044509f9d39e58f1b34c82c"
+      },
+      "quality": {
+        "included_attempts": 10,
+        "included_pairs": 5,
+        "excluded_attempts": 0,
+        "excluded_pairs": 0,
+        "equal_outcome_gate": "passed",
+        "equal_verification_gate": "passed"
+      },
+      "routes": {
+        "baseline": {
+          "attempts": 5,
+          "input_tokens": 193950,
+          "cached_input_tokens": 125184,
+          "output_tokens": 1789,
+          "reasoning_output_tokens": 939,
+          "comparable_input_plus_output_tokens": 195739,
+          "wall_time_ms": 136881,
+          "tool_calls": 5,
+          "tool_output_bytes": 1130,
+          "profile_setup_ms": 0
+        },
+        "stolz": {
+          "attempts": 5,
+          "input_tokens": 404709,
+          "cached_input_tokens": 338816,
+          "output_tokens": 5736,
+          "reasoning_output_tokens": 3086,
+          "comparable_input_plus_output_tokens": 410445,
+          "wall_time_ms": 265623,
+          "tool_calls": 15,
+          "tool_output_bytes": 12500,
+          "profile_setup_ms": 11344
+        },
+        "delta_baseline_minus_stolz": {
+          "input_tokens": -210759,
+          "cached_input_tokens": -213632,
+          "output_tokens": -3947,
+          "reasoning_output_tokens": -2147,
+          "comparable_input_plus_output_tokens": -214706,
+          "wall_time_ms": -128742,
+          "tool_calls": -10,
+          "tool_output_bytes": -11370,
+          "profile_setup_ms": -11344
+        }
+      },
+      "availability": {
+        "input_tokens": "available",
+        "cached_input_tokens": "available_subset_of_input_tokens",
+        "output_tokens": "available",
+        "reasoning_output_tokens": "available_subset_of_output_tokens",
+        "authoritative_total_tokens": "unavailable",
+        "cache_write_input_tokens": "unavailable",
+        "compaction_events": "unavailable",
+        "service_tier": "unavailable",
+        "price": "unavailable",
+        "cost": "unavailable"
+      },
+      "admission": "withheld",
+      "scoped_claim": "withheld",
+      "evidence": {
+        "manifest": "benchmarks/v3/real/manifests/v014-sol-xhigh-multi-step-state-transition.json",
+        "manifest_sha256": "a502156d6767caadc9057922ddb8e425c08fadcdf576be9ae7f5fe03ea51e1ed",
+        "report": "reports/benchmark-v3/real/v014-sol-xhigh-multi-step-state-transition.json",
+        "report_sha256": "b1369c3259b54262bc0d2dd2e725363fce32ae380676df576bec22332bf5ae75",
+        "raw_evidence": "private_retained_operator_store_not_packaged"
+      }
+    },
+    {
+      "id": "astra-medium-multi-step-state-transition",
+      "scenario_id": "multi-step-state-transition",
+      "mode": "installed_skills_with_explicit_local_state",
+      "tuple": {
+        "execution_plane": "win32-x64",
+        "node_version": "v22.16.0",
+        "codex_cli_version": "0.154.0-alpha.6.2",
+        "model": "gpt-6-astra",
+        "reasoning_effort": "medium",
+        "authentication_mode": "chatgpt_managed"
+      },
+      "product": {
+        "version": "0.13.0",
+        "archive_sha256": "05645ff2d899dee7a8c3231c04e069a11f7e6bccb044509f9d39e58f1b34c82c"
+      },
+      "quality": {
+        "included_attempts": 10,
+        "included_pairs": 5,
+        "excluded_attempts": 0,
+        "excluded_pairs": 0,
+        "equal_outcome_gate": "passed",
+        "equal_verification_gate": "passed"
+      },
+      "routes": {
+        "baseline": {
+          "attempts": 5,
+          "input_tokens": 193782,
+          "cached_input_tokens": 154240,
+          "output_tokens": 355,
+          "reasoning_output_tokens": 0,
+          "comparable_input_plus_output_tokens": 194137,
+          "wall_time_ms": 102221,
+          "tool_calls": 5,
+          "tool_output_bytes": 1130,
+          "profile_setup_ms": 0
+        },
+        "stolz": {
+          "attempts": 5,
+          "input_tokens": 401338,
+          "cached_input_tokens": 354560,
+          "output_tokens": 910,
+          "reasoning_output_tokens": 0,
+          "comparable_input_plus_output_tokens": 402248,
+          "wall_time_ms": 188995,
+          "tool_calls": 15,
+          "tool_output_bytes": 12690,
+          "profile_setup_ms": 12173
+        },
+        "delta_baseline_minus_stolz": {
+          "input_tokens": -207556,
+          "cached_input_tokens": -200320,
+          "output_tokens": -555,
+          "reasoning_output_tokens": 0,
+          "comparable_input_plus_output_tokens": -208111,
+          "wall_time_ms": -86774,
+          "tool_calls": -10,
+          "tool_output_bytes": -11560,
+          "profile_setup_ms": -12173
+        }
+      },
+      "availability": {
+        "input_tokens": "available",
+        "cached_input_tokens": "available_subset_of_input_tokens",
+        "output_tokens": "available",
+        "reasoning_output_tokens": "available_subset_of_output_tokens",
+        "authoritative_total_tokens": "unavailable",
+        "cache_write_input_tokens": "unavailable",
+        "compaction_events": "unavailable",
+        "service_tier": "unavailable",
+        "price": "unavailable",
+        "cost": "unavailable"
+      },
+      "admission": "withheld",
+      "scoped_claim": "withheld",
+      "evidence": {
+        "manifest": "benchmarks/v3/real/manifests/v014-astra-medium-multi-step-state-transition.json",
+        "manifest_sha256": "ef852a23f480325dc1a704e90ddd62e9da3f17ef66aaeaa4d20a08229f87b429",
+        "report": "reports/benchmark-v3/real/v014-astra-medium-multi-step-state-transition.json",
+        "report_sha256": "21b83297c8effb94de7baa57b1beac932ffcb6d780e67a8fca1189dda0b48cc1",
+        "raw_evidence": "private_retained_operator_store_not_packaged"
+      }
+    }
+  ],
+  "cross_series_policy": {
+    "sol_astra_pooling": "forbidden",
+    "percentages": "withheld",
+    "provider_wide_claim": "withheld",
+    "cost_claim": "withheld",
+    "compatibility_claim": "withheld"
+  },
+  "result": "negative_or_unknown_benefit_on_all_measured_scenarios",
+  "general_claim": "withheld",
+  "canonical_sha256": "00eb9f2ec9506f2dba93f72dc5dbaf8a092df0de42fb2ad8072199709a76fa91"
+}

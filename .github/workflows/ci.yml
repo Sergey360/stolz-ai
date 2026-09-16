@@ -25,7 +25,11 @@ jobs:
       - run: npm run benchmark:v3 -- --verify-report reports/benchmark-v3/real/reads-navigation.json --check
       - run: npm run benchmark:v3 -- --verify-report reports/benchmark-v3/real/build-check-invalidation.json --check
       - run: npm run benchmark:v3 -- --verify-report reports/benchmark-v3/real/quiet-wait-transition.json --check
+      - run: npm run benchmark:v3 -- --verify-report reports/benchmark-v3/real/v014-sol-xhigh-reads-navigation.json --check
+      - run: npm run benchmark:v3 -- --verify-report reports/benchmark-v3/real/v014-sol-xhigh-build-check-invalidation.json --check
+      - run: npm run benchmark:v3 -- --verify-report reports/benchmark-v3/real/v014-sol-xhigh-multi-step-state-transition.json --check
+      - run: npm run benchmark:v3 -- --verify-report reports/benchmark-v3/real/v014-astra-medium-multi-step-state-transition.json --check
       - run: npm run smoke:public-package
       - run: npm pack --dry-run --json --ignore-scripts
       - run: npm pack --ignore-scripts
-      - run: sha256sum --check .github/releases/stolz-ai-0.13.0.tgz.sha256
+      - run: sha256sum --check .github/releases/stolz-ai-0.14.0.tgz.sha256
