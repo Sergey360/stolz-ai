@@ -89,6 +89,30 @@ This evidence is `bounded_live_diagnostic`. It is not a provider-native token
 measurement, cost comparison, general accuracy estimate, or certification for
 another model, runtime, task distribution, or skill population.
 
+## Bounded installed-product measurement in v0.14
+
+v0.14 measured the byte-identical v0.13.0 release archive in isolated Windows
+x64 workspaces with Codex CLI 0.154.0-alpha.6.2. The main contour retained five
+pairs for each of reading/navigation, build/check invalidation, and a multi-step
+state transition with `gpt-5.6-sol` at `xhigh`. A separate, non-pooled
+`gpt-6-astra`/`medium` control retained five multi-step pairs. All 40 attempts
+and all 20 equal-outcome/equal-verification pairs were included; there were no
+automatic retries or exclusions.
+
+For the exact small synthetic fixtures, every cohort recorded a negative
+baseline-minus-STOLZ comparable input-plus-output delta and higher STOLZ wall
+time. The deltas were -208,689, -207,733, and -214,706 tokens for the three Sol
+cohorts, and -208,111 tokens for the separate Astra control. These results show
+overhead in the measured contour; they do not establish a provider-wide result
+or predict larger real projects. See the [complete v0.14 summary](../reports/benchmark-v3/real/v014-summary.md).
+
+The available JSONL counters report input, cached-input, output, and reasoning
+output. Cached input is a subset of input and reasoning output is a subset of
+output, so neither is added twice. Authoritative provider total tokens,
+cache-write input, compaction, service tier, price, cost, account-limit
+percentages, general savings, and model compatibility remain unavailable or
+withheld. Raw JSONL, prompts, private paths, and workspaces are not public.
+
 ## Admission checklist
 
 A publishable scoped comparison needs all of the following:

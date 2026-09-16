@@ -560,7 +560,7 @@ export async function applyRollback(destination) {
 }
 
 export async function migrateLegacyInstallation(destination, resolution, { legacyVersion, scope = 'project' } = {}) {
-  const supportedVersions = ['0.7.1', '0.8.0', '0.9.0', '0.10.0', '0.11.0', '0.12.0'];
+  const supportedVersions = ['0.7.1', '0.8.0', '0.9.0', '0.10.0', '0.11.0', '0.12.0', '0.13.0'];
   if (!supportedVersions.includes(legacyVersion)) throw new Error(`unsupported historical version; identify one of: ${supportedVersions.join(', ')}`);
   const legacy = await readInstallManifest(destination);
   if (!legacy) throw new Error('migration requires an existing STOLZ install manifest');

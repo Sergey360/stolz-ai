@@ -1,0 +1,357 @@
+{
+  "schema_id": "benchmark-report",
+  "schema_version": "3.0.0",
+  "record_id": "report-8b34f9137121c75e062f7aa3",
+  "captured_at": "2026-09-16T11:18:20.337Z",
+  "track": "provider_native",
+  "manifest": {
+    "schema_id": "pilot-manifest",
+    "schema_version": "1.0.0",
+    "record_id": "pilot-multi-step-state-transition-codex-cli-20260916",
+    "canonical_sha256": "a502156d6767caadc9057922ddb8e425c08fadcdf576be9ae7f5fe03ea51e1ed"
+  },
+  "scope": {
+    "scenario_id": "multi-step-state-transition",
+    "cohort_id": "multi-step-state-transition-codex-cli-20260916-111125-7a70c52b",
+    "runtime_id": "codex-cli",
+    "provider_id": "openai",
+    "model_configuration": "gpt-5.6-sol",
+    "configuration_sha256": "a2667f3bbd0ba5d8b1c20b2ab8239a2f5fcae022dc6cf93451942fc2810960ac",
+    "environment_sha256": "0f9837a136f7f8bfe0be9488674eeb6c2ffab3750948747665a5b2a3c6b1d1b9"
+  },
+  "admission": {
+    "schema_id": "report-admission",
+    "schema_version": "1.0.0",
+    "record_id": "admission-8b34f9137121c75e062f7aa3",
+    "captured_at": "2026-09-16T11:18:20.337Z",
+    "track": "provider_native",
+    "manifest": {
+      "schema_id": "pilot-manifest",
+      "schema_version": "1.0.0",
+      "record_id": "pilot-multi-step-state-transition-codex-cli-20260916",
+      "canonical_sha256": "a502156d6767caadc9057922ddb8e425c08fadcdf576be9ae7f5fe03ea51e1ed"
+    },
+    "included_attempts": [
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "steps-baseline-codex-001",
+        "canonical_sha256": "bc41516aab2c5da176855df66c3855e4ed391efeb67638cc98fb6147d929b742"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "steps-stolz-codex-001",
+        "canonical_sha256": "4ec7a64927669f43d335b6f9a27d0f354643da1ff0f1a42ced9c1c26e511a67b"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "steps-stolz-codex-002",
+        "canonical_sha256": "33e872c91a154e3b0da71d7c3b2858b63e1c4bf3f825c816588d9e365a2a862d"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "steps-baseline-codex-002",
+        "canonical_sha256": "67a689b193da38ccf9099a664f5aad78cfb4f591319c200a1bc327f04a5718d1"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "steps-baseline-codex-003",
+        "canonical_sha256": "ba94169c1c7035758e1c9f8c580ef8bdcb1992f7e94488999322a005e4497aa9"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "steps-stolz-codex-003",
+        "canonical_sha256": "8ca73200f0fdc5cabc7a3afe439583a3447aec8710d0ab1763c04ab3b48f84c3"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "steps-stolz-codex-004",
+        "canonical_sha256": "fb94acc2b095e995c89b5442227c25bf1f4b29543bc83ce07c797d847c0591f1"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "steps-baseline-codex-004",
+        "canonical_sha256": "1b2a6d867a9468d3fddeebf6eac2b5deefce69387e8ca938e5f02f2249ed8089"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "steps-baseline-codex-005",
+        "canonical_sha256": "4168726ffe478bd0d30e32e2b514ea878d8e898088c0b455e968361cb03f1011"
+      },
+      {
+        "schema_id": "benchmark-attempt",
+        "schema_version": "3.0.0",
+        "record_id": "steps-stolz-codex-005",
+        "canonical_sha256": "633efb21335abcebce59321c4e20136692a3af46584aa84c20cef72f883d78b8"
+      }
+    ],
+    "excluded_attempts": [],
+    "included_pairs": [
+      {
+        "schema_id": "benchmark-pair",
+        "schema_version": "1.0.0",
+        "record_id": "pair-f321f43bcde7160f004f7f24",
+        "canonical_sha256": "b091da394d1c078bde212f6d3af018b8f0e17fb48fb268985e8e0ab80e60e274"
+      },
+      {
+        "schema_id": "benchmark-pair",
+        "schema_version": "1.0.0",
+        "record_id": "pair-213f3c61102ffa1121fecb8f",
+        "canonical_sha256": "c86c4b39e4522e3b0d9ad807ec5700abcd4b29c52f8a9115ed89e8b1bbb9224f"
+      },
+      {
+        "schema_id": "benchmark-pair",
+        "schema_version": "1.0.0",
+        "record_id": "pair-c7d9ebad637a62583b8de966",
+        "canonical_sha256": "6ec881bd0435da8e69d79a25fa26858db2580782eeb9c101112a55df8311f32e"
+      },
+      {
+        "schema_id": "benchmark-pair",
+        "schema_version": "1.0.0",
+        "record_id": "pair-28928297e303d94fadcc9051",
+        "canonical_sha256": "617532dd22555f7ba5a2855957cdca3384856e5502835bcb442685a4cbee316e"
+      },
+      {
+        "schema_id": "benchmark-pair",
+        "schema_version": "1.0.0",
+        "record_id": "pair-e01e5c80e81c7f86759e4244",
+        "canonical_sha256": "3f289861b198553cc3542e8539d60abf995d81a7ff8358fcbdddba69a6583380"
+      }
+    ],
+    "excluded_pairs": [],
+    "gates": {
+      "track_authority": {
+        "status": "passed"
+      },
+      "provenance": {
+        "status": "passed"
+      },
+      "redaction_retention": {
+        "status": "passed"
+      },
+      "pricing": {
+        "status": "passed"
+      },
+      "overhead": {
+        "status": "passed"
+      },
+      "equal_outcome": {
+        "status": "passed"
+      },
+      "equal_verification": {
+        "status": "passed"
+      },
+      "release_publication": {
+        "status": "not_run",
+        "reason": "Aggregate/public claims remain withheld pending the stronger release/publication gates."
+      }
+    },
+    "admission": "withheld",
+    "admission_reason": "Aggregate admission is fail-closed until a complete cohort and every required gate pass.",
+    "public_claim": {
+      "kind": "provider_savings",
+      "disposition": "withheld",
+      "reason": "No release-admitted complete scoped cohort is available; aggregate claims remain withheld."
+    },
+    "canonical_sha256": "e7ed9933049b77b6756aa80d1aff5a32f9d274baff510698320db8e9f9679bc8"
+  },
+  "attempts": {
+    "included": [
+      "steps-baseline-codex-001",
+      "steps-stolz-codex-001",
+      "steps-stolz-codex-002",
+      "steps-baseline-codex-002",
+      "steps-baseline-codex-003",
+      "steps-stolz-codex-003",
+      "steps-stolz-codex-004",
+      "steps-baseline-codex-004",
+      "steps-baseline-codex-005",
+      "steps-stolz-codex-005"
+    ],
+    "excluded": []
+  },
+  "pairs": {
+    "included": [
+      "pair-f321f43bcde7160f004f7f24",
+      "pair-213f3c61102ffa1121fecb8f",
+      "pair-c7d9ebad637a62583b8de966",
+      "pair-28928297e303d94fadcc9051",
+      "pair-e01e5c80e81c7f86759e4244"
+    ],
+    "excluded": []
+  },
+  "metrics": [
+    {
+      "name": "net_token_delta",
+      "availability": "available",
+      "provenance": "derived",
+      "source_identity": "b7db0c0c2575dfad3c6619baa347abec60062ce8f3affd2fa627a2496715c718",
+      "unit": "tokens",
+      "value": -214706,
+      "formula": "sum(admitted_pair_deltas)",
+      "component_ids": [
+        "pair-f321f43bcde7160f004f7f24",
+        "pair-213f3c61102ffa1121fecb8f",
+        "pair-c7d9ebad637a62583b8de966",
+        "pair-28928297e303d94fadcc9051",
+        "pair-e01e5c80e81c7f86759e4244"
+      ]
+    },
+    {
+      "name": "net_cost_delta",
+      "availability": "unknown",
+      "provenance": "derived",
+      "source_identity": "b7db0c0c2575dfad3c6619baa347abec60062ce8f3affd2fa627a2496715c718",
+      "unit": "currency_minor_units",
+      "reason": "No complete admitted cohort metric is available."
+    }
+  ],
+  "pricing": {
+    "availability": "unavailable",
+    "reason": "The Codex CLI stream provides no admissible billing price; token comparison remains available while cost is unavailable."
+  },
+  "overhead_attribution": [
+    {
+      "component_id": "routing",
+      "availability": "available",
+      "source_identity": "c2eae4c0400fc8688a8ec485f8769af2fa193bcf3f2374c6f65495b52d159dbd",
+      "attribution_owner": "report-routing",
+      "unit": "milliseconds",
+      "value": 11344
+    },
+    {
+      "component_id": "context_selection",
+      "availability": "available",
+      "source_identity": "16c54085e56a332ea91b98c78223c3adc1d95dc52d6966c7b193a70b00cd3f96",
+      "attribution_owner": "report-context-selection",
+      "unit": "count",
+      "value": 5
+    },
+    {
+      "component_id": "reuse",
+      "availability": "available",
+      "source_identity": "954302a01da27fb57673e4f12005e32b2d1447fa41568d99b02cba1b676667ab",
+      "attribution_owner": "report-reuse",
+      "unit": "count",
+      "value": 0
+    },
+    {
+      "component_id": "quiet_state",
+      "availability": "available",
+      "source_identity": "cb210fa19ca93dfee865fd63e3b5951ffa4e18497f010b187a20dcc77fe7f47e",
+      "attribution_owner": "report-quiet-state",
+      "unit": "count",
+      "value": 5
+    },
+    {
+      "component_id": "benchmark_capture",
+      "availability": "available",
+      "source_identity": "7bdadff6f136aa6d6fa73e2cf774da8ce5f2f2f4dd69819d4ade6581539edb4d",
+      "attribution_owner": "report-benchmark-capture",
+      "unit": "count",
+      "value": 5
+    },
+    {
+      "component_id": "verification",
+      "availability": "available",
+      "source_identity": "17114ec0861655897026f2d1f4961fcf8bd19541cf69caf36cdff49e760a83c5",
+      "attribution_owner": "report-verification",
+      "unit": "count",
+      "value": 5
+    },
+    {
+      "component_id": "retry",
+      "availability": "available",
+      "source_identity": "c6a7cb93ff5fc9523a5d515542dc2999d1e822d4776658d086343bf433d7488e",
+      "attribution_owner": "report-retry",
+      "unit": "count",
+      "value": 0
+    },
+    {
+      "component_id": "fallback",
+      "availability": "available",
+      "source_identity": "6c17e7fe1ccef75e69a8225a083a9806219577c70eaf840da83bfb26018733fe",
+      "attribution_owner": "report-fallback",
+      "unit": "count",
+      "value": 0
+    }
+  ],
+  "evidence": [
+    {
+      "attempt_id": "steps-baseline-codex-001",
+      "raw_evidence_sha256": "5b9f443ec1c32ed138dd0494d4e95851c4165384a26dfbd371311af463ab8038",
+      "retained_evidence_sha256": "8130ddc6d55cdeb40090559b1d5dc0fc80089cc78b722342875bb01a94060ad3",
+      "retained_locator": "retained:multi-step-state-transition-codex-cli-20260916-111125-7a70c52b:steps-baseline-codex-001"
+    },
+    {
+      "attempt_id": "steps-stolz-codex-001",
+      "raw_evidence_sha256": "fdbc9ddef87c14032a4fecf3a6cad71779a68d5a9ff241ed7ff291808cd59f15",
+      "retained_evidence_sha256": "be8dff50dcdb9002c72a3d38dabe6efcc465bdd2e9d8b32d5f447bd5467db5b7",
+      "retained_locator": "retained:multi-step-state-transition-codex-cli-20260916-111125-7a70c52b:steps-stolz-codex-001"
+    },
+    {
+      "attempt_id": "steps-stolz-codex-002",
+      "raw_evidence_sha256": "5df0ae408aa03e1ca3f9dcc088de8bc4af6c32c0fc31ce2558b1e6224bac5479",
+      "retained_evidence_sha256": "457ef97cb7eee536c315b762f221b73df9062f6eecdfe6ffbc98a24011b130be",
+      "retained_locator": "retained:multi-step-state-transition-codex-cli-20260916-111125-7a70c52b:steps-stolz-codex-002"
+    },
+    {
+      "attempt_id": "steps-baseline-codex-002",
+      "raw_evidence_sha256": "81d2a5cd208f41976ce26306e3b60d4da11ccfcf01b691da6fad65c53bf942ef",
+      "retained_evidence_sha256": "eb96ff24133f4f21662b3d8f634aec45a5b17ebc97705bd2a00af0f5a7dd5b35",
+      "retained_locator": "retained:multi-step-state-transition-codex-cli-20260916-111125-7a70c52b:steps-baseline-codex-002"
+    },
+    {
+      "attempt_id": "steps-baseline-codex-003",
+      "raw_evidence_sha256": "bfad1c4cd20e81b52ccda7b56b29b1de84b8ef979e2bd4e81f7d273e75da1bcc",
+      "retained_evidence_sha256": "6582ae279797286ff3d90dc991403ead32b4dfd324a7444bb4947a63a8dc1965",
+      "retained_locator": "retained:multi-step-state-transition-codex-cli-20260916-111125-7a70c52b:steps-baseline-codex-003"
+    },
+    {
+      "attempt_id": "steps-stolz-codex-003",
+      "raw_evidence_sha256": "0f8f1170b93d326a84f640cdd04c2dc7c7ea1ea80059caca1686db69c8328578",
+      "retained_evidence_sha256": "978198c3dfd06418466006b75ff84832b73206ad567311b0e0fb300cbee7ee88",
+      "retained_locator": "retained:multi-step-state-transition-codex-cli-20260916-111125-7a70c52b:steps-stolz-codex-003"
+    },
+    {
+      "attempt_id": "steps-stolz-codex-004",
+      "raw_evidence_sha256": "ecdb30ce5c2356245a86087546a69d6a0a33011001c0b1bd4a56b495886e7568",
+      "retained_evidence_sha256": "c0351026991ce3728604c348ac6b741bb9aaef214bcf41cb24ea169add2bf3aa",
+      "retained_locator": "retained:multi-step-state-transition-codex-cli-20260916-111125-7a70c52b:steps-stolz-codex-004"
+    },
+    {
+      "attempt_id": "steps-baseline-codex-004",
+      "raw_evidence_sha256": "b538167038e5ef586f2214ee366b3eab49a03660ed349989f0dd0b02d7e7a7bb",
+      "retained_evidence_sha256": "936aab1477ac274397975684f5c041d2e37ee135b715a2498d5dbec41b789f46",
+      "retained_locator": "retained:multi-step-state-transition-codex-cli-20260916-111125-7a70c52b:steps-baseline-codex-004"
+    },
+    {
+      "attempt_id": "steps-baseline-codex-005",
+      "raw_evidence_sha256": "c993db9d0790d6746cdb15ab0f0429c653f3a792c79970d21e5cab5ff263e933",
+      "retained_evidence_sha256": "f1047ef58bc163eaf39d1be8629d06a43320995dc2c39e6861dd9c77f2a2a3cb",
+      "retained_locator": "retained:multi-step-state-transition-codex-cli-20260916-111125-7a70c52b:steps-baseline-codex-005"
+    },
+    {
+      "attempt_id": "steps-stolz-codex-005",
+      "raw_evidence_sha256": "95e2e463ab7f3c1e885f0e1ddeb0ed32989aa5f1c46074ec572d83a20ffb1ffd",
+      "retained_evidence_sha256": "fac03e9676b66fa3e0650994f1b835075007455da259ac7e64b80da69d549bcf",
+      "retained_locator": "retained:multi-step-state-transition-codex-cli-20260916-111125-7a70c52b:steps-stolz-codex-005"
+    }
+  ],
+  "claim": {
+    "kind": "provider_savings_percentage",
+    "disposition": "withheld",
+    "scope_statement": "Exact multi-step-state-transition cohort multi-step-state-transition-codex-cli-20260916-111125-7a70c52b; aggregate claim not admitted.",
+    "reason": "No release-admitted complete scoped cohort is available; aggregate claims remain withheld."
+  },
+  "reproduce_command": "benchmark:v3 --report benchmarks/v3/real/manifests/v014-sol-xhigh-multi-step-state-transition.json --output reports/benchmark-v3/real/v014-sol-xhigh-multi-step-state-transition.json",
+  "canonical_sha256": "b1369c3259b54262bc0d2dd2e725363fce32ae380676df576bec22332bf5ae75"
+}

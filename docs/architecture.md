@@ -1,6 +1,6 @@
 # Architecture and exact capability matrix
 
-STOLZ A.I. v0.13.0 exposes a small public surface: five independent skills, a
+STOLZ A.I. v0.14.0 exposes a small public surface: five independent skills, a
 profile resolver and installer, runtime profiles and lazy adapters, sanitized
 evidence records, and the explicit `codex-local-state` entry point. It uses
 one runtime dependency (`ajv`) only to validate the versioned local contracts.

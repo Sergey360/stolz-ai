@@ -77,7 +77,7 @@ v0.13 公共归档还包含 `stolz-profile` CLI：它可以生成可审查的团
 全新消费者冒烟测试位于同一归档中，无需访问私有仓库。
 
 ```bash
-npm install --save-dev /absolute/downloads/stolz-ai-0.13.0.tgz
+npm install --save-dev /absolute/downloads/stolz-ai-0.14.0.tgz
 npx --no-install stolz-profile lock --apply --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 npx --no-install stolz-profile verify-lock --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 ```
@@ -96,6 +96,12 @@ npx --no-install stolz-profile verify-lock --runtime codex --lockfile /absolute/
 `stolz-reuse`。v0.12 在 Codex CLI 0.153.4、`gpt-5.6-sol`、`xhigh` 推理配置下的最终门禁结果为：
 严格路由 23/24、结果 24/24、权限判断 24/24。[全部 68 次尝试的报告](benchmarks/skill-selection-v012/results.md)
 也保留了失败与修正；这只是有限诊断，并非对准确率、token、成本或节省的普遍声明。
+
+v0.14 使用与 v0.13.0 完全相同的发布归档，在 Codex CLI 0.154.0-alpha.6.2
+上完成了 40 次有限运行。全部 20 对运行都得到相同结果并通过相同验证，但在所有受测
+Sol 和 Astra 组中，STOLZ 路径都使用了更多可比的输入加输出 token，并耗费了更多墙钟
+时间。[v0.14 汇总](reports/benchmark-v3/real/v014-summary.md)公布了精确配置、额外开销、
+不可用字段和声明边界。
 
 ## 🛡️ 节省不能削弱验证
 

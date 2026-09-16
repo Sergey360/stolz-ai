@@ -110,7 +110,7 @@ the setup guides and an executable clean-consumer smoke; no private repository
 is required.
 
 ```bash
-npm install --save-dev /absolute/downloads/stolz-ai-0.13.0.tgz
+npm install --save-dev /absolute/downloads/stolz-ai-0.14.0.tgz
 npx --no-install stolz-profile lock --apply --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 npx --no-install stolz-profile verify-lock --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 ```
@@ -174,6 +174,12 @@ decisions. The [full 68-attempt report](benchmarks/skill-selection-v012/results.
 includes every failure and correction. This small diagnostic is not a universal
 accuracy, provider-token, cost, or savings claim.
 
+v0.14 adds 40 bounded attempts against the byte-identical v0.13.0 archive on
+Codex CLI 0.154.0-alpha.6.2. All 20 pairs had equal outcomes and verification,
+but every tested Sol and Astra cohort used more comparable input-plus-output
+tokens and more wall time on the STOLZ route. The [v0.14 summary](reports/benchmark-v3/real/v014-summary.md)
+publishes the exact tuples, overhead, unavailable fields, and claim boundary.
+
 ## Evidence boundary
 
 STOLZ A.I. documents mechanisms that can reduce waste, not a numerical saving
@@ -184,9 +190,9 @@ weaker outcome or failed verification is rejected—not counted as a saving.
 
 The [benchmarking guide](docs/benchmarking.md) separates `fixture_only`,
 `runtime_measured`, and provider-native evidence. It also records the mixed
-historical v0.4.1 result: one scoped scenario used fewer recorded tokens on the
-STOLZ route, while two used more. None of those reports proves a general v0.7.1
-saving. See `skills/stolz-benchmark/` for the admission rules.
+historical v0.4.1 result and the negative bounded v0.14 result. Neither proves a
+general saving or predicts larger real projects. See `skills/stolz-benchmark/`
+for the admission rules.
 
 ## Documentation
 
