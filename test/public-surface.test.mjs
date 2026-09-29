@@ -177,8 +177,8 @@ test('npm package contains the approved product files, setup docs, and public sm
   const paths = packed.files.map((entry) => entry.path);
 
   assert.equal(packed.name, 'stolz-ai');
-  assert.equal(packed.version, '0.14.0');
-  assert.equal(packed.entryCount, 197);
+  assert.equal(packed.version, '0.15.0');
+  assert.equal(packed.entryCount, 199);
   for (const path of [
     'README.md',
     'README.he.md',
@@ -226,7 +226,7 @@ test('npm package contains the approved product files, setup docs, and public sm
     'examples/verify-public-package.mjs',
   ]) assert.ok(paths.includes(path), `${path} must be packed`);
 
-  const expectedInventory = (await readFile('.github/releases/stolz-ai-0.14.0.tgz.inventory.txt', 'utf8'))
+  const expectedInventory = (await readFile('.github/releases/stolz-ai-0.15.0.tgz.inventory.txt', 'utf8'))
     .trim().split(/\r?\n/).map((path) => path.replace(/^package\//, '')).sort();
   assert.deepEqual([...paths].sort(), expectedInventory, 'public source reproduces the private release inventory');
   for (const skill of ['stolz-benchmark', 'stolz-context', 'stolz-quiet-state', 'stolz-reuse', 'stolz-route']) {
@@ -317,6 +317,25 @@ test('v0.14 public-release evidence records the exact private archive, both plat
   ]);
 });
 
+test('v0.15 archive evidence covers both platforms and real predecessor continuation', async () => {
+  const checksum = await readFile('.github/releases/stolz-ai-0.15.0.tgz.sha256', 'utf8');
+  const inventory = await readFile('.github/releases/stolz-ai-0.15.0.tgz.inventory.txt', 'utf8');
+  const linux = JSON.parse(await readFile('.github/releases/public-package-smoke-linux-v0.15.0.json', 'utf8'));
+  const windows = JSON.parse(await readFile('.github/releases/public-package-smoke-windows-v0.15.0.json', 'utf8'));
+  const actual = JSON.parse(await readFile('.github/releases/actual-predecessor-smoke-v0.15.0.json', 'utf8'));
+  assert.match(checksum, /^2d0f80abdb0d2418acce3154aa4dfb2e548affe0630850b6c9e71e9bc211c8d0\s+stolz-ai-0\.15\.0\.tgz/m);
+  assert.equal(inventory.trim().split(/\r?\n/).length, 199);
+  for (const result of [linux, windows]) {
+    assert.equal(result.status, 'passed');
+    assert.equal(result.package_version, '0.15.0');
+    assert.ok(result.scenarios.includes('handoff_reference_update_and_rollback'));
+  }
+  assert.deepEqual(linux.scenarios, windows.scenarios);
+  assert.equal(actual.status, 'passed');
+  assert.equal(actual.predecessor, '0.14.0');
+  assert.ok(actual.scenarios.includes('foreign_file_preserved'));
+});
+
 test('GitHub CI runs full public checks with read-only permissions', async () => {
   const workflow = await readFile('.github/workflows/ci.yml', 'utf8');
   assert.match(workflow, /permissions:\s*\n\s*contents: read/);
@@ -328,6 +347,6 @@ test('GitHub CI runs full public checks with read-only permissions', async () =>
   assert.match(workflow, /--verify-report reports\/benchmark-v3\/real\/v014-astra-medium-multi-step-state-transition\.json --check/);
   assert.match(workflow, /npm run smoke:public-package/);
   assert.match(workflow, /npm pack --dry-run --json --ignore-scripts/);
-  assert.match(workflow, /sha256sum --check \.github\/releases\/stolz-ai-0\.14\.0\.tgz\.sha256/);
+  assert.match(workflow, /sha256sum --check \.github\/releases\/stolz-ai-0\.15\.0\.tgz\.sha256/);
   assert.doesNotMatch(workflow, /npm run build/);
 });

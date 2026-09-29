@@ -20,6 +20,12 @@
 
 </div>
 
+In v0.15, `stolz-quiet-state` also covers handing off external work and
+continuing the original task after verification. Its conditional reference
+retains the goal, operation and watcher identity; the optional Codex Desktop
+adapter documents heartbeat fallback and its model overhead. Installation
+does not create a scheduler or promise automatic resumption.
+
 **STOLZ A.I.** keeps agent work focused: choose the smallest sufficient route,
 load context only when needed, reuse verified results, and keep unchanged state
 outside the model.
@@ -110,7 +116,7 @@ the setup guides and an executable clean-consumer smoke; no private repository
 is required.
 
 ```bash
-npm install --save-dev /absolute/downloads/stolz-ai-0.14.0.tgz
+npm install --save-dev /absolute/downloads/stolz-ai-0.15.0.tgz
 npx --no-install stolz-profile lock --apply --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 npx --no-install stolz-profile verify-lock --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 ```

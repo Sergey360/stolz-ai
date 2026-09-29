@@ -3,6 +3,27 @@
 All notable changes to STOLZ A.I. are recorded here. Releases follow the
 repository's immutable-tag policy; unpublished work is not a release.
 
+## [0.15.0] - 2026-09-29
+
+### Added
+
+- Added conditional handoff and continuation rules to `stolz-quiet-state`:
+  waiting-route selection, durable task records, authoritative terminal checks,
+  watcher cleanup and continuation toward the original objective.
+- Added an optional Codex Desktop waiting adapter with same-task heartbeat
+  fallback, duplicate-watcher checks and explicit model/context overhead.
+- Extended the public-package lifecycle smoke to v0.14.0 → v0.15.0 → rollback,
+  including installation and removal of the new conditional reference.
+
+### Boundaries
+
+- The five-skill surface and stable local-state API remain unchanged.
+  The host owns scheduling, wake delivery and continuation records; installing
+  the skill does not create a scheduler or an automation.
+- Existing domain controllers retain ownership. This instruction release does
+  not certify live routing, automatic Desktop resumption, exactly-once side
+  effects, token/cost savings or new runtime/model compatibility.
+
 ## [0.14.0] - 2026-09-16
 
 ### Added

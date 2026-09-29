@@ -20,6 +20,13 @@
 
 </div>
 
+In v0.15 behandelt `stolz-quiet-state` ook het wachten op extern werk en het
+vervolgen van de oorspronkelijke taak na verificatie. De voorwaardelijke
+referentie bewaart het doel en de identiteit van de operatie en watcher.
+De optionele Codex Desktop-adapter beschrijft de heartbeatfallback en de
+modeloverhead. Installatie maakt geen planner en belooft geen automatische
+hervatting.
+
 **STOLZ** verwijst naar Andrej Ivanovitsj Stolz, het daadkrachtige personage uit Ivan Gontsjarovs roman *Oblomov*.
 
 In **A.I.** komen de initialen van het personage (*Andrei Ivanovich*) en *Artificial Intelligence* samen.
@@ -80,7 +87,7 @@ handleiding en een uitvoerbare clean-consumer-smoke zitten in hetzelfde archief;
 toegang tot de privé-repository is niet nodig.
 
 ```bash
-npm install --save-dev /absolute/downloads/stolz-ai-0.14.0.tgz
+npm install --save-dev /absolute/downloads/stolz-ai-0.15.0.tgz
 npx --no-install stolz-profile lock --apply --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 npx --no-install stolz-profile verify-lock --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 ```

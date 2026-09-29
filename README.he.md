@@ -20,6 +20,11 @@
 
 </div>
 
+ב־v0.15, ‏`stolz-quiet-state` מתאר גם המתנה לפעולה חיצונית והמשך המשימה
+המקורית לאחר אימות התוצאה. מסמך הייחוס נטען לפי הצורך ושומר את המטרה ואת
+זהות הפעולה והמנטר. מתאם Codex Desktop האופציונלי מתאר חלופת heartbeat
+ואת צריכת המודל שלה. ההתקנה אינה יוצרת מתזמן ואינה מבטיחה המשך אוטומטי.
+
 **STOLZ** מתייחס לאנדריי איוואנוביץ' שטולץ, הדמות הנמרצת ברומן *אובלומוב* מאת איוואן גונצ'רוב.
 
 ב־**A.I.** מתחברים ראשי התיבות של הדמות (*Andrei Ivanovich*) ו־*Artificial Intelligence*.
@@ -79,7 +84,7 @@ cp -R ../stolz-ai/skills/stolz-* .agents/skills/
 אין צורך בגישה למאגר הפרטי.
 
 ```bash
-npm install --save-dev /absolute/downloads/stolz-ai-0.14.0.tgz
+npm install --save-dev /absolute/downloads/stolz-ai-0.15.0.tgz
 npx --no-install stolz-profile lock --apply --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 npx --no-install stolz-profile verify-lock --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 ```

@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "predecessor": "0.14.0",
+  "current": "0.15.0",
+  "platform": "win32",
+  "node_version": "v22.22.2",
+  "scenarios": [
+    "actual_archive_install",
+    "interrupted_update_recovery",
+    "actual_predecessor_update",
+    "added_reference_install",
+    "actual_predecessor_rollback",
+    "added_reference_removal",
+    "foreign_file_preserved"
+  ]
+}

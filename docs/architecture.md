@@ -1,6 +1,6 @@
 # Architecture and exact capability matrix
 
-STOLZ A.I. v0.14.0 exposes a small public surface: five independent skills, a
+STOLZ A.I. v0.15.0 exposes a small public surface: five independent skills, a
 profile resolver and installer, runtime profiles and lazy adapters, sanitized
 evidence records, and the explicit `codex-local-state` entry point. It uses
 one runtime dependency (`ajv`) only to validate the versioned local contracts.
@@ -28,6 +28,14 @@ entry point is a caller-driven local bridge, not a sixth skill, bundled daemon,
 shared cache, or automatic polling service.
 
 ## Explicit local Codex state API v1
+
+External-operation handoff loads the quiet-state
+[continuation reference](../skills/stolz-quiet-state/references/handoff-and-continuation.md)
+only when needed. The host owns the original-task record and durable wake
+delivery. The optional [Codex Desktop fallback](../adapters/codex/async-wait.md)
+uses scheduled model runs and therefore has context overhead even when silent.
+Existing external controllers remain the preferred owner; the local-state API
+does not add scheduling, automatic resumption or transactional side effects.
 
 `openCodexLocalState({ enabled: true, workspace, max_storage_bytes })` is the
 only stable public state entry point. The returned handle accepts one bounded
