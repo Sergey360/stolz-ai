@@ -6,7 +6,7 @@
   <img src="assets/brand/stolz-readme-light.png" width="820" alt="STOLZ A.I. — 由折叠书页组成的 S 与红色书签">
 </picture>
 
-**五项专注技能，让编程智能体高效工作并保持可验证性。**
+**六项专注技能，让编程智能体高效工作并保持可验证性。**
 *不浪费任何一个 token。*
 
 [English](README.md) · [Русский](README.ru.md) · [Nederlands](README.nl.md) · **中文** · [עברית](README.he.md)
@@ -14,7 +14,7 @@
 [![CI](https://github.com/Sergey360/stolz-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/Sergey360/stolz-ai/actions/workflows/ci.yml)
 [![最新版本](https://img.shields.io/github/v/release/Sergey360/stolz-ai?display_name=tag&color=416B51&style=flat-square)](https://github.com/Sergey360/stolz-ai/releases/latest)
 [![Node.js ≥20](https://img.shields.io/badge/Node.js-%E2%89%A520-416B51?logo=nodedotjs&logoColor=white&style=flat-square)](package.json)
-[![5 skills](https://img.shields.io/badge/focused_skills-5-BB7A2A?style=flat-square)](skills)
+[![6 skills](https://img.shields.io/badge/focused_skills-6-BB7A2A?style=flat-square)](skills)
 [![MIT](https://img.shields.io/badge/license-MIT-6F5B4E?style=flat-square)](LICENSE)
 [![No token wasted](https://img.shields.io/badge/no_token-wasted-AD3F2E?style=flat-square)](docs/architecture.md)
 
@@ -47,7 +47,7 @@ v0.15 的 `stolz-quiet-state` 还支持等待外部操作，并在验证结果�
 
 ## 🎯 它节省什么
 
-STOLZ A.I. 由五个小而可组合的技能组成，适用于 Codex 和兼容的智能体运行时：
+STOLZ A.I. 包含五项优化技能，适用于 Codex 和兼容的智能体运行时：
 
 - 🧭 **路由**——只选择一条足够完成任务的路径，而不是加载所有指令；
 - 📖 **上下文**——只读取该路径真正需要的上下文；
@@ -56,6 +56,17 @@ STOLZ A.I. 由五个小而可组合的技能组成，适用于 Codex 和兼容�
 - ⚖️ **基准测试**——先与基线比较，再判断优化是否真的成立。
 
 这些机制减少重复上下文、读取、工具调用和状态说明；它们不会要求模型减少思考或跳过检查。
+
+## 指令安全审查
+
+v0.16.0 新增 [`stolz-guard`](skills/stolz-guard/SKILL.md)，用于按要求审计
+提示词，或在执行来自不可信来源的具体指令前进行审查。它检查指令注入、
+敏感数据泄露、越权操作和持久化恶意指令，并提供隐去敏感值的证据及原任务
+范围内的后续步骤，同时尊重用户已经授予的权限。
+
+v0.16.0 包含六项技能，托管配置仍安装五项优化技能。请从安装包或源代码
+[单独安装](docs/installation.md#optional-guard-installation)。审查不能替代
+工具访问控制，也不能保证发现所有攻击。
 
 ## 📊 我们已经证明了什么
 
@@ -92,7 +103,7 @@ v0.13 公共归档还包含 `stolz-profile` CLI：它可以生成可审查的团
 全新消费者冒烟测试位于同一归档中，无需访问私有仓库。
 
 ```bash
-npm install --save-dev /absolute/downloads/stolz-ai-0.15.0.tgz
+npm install --save-dev /absolute/downloads/stolz-ai-0.16.0.tgz
 npx --no-install stolz-profile lock --apply --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 npx --no-install stolz-profile verify-lock --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 ```

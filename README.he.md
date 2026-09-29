@@ -6,7 +6,7 @@
   <img src="assets/brand/stolz-readme-light.png" width="820" alt="STOLZ A.I. — האות S מדפי ספר מקופלים עם סימנייה אדומה">
 </picture>
 
-**חמש מיומנויות ממוקדות לעבודה יעילה וניתנת לאימות של סוכני קידוד.**
+**שש מיומנויות ממוקדות לעבודה יעילה וניתנת לאימות של סוכני קידוד.**
 *אף טוקן לא מבוזבז.*
 
 [English](README.md) · [Русский](README.ru.md) · [Nederlands](README.nl.md) · [中文](README.zh.md) · **עברית**
@@ -14,7 +14,7 @@
 [![CI](https://github.com/Sergey360/stolz-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/Sergey360/stolz-ai/actions/workflows/ci.yml)
 [![הגרסה האחרונה](https://img.shields.io/github/v/release/Sergey360/stolz-ai?display_name=tag&color=416B51&style=flat-square)](https://github.com/Sergey360/stolz-ai/releases/latest)
 [![Node.js ≥20](https://img.shields.io/badge/Node.js-%E2%89%A520-416B51?logo=nodedotjs&logoColor=white&style=flat-square)](package.json)
-[![5 skills](https://img.shields.io/badge/focused_skills-5-BB7A2A?style=flat-square)](skills)
+[![6 skills](https://img.shields.io/badge/focused_skills-6-BB7A2A?style=flat-square)](skills)
 [![MIT](https://img.shields.io/badge/license-MIT-6F5B4E?style=flat-square)](LICENSE)
 [![No token wasted](https://img.shields.io/badge/no_token-wasted-AD3F2E?style=flat-square)](docs/architecture.md)
 
@@ -48,7 +48,7 @@
 
 ## 🎯 מה נחסך
 
-STOLZ A.I. כולל חמש מיומנויות קטנות שאפשר לשלב עבור Codex וסביבות סוכן תואמות:
+STOLZ A.I. כולל חמש מיומנויות אופטימיזציה עבור Codex וסביבות סוכן תואמות:
 
 - 🧭 **מסלול** — לבחור מסלול אחד שמספיק למשימה במקום לטעון את כל ההוראות;
 - 📖 **הקשר** — לקרוא רק את ההקשר שנדרש למסלול שנבחר;
@@ -57,6 +57,19 @@ STOLZ A.I. כולל חמש מיומנויות קטנות שאפשר לשלב ע�
 - ⚖️ **Benchmark** — להשוות אופטימיזציה ל-baseline לפני שמכריזים עליה כשיפור.
 
 המנגנונים האלה מצמצמים הקשר מיותר, קריאות, הפעלות כלים ודיווחי מצב חוזרים. הם אינם מבקשים מהמודל לחשוב פחות או לדלג על בדיקות.
+
+## בדיקת אבטחת הוראות
+
+גרסת 0.16.0 מוסיפה את [`stolz-guard`](skills/stolz-guard/SKILL.md) לביקורת
+פרומפט לפי בקשה או לבדיקת הוראה ממקור לא מהימן לפני ביצועה. המיומנות בודקת
+הזרקת הוראות, חשיפת מידע רגיש, חריגה מהרשאות ושמירת הוראות מזיקות בזיכרון.
+הדוח כולל ראיות ללא ערכים סודיים וצעד המשך במסגרת המשימה המקורית,
+תוך כיבוד הרשאות שכבר ניתנו.
+
+חבילת v0.16.0 כוללת שש מיומנויות. הפרופילים המנוהלים מתקינים חמש
+מיומנויות אופטימיזציה. עבור guard יש להשתמש
+ב[התקנה הנפרדת](docs/installation.md#optional-guard-installation) מהחבילה או מקוד המקור.
+הבדיקה אינה מחליפה בקרת גישה לכלים ואינה מבטיחה גילוי של כל מתקפה.
 
 ## 📊 מה אנחנו יכולים להוכיח
 
@@ -95,7 +108,7 @@ cp -R ../stolz-ai/skills/stolz-* .agents/skills/
 אין צורך בגישה למאגר הפרטי.
 
 ```bash
-npm install --save-dev /absolute/downloads/stolz-ai-0.15.0.tgz
+npm install --save-dev /absolute/downloads/stolz-ai-0.16.0.tgz
 npx --no-install stolz-profile lock --apply --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 npx --no-install stolz-profile verify-lock --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 ```

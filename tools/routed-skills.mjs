@@ -12,6 +12,7 @@ const ROUTES = new Map([
   ['reuse', { skill: 'stolz-reuse', references: ['skills/stolz-reuse/references/ledger-and-invalidation.md'], capabilities: ['artifact_identity', 'command_execution'] }],
   ['state', { skill: 'stolz-quiet-state', references: ['skills/stolz-quiet-state/references/material-transitions.md'], capabilities: ['durable_state'] }],
   ['benchmark', { skill: 'stolz-benchmark', references: ['skills/stolz-benchmark/references/outcome-gates.md'], capabilities: ['measurement_capture'] }],
+  ['guard', { skill: 'stolz-guard', references: ['skills/stolz-guard/references/review-rules.md'], capabilities: [] }],
 ]);
 
 function requiredTrigger(capabilities) {
@@ -28,6 +29,9 @@ export function createLazyCodexResolver(loadAdapter = () => import('../adapters/
   return async function resolve({ concern, profile, trigger } = {}) {
     const route = ROUTES.get(concern);
     if (!route) return { skill: 'stolz-route', route: 'provider-neutral', reason: 'unknown_concern', references: [] };
+    if (route.capabilities.length === 0) {
+      return { skill: route.skill, references: [...route.references], route: 'provider-neutral', reason: 'adapter_not_required' };
+    }
     const expectedTrigger = requiredTrigger(route.capabilities);
     const base = { skill: route.skill, references: route.references, trigger: expectedTrigger };
     if (profile?.adapter?.adapter_id !== 'codex-local' || profile?.adapter?.resolution !== 'lazy') {
@@ -50,6 +54,9 @@ export function createLazyCodexResolver(loadAdapter = () => import('../adapters/
 export function selectRoutedSkill({ concern, adapter = null }) {
   const route = ROUTES.get(concern);
   if (!route) return { skill: 'stolz-route', route: 'provider-neutral', reason: 'unknown_concern', references: [] };
+  if (route.capabilities.length === 0) {
+    return { skill: route.skill, references: [...route.references], route: 'provider-neutral', reason: 'adapter_not_required' };
+  }
   const selection = adapter ? selectSafeRoute(adapter, route.capabilities) : { route: 'provider-neutral', reason: 'no_adapter' };
   return { skill: route.skill, ...selection, references: route.references };
 }
