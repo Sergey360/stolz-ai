@@ -2,7 +2,7 @@
 
 import assert from 'node:assert/strict';
 import { execFile } from 'node:child_process';
-import { copyFile, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
+import { copyFile, cp, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { promisify } from 'node:util';
@@ -28,7 +28,7 @@ async function cli(args, expectedExitCode = 0) {
 
 async function main() {
   const pkg = JSON.parse(await readFile(join(packageRoot, 'package.json'), 'utf8'));
-  assert.equal(pkg.version, '0.15.0');
+  assert.equal(pkg.version, '0.16.0');
   for (const path of [
     'docs/architecture.md',
     'docs/benchmarking.md',
@@ -43,9 +43,15 @@ async function main() {
     const lockfile = join(root, 'stolz-profile.lock.json');
     const localStateWorkspace = join(root, 'codex-local-state');
 
+    const guardDestination = join(root, '.agents', 'skills', 'stolz-guard');
+    await cp(join(packageRoot, 'skills', 'stolz-guard'), guardDestination, { recursive: true, errorOnExist: true });
+    for (const path of ['SKILL.md', 'references/review-rules.md']) {
+      assert.deepEqual(await readFile(join(guardDestination, path)), await readFile(join(packageRoot, 'skills', 'stolz-guard', path)));
+    }
+
     const installed = await cli(['install', '--runtime', 'qwen-code', '--destination', destination, '--scope', 'project']);
     assert.equal(installed.format_version, '1.0');
-    assert.equal(installed.install.manifest.package.version, '0.15.0');
+    assert.equal(installed.install.manifest.package.version, '0.16.0');
 
     const unknownEnvironment = await cli(['doctor', '--runtime', 'qwen-code', '--destination', destination]);
     assert.equal(unknownEnvironment.environment.runtime_version_state, 'runtime_version_not_reported');
@@ -62,7 +68,7 @@ async function main() {
     assert.equal(lock.applied, true);
     assert.equal((await cli(['verify-lock', '--runtime', 'qwen-code', '--lockfile', lockfile])).verification.state, 'healthy');
     const staleLock = JSON.parse(await readFile(lockfile, 'utf8'));
-    staleLock.package.version = '0.14.0';
+    staleLock.package.version = '0.15.0';
     await writeFile(lockfile, `${JSON.stringify(staleLock, null, 2)}\n`, 'utf8');
     const drift = await cli(['verify-lock', '--runtime', 'qwen-code', '--lockfile', lockfile], 2);
     assert.equal(drift.verification.state, 'drift');
@@ -72,17 +78,20 @@ async function main() {
     const resolution = await resolveProfile({ runtime: 'qwen-code', capabilities: { command_execution: true } });
     const historical = await createInstallManifest(resolution, {
       scope: 'project',
-      packageIdentity: { name: 'stolz-ai', version: '0.14.0' },
+      packageIdentity: { name: 'stolz-ai', version: '0.15.0' },
     });
-    const interruptedOnlyPath = 'stolz-context/v014-interrupted-owned.txt';
-    const interruptedOnlyContent = 'owned by the interrupted v0.14 installation';
+    const interruptedOnlyPath = 'stolz-context/v015-interrupted-owned.txt';
+    const interruptedOnlyContent = 'owned by the interrupted v0.15 installation';
     const { createHash } = await import('node:crypto');
-    historical.install_id = 'stolz-v014-public-smoke';
-    const handoffPath = 'stolz-quiet-state/references/handoff-and-continuation.md';
-    historical.managed_files = historical.managed_files.filter(({ destination_path }) => destination_path !== handoffPath);
-    await rm(join(destination, handoffPath));
+    historical.install_id = 'stolz-v015-public-smoke';
+    const updatedRoutePath = 'stolz-route/SKILL.md';
+    const previousRoute = "---\nname: stolz-route\ndescription: Choose among STOLZ optimizations when the required concern or adapter fallback is unclear.\n---\n\n# Route Selection\n\nA known concern goes directly to its skill. Ordinary coding, source browsing\nand one-off status answers need no STOLZ route. For mixed work, select the\ncurrent decision; do not preload later phases.\n\nLoad [route selection rules](references/route-selection.md) only to resolve an\noverlap or missing capability. Load the chosen skill; its reference remains\nconditional. Missing adapter support falls back with verification intact.\n\nFor writing an implementation or research prompt, use the optional\n[task brief](references/task-brief.md) to state scope and completion.\n\nDone: identify the current skill or no-skill path and preserve the requested\noutcome. No route alone substantiates a savings claim.\n";
+    const previousRouteEntry = historical.managed_files.find(({ destination_path }) => destination_path === updatedRoutePath);
+    previousRouteEntry.sha256 = createHash('sha256').update(previousRoute).digest('hex');
+    previousRouteEntry.bytes = Buffer.byteLength(previousRoute);
+    await writeFile(join(destination, updatedRoutePath), previousRoute, 'utf8');
     historical.managed_files.push({
-      source_path: 'skills/stolz-context/v014-interrupted-owned.txt',
+      source_path: 'skills/stolz-context/v015-interrupted-owned.txt',
       destination_path: interruptedOnlyPath,
       sha256: createHash('sha256').update(interruptedOnlyContent).digest('hex'),
       bytes: Buffer.byteLength(interruptedOnlyContent),
@@ -90,7 +99,7 @@ async function main() {
     await writeFile(join(destination, interruptedOnlyPath), interruptedOnlyContent, 'utf8');
     await writeFile(join(destination, 'install-manifest.json'), `${JSON.stringify(historical, null, 2)}\n`, 'utf8');
 
-    const migration = await cli(['migrate', '--apply', '--legacy-version', '0.14.0', '--runtime', 'qwen-code', '--destination', destination]);
+    const migration = await cli(['migrate', '--apply', '--legacy-version', '0.15.0', '--runtime', 'qwen-code', '--destination', destination]);
     assert.equal(migration.applied, false);
     assert.equal(migration.migrated.state, 'update_required');
     assert.equal((await cli(['update', '--runtime', 'qwen-code', '--destination', destination])).plan.state, 'ready');
@@ -106,17 +115,17 @@ async function main() {
 
     const updated = await cli(['update', '--apply', '--runtime', 'qwen-code', '--destination', destination]);
     assert.equal(updated.applied, true);
-    assert.equal(updated.plan.current_package.version, '0.14.0');
-    assert.equal(updated.plan.target_package.version, '0.15.0');
-    assert.match(await readFile(join(destination, handoffPath), 'utf8'), /Resume the original task/);
+    assert.equal(updated.plan.current_package.version, '0.15.0');
+    assert.equal(updated.plan.target_package.version, '0.16.0');
+    assert.match(await readFile(join(destination, updatedRoutePath), 'utf8'), /stolz-guard/);
 
     const installedSkill = join(destination, 'stolz-context', 'SKILL.md');
     await writeFile(installedSkill, 'local change', 'utf8');
     assert.equal((await cli(['rollback', '--runtime', 'qwen-code', '--destination', destination])).plan.state, 'conflict');
     await copyFile(join(packageRoot, 'skills', 'stolz-context', 'SKILL.md'), installedSkill);
     assert.equal((await cli(['rollback', '--apply', '--runtime', 'qwen-code', '--destination', destination])).applied, true);
-    assert.equal(JSON.parse(await readFile(join(destination, 'install-manifest.json'), 'utf8')).package.version, '0.14.0');
-    await assert.rejects(readFile(join(destination, handoffPath), 'utf8'), { code: 'ENOENT' });
+    assert.equal(JSON.parse(await readFile(join(destination, 'install-manifest.json'), 'utf8')).package.version, '0.15.0');
+    assert.equal(await readFile(join(destination, updatedRoutePath), 'utf8'), previousRoute);
 
     const localState = openCodexLocalState({ enabled: true, workspace: localStateWorkspace });
     const initialized = await localState.initialize();
@@ -131,15 +140,16 @@ async function main() {
       arch: process.arch,
       node_version: process.version,
       scenarios: [
+        'separate_guard_installation',
         'clean_install',
         'doctor_environment_and_adapter',
         'team_lock_and_drift_exit',
-        'v0.14_owned_update',
+        'v0.15_owned_update',
         'interrupted_update_recovery',
         'local_change_rollback_conflict',
-        'rollback_to_v0.14',
+        'rollback_to_v0.15',
         'explicit_codex_local_state',
-        'handoff_reference_update_and_rollback',
+        'route_instruction_update_and_rollback',
       ],
     }, null, 2)}\n`);
   } finally {

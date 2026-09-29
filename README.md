@@ -14,7 +14,7 @@
 [![CI](https://github.com/Sergey360/stolz-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/Sergey360/stolz-ai/actions/workflows/ci.yml)
 [![Latest release](https://img.shields.io/github/v/release/Sergey360/stolz-ai?display_name=tag&color=416B51&style=flat-square)](https://github.com/Sergey360/stolz-ai/releases/latest)
 [![Node.js ≥20](https://img.shields.io/badge/Node.js-%E2%89%A520-416B51?logo=nodedotjs&logoColor=white&style=flat-square)](package.json)
-[![5 skills](https://img.shields.io/badge/focused_skills-5-BB7A2A?style=flat-square)](skills)
+[![6 skills](https://img.shields.io/badge/focused_skills-6-BB7A2A?style=flat-square)](skills)
 [![MIT](https://img.shields.io/badge/license-MIT-6F5B4E?style=flat-square)](LICENSE)
 [![No token wasted](https://img.shields.io/badge/no_token-wasted-AD3F2E?style=flat-square)](docs/architecture.md)
 
@@ -33,7 +33,8 @@ outside the model.
 It does not make a model think less. It helps it waste less—without replacing
 correctness, verification, or reliability with a cheaper shortcut.
 
-It is a package of five agent skills, profiles, lazy adapters, evidence
+It contains five optimization skills and an optional instruction-security
+review skill, profiles, lazy adapters, evidence
 records, and one opt-in local Codex state entry point. Installing skills does
 not start a daemon, shared cache, durable state store, or automatic polling
 controller. Local state exists only after an application explicitly opens it.
@@ -46,7 +47,7 @@ character's initials and artificial intelligence.
 
 ## What stays under control
 
-- **Five focused skills.** One concern at a time, not a catch-all prompt.
+- **Six focused skills.** One concern at a time, with guard installed separately.
 - **Verified reuse.** Reuse requires matching, fresh identities and prior
   verification.
 - **Safe fallbacks.** A missing capability never weakens the required outcome
@@ -59,7 +60,8 @@ character's initials and artificial intelligence.
   <img src="assets/route-flow.svg" width="360" alt="A task is routed through one focused concern, verified, and delivered as a reliable outcome.">
 </picture>
 
-Choose a known concern directly: context, reuse, quiet state, or benchmarking.
+Choose a known concern directly: context, reuse, quiet state, benchmarking,
+or instruction-security review.
 `stolz-route` helps when that choice is unclear. Ordinary coding needs no STOLZ
 route. Each selected skill loads its detailed rules only when needed and keeps
 the required verification before the outcome.
@@ -92,6 +94,20 @@ cursor, retry and notification decisions keep unchanged state outside the model.
 Use it to evaluate a proposed efficiency improvement. It accepts a comparison
 only after equivalent outcome and verification gates pass.
 
+## Optional instruction-security review
+
+Version 0.16.0 adds [`stolz-guard`](skills/stolz-guard/SKILL.md).
+Use it to audit a prompt or review a concrete untrusted instruction before
+acting on it. It checks injection, sensitive disclosure, action authority and
+persistent-context abuse, with redacted evidence and a scoped continuation.
+It respects existing user authorization and loads detailed rules only when
+needed. Ordinary source reads do not trigger it.
+
+The v0.16.0 package contains six skill directories. Managed optimization
+profiles still install five skills; install guard separately using
+[the manual instructions](docs/installation.md#optional-guard-installation).
+A review does not enforce tool permissions or guarantee attack detection.
+
 ## Quick start
 
 Clone a tagged or reviewed revision, then validate it before copying the skill
@@ -116,7 +132,7 @@ the setup guides and an executable clean-consumer smoke; no private repository
 is required.
 
 ```bash
-npm install --save-dev /absolute/downloads/stolz-ai-0.15.0.tgz
+npm install --save-dev /absolute/downloads/stolz-ai-0.16.0.tgz
 npx --no-install stolz-profile lock --apply --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 npx --no-install stolz-profile verify-lock --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 ```

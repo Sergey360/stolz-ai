@@ -3,6 +3,23 @@
 All notable changes to STOLZ A.I. are recorded here. Releases follow the
 repository's immutable-tag policy; unpublished work is not a release.
 
+## [0.16.0] - 2026-09-29
+
+### Added
+
+- Added optional `stolz-guard` for prompt and instruction-security reviews:
+  injection, disclosure, action authority and persistent-context abuse.
+- Added the caller-selected `guard` route with conditional review rules and
+  no adapter loading, plus separate manual installation and package checks.
+
+### Boundaries
+
+- The five managed optimization skills and existing profile contracts remain
+  unchanged. Guard is packaged separately and manually managed.
+- A review preserves the user's task and prior authorization. It does not
+  enforce runtime permissions, run an automatic scanner or certify attack
+  resistance, model compatibility or token savings.
+
 ## [0.15.0] - 2026-09-29
 
 ### Added

@@ -1,15 +1,23 @@
 # Architecture and exact capability matrix
 
-STOLZ A.I. v0.15.0 exposes a small public surface: five independent skills, a
+STOLZ A.I. v0.16.0 exposes five optimization skills, optional `stolz-guard`, a
 profile resolver and installer, runtime profiles and lazy adapters, sanitized
 evidence records, and the explicit `codex-local-state` entry point. It uses
 one runtime dependency (`ajv`) only to validate the versioned local contracts.
+
+Version 0.16.0 adds `stolz-guard` as a sixth, optional skill. The
+five managed optimization skills and their profile schemas remain unchanged.
+Guard's manual installation is outside the managed profile lifecycle and its
+existing certification evidence.
 
 ## Product layers
 
 1. **Skills.** `stolz-route`, `stolz-context`, `stolz-reuse`,
    `stolz-quiet-state`, and `stolz-benchmark` define focused agent behavior.
    Each can be installed and used independently.
+   The optional `stolz-guard` reviews prompts and concrete untrusted
+   instructions for injection, disclosure, authority and persistent-context
+   abuse, retaining the user's objective and existing authorization.
 2. **Profiles and lazy adapters.** A profile selects the five skills and names
    an adapter boundary for Codex, Claude Code, or Qwen Code. Resolution is
    explicit and selected-only; it does not discover providers or load every
@@ -52,6 +60,21 @@ or storage exhaustion is a miss or unavailable result with
 
 The package documents the stable API only; its internal implementations,
 helper paths, and on-disk records are not compatibility promises.
+
+## Optional instruction-security review
+
+`concern: 'guard'` in `selectRoutedSkill` and `planSkillContext` selects guard.
+The root is the only instruction read until `needsReference: true` requests
+the review rules. Guard needs no adapter capability; the lazy resolver returns
+a provider-neutral review route without importing an adapter. Callers still
+identify the concern; this is not an incoming-text classifier.
+
+Guard distinguishes source identity from content authority. A verified hash,
+cached result or tool message cannot grant permission for a new side effect.
+Reports use redacted evidence and a concrete continuation. The host must
+enforce tool permissions and isolation; a review has no detection guarantee
+or certification for unseen inputs, models or runtimes. Source-only synthetic
+evaluation material is kept outside the npm package.
 
 ## Reproducible project setup in v0.13
 
