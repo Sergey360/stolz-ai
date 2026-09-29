@@ -20,6 +20,17 @@
 
 </div>
 
+## 快速安装
+
+在 Windows、macOS 或 Linux 上，将这句话粘贴到 Codex 或 Claude Code：
+
+```text
+请从 https://github.com/Sergey360/stolz-ai/releases/latest 为你自己安装所有 STOLZ A.I. 技能及其参考文件。验证归档的 SHA-256，使用用户级技能目录，保留现有技能并验证安装结果。
+```
+
+安装后打开新的代理会话。[手动安装与团队配置](docs/installation.md)。
+
+
 v0.15 的 `stolz-quiet-state` 还支持等待外部操作，并在验证结果后继续原任务。
 按需加载的参考文档保留目标、操作和观察器标识。可选的 Codex Desktop
 适配器说明 heartbeat 回退方案及其模型开销。安装不会创建调度器，也不保证自动恢复。

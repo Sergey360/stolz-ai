@@ -20,6 +20,17 @@
 
 </div>
 
+## Quick install
+
+Paste this one-line request into Codex or Claude Code on Windows, macOS, or Linux:
+
+```text
+Install all STOLZ A.I. skills and their reference files for yourself from https://github.com/Sergey360/stolz-ai/releases/latest. Verify the archive's SHA-256, use your user-level skills directory, preserve existing skills, and verify the installation.
+```
+
+After installation, open a new agent session. [Manual installation and team setup](docs/installation.md).
+
+
 In v0.15, `stolz-quiet-state` also covers handing off external work and
 continuing the original task after verification. Its conditional reference
 retains the goal, operation and watcher identity; the optional Codex Desktop

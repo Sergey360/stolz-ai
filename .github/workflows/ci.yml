@@ -32,4 +32,17 @@ jobs:
       - run: npm run smoke:public-package
       - run: npm pack --dry-run --json --ignore-scripts
       - run: npm pack --ignore-scripts
-      - run: sha256sum --check .github/releases/stolz-ai-0.16.0.tgz.sha256
+      # Documentation on main can evolve without replacing immutable release bytes.
+      # Check the published asset on every run; tags must also reproduce it exactly.
+      - name: Verify the immutable published archive
+        run: |
+          version=$(node -p "require('./package.json').version")
+          mkdir -p published-release
+          curl --fail --silent --show-error --location --retry 2 \
+            "https://github.com/Sergey360/stolz-ai/releases/download/v${version}/stolz-ai-${version}.tgz" \
+            --output "published-release/stolz-ai-${version}.tgz"
+          (cd published-release && sha256sum --check "../.github/releases/stolz-ai-${version}.tgz.sha256")
+      - name: Verify tagged archive reproduction
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          sha256sum --check .github/releases/stolz-ai-0.16.0.tgz.sha256

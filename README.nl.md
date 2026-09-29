@@ -20,6 +20,17 @@
 
 </div>
 
+## Snel installeren
+
+Plak dit verzoek in Codex of Claude Code op Windows, macOS of Linux:
+
+```text
+Installeer alle STOLZ A.I.-skills met hun referentiebestanden voor jezelf vanuit https://github.com/Sergey360/stolz-ai/releases/latest. Controleer de SHA-256 van het archief, gebruik je persoonlijke skillsmap, behoud bestaande skills en controleer de installatie.
+```
+
+Open na de installatie een nieuwe agentsessie. [Handmatige installatie en teamconfiguratie](docs/installation.md).
+
+
 In v0.15 behandelt `stolz-quiet-state` ook het wachten op extern werk en het
 vervolgen van de oorspronkelijke taak na verificatie. De voorwaardelijke
 referentie bewaart het doel en de identiteit van de operatie en watcher.
