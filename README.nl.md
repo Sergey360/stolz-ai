@@ -6,7 +6,7 @@
   <img src="assets/brand/stolz-readme-light.png" width="820" alt="STOLZ A.I. — een S van gevouwen boekpagina's met een rode bladwijzer">
 </picture>
 
-**Vijf gerichte skills voor efficiënt en verifieerbaar werk van programmeeragents.**
+**Zes gerichte skills voor efficiënt en verifieerbaar werk van programmeeragents.**
 *Geen token verspild.*
 
 [English](README.md) · [Русский](README.ru.md) · **Nederlands** · [中文](README.zh.md) · [עברית](README.he.md)
@@ -14,7 +14,7 @@
 [![CI](https://github.com/Sergey360/stolz-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/Sergey360/stolz-ai/actions/workflows/ci.yml)
 [![Laatste release](https://img.shields.io/github/v/release/Sergey360/stolz-ai?display_name=tag&color=416B51&style=flat-square)](https://github.com/Sergey360/stolz-ai/releases/latest)
 [![Node.js ≥20](https://img.shields.io/badge/Node.js-%E2%89%A520-416B51?logo=nodedotjs&logoColor=white&style=flat-square)](package.json)
-[![5 skills](https://img.shields.io/badge/focused_skills-5-BB7A2A?style=flat-square)](skills)
+[![6 skills](https://img.shields.io/badge/focused_skills-6-BB7A2A?style=flat-square)](skills)
 [![MIT](https://img.shields.io/badge/licentie-MIT-6F5B4E?style=flat-square)](LICENSE)
 [![Geen token verspild](https://img.shields.io/badge/no_token-wasted-AD3F2E?style=flat-square)](docs/architecture.md)
 
@@ -39,7 +39,7 @@ Het project volgt hetzelfde principe: **elke token moet nuttig werk verrichten**
 
 ## 🎯 Wat het bespaart
 
-STOLZ A.I. bestaat uit vijf kleine, combineerbare skills voor Codex en compatibele runtimes:
+STOLZ A.I. bevat vijf optimalisatieskills voor Codex en compatibele runtimes:
 
 - 🧭 **Route** — kies één toereikende route in plaats van alle instructies te laden;
 - 📖 **Context** — lees alleen de context die voor die route nodig is;
@@ -48,6 +48,21 @@ STOLZ A.I. bestaat uit vijf kleine, combineerbare skills voor Codex en compatibe
 - ⚖️ **Benchmark** — vergelijk een optimalisatie met de baseline voordat je haar een verbetering noemt.
 
 Deze mechanismen verminderen overbodige context, leesacties, toolaanroepen en statusmeldingen. Ze vragen het model niet om minder na te denken of controles over te slaan.
+
+## Instructies op veiligheid beoordelen
+
+Versie 0.16.0 voegt [`stolz-guard`](skills/stolz-guard/SKILL.md) toe voor
+een aangevraagde promptaudit of de beoordeling van een concrete onvertrouwde
+instructie vóór uitvoering. De skill beoordeelt injectie, gegevenslekken,
+bevoegdheden en ongewenste blijvende instructies. Het rapport bevat
+geredigeerd bewijs en een vervolgstap binnen de oorspronkelijke opdracht,
+met behoud van eerder gegeven toestemming.
+
+Het v0.16.0-pakket bevat zes skills. Beheerde profielen installeren vijf
+optimalisatieskills. Gebruik voor guard de
+[afzonderlijke installatie](docs/installation.md#optional-guard-installation)
+vanuit het pakket of de broncode. Een beoordeling vervangt geen toegangscontrole voor
+tools en garandeert niet dat alle aanvallen worden ontdekt.
 
 ## 📊 Wat we kunnen aantonen
 
@@ -87,7 +102,7 @@ handleiding en een uitvoerbare clean-consumer-smoke zitten in hetzelfde archief;
 toegang tot de privé-repository is niet nodig.
 
 ```bash
-npm install --save-dev /absolute/downloads/stolz-ai-0.15.0.tgz
+npm install --save-dev /absolute/downloads/stolz-ai-0.16.0.tgz
 npx --no-install stolz-profile lock --apply --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 npx --no-install stolz-profile verify-lock --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 ```

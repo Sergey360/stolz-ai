@@ -6,7 +6,7 @@
   <img src="assets/brand/stolz-readme-light.png" width="820" alt="STOLZ A.I. — буква S из сложенных книжных страниц с красной закладкой">
 </picture>
 
-**Пять точечных навыков для рациональной и проверяемой работы AI-агентов.**
+**Шесть точечных навыков для рациональной и проверяемой работы AI-агентов.**
 *Ни одного лишнего токена.*
 
 [English](README.md) · **Русский** · [Nederlands](README.nl.md) · [中文](README.zh.md) · [עברית](README.he.md)
@@ -14,7 +14,7 @@
 [![CI](https://github.com/Sergey360/stolz-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/Sergey360/stolz-ai/actions/workflows/ci.yml)
 [![Последний релиз](https://img.shields.io/github/v/release/Sergey360/stolz-ai?display_name=tag&color=416B51&style=flat-square)](https://github.com/Sergey360/stolz-ai/releases/latest)
 [![Node.js ≥20](https://img.shields.io/badge/Node.js-%E2%89%A520-416B51?logo=nodedotjs&logoColor=white&style=flat-square)](package.json)
-[![5 навыков](https://img.shields.io/badge/focused_skills-5-BB7A2A?style=flat-square)](skills)
+[![6 навыков](https://img.shields.io/badge/focused_skills-6-BB7A2A?style=flat-square)](skills)
 [![MIT](https://img.shields.io/badge/license-MIT-6F5B4E?style=flat-square)](LICENSE)
 [![Ни одного токена впустую](https://img.shields.io/badge/no_token-wasted-AD3F2E?style=flat-square)](docs/architecture.md)
 
@@ -39,7 +39,7 @@
 
 ## 🎯 Что именно экономится
 
-STOLZ A.I. — это пять небольших, сочетаемых навыков для Codex и совместимых сред программных агентов:
+STOLZ A.I. содержит пять навыков оптимизации для Codex и совместимых сред программных агентов:
 
 - 🧭 **Маршрут** — выбрать один достаточный путь вместо загрузки всех инструкций;
 - 📖 **Контекст** — читать только тот контекст, который нужен выбранному пути;
@@ -48,6 +48,21 @@ STOLZ A.I. — это пять небольших, сочетаемых навы
 - ⚖️ **Бенчмарк** — сравнивать оптимизацию с исходным вариантом, прежде чем считать её улучшением.
 
 Эти механизмы сокращают лишний контекст, чтения, вызовы инструментов и повторные сообщения о состоянии. Они не требуют от модели думать меньше или пропускать проверки.
+
+## Проверка безопасности инструкций
+
+В v0.16.0 добавлен [`stolz-guard`](skills/stolz-guard/SKILL.md).
+Он проверяет промпт по запросу или конкретную инструкцию из недоверенного
+источника перед действием: подмену задачи, утечку данных, выход за полномочия
+и попытку закрепить вредные инструкции в памяти или кеше. Отчёт содержит
+основание риска без секретных значений и следующий шаг по исходной задаче.
+Уже выданные пользователем разрешения учитываются.
+
+Пакет v0.16.0 содержит шесть навыков. Установка через профиль копирует пять
+навыков оптимизации. Для guard предусмотрена
+[отдельная установка](docs/installation.md#optional-guard-installation)
+из пакета или исходников. Проверка не заменяет ограничения доступа к инструментам
+и не гарантирует обнаружение всех атак.
 
 ## 📊 Что уже доказано
 
@@ -91,7 +106,7 @@ cp -R ../stolz-ai/skills/stolz-* .agents/skills/
 приватному репозиторию не нужен.
 
 ```bash
-npm install --save-dev /absolute/downloads/stolz-ai-0.15.0.tgz
+npm install --save-dev /absolute/downloads/stolz-ai-0.16.0.tgz
 npx --no-install stolz-profile lock --apply --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 npx --no-install stolz-profile verify-lock --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 ```
