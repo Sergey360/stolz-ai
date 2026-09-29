@@ -20,6 +20,13 @@
 
 </div>
 
+В v0.15 `stolz-quiet-state` также помогает передать внешнюю операцию
+на ожидание и продолжить исходную задачу после проверки результата.
+Условно загружаемый справочник сохраняет цель, операцию и идентификатор
+наблюдателя. Адаптер Codex Desktop описывает запасной путь через heartbeat
+и его расходы на модель. Установка не создаёт планировщик
+и не обещает автоматическое возобновление.
+
 **STOLZ** отсылает к Андрею Ивановичу Штольцу — деятельному герою романа Ивана Гончарова «Обломов».
 
 В **A.I.** соединились инициалы героя (*Andrei Ivanovich*) и *Artificial Intelligence*.
@@ -84,7 +91,7 @@ cp -R ../stolz-ai/skills/stolz-* .agents/skills/
 приватному репозиторию не нужен.
 
 ```bash
-npm install --save-dev /absolute/downloads/stolz-ai-0.14.0.tgz
+npm install --save-dev /absolute/downloads/stolz-ai-0.15.0.tgz
 npx --no-install stolz-profile lock --apply --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 npx --no-install stolz-profile verify-lock --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 ```

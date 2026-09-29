@@ -20,6 +20,10 @@
 
 </div>
 
+v0.15 的 `stolz-quiet-state` 还支持等待外部操作，并在验证结果后继续原任务。
+按需加载的参考文档保留目标、操作和观察器标识。可选的 Codex Desktop
+适配器说明 heartbeat 回退方案及其模型开销。安装不会创建调度器，也不保证自动恢复。
+
 **STOLZ** 指向伊万·冈察洛夫小说《奥勃洛莫夫》中行动果断的安德烈·伊万诺维奇·施托尔茨。
 
 **A.I.** 将人物姓名首字母（*Andrei Ivanovich*）与 *Artificial Intelligence* 结合在一起。
@@ -77,7 +81,7 @@ v0.13 公共归档还包含 `stolz-profile` CLI：它可以生成可审查的团
 全新消费者冒烟测试位于同一归档中，无需访问私有仓库。
 
 ```bash
-npm install --save-dev /absolute/downloads/stolz-ai-0.14.0.tgz
+npm install --save-dev /absolute/downloads/stolz-ai-0.15.0.tgz
 npx --no-install stolz-profile lock --apply --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 npx --no-install stolz-profile verify-lock --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 ```
