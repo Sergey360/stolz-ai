@@ -1,5 +1,18 @@
 # Installation and compatibility
 
+## Quick install with your agent
+
+Paste this one-line request into Codex or Claude Code on Windows, macOS, or Linux:
+
+```text
+Install all STOLZ A.I. skills and their reference files for yourself from https://github.com/Sergey360/stolz-ai/releases/latest. Verify the archive's SHA-256, use your user-level skills directory, preserve existing skills, and verify the installation.
+```
+
+After installation, open a new agent session.
+
+## Manual installation and team setup
+
+
 STOLZ A.I. v0.15.0 is a package of five focused skill directories. Installing
 it makes the skills available to an agent runtime; it does not start a service,
 instrument a provider, or install the private context-state and verified-reuse
