@@ -14,3 +14,9 @@
 - `prepareContext` accepts only references allowed by the selected route. An
   allowlist is not a requirement to read every listed document; use the
   conditional plan's references for the current decision.
+- Matching identity and recording a fragment do not establish reading or
+  understanding of a larger source. For source-dependent analysis, retain
+  actual received ranges, source kind, supported claims, applications and
+  unread dependencies in the task's evidence index. Reference the existing
+  fragment identity rather than copying a second ledger; retrieve the bounded
+  source when its content is needed.

@@ -3,6 +3,24 @@
 All notable changes to STOLZ A.I. are recorded here. Releases follow the
 repository's immutable-tag policy; unpublished work is not a release.
 
+## [0.17.0] - 2026-10-05
+
+### Added
+
+- Added optional `stolz-evidence` for bounded source coverage, supported claims,
+  corrections and accurate completion reports, with conditional references.
+- Added the provider-neutral `evidence` route and links to existing context,
+  reuse and handoff identities without another read ledger or schema change.
+- Added explicit, dry-run-first project instruction merging for Codex,
+  Claude Code and Qwen Code. Existing managed profiles retain five skills.
+
+### Boundaries
+
+- Instruction-file merging and local model evaluation do not establish native
+  discovery, guaranteed activation, truthfulness, runtime certification,
+  provider token savings or production acceptance.
+- Existing release and evaluation records retain their historical scope.
+
 ## [0.16.0] - 2026-09-29
 
 ### Added

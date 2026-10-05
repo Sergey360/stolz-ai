@@ -35,6 +35,9 @@ without rediscovery:
   transient-read-error policy.
 - Controller or watcher id, continuation target, accepted terminal identity
   and continuation status, so recovery reuses the owner and avoids duplicates.
+- For source-dependent work, the existing evidence/coverage record, exact
+  artifact or fragment identities, actual inspected scope, attributions,
+  corrections and material unread dependencies. Do not duplicate its ledger.
 
 The existing quiet-state controller stores polling and wake state. The host or
 caller owns this task-level record, scheduling and delivery; installing the
@@ -61,3 +64,8 @@ Watcher cleanup and task completion are separate checks. If cleanup fails,
 retain and report the active watcher id and prevent a duplicate continuation.
 Do not claim exactly-once external actions: durable wake deduplication alone
 does not make a later merge, upload or other side effect transactional.
+
+Dispatch and a reported terminal result are distinct from verified acceptance.
+Attribute inherited checks until their evidence is accepted; do not present
+the sender's reading as the receiver's. Separate created files, local checks,
+target-system observation and publication in completion reports.

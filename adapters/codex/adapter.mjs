@@ -5,6 +5,7 @@ import { dirname, resolve } from 'node:path';
 import { promisify } from 'node:util';
 import { commandIdentity } from '../../tools/foundation.mjs';
 import { createLazyCodexResolver } from '../../tools/routed-skills.mjs';
+import { mergeEvidenceInstructions as mergeInstructions } from '../../tools/evidence-instructions.mjs';
 
 const execFileAsync = promisify(execFile);
 
@@ -38,6 +39,7 @@ export const codexConformanceAdapter = Object.freeze({
   writeDurableState,
   captureEvidence,
   createLazyResolver: createLazyCodexResolver,
+  mergeEvidenceInstructions: (options) => mergeInstructions({ ...options, runtime: 'codex' }),
 });
 
 export async function identifyArtifact(id, filePath, version) {

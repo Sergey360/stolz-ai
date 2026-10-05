@@ -143,3 +143,12 @@ npm run benchmark:check
 
 提交改动前，请阅读 [Contributing](../CONTRIBUTING.md)。许可证和法律声明见
 [LICENSE](../LICENSE) 与 [NOTICE](../NOTICE)。
+
+## v0.17.0 来源分析
+
+`0.17.0` 版本包含七项技能：五项托管优化技能、
+可选 guard 和 [`stolz-evidence`](../skills/stolz-evidence/SKILL.md)。
+Evidence 区分实际阅读范围、有依据的结论和未完成的要求，并在纠正陈述及
+交接任务时保留这些信息。它沿用现有 context 和 reuse 标识。
+该流程不保证真实性或自动激活。请单独安装，按需启用
+[简短项目规则](installation.md#optional-evidence-installation)。

@@ -1,6 +1,7 @@
 # Architecture and exact capability matrix
 
-STOLZ A.I. v0.16.0 exposes five optimization skills, optional `stolz-guard`, a
+STOLZ A.I. v0.17.0 exposes five optimization skills, optional `stolz-guard`
+and `stolz-evidence`, a
 profile resolver and installer, runtime profiles and lazy adapters, sanitized
 evidence records, and the explicit `codex-local-state` entry point. It uses
 one runtime dependency (`ajv`) only to validate the versioned local contracts.
@@ -11,6 +12,15 @@ Guard's manual installation is outside the managed profile lifecycle and its
 existing certification evidence.
 
 ## Product layers
+
+Version `0.17.0` adds optional `stolz-evidence` as a
+seventh skill. It records actual source scope, support for claims, application
+and unmet dependencies. Existing fragment and reuse identities remain the
+authoritative identity records; semantic coverage is a compact Markdown index,
+not a second read ledger or proof of understanding. The `evidence` route needs
+no adapter. A separate explicit project-rule merge can add a short fallback
+instruction without selecting the skill. Managed profiles, local-state API
+and historical runtime certification remain unchanged.
 
 1. **Skills.** `stolz-route`, `stolz-context`, `stolz-reuse`,
    `stolz-quiet-state`, and `stolz-benchmark` define focused agent behavior.

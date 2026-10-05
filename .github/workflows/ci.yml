@@ -32,17 +32,24 @@ jobs:
       - run: npm run smoke:public-package
       - run: npm pack --dry-run --json --ignore-scripts
       - run: npm pack --ignore-scripts
-      # Documentation on main can evolve without replacing immutable release bytes.
-      # Check the published asset on every run; tags must also reproduce it exactly.
-      - name: Verify the immutable published archive
+      # Before a new tag exists, reproduce the private CI checksum locally.
+      # After publication, main documentation may evolve while release bytes stay fixed.
+      - name: Verify canonical candidate or immutable published archive
         run: |
           version=$(node -p "require('./package.json').version")
-          mkdir -p published-release
-          curl --fail --silent --show-error --location --retry 2 \
-            "https://github.com/Sergey360/stolz-ai/releases/download/v${version}/stolz-ai-${version}.tgz" \
-            --output "published-release/stolz-ai-${version}.tgz"
-          (cd published-release && sha256sum --check "../.github/releases/stolz-ai-${version}.tgz.sha256")
+          tag_ref=$(git ls-remote --tags origin "refs/tags/v${version}")
+          if [ -z "$tag_ref" ]; then
+            test "$GITHUB_REF" != "refs/tags/v${version}"
+            sha256sum --check ".github/releases/stolz-ai-${version}.tgz.sha256"
+            echo "Unpublished version: private CI archive reproduced; no release tag exists."
+          else
+            mkdir -p published-release
+            curl --fail --silent --show-error --location --retry 10 --retry-delay 6 --retry-all-errors \
+              "https://github.com/Sergey360/stolz-ai/releases/download/v${version}/stolz-ai-${version}.tgz" \
+              --output "published-release/stolz-ai-${version}.tgz"
+            (cd published-release && sha256sum --check "../.github/releases/stolz-ai-${version}.tgz.sha256")
+          fi
       - name: Verify tagged archive reproduction
         if: startsWith(github.ref, 'refs/tags/')
         run: |
-          sha256sum --check .github/releases/stolz-ai-0.16.0.tgz.sha256
+          sha256sum --check .github/releases/stolz-ai-0.17.0.tgz.sha256

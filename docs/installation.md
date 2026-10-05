@@ -13,7 +13,8 @@ After installation, open a new agent session.
 ## Manual installation and team setup
 
 
-STOLZ A.I. v0.16.0 packages five optimization skills and optional `stolz-guard`. Installing
+STOLZ A.I. v0.17.0 packages five optimization skills and optional
+`stolz-guard` and `stolz-evidence`. Installing
 it makes the skills available to an agent runtime; it does not start a service,
 instrument a provider, or install the private context-state and verified-reuse
 implementations used to develop the project. Those boundaries are described in
@@ -24,7 +25,11 @@ optimization skills and their original compatibility evidence.
 
 ## Requirements
 
-The v0.16 CI image is pinned to Node.js 22.22.2 on Alpine Linux; local release
+Version `0.17.0` packages optional
+[`stolz-evidence`](../skills/stolz-evidence/SKILL.md). See
+[optional evidence installation](#optional-evidence-installation) below.
+
+The v0.17 CI image is pinned to Node.js 22.22.2 on Alpine Linux; local release
 validation also runs on Windows. The retained v0.12
 installed-skill diagnostic used Codex CLI 0.153.4 with `gpt-5.6-sol` at `xhigh`
 reasoning. Claude Code 2.1.251 and Qwen Code 0.22.3 retain their exact
@@ -40,21 +45,21 @@ model, account, hook, MCP server, or GitLab credential.
 
 ## Verify the release artifact
 
-Download `stolz-ai-0.16.0.tgz` and its `.sha256` file from the release, then
+Download `stolz-ai-0.17.0.tgz` and its `.sha256` file from the release, then
 verify the checksum with the tool available on your operating system. Extract
 the archive, or install that exact local archive with npm:
 
 ```bash
-tar -xzf stolz-ai-0.16.0.tgz
+tar -xzf stolz-ai-0.17.0.tgz
 cd package
 node -p "require('./package.json').version"
 
 # From a consumer project, using the downloaded archive rather than a registry:
-npm install --save-dev /absolute/downloads/stolz-ai-0.16.0.tgz
+npm install --save-dev /absolute/downloads/stolz-ai-0.17.0.tgz
 npx --no-install stolz-profile resolve --runtime codex
 ```
 
-The version command must print `0.16.0`. The release inventory and checksum prove
+The version command must print `0.17.0`. The release inventory and checksum prove
 the bytes that were published; they do not prove runtime compatibility or
 token savings.
 
@@ -96,7 +101,7 @@ node tools/profile-cli.mjs install --runtime claude-code --destination /absolute
 
 The profile declarations for Claude Code and Qwen Code use project destinations
 `.claude/skills/` and `.qwen/skills/`. Codex installations must use the skills
-directory configured by the Codex environment; v0.16.0 does not guess a global
+directory configured by the Codex environment; v0.17.0 does not guess a global
 path.
 
 ## What installation proves
@@ -137,7 +142,7 @@ routed references is incomplete.
 
 ## Optional guard installation
 
-From the extracted v0.16.0 package or a reviewed source checkout, copy
+From the extracted v0.17.0 package or a reviewed source checkout, copy
 that complete directory into the skill directory configured for your runtime.
 For a project using Codex, run from the consumer project's directory:
 
@@ -170,7 +175,7 @@ remove this additional directory. Keep it separate from profile ownership,
 and update or remove its complete directory explicitly. Existing runtime
 certifications do not certify guard's security decisions.
 
-## External-operation waiting in v0.16.0
+## External-operation waiting in v0.17.0
 
 `stolz-quiet-state` can retain an external operation and the next step toward
 the original task. Its [handoff rules](../skills/stolz-quiet-state/references/handoff-and-continuation.md)
@@ -179,7 +184,7 @@ is included in the package, but a standalone skill copy need not include it.
 The host must supply scheduling and wake delivery; installation creates no
 watcher. A Desktop heartbeat fallback still invokes the model on each run.
 
-## Lifecycle commands in v0.16.0
+## Lifecycle commands in v0.17.0
 
 Every managed installation writes `install-manifest.json`. Version 4 records
 the package version, selected runtime and scope (`project` or `user`), and the
@@ -256,7 +261,7 @@ A model identifier is never compatibility evidence.
   stale. It must enter `recheck_required` and receive fresh exact-tuple evidence
   before it can be certified again.
 - An unknown runtime or version may still use the five provider-neutral skills
-if its host can load them, but v0.16.0 makes no runtime-certification promise
+if its host can load them, but v0.17.0 makes no runtime-certification promise
   for that environment.
 - A missing or insufficient capability requires the normal verified route. It
   never permits a weaker outcome or skipped check.
@@ -266,7 +271,7 @@ describing any measured result.
 
 ## Optional local Codex state
 
-Version 0.16.0 retains one explicit Node API for a local Codex workspace. It is
+Version 0.17.0 retains one explicit Node API for a local Codex workspace. It is
 not installed into a skill directory, does not alter profile lifecycle files,
 and does not begin polling. Call it only where the application owns the
 workspace and can provide complete input identities and verification records.
@@ -298,6 +303,46 @@ a package, an artifact upload, or another workspace. `recover()` removes
 abandoned temporary data and rechecks durable stores; it never turns a corrupt
 record into a reuse hit. `overhead()` reports the current local storage use and
 configured budget. It reports no token, cost, or saving estimate.
+
+## Optional evidence installation
+
+From version `0.17.0`, copy the complete
+`skills/stolz-evidence` directory from the extracted release archive to your
+chosen skills directory, preserving its `references/` files. Install it
+separately from the five managed profile skills; profile update, recovery and
+rollback do not manage this optional directory or project instructions.
+Preserve existing skills and open a new agent session afterward.
+
+For a short project rule that also applies when the detailed skill is not
+selected, run this separate helper from the extracted release package:
+
+```bash
+node tools/evidence-instructions.mjs --project-root /absolute/project --runtime codex
+# Review the rule and target in the dry-run output; write only when wanted.
+node tools/evidence-instructions.mjs --project-root /absolute/project --runtime codex --apply
+# Remove the unchanged STOLZ block when no longer wanted.
+node tools/evidence-instructions.mjs --project-root /absolute/project --runtime codex --disable --apply
+```
+
+Use `claude-code` or `qwen-code` for those runtime adapters. The helper chooses
+project-root `AGENTS.md`, `CLAUDE.md` or `QWEN.md`, respectively. It preserves
+existing UTF-8 content, refuses symlink targets and conflicting STOLZ markers,
+and requires an existing absolute project directory. An optional
+`--expected-sha256` value from a dry run rejects a changed existing file; use
+`--expected-sha256 absent` when the reviewed target did not exist.
+`--disable` removes only the unchanged managed rule; an initially created
+instruction file can remain empty. The helper does not install a skill, edit
+global settings or start a host session. Its lock coordinates helper calls,
+not unrelated editors; avoid editing the target while applying a merge.
+
+These are documented project instruction locations:
+[Codex AGENTS.md](https://learn.chatgpt.com/docs/agent-configuration/agents-md),
+[Claude Code memory](https://code.claude.com/docs/en/memory), and
+[Qwen Code memory](https://qwenlm.github.io/qwen-code-docs/en/users/features/memory/).
+Configured exclusions, instruction precedence or context limits can affect
+loading. Verify the effective instructions in your actual runtime. The helper
+returns `discovery_verified: false`; file creation alone does not certify native
+discovery, adherence or new runtime compatibility.
 
 ## Real pilots
 

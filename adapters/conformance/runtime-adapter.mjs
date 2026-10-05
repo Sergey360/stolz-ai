@@ -4,6 +4,8 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { promisify } from 'node:util';
 import { commandIdentity, selectSafeRoute } from '../../tools/foundation.mjs';
+import { selectRoutedSkill } from '../../tools/routed-skills.mjs';
+import { mergeEvidenceInstructions as mergeInstructions } from '../../tools/evidence-instructions.mjs';
 
 const execFileAsync = promisify(execFile);
 
@@ -42,6 +44,7 @@ export function createRuntimeAdapter({ adapter_id, runtime_id, runtime_version, 
   function createLazyResolver(loadAdapter = () => Promise.resolve({ declaration })) {
     let adapterPromise = null;
     return async function resolveAdapter({ concern, profile, trigger } = {}) {
+      if (concern === 'evidence') return selectRoutedSkill({ concern });
       const expectedTrigger = 'runtime-capability:artifact_identity';
       if (concern !== 'context') return { route: 'provider-neutral', reason: 'unknown_concern' };
       if (profile?.agent_runtime?.id !== runtime_id || profile?.adapter?.adapter_id !== adapter_id || profile?.adapter?.resolution !== 'lazy') return { route: 'provider-neutral', reason: 'adapter_unavailable' };
@@ -57,5 +60,6 @@ export function createRuntimeAdapter({ adapter_id, runtime_id, runtime_version, 
   async function captureEvidence() {
     return { status: 'unavailable', reason: `${adapter_id} runtime telemetry is withheld until G5` };
   }
-  return Object.freeze({ declaration, identifyArtifact, executeArgv, readDurableState, writeDurableState, createLazyResolver, captureEvidence });
+  return Object.freeze({ declaration, identifyArtifact, executeArgv, readDurableState, writeDurableState, createLazyResolver, captureEvidence,
+    mergeEvidenceInstructions: (options) => mergeInstructions({ ...options, runtime: runtime_id }) });
 }
