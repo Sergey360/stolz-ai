@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "package_version": "0.17.0",
+  "platform": "win32",
+  "arch": "x64",
+  "node_version": "v22.22.2",
+  "scenarios": [
+    "separate_guard_installation",
+    "separate_evidence_installation",
+    "explicit_evidence_project_rule_roundtrip",
+    "clean_install",
+    "doctor_environment_and_adapter",
+    "team_lock_and_drift_exit",
+    "v0.15_owned_update",
+    "interrupted_update_recovery",
+    "local_change_rollback_conflict",
+    "rollback_to_v0.15",
+    "explicit_codex_local_state",
+    "route_instruction_update_and_rollback"
+  ]
+}

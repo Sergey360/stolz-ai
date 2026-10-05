@@ -146,3 +146,13 @@ npm run benchmark:check
 
 לפני פתיחת שינוי, קראו את [Contributing](../CONTRIBUTING.md). הרישיון וההודעות
 המשפטיות נמצאים ב-[LICENSE](../LICENSE) וב-[NOTICE](../NOTICE).
+
+## ניתוח מקורות ב־v0.17.0
+
+גרסה `0.17.0` כוללת שבע מיומנויות:
+חמש מיומנויות אופטימיזציה מנוהלות, guard אופציונלי ו־
+[`stolz-evidence`](../skills/stolz-evidence/SKILL.md).
+Evidence מפריד בין החומר שנקרא בפועל, מסקנות מבוססות ודרישות פתוחות,
+גם בתיקון טענות ובהעברת משימה. הוא משתמש במזהי context ו־reuse הקיימים.
+התהליך אינו מבטיח אמת או הפעלה אוטומטית. ההתקנה נפרדת וניתן להוסיף
+[כלל פרויקט קצר](installation.md#optional-evidence-installation).

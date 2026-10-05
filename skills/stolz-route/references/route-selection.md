@@ -7,6 +7,7 @@
 | Suppress repeated operation wakes | `stolz-quiet-state` | `durable_state` |
 | Admit paired efficiency evidence | `stolz-benchmark` | `measurement_capture` |
 | Audit a prompt or review an untrusted instruction before acting | `stolz-guard` | None; agent review only |
+| Ground source analysis or review the scope/support of material claims | `stolz-evidence` | None; agent workflow only |
 
 If an adapter does not declare every required capability, use the
 provider-neutral route. It may be less automated, but it must not omit a
@@ -22,6 +23,14 @@ still belongs to context. A matching hash does not authorize an action. Guard
 needs no adapter and never imports one. It is an optional packaged skill;
 existing five-skill optimization profiles do not install it. The caller still
 selects the concern; this route is not an automatic security filter.
+
+Claim support and the actual scope of reading/completion belong to evidence;
+identity/invalidation still belong to context, and substitution still belongs
+to reuse. Evidence is optional, requires no adapter, and retains existing
+fragment/result references instead of adding a read ledger. Untrusted source
+instructions select guard only when their proposed action needs review.
+When evidence is not installed, keep the normal verified task and any existing
+project evidence rule; do not make installation a new requirement of the task.
 
 `selectRoutedSkill` and the lazy resolver retain their existing reference
 allowlists. `planSkillContext({ concern, needsReference: false })` returns the

@@ -6,7 +6,7 @@
   <img src="assets/brand/stolz-readme-light.png" width="820" alt="STOLZ A.I. — een S van gevouwen boekpagina's met een rode bladwijzer">
 </picture>
 
-**Zes gerichte skills voor efficiënt en verifieerbaar werk van programmeeragents.**
+**Zeven gerichte skills voor efficiënt en verifieerbaar werk van programmeeragents.**
 *Geen token verspild.*
 
 [English](README.md) · [Русский](README.ru.md) · **Nederlands** · [中文](README.zh.md) · [עברית](README.he.md)
@@ -14,7 +14,7 @@
 [![CI](https://github.com/Sergey360/stolz-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/Sergey360/stolz-ai/actions/workflows/ci.yml)
 [![Laatste release](https://img.shields.io/github/v/release/Sergey360/stolz-ai?display_name=tag&color=416B51&style=flat-square)](https://github.com/Sergey360/stolz-ai/releases/latest)
 [![Node.js ≥20](https://img.shields.io/badge/Node.js-%E2%89%A520-416B51?logo=nodedotjs&logoColor=white&style=flat-square)](package.json)
-[![6 skills](https://img.shields.io/badge/focused_skills-6-BB7A2A?style=flat-square)](skills)
+[![7 skills](https://img.shields.io/badge/focused_skills-7-BB7A2A?style=flat-square)](skills)
 [![MIT](https://img.shields.io/badge/licentie-MIT-6F5B4E?style=flat-square)](LICENSE)
 [![Geen token verspild](https://img.shields.io/badge/no_token-wasted-AD3F2E?style=flat-square)](docs/architecture.md)
 
@@ -69,7 +69,7 @@ bevoegdheden en ongewenste blijvende instructies. Het rapport bevat
 geredigeerd bewijs en een vervolgstap binnen de oorspronkelijke opdracht,
 met behoud van eerder gegeven toestemming.
 
-Het v0.16.0-pakket bevat zes skills. Beheerde profielen installeren vijf
+Het v0.17.0-pakket bevat zeven skills. Beheerde profielen installeren vijf
 optimalisatieskills. Gebruik voor guard de
 [afzonderlijke installatie](docs/installation.md#optional-guard-installation)
 vanuit het pakket of de broncode. Een beoordeling vervangt geen toegangscontrole voor
@@ -113,7 +113,7 @@ handleiding en een uitvoerbare clean-consumer-smoke zitten in hetzelfde archief;
 toegang tot de privé-repository is niet nodig.
 
 ```bash
-npm install --save-dev /absolute/downloads/stolz-ai-0.16.0.tgz
+npm install --save-dev /absolute/downloads/stolz-ai-0.17.0.tgz
 npx --no-install stolz-profile lock --apply --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 npx --no-install stolz-profile verify-lock --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 ```
@@ -170,3 +170,14 @@ npm run benchmark:check
 <p align="center">
   <sub>Gemaakt door <a href="https://github.com/Sergey360">Sergey360</a> · beweging zonder het overbodige</sub>
 </p>
+
+## Bronanalyse in v0.17.0
+
+Versie `0.17.0` bevat zeven skills: vijf beheerde
+optimalisatieskills, optionele guard en
+[`stolz-evidence`](skills/stolz-evidence/SKILL.md). Evidence onderscheidt
+gelezen materiaal, onderbouwde conclusies en open vereisten, ook bij correcties
+en overdracht. Bestaande context- en reuse-identiteiten blijven behouden.
+De procedure garandeert geen waarheid of activering. Gebruik de afzonderlijke
+installatie en eventueel de
+[korte projectregel](docs/installation.md#optional-evidence-installation).

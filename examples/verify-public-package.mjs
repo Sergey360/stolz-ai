@@ -10,6 +10,7 @@ import { fileURLToPath } from 'node:url';
 import { openCodexLocalState } from '../tools/codex-local-state.mjs';
 import { applyUpdate, createInstallManifest } from '../tools/profile-lifecycle.mjs';
 import { resolveProfile } from '../tools/profile-resolver.mjs';
+import { mergeEvidenceInstructions } from '../tools/evidence-instructions.mjs';
 
 const execFileAsync = promisify(execFile);
 const packageRoot = dirname(dirname(fileURLToPath(import.meta.url)));
@@ -28,7 +29,7 @@ async function cli(args, expectedExitCode = 0) {
 
 async function main() {
   const pkg = JSON.parse(await readFile(join(packageRoot, 'package.json'), 'utf8'));
-  assert.equal(pkg.version, '0.16.0');
+  assert.equal(pkg.version, '0.17.0');
   for (const path of [
     'docs/architecture.md',
     'docs/benchmarking.md',
@@ -49,9 +50,24 @@ async function main() {
       assert.deepEqual(await readFile(join(guardDestination, path)), await readFile(join(packageRoot, 'skills', 'stolz-guard', path)));
     }
 
+    const evidenceDestination = join(root, '.agents', 'skills', 'stolz-evidence');
+    await cp(join(packageRoot, 'skills', 'stolz-evidence'), evidenceDestination, { recursive: true, errorOnExist: true });
+    for (const path of ['SKILL.md', 'references/coverage-record.md', 'references/claim-review.md', 'references/behavioral-evaluation.md']) {
+      assert.deepEqual(await readFile(join(evidenceDestination, path)), await readFile(join(packageRoot, 'skills', 'stolz-evidence', path)));
+    }
+    const instructions = join(root, 'QWEN.md');
+    const originalInstructions = 'Run project checks before reporting completion.\n';
+    await writeFile(instructions, originalInstructions);
+    const evidencePlan = await mergeEvidenceInstructions({ projectRoot: root, runtime: 'qwen-code' });
+    assert.equal(await readFile(instructions, 'utf8'), originalInstructions);
+    await mergeEvidenceInstructions({ projectRoot: root, runtime: 'qwen-code', apply: true, expectedSha256: evidencePlan.before_sha256 });
+    assert.ok((await readFile(instructions, 'utf8')).startsWith(originalInstructions));
+    await mergeEvidenceInstructions({ projectRoot: root, runtime: 'qwen-code', apply: true, action: 'disable' });
+    assert.equal(await readFile(instructions, 'utf8'), originalInstructions);
+
     const installed = await cli(['install', '--runtime', 'qwen-code', '--destination', destination, '--scope', 'project']);
     assert.equal(installed.format_version, '1.0');
-    assert.equal(installed.install.manifest.package.version, '0.16.0');
+    assert.equal(installed.install.manifest.package.version, '0.17.0');
 
     const unknownEnvironment = await cli(['doctor', '--runtime', 'qwen-code', '--destination', destination]);
     assert.equal(unknownEnvironment.environment.runtime_version_state, 'runtime_version_not_reported');
@@ -116,7 +132,7 @@ async function main() {
     const updated = await cli(['update', '--apply', '--runtime', 'qwen-code', '--destination', destination]);
     assert.equal(updated.applied, true);
     assert.equal(updated.plan.current_package.version, '0.15.0');
-    assert.equal(updated.plan.target_package.version, '0.16.0');
+    assert.equal(updated.plan.target_package.version, '0.17.0');
     assert.match(await readFile(join(destination, updatedRoutePath), 'utf8'), /stolz-guard/);
 
     const installedSkill = join(destination, 'stolz-context', 'SKILL.md');
@@ -141,6 +157,8 @@ async function main() {
       node_version: process.version,
       scenarios: [
         'separate_guard_installation',
+        'separate_evidence_installation',
+        'explicit_evidence_project_rule_roundtrip',
         'clean_install',
         'doctor_environment_and_adapter',
         'team_lock_and_drift_exit',

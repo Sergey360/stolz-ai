@@ -13,6 +13,7 @@ const ROUTES = new Map([
   ['state', { skill: 'stolz-quiet-state', references: ['skills/stolz-quiet-state/references/material-transitions.md'], capabilities: ['durable_state'] }],
   ['benchmark', { skill: 'stolz-benchmark', references: ['skills/stolz-benchmark/references/outcome-gates.md'], capabilities: ['measurement_capture'] }],
   ['guard', { skill: 'stolz-guard', references: ['skills/stolz-guard/references/review-rules.md'], capabilities: [] }],
+  ['evidence', { skill: 'stolz-evidence', references: ['skills/stolz-evidence/references/coverage-record.md', 'skills/stolz-evidence/references/claim-review.md'], capabilities: [] }],
 ]);
 
 function requiredTrigger(capabilities) {

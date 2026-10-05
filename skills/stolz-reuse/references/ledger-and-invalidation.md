@@ -7,3 +7,7 @@
   safe identity format.
 - A waiting coalesced caller receives the controller result and its evidence;
   it does not run a competing operation.
+- Keep the prior result's producer, inspected scope, supporting evidence and
+  gaps when using it for analysis or reporting. Verified reuse proves the
+  admitted result/identity, not new personal reading or completed downstream
+  work. A repeated summary cannot strengthen its original claim support.

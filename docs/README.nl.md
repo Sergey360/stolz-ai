@@ -162,3 +162,14 @@ npm run benchmark:check
 Lees [Contributing](../CONTRIBUTING.md) voordat je een wijziging opent. De
 licentie en juridische kennisgevingen staan in [LICENSE](../LICENSE) en
 [NOTICE](../NOTICE).
+
+## Bronanalyse in v0.17.0
+
+Versie `0.17.0` bevat zeven skills: vijf beheerde
+optimalisatieskills, optionele guard en
+[`stolz-evidence`](../skills/stolz-evidence/SKILL.md). Evidence onderscheidt
+gelezen materiaal, onderbouwde conclusies en open vereisten, ook bij correcties
+en overdracht. Bestaande context- en reuse-identiteiten blijven behouden.
+De procedure garandeert geen waarheid of activering. Gebruik de afzonderlijke
+installatie en eventueel de
+[korte projectregel](installation.md#optional-evidence-installation).
