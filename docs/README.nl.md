@@ -173,3 +173,12 @@ en overdracht. Bestaande context- en reuse-identiteiten blijven behouden.
 De procedure garandeert geen waarheid of activering. Gebruik de afzonderlijke
 installatie en eventueel de
 [korte projectregel](installation.md#optional-evidence-installation).
+
+## Browserwerk in v0.18.0
+
+De optionele [`stolz-browser`](../skills/stolz-browser/SKILL.md) ondersteunt hergebruik
+en eigendom van tabs, opeenvolgende lifecycle-acties en herstelbeslissingen.
+De gekozen browser en noodzakelijke UI-controles blijven behouden. Gewoon
+zoeken op het web vereist deze skill niet. De eerste scope is Codex Desktop;
+crashpreventie en tokenbesparing zijn niet aangetoond. Installeer de volledige
+map met [de aparte instructies](installation.md#optional-browser-installation).

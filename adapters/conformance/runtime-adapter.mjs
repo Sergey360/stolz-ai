@@ -44,7 +44,7 @@ export function createRuntimeAdapter({ adapter_id, runtime_id, runtime_version, 
   function createLazyResolver(loadAdapter = () => Promise.resolve({ declaration })) {
     let adapterPromise = null;
     return async function resolveAdapter({ concern, profile, trigger } = {}) {
-      if (concern === 'evidence') return selectRoutedSkill({ concern });
+      if (concern === 'evidence' || concern === 'browser') return selectRoutedSkill({ concern });
       const expectedTrigger = 'runtime-capability:artifact_identity';
       if (concern !== 'context') return { route: 'provider-neutral', reason: 'unknown_concern' };
       if (profile?.agent_runtime?.id !== runtime_id || profile?.adapter?.adapter_id !== adapter_id || profile?.adapter?.resolution !== 'lazy') return { route: 'provider-neutral', reason: 'adapter_unavailable' };

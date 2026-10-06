@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "predecessor": "0.17.0",
+  "current": "0.18.0",
+  "platform": "win32",
+  "node_version": "v22.22.2",
+  "scenarios": [
+    "actual_archive_install",
+    "interrupted_update_recovery",
+    "actual_predecessor_update",
+    "changed_route_instruction",
+    "separate_browser_install",
+    "actual_predecessor_rollback",
+    "manual_browser_preserved",
+    "manual_guard_preserved",
+    "foreign_file_preserved"
+  ]
+}

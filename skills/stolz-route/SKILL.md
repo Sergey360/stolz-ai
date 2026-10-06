@@ -16,6 +16,9 @@ Requested source analysis or a substantial claim/completion review selects
 `stolz-evidence` when installed. Ordinary browsing does not require a coverage
 ledger; an unavailable optional skill preserves the normal verified task.
 
+Controlled tab creation, navigation, closure or browser-session recovery
+selects optional `stolz-browser`. Ordinary web search does not select it.
+
 Load [route selection rules](references/route-selection.md) only to resolve an
 overlap or missing capability. Load the chosen skill; its reference remains
 conditional. Missing adapter support falls back with verification intact.

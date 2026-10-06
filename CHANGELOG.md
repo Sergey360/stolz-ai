@@ -3,6 +3,18 @@
 All notable changes to STOLZ A.I. are recorded here. Releases follow the
 repository's immutable-tag policy; unpublished work is not a release.
 
+## [0.18.0] - 2026-10-06
+
+- Add optional `stolz-browser` for controlled tab reuse, ownership, serialized
+  lifecycle operations and recovery decisions. Keep ordinary web search outside
+  its trigger and the five managed optimization profiles unchanged.
+- Keep the short root and conditional lifecycle/Desktop references together
+  for standalone installation, without personal paths, chat identifiers,
+  incident artifacts or a dependency on a separately installed recovery skill.
+- Extend caller-driven instruction planning and public-package privacy checks.
+  This instruction release adds no browser controller, native crash-prevention
+  guarantee, runtime certification or savings claim.
+
 ## [0.17.0] - 2026-10-05
 
 ### Added

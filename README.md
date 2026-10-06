@@ -14,7 +14,7 @@
 [![CI](https://github.com/Sergey360/stolz-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/Sergey360/stolz-ai/actions/workflows/ci.yml)
 [![Latest release](https://img.shields.io/github/v/release/Sergey360/stolz-ai?display_name=tag&color=416B51&style=flat-square)](https://github.com/Sergey360/stolz-ai/releases/latest)
 [![Node.js ≥20](https://img.shields.io/badge/Node.js-%E2%89%A520-416B51?logo=nodedotjs&logoColor=white&style=flat-square)](package.json)
-[![7 skills](https://img.shields.io/badge/focused_skills-7-BB7A2A?style=flat-square)](skills)
+[![8 skills](https://img.shields.io/badge/focused_skills-8-BB7A2A?style=flat-square)](skills)
 [![MIT](https://img.shields.io/badge/license-MIT-6F5B4E?style=flat-square)](LICENSE)
 [![No token wasted](https://img.shields.io/badge/no_token-wasted-AD3F2E?style=flat-square)](docs/architecture.md)
 
@@ -44,8 +44,8 @@ outside the model.
 It does not make a model think less. It helps it waste less—without replacing
 correctness, verification, or reliability with a cheaper shortcut.
 
-The package contains five optimization skills, optional instruction-security
-and source-analysis skills, profiles, lazy adapters, evidence
+The package contains five optimization skills, optional instruction-security, source-analysis
+and browser-workflow skills, profiles, lazy adapters, evidence
 records, and one opt-in local Codex state entry point. Installing skills does
 not start a daemon, shared cache, durable state store, or automatic polling
 controller. Local state exists only after an application explicitly opens it.
@@ -58,7 +58,7 @@ character's initials and artificial intelligence.
 
 ## What stays under control
 
-- **Seven focused skills.** Guard and evidence are installed separately.
+- **Eight focused skills.** Guard, evidence and browser are installed separately.
 - **Verified reuse.** Reuse requires matching, fresh identities and prior
   verification.
 - **Safe fallbacks.** A missing capability never weakens the required outcome
@@ -114,7 +114,7 @@ persistent-context abuse, with redacted evidence and a scoped continuation.
 It respects existing user authorization and loads detailed rules only when
 needed. Ordinary source reads do not trigger it.
 
-The v0.17.0 package contains seven skill directories. Managed optimization
+The v0.18.0 package contains eight skill directories. Managed optimization
 profiles still install five skills; install guard separately using
 [the manual instructions](docs/installation.md#optional-guard-installation).
 A review does not enforce tool permissions or guarantee attack detection.
@@ -143,7 +143,7 @@ the setup guides and an executable clean-consumer smoke; no private repository
 is required.
 
 ```bash
-npm install --save-dev /absolute/downloads/stolz-ai-0.17.0.tgz
+npm install --save-dev /absolute/downloads/stolz-ai-0.18.0.tgz
 npx --no-install stolz-profile lock --apply --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 npx --no-install stolz-profile verify-lock --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 ```
@@ -265,3 +265,12 @@ and handoffs. It uses existing context and reuse identities. It does not enforce
 truthfulness or guarantee activation. Install it separately; the
 [optional project rule](docs/installation.md#optional-evidence-installation)
 can retain the short procedure when the detailed skill is not selected.
+
+## Controlled browser workflow in v0.18.0
+
+Optional [`stolz-browser`](skills/stolz-browser/SKILL.md) guides tab reuse, ownership,
+sequential lifecycle operations and recovery decisions. It preserves the
+selected browser and necessary UI checks. Ordinary web search needs no browser
+workflow. The initial scope is Codex Desktop guidance; it adds no browser
+controller, crash-prevention guarantee or savings claim. Install the complete
+directory separately using [the browser instructions](docs/installation.md#optional-browser-installation).

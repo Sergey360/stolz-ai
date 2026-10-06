@@ -152,3 +152,10 @@ Evidence 区分实际阅读范围、有依据的结论和未完成的要求，�
 交接任务时保留这些信息。它沿用现有 context 和 reuse 标识。
 该流程不保证真实性或自动激活。请单独安装，按需启用
 [简短项目规则](installation.md#optional-evidence-installation)。
+
+## v0.18.0 浏览器工作流程
+
+可选的 [`stolz-browser`](../skills/stolz-browser/SKILL.md) 提供标签页复用、归属判断、
+顺序执行生命周期操作和恢复决策的指导。它保留用户选择的浏览器及必要的界面检查。
+普通网页搜索不需要此技能。初始适用范围为 Codex Desktop；尚无防止崩溃或节省
+令牌的证据。请按[单独安装说明](installation.md#optional-browser-installation)复制完整的技能目录。

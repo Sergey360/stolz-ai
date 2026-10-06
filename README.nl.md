@@ -6,7 +6,7 @@
   <img src="assets/brand/stolz-readme-light.png" width="820" alt="STOLZ A.I. — een S van gevouwen boekpagina's met een rode bladwijzer">
 </picture>
 
-**Zeven gerichte skills voor efficiënt en verifieerbaar werk van programmeeragents.**
+**Acht gerichte skills voor efficiënt en verifieerbaar werk van programmeeragents.**
 *Geen token verspild.*
 
 [English](README.md) · [Русский](README.ru.md) · **Nederlands** · [中文](README.zh.md) · [עברית](README.he.md)
@@ -14,7 +14,7 @@
 [![CI](https://github.com/Sergey360/stolz-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/Sergey360/stolz-ai/actions/workflows/ci.yml)
 [![Laatste release](https://img.shields.io/github/v/release/Sergey360/stolz-ai?display_name=tag&color=416B51&style=flat-square)](https://github.com/Sergey360/stolz-ai/releases/latest)
 [![Node.js ≥20](https://img.shields.io/badge/Node.js-%E2%89%A520-416B51?logo=nodedotjs&logoColor=white&style=flat-square)](package.json)
-[![7 skills](https://img.shields.io/badge/focused_skills-7-BB7A2A?style=flat-square)](skills)
+[![8 skills](https://img.shields.io/badge/focused_skills-8-BB7A2A?style=flat-square)](skills)
 [![MIT](https://img.shields.io/badge/licentie-MIT-6F5B4E?style=flat-square)](LICENSE)
 [![Geen token verspild](https://img.shields.io/badge/no_token-wasted-AD3F2E?style=flat-square)](docs/architecture.md)
 
@@ -69,7 +69,7 @@ bevoegdheden en ongewenste blijvende instructies. Het rapport bevat
 geredigeerd bewijs en een vervolgstap binnen de oorspronkelijke opdracht,
 met behoud van eerder gegeven toestemming.
 
-Het v0.17.0-pakket bevat zeven skills. Beheerde profielen installeren vijf
+Het v0.18.0-pakket bevat acht skills. Beheerde profielen installeren vijf
 optimalisatieskills. Gebruik voor guard de
 [afzonderlijke installatie](docs/installation.md#optional-guard-installation)
 vanuit het pakket of de broncode. Een beoordeling vervangt geen toegangscontrole voor
@@ -113,7 +113,7 @@ handleiding en een uitvoerbare clean-consumer-smoke zitten in hetzelfde archief;
 toegang tot de privé-repository is niet nodig.
 
 ```bash
-npm install --save-dev /absolute/downloads/stolz-ai-0.17.0.tgz
+npm install --save-dev /absolute/downloads/stolz-ai-0.18.0.tgz
 npx --no-install stolz-profile lock --apply --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 npx --no-install stolz-profile verify-lock --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 ```
@@ -181,3 +181,12 @@ en overdracht. Bestaande context- en reuse-identiteiten blijven behouden.
 De procedure garandeert geen waarheid of activering. Gebruik de afzonderlijke
 installatie en eventueel de
 [korte projectregel](docs/installation.md#optional-evidence-installation).
+
+## Browserwerk in v0.18.0
+
+De optionele [`stolz-browser`](skills/stolz-browser/SKILL.md) ondersteunt hergebruik
+en eigendom van tabs, opeenvolgende lifecycle-acties en herstelbeslissingen.
+De gekozen browser en noodzakelijke UI-controles blijven behouden. Gewoon
+zoeken op het web vereist deze skill niet. De eerste scope is Codex Desktop;
+crashpreventie en tokenbesparing zijn niet aangetoond. Installeer de volledige
+map met [de aparte instructies](docs/installation.md#optional-browser-installation).

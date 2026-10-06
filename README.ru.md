@@ -6,7 +6,7 @@
   <img src="assets/brand/stolz-readme-light.png" width="820" alt="STOLZ A.I. — буква S из сложенных книжных страниц с красной закладкой">
 </picture>
 
-**Семь точечных навыков для рациональной и проверяемой работы AI-агентов.**
+**Восемь точечных навыков для рациональной и проверяемой работы AI-агентов.**
 *Ни одного лишнего токена.*
 
 [English](README.md) · **Русский** · [Nederlands](README.nl.md) · [中文](README.zh.md) · [עברית](README.he.md)
@@ -14,7 +14,7 @@
 [![CI](https://github.com/Sergey360/stolz-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/Sergey360/stolz-ai/actions/workflows/ci.yml)
 [![Последний релиз](https://img.shields.io/github/v/release/Sergey360/stolz-ai?display_name=tag&color=416B51&style=flat-square)](https://github.com/Sergey360/stolz-ai/releases/latest)
 [![Node.js ≥20](https://img.shields.io/badge/Node.js-%E2%89%A520-416B51?logo=nodedotjs&logoColor=white&style=flat-square)](package.json)
-[![7 навыков](https://img.shields.io/badge/focused_skills-7-BB7A2A?style=flat-square)](skills)
+[![8 навыков](https://img.shields.io/badge/focused_skills-8-BB7A2A?style=flat-square)](skills)
 [![MIT](https://img.shields.io/badge/license-MIT-6F5B4E?style=flat-square)](LICENSE)
 [![Ни одного токена впустую](https://img.shields.io/badge/no_token-wasted-AD3F2E?style=flat-square)](docs/architecture.md)
 
@@ -69,7 +69,7 @@ STOLZ A.I. содержит пять навыков оптимизации дл�
 основание риска без секретных значений и следующий шаг по исходной задаче.
 Уже выданные пользователем разрешения учитываются.
 
-Пакет v0.17.0 содержит семь навыков. Установка через профиль копирует пять
+Пакет v0.18.0 содержит восемь навыков. Установка через профиль копирует пять
 навыков оптимизации. Для guard предусмотрена
 [отдельная установка](docs/installation.md#optional-guard-installation)
 из пакета или исходников. Проверка не заменяет ограничения доступа к инструментам
@@ -117,7 +117,7 @@ cp -R ../stolz-ai/skills/stolz-* .agents/skills/
 приватному репозиторию не нужен.
 
 ```bash
-npm install --save-dev /absolute/downloads/stolz-ai-0.17.0.tgz
+npm install --save-dev /absolute/downloads/stolz-ai-0.18.0.tgz
 npx --no-install stolz-profile lock --apply --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 npx --no-install stolz-profile verify-lock --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 ```
@@ -188,3 +188,13 @@ npm run benchmark:check
 Предусмотрены отдельная установка и
 [короткое проектное правило](docs/installation.md#optional-evidence-installation)
 на случай, когда подробный навык не выбран.
+
+## Работа с вкладками в v0.18.0
+
+Необязательный [`stolz-browser`](skills/stolz-browser/SKILL.md) помогает повторно
+использовать вкладки, учитывать их принадлежность и последовательно выполнять
+операции с ними. Он сохраняет выбранный браузер и необходимые проверки
+интерфейса. Обычный поиск в интернете не требует этого навыка. Начальная область
+применения — Codex Desktop; предотвращение падений и экономия токенов не
+подтверждены. Установите каталог навыка целиком по
+[отдельной инструкции](docs/installation.md#optional-browser-installation).
