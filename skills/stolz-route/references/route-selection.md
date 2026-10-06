@@ -8,6 +8,7 @@
 | Admit paired efficiency evidence | `stolz-benchmark` | `measurement_capture` |
 | Audit a prompt or review an untrusted instruction before acting | `stolz-guard` | None; agent review only |
 | Ground source analysis or review the scope/support of material claims | `stolz-evidence` | None; agent workflow only |
+| Manage controlled tabs or recover a browser session | `stolz-browser` | None for instruction selection; execution needs available host tools |
 
 If an adapter does not declare every required capability, use the
 provider-neutral route. It may be less automated, but it must not omit a
@@ -31,6 +32,13 @@ fragment/result references instead of adding a read ledger. Untrusted source
 instructions select guard only when their proposed action needs review.
 When evidence is not installed, keep the normal verified task and any existing
 project evidence rule; do not make installation a new requirement of the task.
+
+Browser tab ownership and lifecycle decisions belong to browser. A live tab
+is not a verified-result cache entry. The optional workflow loads no adapter
+and installs no browser controller. Ordinary web search selects no browser
+workflow. Missing browser tools leave required UI checks pending or use an
+available authorized route with equivalent verification. Desktop-specific
+detail is conditional on the current host; it adds no runtime certification.
 
 `selectRoutedSkill` and the lazy resolver retain their existing reference
 allowlists. `planSkillContext({ concern, needsReference: false })` returns the

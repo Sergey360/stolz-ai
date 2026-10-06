@@ -1,7 +1,7 @@
 # Architecture and exact capability matrix
 
-STOLZ A.I. v0.17.0 exposes five optimization skills, optional `stolz-guard`
-and `stolz-evidence`, a
+STOLZ A.I. v0.18.0 exposes five optimization skills, optional `stolz-guard`,
+`stolz-evidence` and `stolz-browser`, a
 profile resolver and installer, runtime profiles and lazy adapters, sanitized
 evidence records, and the explicit `codex-local-state` entry point. It uses
 one runtime dependency (`ajv`) only to validate the versioned local contracts.
@@ -21,6 +21,14 @@ not a second read ledger or proof of understanding. The `evidence` route needs
 no adapter. A separate explicit project-rule merge can add a short fallback
 instruction without selecting the skill. Managed profiles, local-state API
 and historical runtime certification remain unchanged.
+
+Version `0.18.0` adds optional `stolz-browser` for controlled tab ownership,
+reuse, lifecycle operations and recovery decisions. Its short root loads tab
+lifecycle rules before those operations and Desktop-specific detail only on
+a relevant host. The complete skill directory is independently installable;
+it needs no sibling adapter or personal recovery skill. The initial scope is
+Codex Desktop workflow guidance. No native browser controller, cross-runtime
+browser certification, crash-prevention evidence or savings claim is added.
 
 1. **Skills.** `stolz-route`, `stolz-context`, `stolz-reuse`,
    `stolz-quiet-state`, and `stolz-benchmark` define focused agent behavior.
@@ -70,6 +78,27 @@ or storage exhaustion is a miss or unavailable result with
 
 The package documents the stable API only; its internal implementations,
 helper paths, and on-disk records are not compatibility promises.
+
+## Optional browser workflow
+
+`concern: 'browser'` selects instructions without importing a runtime adapter.
+`planSkillContext({ concern: 'browser', needsReference: true })` adds only the
+tab lifecycle reference. The caller may explicitly supply
+`browserHost: 'codex-desktop'` to add the conditional Desktop reference.
+The root stays the only read when `needsReference` is false. This host label
+selects documentation; it does not discover browser tools or certify access.
+
+Execution requires the host's current documented tools. Ordinary web search
+does not select this workflow. Suitable task-owned or explicitly selected
+tabs may be reused; borrowed tabs require closure authority. Fresh observations
+reconcile handles after interruption and ambiguous close results. Workflow
+selection across runtimes is not execution certification across runtimes.
+
+The public-package guard checks credential-like values, personal local paths,
+Desktop thread identifiers and native crash-artifact identifiers. Its output
+names affected files and classes without echoing the matched values. These
+checks are bounded detectors, not a guarantee that every possible private
+detail will be recognized.
 
 ## Optional instruction-security review
 

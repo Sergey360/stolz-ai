@@ -29,7 +29,7 @@ async function cli(args, expectedExitCode = 0) {
 
 async function main() {
   const pkg = JSON.parse(await readFile(join(packageRoot, 'package.json'), 'utf8'));
-  assert.equal(pkg.version, '0.17.0');
+  assert.equal(pkg.version, '0.18.0');
   for (const path of [
     'docs/architecture.md',
     'docs/benchmarking.md',
@@ -56,6 +56,11 @@ async function main() {
       assert.deepEqual(await readFile(join(evidenceDestination, path)), await readFile(join(packageRoot, 'skills', 'stolz-evidence', path)));
     }
     const instructions = join(root, 'QWEN.md');
+    const browserDestination = join(root, '.agents', 'skills', 'stolz-browser');
+    await cp(join(packageRoot, 'skills', 'stolz-browser'), browserDestination, { recursive: true, errorOnExist: true });
+    for (const path of ['SKILL.md', 'references/tab-lifecycle.md', 'references/codex-desktop.md']) {
+      assert.deepEqual(await readFile(join(browserDestination, path)), await readFile(join(packageRoot, 'skills', 'stolz-browser', path)));
+    }
     const originalInstructions = 'Run project checks before reporting completion.\n';
     await writeFile(instructions, originalInstructions);
     const evidencePlan = await mergeEvidenceInstructions({ projectRoot: root, runtime: 'qwen-code' });
@@ -67,7 +72,7 @@ async function main() {
 
     const installed = await cli(['install', '--runtime', 'qwen-code', '--destination', destination, '--scope', 'project']);
     assert.equal(installed.format_version, '1.0');
-    assert.equal(installed.install.manifest.package.version, '0.17.0');
+    assert.equal(installed.install.manifest.package.version, '0.18.0');
 
     const unknownEnvironment = await cli(['doctor', '--runtime', 'qwen-code', '--destination', destination]);
     assert.equal(unknownEnvironment.environment.runtime_version_state, 'runtime_version_not_reported');
@@ -132,7 +137,7 @@ async function main() {
     const updated = await cli(['update', '--apply', '--runtime', 'qwen-code', '--destination', destination]);
     assert.equal(updated.applied, true);
     assert.equal(updated.plan.current_package.version, '0.15.0');
-    assert.equal(updated.plan.target_package.version, '0.17.0');
+    assert.equal(updated.plan.target_package.version, '0.18.0');
     assert.match(await readFile(join(destination, updatedRoutePath), 'utf8'), /stolz-guard/);
 
     const installedSkill = join(destination, 'stolz-context', 'SKILL.md');
@@ -158,6 +163,7 @@ async function main() {
       scenarios: [
         'separate_guard_installation',
         'separate_evidence_installation',
+        'separate_browser_installation',
         'explicit_evidence_project_rule_roundtrip',
         'clean_install',
         'doctor_environment_and_adapter',
