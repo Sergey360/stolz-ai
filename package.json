@@ -1,6 +1,6 @@
 {
   "name": "stolz-ai",
-  "version": "0.18.0",
+  "version": "0.19.0",
   "description": "A token-efficient skill suite for Codex and compatible AI coding agents.",
   "license": "MIT",
   "private": false,
@@ -63,7 +63,8 @@
   },
   "homepage": "https://github.com/Sergey360/stolz-ai#readme",
   "bin": {
-    "stolz-profile": "tools/profile-cli.mjs"
+    "stolz-profile": "tools/profile-cli.mjs",
+    "stolz-mcp": "tools/mcp-code-cli.mjs"
   },
   "scripts": {
     "test": "node --test test/*.test.mjs",
@@ -81,7 +82,8 @@
   "exports": {
     "./profile-resolver": "./tools/profile-resolver.mjs",
     "./profile-installer": "./tools/profile-installer.mjs",
-    "./codex-local-state": "./tools/codex-local-state.mjs"
+    "./codex-local-state": "./tools/codex-local-state.mjs",
+    "./mcp-code": "./tools/mcp-code.mjs"
   },
   "dependencies": {
     "ajv": "8.20.0"

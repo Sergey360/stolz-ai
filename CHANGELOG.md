@@ -3,6 +3,21 @@
 All notable changes to STOLZ A.I. are recorded here. Releases follow the
 repository's immutable-tag policy; unpublished work is not a release.
 
+## [0.19.0] - 2026-10-13
+
+- Add optional `stolz-mcp` with conditional catalog/measurement and execution
+  guidance. The nine-skill package retains five managed optimization skills.
+- Add offline `stolz-mcp` audit, catalog preview/apply and selected-definition
+  commands. Catalogs reject incomplete pages and duplicate names, preserve
+  complete definitions and use hashed paths with per-definition integrity.
+- Add `stolz-ai/mcp-code` for a caller-supplied authorized MCP client, a reviewed
+  inventory digest and explicit tool allowlist. Preserve exact names, null
+  arguments, errors and the full MCP result envelope. Optional local projection
+  rejects tool errors and oversized output without silently truncating it.
+- Source and result byte measurements do not establish provider-token, cost or
+  general savings. This release adds no transport, OAuth flow, sandbox, schema
+  validator or automatic MCP configuration change; those remain host-owned.
+
 ## [0.18.0] - 2026-10-06
 
 - Add optional `stolz-browser` for controlled tab reuse, ownership, serialized

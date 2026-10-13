@@ -14,7 +14,7 @@
 [![CI](https://github.com/Sergey360/stolz-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/Sergey360/stolz-ai/actions/workflows/ci.yml)
 [![Последний релиз](https://img.shields.io/github/v/release/Sergey360/stolz-ai?display_name=tag&color=416B51&style=flat-square)](https://github.com/Sergey360/stolz-ai/releases/latest)
 [![Node.js ≥20](https://img.shields.io/badge/Node.js-%E2%89%A520-416B51?logo=nodedotjs&logoColor=white&style=flat-square)](package.json)
-[![8 навыков](https://img.shields.io/badge/focused_skills-8-BB7A2A?style=flat-square)](skills)
+[![9 навыков](https://img.shields.io/badge/focused_skills-9-BB7A2A?style=flat-square)](skills)
 [![MIT](https://img.shields.io/badge/license-MIT-6F5B4E?style=flat-square)](LICENSE)
 [![Ни одного токена впустую](https://img.shields.io/badge/no_token-wasted-AD3F2E?style=flat-square)](docs/architecture.md)
 
@@ -69,7 +69,7 @@ STOLZ A.I. содержит пять навыков оптимизации дл�
 основание риска без секретных значений и следующий шаг по исходной задаче.
 Уже выданные пользователем разрешения учитываются.
 
-Пакет v0.18.0 содержит восемь навыков. Установка через профиль копирует пять
+Пакет v0.19.0 содержит девять навыков. Установка через профиль копирует пять
 навыков оптимизации. Для guard предусмотрена
 [отдельная установка](docs/installation.md#optional-guard-installation)
 из пакета или исходников. Проверка не заменяет ограничения доступа к инструментам
@@ -117,7 +117,7 @@ cp -R ../stolz-ai/skills/stolz-* .agents/skills/
 приватному репозиторию не нужен.
 
 ```bash
-npm install --save-dev /absolute/downloads/stolz-ai-0.18.0.tgz
+npm install --save-dev /absolute/downloads/stolz-ai-0.19.0.tgz
 npx --no-install stolz-profile lock --apply --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 npx --no-install stolz-profile verify-lock --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 ```
@@ -198,3 +198,14 @@ npm run benchmark:check
 применения — Codex Desktop; предотвращение падений и экономия токенов не
 подтверждены. Установите каталог навыка целиком по
 [отдельной инструкции](docs/installation.md#optional-browser-installation).
+
+## Каталоги MCP и выполнение через код в v0.19.0
+
+Необязательный [`stolz-mcp`](skills/stolz-mcp/SKILL.md) помогает выбрать встроенный
+поиск инструментов или выполнение через код для конкретной задачи оптимизации
+MCP. Локальный CLI `stolz-mcp` измеряет объём исходных данных в байтах и создаёт
+небольшой каталог с отдельными схемами. API `stolz-ai/mcp-code` использует
+существующий авторизованный клиент, сохраняет имена инструментов, явный `null`
+и полный ответ MCP. При сокращении результатов ошибки и превышение лимита
+не превращаются в успешный ответ. Настройки MCP не меняются; экономия токенов
+провайдера не заявляется. [Установка](docs/installation.md#optional-mcp-workflow-and-offline-catalog).

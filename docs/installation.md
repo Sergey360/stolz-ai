@@ -13,8 +13,8 @@ After installation, open a new agent session.
 ## Manual installation and team setup
 
 
-STOLZ A.I. v0.18.0 packages five optimization skills and optional
-`stolz-guard`, `stolz-evidence` and `stolz-browser`. Installing
+STOLZ A.I. v0.19.0 packages five optimization skills and optional
+`stolz-guard`, `stolz-evidence`, `stolz-browser` and `stolz-mcp`. Installing
 it makes the skills available to an agent runtime; it does not start a service,
 instrument a provider, or install the private context-state and verified-reuse
 implementations used to develop the project. Those boundaries are described in
@@ -48,21 +48,21 @@ model, account, hook, MCP server, or GitLab credential.
 
 ## Verify the release artifact
 
-Download `stolz-ai-0.18.0.tgz` and its `.sha256` file from the release, then
+Download `stolz-ai-0.19.0.tgz` and its `.sha256` file from the release, then
 verify the checksum with the tool available on your operating system. Extract
 the archive, or install that exact local archive with npm:
 
 ```bash
-tar -xzf stolz-ai-0.18.0.tgz
+tar -xzf stolz-ai-0.19.0.tgz
 cd package
 node -p "require('./package.json').version"
 
 # From a consumer project, using the downloaded archive rather than a registry:
-npm install --save-dev /absolute/downloads/stolz-ai-0.18.0.tgz
+npm install --save-dev /absolute/downloads/stolz-ai-0.19.0.tgz
 npx --no-install stolz-profile resolve --runtime codex
 ```
 
-The version command must print `0.18.0`. The release inventory and checksum prove
+The version command must print `0.19.0`. The release inventory and checksum prove
 the bytes that were published; they do not prove runtime compatibility or
 token savings.
 
@@ -104,7 +104,7 @@ node tools/profile-cli.mjs install --runtime claude-code --destination /absolute
 
 The profile declarations for Claude Code and Qwen Code use project destinations
 `.claude/skills/` and `.qwen/skills/`. Codex installations must use the skills
-directory configured by the Codex environment; v0.18.0 does not guess a global
+directory configured by the Codex environment; v0.19.0 does not guess a global
 path.
 
 ## What installation proves
@@ -145,7 +145,7 @@ routed references is incomplete.
 
 ## Optional guard installation
 
-From the extracted v0.18.0 package or a reviewed source checkout, copy
+From the extracted v0.19.0 package or a reviewed source checkout, copy
 that complete directory into the skill directory configured for your runtime.
 For a project using Codex, run from the consumer project's directory:
 
@@ -178,7 +178,7 @@ remove this additional directory. Keep it separate from profile ownership,
 and update or remove its complete directory explicitly. Existing runtime
 certifications do not certify guard's security decisions.
 
-## External-operation waiting in v0.18.0
+## External-operation waiting in v0.19.0
 
 `stolz-quiet-state` can retain an external operation and the next step toward
 the original task. Its [handoff rules](../skills/stolz-quiet-state/references/handoff-and-continuation.md)
@@ -187,7 +187,7 @@ is included in the package, but a standalone skill copy need not include it.
 The host must supply scheduling and wake delivery; installation creates no
 watcher. A Desktop heartbeat fallback still invokes the model on each run.
 
-## Lifecycle commands in v0.18.0
+## Lifecycle commands in v0.19.0
 
 Every managed installation writes `install-manifest.json`. Version 4 records
 the package version, selected runtime and scope (`project` or `user`), and the
@@ -264,7 +264,7 @@ A model identifier is never compatibility evidence.
   stale. It must enter `recheck_required` and receive fresh exact-tuple evidence
   before it can be certified again.
 - An unknown runtime or version may still use the five provider-neutral skills
-if its host can load them, but v0.18.0 makes no runtime-certification promise
+if its host can load them, but v0.19.0 makes no runtime-certification promise
   for that environment.
 - A missing or insufficient capability requires the normal verified route. It
   never permits a weaker outcome or skipped check.
@@ -274,7 +274,7 @@ describing any measured result.
 
 ## Optional local Codex state
 
-Version 0.18.0 retains one explicit Node API for a local Codex workspace. It is
+Version 0.19.0 retains one explicit Node API for a local Codex workspace. It is
 not installed into a skill directory, does not alter profile lifecycle files,
 and does not begin polling. Call it only where the application owns the
 workspace and can provide complete input identities and verification records.
@@ -375,3 +375,29 @@ after a real project owner agrees to participate. Record first-success time,
 sequential updates, conflicts, recovery or rollback, and actual relevant use.
 No participant or observation period is inferred from CI, examples, or elapsed
 calendar time.
+
+## Optional MCP workflow and offline catalog
+
+Version `0.19.0` adds the separately installed `stolz-mcp` instruction directory
+and an offline CLI in the Node package. Copy the complete skill with both
+references to the same runtime-specific directory used above. Existing managed
+profiles retain five optimization skills.
+
+```text
+mkdir -p .agents/skills
+cp -R node_modules/stolz-ai/skills/stolz-mcp .agents/skills/
+npx --no-install stolz-mcp --help
+npx --no-install stolz-mcp audit --input tools.json --server example --select get_records
+npx --no-install stolz-mcp catalog --input tools.json --server example --out mcp-catalog
+npx --no-install stolz-mcp catalog --input tools.json --server example --out mcp-catalog --apply
+npx --no-install stolz-mcp schema --directory mcp-catalog --name get_records
+```
+
+On PowerShell, use `New-Item -ItemType Directory -Force .agents/skills` and
+`Copy-Item -LiteralPath node_modules/stolz-ai/skills/stolz-mcp -Destination .agents/skills -Recurse` for the copy step.
+The export must contain all `tools/list` pages. Catalog creation refuses an
+existing destination. Review exported schema content before sharing it.
+The CLI does not connect to servers, install transports or alter MCP settings.
+Audit fields count serialized UTF-8 bytes; provider tokens and savings remain
+unavailable. See the skill references for host-owned authorization, digest
+invalidation and the `stolz-ai/mcp-code` API.

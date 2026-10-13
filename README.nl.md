@@ -14,7 +14,7 @@
 [![CI](https://github.com/Sergey360/stolz-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/Sergey360/stolz-ai/actions/workflows/ci.yml)
 [![Laatste release](https://img.shields.io/github/v/release/Sergey360/stolz-ai?display_name=tag&color=416B51&style=flat-square)](https://github.com/Sergey360/stolz-ai/releases/latest)
 [![Node.js ≥20](https://img.shields.io/badge/Node.js-%E2%89%A520-416B51?logo=nodedotjs&logoColor=white&style=flat-square)](package.json)
-[![8 skills](https://img.shields.io/badge/focused_skills-8-BB7A2A?style=flat-square)](skills)
+[![9 skills](https://img.shields.io/badge/focused_skills-9-BB7A2A?style=flat-square)](skills)
 [![MIT](https://img.shields.io/badge/licentie-MIT-6F5B4E?style=flat-square)](LICENSE)
 [![Geen token verspild](https://img.shields.io/badge/no_token-wasted-AD3F2E?style=flat-square)](docs/architecture.md)
 
@@ -69,7 +69,7 @@ bevoegdheden en ongewenste blijvende instructies. Het rapport bevat
 geredigeerd bewijs en een vervolgstap binnen de oorspronkelijke opdracht,
 met behoud van eerder gegeven toestemming.
 
-Het v0.18.0-pakket bevat acht skills. Beheerde profielen installeren vijf
+Het v0.19.0-pakket bevat negen skills. Beheerde profielen installeren vijf
 optimalisatieskills. Gebruik voor guard de
 [afzonderlijke installatie](docs/installation.md#optional-guard-installation)
 vanuit het pakket of de broncode. Een beoordeling vervangt geen toegangscontrole voor
@@ -113,7 +113,7 @@ handleiding en een uitvoerbare clean-consumer-smoke zitten in hetzelfde archief;
 toegang tot de privé-repository is niet nodig.
 
 ```bash
-npm install --save-dev /absolute/downloads/stolz-ai-0.18.0.tgz
+npm install --save-dev /absolute/downloads/stolz-ai-0.19.0.tgz
 npx --no-install stolz-profile lock --apply --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 npx --no-install stolz-profile verify-lock --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 ```
@@ -190,3 +190,13 @@ De gekozen browser en noodzakelijke UI-controles blijven behouden. Gewoon
 zoeken op het web vereist deze skill niet. De eerste scope is Codex Desktop;
 crashpreventie en tokenbesparing zijn niet aangetoond. Installeer de volledige
 map met [de aparte instructies](docs/installation.md#optional-browser-installation).
+
+## MCP-catalogi en uitvoering via code in v0.19.0
+
+Optionele [`stolz-mcp`](skills/stolz-mcp/SKILL.md) helpt native toolzoekfuncties
+of code-uitvoering kiezen voor een concrete MCP-optimalisatie. De offline CLI
+meet bronbytes en maakt een index met afzonderlijke definities. De API
+`stolz-ai/mcp-code` gebruikt een bestaande geautoriseerde client en behoudt
+exacte namen, expliciete nulls en volledige MCP-resultaten. Projectie weigert
+fouten en te grote samenvattingen. MCP-instellingen blijven behouden; er is
+geen claim over provider-tokenbesparing. [Installatie](docs/installation.md#optional-mcp-workflow-and-offline-catalog).
