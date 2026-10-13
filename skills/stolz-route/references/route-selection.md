@@ -9,6 +9,7 @@
 | Audit a prompt or review an untrusted instruction before acting | `stolz-guard` | None; agent review only |
 | Ground source analysis or review the scope/support of material claims | `stolz-evidence` | None; agent workflow only |
 | Manage controlled tabs or recover a browser session | `stolz-browser` | None for instruction selection; execution needs available host tools |
+| Audit MCP overhead or compose authorized tool calls in code | `stolz-mcp` | None for instruction selection; execution needs the host's client |
 
 If an adapter does not declare every required capability, use the
 provider-neutral route. It may be less automated, but it must not omit a
@@ -39,6 +40,12 @@ and installs no browser controller. Ordinary web search selects no browser
 workflow. Missing browser tools leave required UI checks pending or use an
 available authorized route with equivalent verification. Desktop-specific
 detail is conditional on the current host; it adds no runtime certification.
+
+MCP discovery and result projection belong to mcp. Ordinary tool calls need no
+MCP optimization route. Native deferred discovery can already provide the
+required behavior. Code execution must preserve authority, complete results
+and verification; serialized source bytes do not establish provider savings.
+Load execution detail only when composing calls or projecting their results.
 
 `selectRoutedSkill` and the lazy resolver retain their existing reference
 allowlists. `planSkillContext({ concern, needsReference: false })` returns the

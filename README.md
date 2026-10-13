@@ -14,7 +14,7 @@
 [![CI](https://github.com/Sergey360/stolz-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/Sergey360/stolz-ai/actions/workflows/ci.yml)
 [![Latest release](https://img.shields.io/github/v/release/Sergey360/stolz-ai?display_name=tag&color=416B51&style=flat-square)](https://github.com/Sergey360/stolz-ai/releases/latest)
 [![Node.js ≥20](https://img.shields.io/badge/Node.js-%E2%89%A520-416B51?logo=nodedotjs&logoColor=white&style=flat-square)](package.json)
-[![8 skills](https://img.shields.io/badge/focused_skills-8-BB7A2A?style=flat-square)](skills)
+[![9 skills](https://img.shields.io/badge/focused_skills-9-BB7A2A?style=flat-square)](skills)
 [![MIT](https://img.shields.io/badge/license-MIT-6F5B4E?style=flat-square)](LICENSE)
 [![No token wasted](https://img.shields.io/badge/no_token-wasted-AD3F2E?style=flat-square)](docs/architecture.md)
 
@@ -58,7 +58,7 @@ character's initials and artificial intelligence.
 
 ## What stays under control
 
-- **Eight focused skills.** Guard, evidence and browser are installed separately.
+- **Nine focused skills.** Guard, evidence, browser and MCP are installed separately.
 - **Verified reuse.** Reuse requires matching, fresh identities and prior
   verification.
 - **Safe fallbacks.** A missing capability never weakens the required outcome
@@ -114,7 +114,7 @@ persistent-context abuse, with redacted evidence and a scoped continuation.
 It respects existing user authorization and loads detailed rules only when
 needed. Ordinary source reads do not trigger it.
 
-The v0.18.0 package contains eight skill directories. Managed optimization
+The v0.19.0 package contains nine skill directories. Managed optimization
 profiles still install five skills; install guard separately using
 [the manual instructions](docs/installation.md#optional-guard-installation).
 A review does not enforce tool permissions or guarantee attack detection.
@@ -143,7 +143,7 @@ the setup guides and an executable clean-consumer smoke; no private repository
 is required.
 
 ```bash
-npm install --save-dev /absolute/downloads/stolz-ai-0.18.0.tgz
+npm install --save-dev /absolute/downloads/stolz-ai-0.19.0.tgz
 npx --no-install stolz-profile lock --apply --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 npx --no-install stolz-profile verify-lock --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 ```
@@ -274,3 +274,13 @@ selected browser and necessary UI checks. Ordinary web search needs no browser
 workflow. The initial scope is Codex Desktop guidance; it adds no browser
 controller, crash-prevention guarantee or savings claim. Install the complete
 directory separately using [the browser instructions](docs/installation.md#optional-browser-installation).
+
+## MCP catalogs and code execution in v0.19.0
+
+Optional [`stolz-mcp`](skills/stolz-mcp/SKILL.md) helps choose native deferred
+discovery or code execution for a concrete MCP optimization. The offline
+`stolz-mcp` CLI audits exact source bytes and builds a small index with individual
+definitions. `stolz-ai/mcp-code` wraps an existing authorized client, preserving
+exact tool names, explicit nulls and complete MCP results. Projection rejects
+errors and oversized summaries. It changes no MCP settings and makes no
+provider-token savings claim. [Installation](docs/installation.md#optional-mcp-workflow-and-offline-catalog).

@@ -29,7 +29,7 @@ async function cli(args, expectedExitCode = 0) {
 
 async function main() {
   const pkg = JSON.parse(await readFile(join(packageRoot, 'package.json'), 'utf8'));
-  assert.equal(pkg.version, '0.18.0');
+  assert.equal(pkg.version, '0.19.0');
   for (const path of [
     'docs/architecture.md',
     'docs/benchmarking.md',
@@ -55,6 +55,16 @@ async function main() {
     for (const path of ['SKILL.md', 'references/coverage-record.md', 'references/claim-review.md', 'references/behavioral-evaluation.md']) {
       assert.deepEqual(await readFile(join(evidenceDestination, path)), await readFile(join(packageRoot, 'skills', 'stolz-evidence', path)));
     }
+    const mcpDestination = join(root, '.agents', 'skills', 'stolz-mcp');
+    await cp(join(packageRoot, 'skills', 'stolz-mcp'), mcpDestination, { recursive: true, errorOnExist: true });
+    for (const path of ['SKILL.md', 'references/catalog-and-measurement.md', 'references/execution-and-results.md']) {
+      assert.deepEqual(await readFile(join(mcpDestination, path)), await readFile(join(packageRoot, 'skills', 'stolz-mcp', path)));
+    }
+    const { auditMcpTools, createMcpCodeBridge, projectMcpResult } = await import('../tools/mcp-code.mjs');
+    const inventory = { server: 'smoke', tools: [{ name: 'get_records', inputSchema: { type: 'object' } }] };
+    const audit = auditMcpTools(inventory, { selectedTools: ['get_records'] });
+    const bridge = createMcpCodeBridge({ inventory, expectedDigest: audit.tools_sha256, allowedTools: ['get_records'], callTool: async ({ arguments: args }) => ({ content: [], structuredContent: { records: [{ filter: args.filter }] } }) });
+    assert.deepEqual(projectMcpResult(await bridge.call('get_records', { filter: null }), (result) => result.structuredContent.records).data, [{ filter: null }]);
     const instructions = join(root, 'QWEN.md');
     const browserDestination = join(root, '.agents', 'skills', 'stolz-browser');
     await cp(join(packageRoot, 'skills', 'stolz-browser'), browserDestination, { recursive: true, errorOnExist: true });
@@ -72,7 +82,7 @@ async function main() {
 
     const installed = await cli(['install', '--runtime', 'qwen-code', '--destination', destination, '--scope', 'project']);
     assert.equal(installed.format_version, '1.0');
-    assert.equal(installed.install.manifest.package.version, '0.18.0');
+    assert.equal(installed.install.manifest.package.version, '0.19.0');
 
     const unknownEnvironment = await cli(['doctor', '--runtime', 'qwen-code', '--destination', destination]);
     assert.equal(unknownEnvironment.environment.runtime_version_state, 'runtime_version_not_reported');
@@ -137,7 +147,7 @@ async function main() {
     const updated = await cli(['update', '--apply', '--runtime', 'qwen-code', '--destination', destination]);
     assert.equal(updated.applied, true);
     assert.equal(updated.plan.current_package.version, '0.15.0');
-    assert.equal(updated.plan.target_package.version, '0.18.0');
+    assert.equal(updated.plan.target_package.version, '0.19.0');
     assert.match(await readFile(join(destination, updatedRoutePath), 'utf8'), /stolz-guard/);
 
     const installedSkill = join(destination, 'stolz-context', 'SKILL.md');
@@ -164,6 +174,8 @@ async function main() {
         'separate_guard_installation',
         'separate_evidence_installation',
         'separate_browser_installation',
+        'separate_mcp_installation',
+        'mcp_bridge_null_and_projection',
         'explicit_evidence_project_rule_roundtrip',
         'clean_install',
         'doctor_environment_and_adapter',

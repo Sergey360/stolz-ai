@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "predecessor_version": "0.18.0",
+  "candidate_version": "0.19.0",
+  "predecessor_sha256": "6b775d6ef7bd3f98e5c17fa0f0777918690213f49a2bfaa30a66ff4467c2b088",
+  "node_version": "v22.22.2",
+  "platform": "win32",
+  "scenarios": [
+    "actual_predecessor_install",
+    "interrupted_update_recovery",
+    "update_to_v019",
+    "rollback_to_actual_v018"
+  ],
+  "dependency_basis": "copied verified candidate npm-ci dependencies; no live runtime or provider call"
+}

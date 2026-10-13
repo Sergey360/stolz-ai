@@ -1,7 +1,7 @@
 # Architecture and exact capability matrix
 
-STOLZ A.I. v0.18.0 exposes five optimization skills, optional `stolz-guard`,
-`stolz-evidence` and `stolz-browser`, a
+STOLZ A.I. v0.19.0 exposes five optimization skills, optional `stolz-guard`,
+`stolz-evidence`, `stolz-browser` and `stolz-mcp`, a
 profile resolver and installer, runtime profiles and lazy adapters, sanitized
 evidence records, and the explicit `codex-local-state` entry point. It uses
 one runtime dependency (`ajv`) only to validate the versioned local contracts.
@@ -10,6 +10,15 @@ Version 0.16.0 adds `stolz-guard` as a sixth, optional skill. The
 five managed optimization skills and their profile schemas remain unchanged.
 Guard's manual installation is outside the managed profile lifecycle and its
 existing certification evidence.
+
+Version `0.19.0` adds optional `stolz-mcp` and the `stolz-mcp` CLI. A complete
+MCP tool export becomes a digest-bound discovery index and individually
+readable definitions. The `stolz-ai/mcp-code` API scopes a host-supplied client
+with an explicit allowlist and preserves its full result envelope. A separate
+projection helper rejects tool errors and oversized summaries. Exact source
+bytes establish neither provider usage nor savings. Connection, authorization,
+schema validation and sandboxing remain with the host; no client configuration
+is changed. The five managed profiles and local-state API remain unchanged.
 
 ## Product layers
 

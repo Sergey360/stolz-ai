@@ -15,6 +15,7 @@ const ROUTES = new Map([
   ['guard', { skill: 'stolz-guard', references: ['skills/stolz-guard/references/review-rules.md'], capabilities: [] }],
   ['evidence', { skill: 'stolz-evidence', references: ['skills/stolz-evidence/references/coverage-record.md', 'skills/stolz-evidence/references/claim-review.md'], capabilities: [] }],
   ['browser', { skill: 'stolz-browser', references: ['skills/stolz-browser/references/tab-lifecycle.md'], capabilities: [] }],
+  ['mcp', { skill: 'stolz-mcp', references: ['skills/stolz-mcp/references/catalog-and-measurement.md'], capabilities: [] }],
 ]);
 
 function requiredTrigger(capabilities) {
@@ -69,8 +70,9 @@ export function selectRoutedSkill({ concern, adapter = null }) {
  * still expose allowed references; this plan includes only requested details.
  * This function performs no file reads, adapter imports or model calls.
  */
-export function planSkillContext({ concern, adapter = null, needsReference = false, browserHost = null } = {}) {
+export function planSkillContext({ concern, adapter = null, needsReference = false, browserHost = null, mcpExecution = false } = {}) {
   if (typeof needsReference !== 'boolean') throw new TypeError('needsReference must be a boolean');
+  if (typeof mcpExecution !== 'boolean') throw new TypeError('mcpExecution must be a boolean');
   if (concern === 'none') {
     return { skill: null, route: 'normal', reason: 'no_optimization', references: [], instruction_reads: [] };
   }
@@ -81,6 +83,9 @@ export function planSkillContext({ concern, adapter = null, needsReference = fal
   const references = needsReference ? [...available] : [];
   if (concern === 'browser' && needsReference && browserHost === 'codex-desktop') {
     references.push('skills/stolz-browser/references/codex-desktop.md');
+  }
+  if (concern === 'mcp' && needsReference && mcpExecution) {
+    references.push('skills/stolz-mcp/references/execution-and-results.md');
   }
   return {
     ...selected,

@@ -6,7 +6,7 @@
   <img src="assets/brand/stolz-readme-light.png" width="820" alt="STOLZ A.I. — האות S מדפי ספר מקופלים עם סימנייה אדומה">
 </picture>
 
-**שמונה מיומנויות ממוקדות לעבודה יעילה וניתנת לאימות של סוכני קידוד.**
+**תשע מיומנויות ממוקדות לעבודה יעילה וניתנת לאימות של סוכני קידוד.**
 *אף טוקן לא מבוזבז.*
 
 [English](README.md) · [Русский](README.ru.md) · [Nederlands](README.nl.md) · [中文](README.zh.md) · **עברית**
@@ -14,7 +14,7 @@
 [![CI](https://github.com/Sergey360/stolz-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/Sergey360/stolz-ai/actions/workflows/ci.yml)
 [![הגרסה האחרונה](https://img.shields.io/github/v/release/Sergey360/stolz-ai?display_name=tag&color=416B51&style=flat-square)](https://github.com/Sergey360/stolz-ai/releases/latest)
 [![Node.js ≥20](https://img.shields.io/badge/Node.js-%E2%89%A520-416B51?logo=nodedotjs&logoColor=white&style=flat-square)](package.json)
-[![8 skills](https://img.shields.io/badge/focused_skills-8-BB7A2A?style=flat-square)](skills)
+[![9 skills](https://img.shields.io/badge/focused_skills-9-BB7A2A?style=flat-square)](skills)
 [![MIT](https://img.shields.io/badge/license-MIT-6F5B4E?style=flat-square)](LICENSE)
 [![No token wasted](https://img.shields.io/badge/no_token-wasted-AD3F2E?style=flat-square)](docs/architecture.md)
 
@@ -66,7 +66,7 @@ STOLZ A.I. כולל חמש מיומנויות אופטימיזציה עבור Co
 הדוח כולל ראיות ללא ערכים סודיים וצעד המשך במסגרת המשימה המקורית,
 תוך כיבוד הרשאות שכבר ניתנו.
 
-חבילת v0.18.0 כוללת שמונה מיומנויות. הפרופילים המנוהלים מתקינים חמש
+חבילת v0.19.0 כוללת תשע מיומנויות. הפרופילים המנוהלים מתקינים חמש
 מיומנויות אופטימיזציה. עבור guard יש להשתמש
 ב[התקנה הנפרדת](docs/installation.md#optional-guard-installation) מהחבילה או מקוד המקור.
 הבדיקה אינה מחליפה בקרת גישה לכלים ואינה מבטיחה גילוי של כל מתקפה.
@@ -108,7 +108,7 @@ cp -R ../stolz-ai/skills/stolz-* .agents/skills/
 אין צורך בגישה למאגר הפרטי.
 
 ```bash
-npm install --save-dev /absolute/downloads/stolz-ai-0.18.0.tgz
+npm install --save-dev /absolute/downloads/stolz-ai-0.19.0.tgz
 npx --no-install stolz-profile lock --apply --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 npx --no-install stolz-profile verify-lock --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 ```
@@ -179,3 +179,12 @@ Evidence מפריד בין החומר שנקרא בפועל, מסקנות מבו
 אינו דורש אותה. תחום השימוש הראשוני הוא Codex Desktop; מניעת קריסות וחיסכון
 בטוקנים טרם הוכחו. העתיקו את התיקייה המלאה לפי
 [הוראות ההתקנה הנפרדות](docs/installation.md#optional-browser-installation).
+
+## קטלוגי MCP והרצה בקוד ב־v0.19.0
+
+המיומנות האופציונלית [`stolz-mcp`](skills/stolz-mcp/SKILL.md) מסייעת לבחור חיפוש כלים מובנה
+או הרצה בקוד לצורך אופטימיזציית MCP מסוימת. כלי ה־CLI המקומי מודד בתים ויוצר אינדקס
+עם הגדרות נפרדות. `stolz-ai/mcp-code` משתמש בלקוח מורשה קיים ושומר שמות מדויקים,
+null מפורש ותוצאות MCP מלאות. צמצום תוצאות דוחה שגיאות ותקציב פלט שנחרג.
+אין שינוי בהגדרות MCP ואין טענה לחיסכון בטוקנים של ספק.
+[התקנה](docs/installation.md#optional-mcp-workflow-and-offline-catalog).
