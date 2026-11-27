@@ -81,7 +81,13 @@ the required verification before the outcome.
 
 ### `stolz-route` — choose a route
 
-Use it when the optimization concern or adapter fallback is unclear.
+For a change spanning components or a release with shared requirements, the
+router can suggest OpenSpec and explain which decision a spec would capture.
+Once accepted, the agent installs or updates the stable CLI and sets up the
+selected project. Existing OpenSpec projects resume their own workflow.
+For routine operations it uses the OS, Git or CI result and checks further
+when a failure, changed input or acceptance criterion calls for it.
+[Project setup](skills/stolz-route/references/openspec.md)
 
 ### `stolz-context` — validate existing context evidence
 
@@ -114,7 +120,7 @@ persistent-context abuse, with redacted evidence and a scoped continuation.
 It respects existing user authorization and loads detailed rules only when
 needed. Ordinary source reads do not trigger it.
 
-The v0.19.0 package contains nine skill directories. Managed optimization
+The v0.20.0 package contains nine skill directories. Managed optimization
 profiles still install five skills; install guard separately using
 [the manual instructions](docs/installation.md#optional-guard-installation).
 A review does not enforce tool permissions or guarantee attack detection.
@@ -143,7 +149,7 @@ the setup guides and an executable clean-consumer smoke; no private repository
 is required.
 
 ```bash
-npm install --save-dev /absolute/downloads/stolz-ai-0.19.0.tgz
+npm install --save-dev /absolute/downloads/stolz-ai-0.20.0.tgz
 npx --no-install stolz-profile lock --apply --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 npx --no-install stolz-profile verify-lock --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 ```

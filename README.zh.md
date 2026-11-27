@@ -64,7 +64,7 @@ v0.16.0 新增 [`stolz-guard`](skills/stolz-guard/SKILL.md)，用于按要求审
 敏感数据泄露、越权操作和持久化恶意指令，并提供隐去敏感值的证据及原任务
 范围内的后续步骤，同时尊重用户已经授予的权限。
 
-v0.19.0 包含九项技能，托管配置仍安装五项优化技能。请从安装包或源代码
+v0.20.0 包含九项技能，托管配置仍安装五项优化技能。请从安装包或源代码
 [单独安装](docs/installation.md#optional-guard-installation)。审查不能替代
 工具访问控制，也不能保证发现所有攻击。
 
@@ -103,7 +103,7 @@ v0.13 公共归档还包含 `stolz-profile` CLI：它可以生成可审查的团
 全新消费者冒烟测试位于同一归档中，无需访问私有仓库。
 
 ```bash
-npm install --save-dev /absolute/downloads/stolz-ai-0.19.0.tgz
+npm install --save-dev /absolute/downloads/stolz-ai-0.20.0.tgz
 npx --no-install stolz-profile lock --apply --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 npx --no-install stolz-profile verify-lock --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 ```
@@ -170,6 +170,13 @@ Evidence 区分实际阅读范围、有依据的结论和未完成的要求，�
 顺序执行生命周期操作和恢复决策的指导。它保留用户选择的浏览器及必要的界面检查。
 普通网页搜索不需要此技能。初始适用范围为 Codex Desktop；尚无防止崩溃或节省
 令牌的证据。请按[单独安装说明](docs/installation.md#optional-browser-installation)复制完整的技能目录。
+
+## 在项目中使用 OpenSpec
+
+准备发布或修改多个组件时，`stolz-route` 可以建议用 OpenSpec 记录需要共同确认的需求。
+用户同意后，智能体会安装或更新命令行工具，并为选定项目配置所需的开发工具。
+对于常规文件操作和 Git 操作，智能体采用系统返回的结果，只在仍有疑问或验收要求时追加检查。
+[OpenSpec 配置指南](skills/stolz-route/references/openspec.md)
 
 ## v0.19.0 MCP 目录与代码执行
 

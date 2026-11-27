@@ -13,12 +13,18 @@ After installation, open a new agent session.
 ## Manual installation and team setup
 
 
-STOLZ A.I. v0.19.0 packages five optimization skills and optional
+STOLZ A.I. v0.20.0 packages five optimization skills and optional
 `stolz-guard`, `stolz-evidence`, `stolz-browser` and `stolz-mcp`. Installing
 it makes the skills available to an agent runtime; it does not start a service,
 instrument a provider, or install the private context-state and verified-reuse
 implementations used to develop the project. Those boundaries are described in
 [Architecture and exact capability matrix](architecture.md).
+
+Version 0.20.0 includes OpenSpec adoption in the managed `stolz-route`
+skill. Keep its `references/` directory when copying it manually. Installing
+STOLZ makes the offer available. Accepting it for a named project is what
+initiates CLI installation and repository setup.
+[OpenSpec setup](../skills/stolz-route/references/openspec.md)
 
 Guard is installed separately; existing managed profiles retain their five
 optimization skills and their original compatibility evidence.
@@ -48,21 +54,21 @@ model, account, hook, MCP server, or GitLab credential.
 
 ## Verify the release artifact
 
-Download `stolz-ai-0.19.0.tgz` and its `.sha256` file from the release, then
-verify the checksum with the tool available on your operating system. Extract
-the archive, or install that exact local archive with npm:
+For a source candidate, build the local archive with `npm pack`. For a
+published release, download the archive and its `.sha256` file and verify
+the published checksum. Use the filename for the version you selected.
 
 ```bash
-tar -xzf stolz-ai-0.19.0.tgz
+tar -xzf stolz-ai-0.20.0.tgz
 cd package
 node -p "require('./package.json').version"
 
 # From a consumer project, using the downloaded archive rather than a registry:
-npm install --save-dev /absolute/downloads/stolz-ai-0.19.0.tgz
+npm install --save-dev /absolute/downloads/stolz-ai-0.20.0.tgz
 npx --no-install stolz-profile resolve --runtime codex
 ```
 
-The version command must print `0.19.0`. The release inventory and checksum prove
+The version command must print `0.20.0`. The release inventory and checksum prove
 the bytes that were published; they do not prove runtime compatibility or
 token savings.
 
@@ -85,11 +91,13 @@ node tools/profile-cli.mjs resolve --runtime claude-code
 node tools/profile-cli.mjs resolve --runtime qwen-code
 ```
 
-Use an absolute destination that your runtime is configured to read. Review a
-dry run first:
+Use an absolute destination. For Codex the managed installer creates a
+`skills/` subdirectory, so a project install under `.agents/skills/` takes
+`.agents/` as the destination. Claude Code and Qwen Code take the skills
+directory itself. To preview the files:
 
 ```bash
-node tools/profile-cli.mjs install --runtime codex --destination /absolute/path/to/skills --dry-run
+node tools/profile-cli.mjs install --runtime codex --destination /absolute/project/.agents --dry-run
 node tools/profile-cli.mjs install --runtime claude-code --destination /absolute/project/.claude/skills --dry-run
 node tools/profile-cli.mjs install --runtime qwen-code --destination /absolute/project/.qwen/skills --dry-run
 ```
@@ -103,9 +111,8 @@ node tools/profile-cli.mjs install --runtime claude-code --destination /absolute
 ```
 
 The profile declarations for Claude Code and Qwen Code use project destinations
-`.claude/skills/` and `.qwen/skills/`. Codex installations must use the skills
-directory configured by the Codex environment; v0.19.0 does not guess a global
-path.
+`.claude/skills/` and `.qwen/skills/`. For a user-level Codex installation,
+choose the parent of the `skills/` directory configured by the environment.
 
 ## What installation proves
 
@@ -145,7 +152,7 @@ routed references is incomplete.
 
 ## Optional guard installation
 
-From the extracted v0.19.0 package or a reviewed source checkout, copy
+From the extracted v0.20.0 package or a reviewed source checkout, copy
 that complete directory into the skill directory configured for your runtime.
 For a project using Codex, run from the consumer project's directory:
 
@@ -186,7 +193,7 @@ are copied with the skill. A full package also includes the optional
 [Codex waiting guide](../adapters/codex/async-wait.md). The host supplies the
 tools for waiting, scheduling, and wake delivery.
 
-## Lifecycle commands in v0.19.0
+## Lifecycle commands in v0.20.0
 
 Every managed installation writes `install-manifest.json`. Version 4 records
 the package version, selected runtime and scope (`project` or `user`), and the
@@ -263,7 +270,7 @@ A model identifier is never compatibility evidence.
   stale. It must enter `recheck_required` and receive fresh exact-tuple evidence
   before it can be certified again.
 - An unknown runtime or version may still use the five provider-neutral skills
-if its host can load them, but v0.19.0 makes no runtime-certification promise
+if its host can load them, but v0.20.0 makes no runtime-certification promise
   for that environment.
 - A missing or insufficient capability requires the normal verified route. It
   never permits a weaker outcome or skipped check.
@@ -273,7 +280,7 @@ describing any measured result.
 
 ## Optional local Codex state
 
-Version 0.19.0 retains one explicit Node API for a local Codex workspace. It is
+Version 0.20.0 retains one explicit Node API for a local Codex workspace. It is
 not installed into a skill directory, does not alter profile lifecycle files,
 and does not begin polling. Call it only where the application owns the
 workspace and can provide complete input identities and verification records.

@@ -66,7 +66,7 @@ STOLZ A.I. כולל חמש מיומנויות אופטימיזציה עבור Co
 הדוח כולל ראיות ללא ערכים סודיים וצעד המשך במסגרת המשימה המקורית,
 תוך כיבוד הרשאות שכבר ניתנו.
 
-חבילת v0.19.0 כוללת תשע מיומנויות. הפרופילים המנוהלים מתקינים חמש
+חבילת v0.20.0 כוללת תשע מיומנויות. הפרופילים המנוהלים מתקינים חמש
 מיומנויות אופטימיזציה. עבור guard יש להשתמש
 ב[התקנה הנפרדת](docs/installation.md#optional-guard-installation) מהחבילה או מקוד המקור.
 הבדיקה אינה מחליפה בקרת גישה לכלים ואינה מבטיחה גילוי של כל מתקפה.
@@ -108,7 +108,7 @@ cp -R ../stolz-ai/skills/stolz-* .agents/skills/
 אין צורך בגישה למאגר הפרטי.
 
 ```bash
-npm install --save-dev /absolute/downloads/stolz-ai-0.19.0.tgz
+npm install --save-dev /absolute/downloads/stolz-ai-0.20.0.tgz
 npx --no-install stolz-profile lock --apply --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 npx --no-install stolz-profile verify-lock --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 ```
@@ -179,6 +179,13 @@ Evidence מפריד בין החומר שנקרא בפועל, מסקנות מבו
 אינו דורש אותה. תחום השימוש הראשוני הוא Codex Desktop; מניעת קריסות וחיסכון
 בטוקנים טרם הוכחו. העתיקו את התיקייה המלאה לפי
 [הוראות ההתקנה הנפרדות](docs/installation.md#optional-browser-installation).
+
+## שילוב OpenSpec בפרויקט
+
+לקראת גרסה חדשה או שינוי בכמה רכיבים, `stolz-route` יכול להציע לתעד את
+הדרישות ב־OpenSpec. לאחר אישור, הסוכן מתקין או מעדכן את כלי שורת הפקודה
+ומגדיר את הכלים שנבחרו עבור הפרויקט. בפעולות קבצים ו־Git שגרתיות, די
+באישור ההצלחה מהמערכת שביצעה את הפעולה. [הגדרת OpenSpec](skills/stolz-route/references/openspec.md)
 
 ## קטלוגי MCP והרצה בקוד ב־v0.19.0
 

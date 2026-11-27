@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "runtime": "codex",
+  "platform": "win32",
+  "node_version": "v22.22.2",
+  "predecessor_version": "0.19.0",
+  "candidate_version": "0.20.0",
+  "predecessor_sha256": "cdde8bad689c9247c7b1ab406f193f876ebb4f8e8694d0dff94055b4529d501a",
+  "candidate_sha256": "c41603401b67715726c63b2570638224b60d8c0acc815e52273fd9b1e08fb33d",
+  "scenarios": [
+    "actual_predecessor_install",
+    "interrupted_update_recovery",
+    "update_to_v020",
+    "openspec_reference_installed",
+    "rollback_to_actual_v019"
+  ]
+}
