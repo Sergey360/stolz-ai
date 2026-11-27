@@ -1,10 +1,26 @@
-# Handoff and continuation
+# Waiting and continuation
 
 ## Choose the waiting route
 
 Finish useful independent work first, then check the identified operation.
-Prefer its existing controller, completion event or callback. A domain workflow
-that already owns waiting also owns continuation; do not add a second watcher.
+Prefer its existing controller, completion event or callback when it meets
+the requested timing. A domain workflow that already owns waiting also owns
+continuation.
+
+For a check due at a specific time, tell the user the next check time and
+time zone and whether the current chat stays active. Use one interruptible
+tool wait until that time, then read the authoritative source once. If new
+user input interrupts the wait, apply it and recompute the remaining time.
+Keep the cadence anchored to the original schedule. After a late wake, check
+once and resume at the next future slot. Report meaningful changes and any
+routine updates the user requested. End the watch at the user's stop
+condition, cancellation, or applicable deadline.
+
+For example, after a ticket check at 16:29 on a 15-minute schedule, wait
+until 16:44. If the ticket still needs watching, the next check is at 16:59.
+Minute-by-minute tool returns can wake the model and reprocess context even
+when the assistant sends no message. Keep any short waits and unchanged
+polls inside one deterministic controller.
 
 For a process that must stay attached and is likely to finish soon, use one
 deterministic tool controller for its lifetime. Keep unchanged checks outside
@@ -12,14 +28,13 @@ the model. Before yielding a local export or copy, establish that it survives
 the tool session, with a job or process id, log and authoritative terminal
 marker. An unverified background process is not a durable handoff.
 
-For longer work, use the host's durable scheduler or event bridge. Record the
-original task as the continuation target. If no durable wake path is available,
-report the waiting state and exact operation identity; do not promise automatic
-resumption. Runtime-specific scheduled model checks are a fallback with model
-overhead, not model-free polling. In Codex Desktop, consult the optional
-[Codex waiting adapter](../../../adapters/codex/async-wait.md) only when that
-fallback is needed. Standalone skill installations may not include the adapter;
-its absence leaves the provider-neutral routes available.
+For work that must continue beyond the turn, verify a durable job and a host
+event bridge or controller that can resume the original task. If the wake
+path is unavailable, report the last verified state, operation identity and
+the limitation. Confirm timer or schedule creation from the tool's result.
+The optional [Codex waiting adapter](../../../adapters/codex/async-wait.md)
+maps these routes to Codex tools. Standalone skill copies use the routes
+above directly.
 
 ## Retain a handoff record
 
@@ -31,7 +46,8 @@ without rediscovery:
   relevant. Keep credentials outside the record and scheduled prompt.
 - Authoritative success, failure, cancellation and timeout signals. Elapsed
   time or a growing log is not evidence of completion.
-- Status-read method, cadence, deadline or stuck threshold, and a bounded
+- Status-read method, next check time and cadence when applicable, deadline or
+  stuck threshold, and a bounded
   transient-read-error policy.
 - Controller or watcher id, continuation target, accepted terminal identity
   and continuation status, so recovery reuses the owner and avoids duplicates.

@@ -67,10 +67,10 @@ shared cache, or automatic polling service.
 External-operation handoff loads the quiet-state
 [continuation reference](../skills/stolz-quiet-state/references/handoff-and-continuation.md)
 only when needed. The host owns the original-task record and durable wake
-delivery. The optional [Codex Desktop fallback](../adapters/codex/async-wait.md)
-uses scheduled model runs and therefore has context overhead even when silent.
-Existing external controllers remain the preferred owner; the local-state API
-does not add scheduling, automatic resumption or transactional side effects.
+delivery. The optional [Codex waiting guide](../adapters/codex/async-wait.md)
+maps active waits and separate reminders to host tools. Existing external
+controllers retain ownership of their operations. Scheduling, automatic
+resumption and transactional side effects are outside the local-state API.
 
 `openCodexLocalState({ enabled: true, workspace, max_storage_bytes })` is the
 only stable public state entry point. The returned handle accepts one bounded

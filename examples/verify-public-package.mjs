@@ -83,6 +83,12 @@ async function main() {
     const installed = await cli(['install', '--runtime', 'qwen-code', '--destination', destination, '--scope', 'project']);
     assert.equal(installed.format_version, '1.0');
     assert.equal(installed.install.manifest.package.version, '0.19.0');
+    for (const path of ['SKILL.md', 'references/handoff-and-continuation.md']) {
+      assert.deepEqual(
+        await readFile(join(destination, 'stolz-quiet-state', path)),
+        await readFile(join(packageRoot, 'skills', 'stolz-quiet-state', path)),
+      );
+    }
 
     const unknownEnvironment = await cli(['doctor', '--runtime', 'qwen-code', '--destination', destination]);
     assert.equal(unknownEnvironment.environment.runtime_version_state, 'runtime_version_not_reported');

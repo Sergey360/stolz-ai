@@ -178,14 +178,13 @@ remove this additional directory. Keep it separate from profile ownership,
 and update or remove its complete directory explicitly. Existing runtime
 certifications do not certify guard's security decisions.
 
-## External-operation waiting in v0.19.0
+## Timed checks and external-operation waiting
 
-`stolz-quiet-state` can retain an external operation and the next step toward
-the original task. Its [handoff rules](../skills/stolz-quiet-state/references/handoff-and-continuation.md)
-are copied with the skill. The optional [Codex Desktop adapter](../adapters/codex/async-wait.md)
-is included in the package, but a standalone skill copy need not include it.
-The host must supply scheduling and wake delivery; installation creates no
-watcher. A Desktop heartbeat fallback still invokes the model on each run.
+`stolz-quiet-state` covers timed checks and resuming a task after an external
+operation. Its [waiting rules](../skills/stolz-quiet-state/references/handoff-and-continuation.md)
+are copied with the skill. A full package also includes the optional
+[Codex waiting guide](../adapters/codex/async-wait.md). The host supplies the
+tools for waiting, scheduling, and wake delivery.
 
 ## Lifecycle commands in v0.19.0
 
