@@ -3,6 +3,14 @@
 All notable changes to STOLZ A.I. are recorded here. Releases follow the
 repository's immutable-tag policy; unpublished work is not a release.
 
+## [0.20.0] - 2026-11-27
+
+- The managed `stolz-route` skill can offer OpenSpec for a project change,
+  install or update the stable CLI after adoption is agreed, and configure
+  the selected tools in the chosen repository.
+- The router uses the OS, Git or CI result for the operation it confirms.
+  It asks what is still unknown before repeating a check.
+
 ## [0.19.0] - 2026-10-13
 
 - Add optional `stolz-mcp` with conditional catalog/measurement and execution

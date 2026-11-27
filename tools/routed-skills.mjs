@@ -8,6 +8,8 @@ import {
 } from './foundation.mjs';
 
 const ROUTES = new Map([
+  ['verification', { skill: 'stolz-route', references: [], capabilities: [] }],
+  ['openspec', { skill: 'stolz-route', references: ['skills/stolz-route/references/openspec.md'], capabilities: [] }],
   ['context', { skill: 'stolz-context', references: ['skills/stolz-context/references/manifest-and-reads.md'], capabilities: ['artifact_identity'] }],
   ['reuse', { skill: 'stolz-reuse', references: ['skills/stolz-reuse/references/ledger-and-invalidation.md'], capabilities: ['artifact_identity', 'command_execution'] }],
   ['state', { skill: 'stolz-quiet-state', references: ['skills/stolz-quiet-state/references/material-transitions.md'], capabilities: ['durable_state'] }],
@@ -77,7 +79,7 @@ export function planSkillContext({ concern, adapter = null, needsReference = fal
     return { skill: null, route: 'normal', reason: 'no_optimization', references: [], instruction_reads: [] };
   }
   const selected = selectRoutedSkill({ concern, adapter });
-  const available = selected.skill === 'stolz-route'
+  const available = selected.reason === 'unknown_concern'
     ? ['skills/stolz-route/references/route-selection.md']
     : selected.references;
   const references = needsReference ? [...available] : [];

@@ -2,6 +2,8 @@
 
 | Task concern | Skill | Required capability |
 | --- | --- | --- |
+| Decide whether a native operation result is sufficient (`verification`) | `stolz-route` | None |
+| Recommend or set up OpenSpec for a project (`openspec`) | `stolz-route` | None for selection. Setup needs a shell for the chosen project |
 | Validate manifest or identity-bound read | `stolz-context` | `artifact_identity` |
 | Admit prior result or coalesce command | `stolz-reuse` | `artifact_identity`, `command_execution` |
 | Suppress repeated operation wakes | `stolz-quiet-state` | `durable_state` |
@@ -51,5 +53,6 @@ Load execution detail only when composing calls or projecting their results.
 allowlists. `planSkillContext({ concern, needsReference: false })` returns the
 one selected root without those references; request `needsReference: true`
 only when that root's condition holds. `concern: 'none'` produces no reads.
-An unknown concern loads this router only. This is a caller-driven loading
-plan, not a natural-language classifier or an automatic model invocation.
+An unknown concern selects the router and its general routing reference when
+detail is requested. The agent identifies project work from the task. The
+JavaScript caller passes the corresponding concern to the loading plan.

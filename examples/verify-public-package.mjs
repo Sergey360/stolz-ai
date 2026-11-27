@@ -29,7 +29,7 @@ async function cli(args, expectedExitCode = 0) {
 
 async function main() {
   const pkg = JSON.parse(await readFile(join(packageRoot, 'package.json'), 'utf8'));
-  assert.equal(pkg.version, '0.19.0');
+  assert.equal(pkg.version, '0.20.0');
   for (const path of [
     'docs/architecture.md',
     'docs/benchmarking.md',
@@ -82,7 +82,7 @@ async function main() {
 
     const installed = await cli(['install', '--runtime', 'qwen-code', '--destination', destination, '--scope', 'project']);
     assert.equal(installed.format_version, '1.0');
-    assert.equal(installed.install.manifest.package.version, '0.19.0');
+    assert.equal(installed.install.manifest.package.version, '0.20.0');
     for (const path of ['SKILL.md', 'references/handoff-and-continuation.md']) {
       assert.deepEqual(
         await readFile(join(destination, 'stolz-quiet-state', path)),
@@ -153,7 +153,7 @@ async function main() {
     const updated = await cli(['update', '--apply', '--runtime', 'qwen-code', '--destination', destination]);
     assert.equal(updated.applied, true);
     assert.equal(updated.plan.current_package.version, '0.15.0');
-    assert.equal(updated.plan.target_package.version, '0.19.0');
+    assert.equal(updated.plan.target_package.version, '0.20.0');
     assert.match(await readFile(join(destination, updatedRoutePath), 'utf8'), /stolz-guard/);
 
     const installedSkill = join(destination, 'stolz-context', 'SKILL.md');

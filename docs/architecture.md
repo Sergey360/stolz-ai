@@ -1,6 +1,6 @@
 # Architecture and exact capability matrix
 
-STOLZ A.I. v0.19.0 exposes five optimization skills, optional `stolz-guard`,
+STOLZ A.I. v0.20.0 exposes five optimization skills, optional `stolz-guard`,
 `stolz-evidence`, `stolz-browser` and `stolz-mcp`, a
 profile resolver and installer, runtime profiles and lazy adapters, sanitized
 evidence records, and the explicit `codex-local-state` entry point. It uses

@@ -6,7 +6,7 @@
   <img src="assets/brand/stolz-readme-light.png" width="820" alt="STOLZ A.I. — een S van gevouwen boekpagina's met een rode bladwijzer">
 </picture>
 
-**Acht gerichte skills voor efficiënt en verifieerbaar werk van programmeeragents.**
+**Negen gerichte skills voor efficiënt en verifieerbaar werk van programmeeragents.**
 *Geen token verspild.*
 
 [English](README.md) · [Русский](README.ru.md) · **Nederlands** · [中文](README.zh.md) · [עברית](README.he.md)
@@ -69,7 +69,7 @@ bevoegdheden en ongewenste blijvende instructies. Het rapport bevat
 geredigeerd bewijs en een vervolgstap binnen de oorspronkelijke opdracht,
 met behoud van eerder gegeven toestemming.
 
-Het v0.19.0-pakket bevat negen skills. Beheerde profielen installeren vijf
+Het v0.20.0-pakket bevat negen skills. Beheerde profielen installeren vijf
 optimalisatieskills. Gebruik voor guard de
 [afzonderlijke installatie](docs/installation.md#optional-guard-installation)
 vanuit het pakket of de broncode. Een beoordeling vervangt geen toegangscontrole voor
@@ -113,7 +113,7 @@ handleiding en een uitvoerbare clean-consumer-smoke zitten in hetzelfde archief;
 toegang tot de privé-repository is niet nodig.
 
 ```bash
-npm install --save-dev /absolute/downloads/stolz-ai-0.19.0.tgz
+npm install --save-dev /absolute/downloads/stolz-ai-0.20.0.tgz
 npx --no-install stolz-profile lock --apply --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 npx --no-install stolz-profile verify-lock --runtime codex --lockfile /absolute/project/stolz-profile.lock.json
 ```
@@ -190,6 +190,14 @@ De gekozen browser en noodzakelijke UI-controles blijven behouden. Gewoon
 zoeken op het web vereist deze skill niet. De eerste scope is Codex Desktop;
 crashpreventie en tokenbesparing zijn niet aangetoond. Installeer de volledige
 map met [de aparte instructies](docs/installation.md#optional-browser-installation).
+
+## OpenSpec voor projectwerk
+
+Bij een release of een wijziging die meerdere onderdelen raakt, kan
+`stolz-route` voorstellen om de eisen in OpenSpec vast te leggen. Na akkoord
+installeert of actualiseert de agent de CLI en richt hij de gekozen tools in
+voor het project. Bij gewone bestands- en Git-bewerkingen volstaat de melding
+van het systeem dat de bewerking uitvoerde. [OpenSpec instellen](skills/stolz-route/references/openspec.md)
 
 ## MCP-catalogi en uitvoering via code in v0.19.0
 
